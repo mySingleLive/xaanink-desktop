@@ -32,6 +32,7 @@ import {SidebarWindowControls} from './src/components/desktop/WindowControls';
 import {useTabsStore} from './src/stores/tabs'; import {useDesktopStore} from './src/stores/desktop';
 window.mountPanes=(count=0)=>{
  const calls=[]; const messages=[{id:'fixture'}],currentConversation={title:'合成验收会话'};
+ const desktopBootstrap={platform:'darwin',settings:{appearance:{zoom:1}}};
  const sidebarHidden=true,contentHidden=true,onShowSidebar=()=>calls.push('sidebar'),onShowContent=()=>calls.push('content');
  useDesktopStore.setState({bootstrap:{platform:'darwin'}});
  const tabs=Array.from({length:count},(_,i)=>({id:'tab-'+i,title:'验收面板 '+i,type:'theme',novelId:'isolated'}));

@@ -4546,5 +4546,29 @@
       "docs/reviews/141-pane-drag-repackage.md",
       "docs/reviews/142-pane-drag-repackage-review.md"
     ]
+  },
+  "sidebarRestoreSafety": {
+    "status": "macos-development-spacing-verified",
+    "implementation": [
+      "src/components/layout/ChatPanel.tsx"
+    ],
+    "tests": [
+      "tests/browser/sidebar-restore-safe-area.test.ts",
+      "tests/browser/pane-window-drag.test.ts",
+      "scripts/smoke-sidebar-restore-safe-area.mjs"
+    ],
+    "evidence": [
+      "docs/reviews/143-sidebar-restore-safe-area-plan.md",
+      "docs/reviews/144-sidebar-restore-plan-review.md",
+      "docs/reviews/145-sidebar-restore-test-cases.md",
+      "docs/reviews/146-sidebar-restore-test-review.md",
+      "docs/reviews/147-sidebar-restore-code-review.md",
+      "docs/reviews/148-sidebar-restore-verification.md",
+      "docs/reviews/149-sidebar-restore-verification-review.md",
+      "docs/evidence/implementation-46/verification.json",
+      "docs/evidence/implementation-46/sidebar-restore-native.json"
+    ],
+    "note": "仅本轮macOS侧栏收起后AI标题恢复按钮安全位置修复。完整core1624/browser185通过，类型及两侧构建通过，真实macOS CUA恢复点击、实际zoom/font位置及默认外观折叠重开通过；CUA共享指示图标替代彩色窗控，截图未逐色量测绿灯右缘。未重新打包、Windows或其它布局正式验收，W05总status保留原值。",
+    "source": "docs/reviews/143-sidebar-restore-safe-area-plan.md"
   }
 }

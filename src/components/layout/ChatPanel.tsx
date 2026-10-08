@@ -1664,14 +1664,15 @@ export function ChatPanel({
     <div className="chatpane flex h-full flex-col bg-chat-bg" aria-busy={!canSend}>
       {/* header：标题 + 会话选择 + 关联小说指示胶囊 */}
       <div className="desktop-drag flex h-11 shrink-0 items-center gap-2 border-b border-border px-3">
-        {/* 侧栏隐藏时的恢复入口（原顶栏按钮，按评论迁到对话区头部左侧）；
-            -ml-1.5 让图标与下方消息内容左缘视觉对齐 */}
+        {/* macOS 窗控不随网页缩放：抵消标题 .75rem 内边距，
+            将恢复按钮左缘留在原生窗控右侧的 88px 安全位置。 */}
         {sidebarHidden && onShowSidebar && (
           <button
             type="button"
             aria-label="显示左侧导航栏"
             title="显示左侧导航栏"
             onClick={onShowSidebar}
+            style={desktopBootstrap?.platform === "darwin" ? { marginLeft: `calc(${88 / desktopBootstrap.settings.appearance.zoom}px - .75rem)` } : undefined}
             className="-ml-1.5 flex size-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-hover-wash hover:text-foreground"
           >
             <PanelLeft className="size-4" />
