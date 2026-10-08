@@ -34,7 +34,7 @@ globalThis.mountShell=(layout)=>{
 globalThis.mountRecovery=()=>{
  desktopRecoveryStore.retain([{id:'one',source:'chat',path:'draft',reason:'CURRENT_DRAFT_CONFLICT',createdAt:'2026-10-08T00:00:00Z',value:'原稿 <script>danger()</script>'},{id:'two',source:'autosaves',path:'failed',reason:'AUTOSAVE_UNMATCHED',createdAt:'2026-10-08T00:00:00Z',value:{draft:'第二份保留稿',operationId:'must-not-replay'}}]);
  const release=desktopSaveCoordinator.registerSource('recovery',desktopRecoveryStore),exports=[],copies=[];
- let finish,reject;window.desktop={workBackup:async()=>({type:"works",works:[]}),writeClipboardText:async text=>{copies.push(text)},exportDraft:async(id,snapshot)=>{exports.push({id,snapshot});return new Promise((yes,no)=>{finish=yes;reject=no})}};
+ let finish,reject;window.desktop={writeClipboardText:async text=>{copies.push(text)},exportDraft:async(id,snapshot)=>{exports.push({id,snapshot});return new Promise((yes,no)=>{finish=yes;reject=no})}};
  useDesktopStore.setState({bootstrap:{draftSessionId:'00000000-0000-4000-8000-000000000001'}});
  function App(){const[open,setOpen]=React.useState(true);return React.createElement(RecoveryDialog,{open,onOpenChange:setOpen})}
  const root=createRoot(document.getElementById('app'));flushSync(()=>root.render(React.createElement(App)));
@@ -109,12 +109,12 @@ test("REC56-R01: current RecoveryDialog selects and copies readable retained pro
   await page.getByRole("button", { name: /编辑草稿 2/ }).click(); assert.doesNotMatch(await content.inputValue(), /must-not-replay/)
   await page.getByRole("button", { name: "复制内容" }).click()
   const copy = await page.evaluate(() => (window as any).r.copies); assert.match(copy[0], /第二份保留稿/)
-  await page.getByRole("button", { name: "导出恢复草稿" }).click(); await page.getByRole("button", { name: "正在导出…" }).waitFor()
+  await page.getByRole("button", { name: "导出草稿" }).click(); await page.getByRole("button", { name: "正在导出…" }).waitFor()
   assert.equal(await page.getByRole("button", { name: "正在导出…" }).isDisabled(), true)
   const sent = await page.evaluate(() => (window as any).r.exports); assert.equal(sent.length, 1); assert.equal(sent[0].id, "00000000-0000-4000-8000-000000000001"); assert.match(JSON.stringify(sent[0].snapshot), /must-not-replay/)
-  await page.evaluate(() => (window as any).r.reject()); await page.getByRole("button", { name: "导出恢复草稿" }).waitFor()
+  await page.evaluate(() => (window as any).r.reject()); await page.getByRole("button", { name: "导出草稿" }).waitFor()
   const retained = await page.evaluate(() => (window as any).r.read()); assert.equal(retained.items.length, 2); assert.match(JSON.stringify(retained), /原稿/)
-  assert.equal(await page.getByRole("button", { name: "导出恢复草稿" }).isDisabled(), false)
+  assert.equal(await page.getByRole("button", { name: "导出草稿" }).isDisabled(), false)
   assert.deepEqual(await page.evaluate(() => (window as any).notifications), ["已复制草稿", "导出失败，原草稿仍保留在本机"])
   const rect = await page.getByRole("dialog").boundingBox(); assert.ok(rect && rect.x >= 0 && rect.x + rect.width <= 641)
   await page.keyboard.press("Escape"); await page.getByRole("dialog").waitFor({ state: "hidden" })

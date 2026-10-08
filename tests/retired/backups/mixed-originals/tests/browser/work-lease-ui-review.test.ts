@@ -5,7 +5,7 @@ import {readFile,readdir} from "node:fs/promises"
 import {build} from "esbuild"
 import {chromium,type Browser,type Page} from "playwright-core"
 
-// Current React, WorkLeasePendingDialog, DesktopApp, original BaseUI Dialog/Button
+// Current React, WorkBackupsPanel, DesktopApp, original BaseUI Dialog/Button
 // and compiled application CSS. Other workspace children and the main bridge
 // are controlled; no native prompt, filesystem repair, Electron or OS claim.
 const css=readdir(".next/static/chunks").then(async files=>(await Promise.all(files.filter(file=>file.endsWith(".css")).sort().map(file=>readFile(".next/static/chunks/"+file,"utf8")))).join("\n"))
@@ -34,15 +34,15 @@ const mocks:Record<string,string>={
 const emptyChildren:Record<string,string>={"./WindowControls":"WindowsMenuControl","./SettingsDialog":"SettingsDialog","./ModelRequiredDialog":"ModelRequiredDialog","./DesktopCommandController":"DesktopCommandController","./DesktopNavigation":"DesktopNavigation","./RecoveryDialog":"RecoveryDialog","./TemplateManagementDialog":"TemplateManagementDialog"}
 const bundle=build({stdin:{loader:"tsx",resolveDir:process.cwd(),contents:`
 import React from 'react';import{createRoot}from'react-dom/client';import{flushSync}from'react-dom';
-import{WorkLeasePendingDialog}from'./src/components/desktop/WorkLeasePendingDialog';import DesktopApp from'./src/components/desktop/DesktopApp';
+import{WorkBackupsPanel}from'./src/components/desktop/WorkBackupsPanel';import DesktopApp from'./src/components/desktop/DesktopApp';
 import{useDesktopStore}from'./src/stores/desktop';import{defaultState}from'./desktop/core/settings';
-globalThis.mountLeaseUI=(mode='dialog',options={})=>{
- const calls=[],repairs=[],listeners=[],messages=[];globalThis.messages=messages;
- const state={...structuredClone(defaultState),revision:0,platform:'darwin',version:'0.1.0',dataRoot:'/controlled/local',draftSessionId:'b0000000-0000-4000-8000-000000000001',systemDark:false};
- useDesktopStore.setState({bootstrap:null});let bootResolve,bootReject;const bridge={bootstrap:()=>options.holdBootstrap?new Promise((resolve,reject)=>{bootResolve=resolve;bootReject=reject}):Promise.resolve(state),subscribe:listener=>{listeners.push(listener);return()=>listeners.splice(listeners.indexOf(listener),1)},repairWorkLease:action=>{calls.push({api:'repair',...action});return new Promise((resolve,reject)=>repairs.push({resolve,reject}))},replyClose:async()=>true};
- if(options.missingRepair)delete bridge.repairWorkLease;window.desktop=new Proxy(bridge,{get(target,key){if(/backup|restoreWork|restoreApplication/i.test(String(key)))throw Error('retired bridge accessed '+String(key));return target[key]}});
- const root=createRoot(document.getElementById('app'));flushSync(()=>root.render(mode==='dialog'?<WorkLeasePendingDialog open={true}/>:<DesktopApp/>));
- return{calls,messages,repairs,confirmed:()=>structuredClone(useDesktopStore.getState().bootstrap),repair:(value,index=0)=>repairs[index].resolve(value),repairFail:(index=0)=>repairs[index].reject(Error('private-native-path-key')),emit:event=>listeners.slice().forEach(listener=>listener(event)),boot:()=>bootResolve(state),failBoot:()=>bootReject(Error("private-bootstrap-path")),unmount:()=>flushSync(()=>root.unmount())};
+globalThis.mountLeaseUI=(mode='panel',options={})=>{
+ const workA='a0000000-0000-4000-8000-000000000001',workB='a0000000-0000-4000-8000-000000000002',calls=[],lists=[],repairs=[],restores=[],listeners=[],messages=[];globalThis.messages=messages;
+ const state={...structuredClone(defaultState),platform:'darwin',version:'0.1.0',dataRoot:'/controlled/local',draftSessionId:'b0000000-0000-4000-8000-000000000001',systemDark:false};
+ useDesktopStore.setState({bootstrap:null});let bootResolve,bootReject;const bridge={bootstrap:()=>options.holdBootstrap?new Promise((resolve,reject)=>{bootResolve=resolve;bootReject=reject}):Promise.resolve(state),subscribe:listener=>{listeners.push(listener);return()=>listeners.splice(listeners.indexOf(listener),1)},workBackup:action=>{calls.push({api:'backup',...action});if(action.type==='works')return Promise.resolve({type:'works',works:options.empty?[]:[{id:workA,title:'第一部本地作品'},{id:workB,title:'第二部本地作品'}]});return new Promise((resolve,reject)=>lists.push({workId:action.workId,resolve,reject}))},restoreWork:action=>{calls.push({api:'restore',...action});return new Promise((resolve,reject)=>restores.push({resolve,reject}))},repairWorkLease:action=>{calls.push({api:'repair',...action});return new Promise((resolve,reject)=>repairs.push({resolve,reject}))},replyClose:async()=>true};
+ if(options.missingRepair)delete bridge.repairWorkLease;window.desktop=bridge;
+ const root=createRoot(document.getElementById('app'));flushSync(()=>root.render(mode==='panel'?<WorkBackupsPanel/>:<DesktopApp/>));
+ return{workA,workB,calls,messages,lists,repairs,restores,rows:(work=workA)=>lists.find(row=>row.workId===work).resolve({type:'list',backups:[{id:'c0000000-0000-4000-8000-000000000001',workId:work,title:'该作品备份',createdAt:'2026-10-08T00:00:00.000Z',bytes:2048,assetCount:0,sha256:'a'.repeat(64)}]}),listFail:(work=workA)=>lists.find(row=>row.workId===work).reject(Error('作品锁需要恢复')),repair:(value,index=0)=>repairs[index].resolve(value),repairFail:(index=0)=>repairs[index].reject(Error('private-native-path-key')),restore:value=>restores[0].resolve(value),emit:event=>listeners.slice().forEach(listener=>listener(event)),boot:()=>bootResolve(state),failBoot:()=>bootReject(Error("private-bootstrap-path")),unmount:()=>flushSync(()=>root.unmount())};
 };`},bundle:true,platform:"browser",format:"iife",write:false,tsconfig:"tsconfig.json",plugins:[{name:"controlled-workspace",setup(builder){
  builder.onResolve({filter:/.*/},args=>mocks[args.path]?{path:args.path,namespace:"controlled"}:args.importer.endsWith("/DesktopApp.tsx")&&emptyChildren[args.path]?{path:args.path,namespace:"empty-child"}:undefined)
  builder.onLoad({filter:/.*/,namespace:"controlled"},args=>({contents:mocks[args.path],loader:"tsx",resolveDir:process.cwd()}))
@@ -51,18 +51,18 @@ globalThis.mountLeaseUI=(mode='dialog',options={})=>{
 let browser:Browser
 test.before(async()=>{browser=await chromium.launch({headless:true,executablePath:process.env.XAANINK_TEST_CHROMIUM})})
 test.after(async()=>{await browser?.close()})
-async function scenario(mode:"dialog"|"app",run:(page:Page)=>Promise<void>,options:Record<string,boolean>={}){
+async function scenario(mode:"panel"|"app",run:(page:Page)=>Promise<void>,options:Record<string,boolean>={}){
  const page=await browser.newPage({viewport:{width:1000,height:760}}),errors:string[]=[];page.setDefaultTimeout(2200);page.on("pageerror",error=>errors.push(error.message))
- try{await page.setContent('<div id="app"></div>');await page.addStyleTag({content:await css});await page.addScriptTag({content:await bundle});await page.evaluate(({mode,options})=>{(window as any).f=(window as any).mountLeaseUI(mode,options)},{mode,options});await(mode==="dialog"?page.getByRole("heading",{name:"作品锁修复交接尚未完成",exact:true}):options.holdBootstrap?page.getByRole("status"):page.getByLabel("旧工作台正文")).waitFor();await run(page);assert.deepEqual(errors,[])}finally{await page.close()}
+ try{await page.setContent('<div id="app"></div>');await page.addStyleTag({content:await css});await page.addScriptTag({content:await bundle});await page.evaluate(({mode,options})=>{(window as any).f=(window as any).mountLeaseUI(mode,options)},{mode,options});await(mode==="panel"?page.getByLabel("备份所属作品"):options.holdBootstrap?page.getByRole("status"):page.getByLabel("旧工作台正文")).waitFor();await run(page);assert.deepEqual(errors,[])}finally{await page.close()}
 }
 async function settle(page:Page){await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))))}
 
-// The old late backup-list/owner-selector scenario is preserved in the mixed
-// original. Late ordinary state may still arrive after this lease barrier.
-test("WL90-U01: a late ordinary state reply cannot release the pending repair barrier or change the retained workspace",()=>scenario("app",async page=>{
- await page.getByLabel('旧工作台正文').fill('修复前原草稿');await page.evaluate(()=>(window as any).f.emit({type:'work-lease-pending'}));await page.getByRole('button',{name:'重试完成修复',exact:true}).click();await page.evaluate(()=>(window as any).f.repair('pending'));await page.getByRole('button',{name:'重试完成修复',exact:true}).waitFor()
- await page.evaluate(()=>{const f=(window as any).f,state=f.confirmed();f.emit({type:'state',state:{...state,revision:state.revision+1}});f.emit({type:'close-cancelled'})});await settle(page)
- assert.equal(await page.evaluate(()=>(window as any).f.confirmed().revision),1);assert.equal(await page.getByRole('dialog').count(),1);assert.equal(await page.getByLabel('旧工作台正文').inputValue(),'修复前原草稿');assert.ok(await page.getByLabel('旧工作台正文').evaluate(element=>!!element.closest('[inert]')));assert.equal(await page.evaluate(()=>(window as any).commands['file.save'].enabled()),false);assert.deepEqual(await page.evaluate(()=>(window as any).f.calls),[{api:'repair',type:'retry'}])
+test("WL90-U01: a late backup-list reply cannot release the pending repair barrier or change the selected owner",()=>scenario("panel",async page=>{
+ await page.getByRole('button',{name:'修复异常退出锁',exact:true}).click();await page.evaluate(()=>(window as any).f.repair('pending'))
+ await page.getByRole('status').filter({hasText:'作品锁修复交接待完成'}).waitFor();await page.evaluate(()=>(window as any).f.rows());await settle(page)
+ assert.equal(await page.getByLabel('备份所属作品').inputValue(),'a0000000-0000-4000-8000-000000000001')
+ for(const name of ['校验并恢复','修复异常退出锁'])assert.equal(await page.getByRole('button',{name,exact:true}).isDisabled(),true)
+ assert.equal(await page.getByLabel('备份所属作品').isDisabled(),true);assert.equal(await page.evaluate(()=>(window as any).f.calls.filter((row:any)=>row.api==='repair').length),1);await page.getByText('该作品备份',{exact:true}).waitFor()
 }))
 test("WL90-U02: malformed retry replies retain the barrier without leaking their cause and only deliberate retry sends another narrow command",()=>scenario("app",async page=>{
  await page.evaluate(()=>(window as any).f.emit({type:'work-lease-pending'}));await page.getByRole('button',{name:'重试完成修复',exact:true}).click()

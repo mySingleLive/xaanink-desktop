@@ -2,8 +2,8 @@
 body { margin: 0; overflow: hidden; }
 .desktop-markdown-editor .markdown-body { font-family:var(--desktop-body-font); font-size:var(--desktop-body-size); line-height:var(--desktop-body-line-height); }
 .desktop-markdown-editor .markdown-body :is(h1,h2,h3,h4) { font-family:inherit; }
-.desktop-drag { -webkit-app-region: drag; app-region: drag; }
-button, input, select, textarea, a, [role="button"], [contenteditable="true"], [data-slot="dialog-content"] { -webkit-app-region: no-drag; app-region: no-drag; }
+.desktop-drag { -webkit-app-region: drag; app-region: drag; user-select: none; }
+button, input, select, textarea, a, [role="button"], [role="tab"], [contenteditable="true"], [data-slot="dialog-content"] { -webkit-app-region: no-drag; app-region: no-drag; }
 .desktop-control { display:flex; width:28px; height:28px; align-items:center; justify-content:center; flex-shrink:0; border-radius:6px; color:var(--muted-foreground); }
 .desktop-control:hover:not(:disabled) { background:var(--hover-wash); color:var(--foreground); }
 .desktop-control:disabled { opacity:.35; }

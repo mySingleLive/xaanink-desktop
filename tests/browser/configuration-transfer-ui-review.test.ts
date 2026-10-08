@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import {test} from 'node:test'
-import {readFileSync} from 'node:fs'
+import {readFileSync,readdirSync} from 'node:fs'
 import {build} from 'esbuild'
 import {chromium,type Browser,type Page} from 'playwright-core'
 import {defaultState,type PublicModel} from '../../desktop/core/settings'
@@ -9,7 +9,7 @@ import {platformCommands} from '../../desktop/shared/command-registry'
 
 // Actual SettingsDialog/ConfigurationTransfer, store, transfer rules, BaseUI
 // checkbox/combobox/focus. Native file IO/pickers are deferred memory IPC.
-const css=readFileSync('.next/static/chunks/2g1tpo-0aaw7s.css','utf8')+'\n'+readFileSync('src/app/desktop.css','utf8')
+const css=readdirSync('.next/static/chunks').filter(file=>file.endsWith('.css')).sort().map(file=>readFileSync('.next/static/chunks/'+file,'utf8')).join('\n')+'\n'+readFileSync('src/app/desktop.css','utf8')
 const ids={text:'00000000-0000-4000-8000-000000000001',image:'00000000-0000-4000-8000-000000000002',disabled:'00000000-0000-4000-8000-000000000003',custom:'00000000-0000-4000-8000-000000000004',source:'00000000-0000-4000-8000-000000000005',sourceImage:'00000000-0000-4000-8000-000000000006'};
 const model=(id:string,name:string,provider:string,kind:'TEXT'|'IMAGE'='TEXT',enabled=true):PublicModel=>({id,name,provider,protocol:'openai',modelId:provider==='openai'?'gpt-local':provider==='kimi'?'kimi-image':provider==='custom'?'km-private':'disabled',endpoint:'https://local-model.invalid/v1',kind,enabled,authRevision:1,keyMask:'••••••••',contextWindow:0,thinkingLevels:['low'],defaultThinking:'default'});
 let state={revision:3,settings:structuredClone(defaultState.settings),models:[model(ids.text,'本机 GPT','openai'),model(ids.image,'本机 Kimi 图片','kimi','IMAGE'),model(ids.disabled,'停用文本','deepseek','TEXT',false),model(ids.custom,'本机 KM','custom')]};

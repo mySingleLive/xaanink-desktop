@@ -19,7 +19,7 @@ test('CFG62-C01: actual installed two-context generation equals both shipped tru
   assert.equal(execution.captured.path,'desktop/shared/command-catalogs.generated.json')
   const assembled=JSON.parse(execution.captured.text),shipped=JSON.parse(await readFile('desktop/shared/command-catalogs.generated.json','utf8'))
   assert.deepEqual(trustedCommandCatalogs,assembled.platforms,'the actual main injection is the generated platform catalog');assert.deepEqual(assembled,shipped,'every runtime ID/default/when/weight/alias/arg metadata must match the shipped artifact')
-  assert.equal(assembled.monacoVersion,'0.56.0');assert.equal(assembled.platforms.darwin.commands.length,416);assert.equal(assembled.platforms.win32.commands.length,400)
+  assert.equal(assembled.monacoVersion,'0.56.0');assert.equal(assembled.platforms.darwin.commands.length,417);assert.equal(assembled.platforms.win32.commands.length,401)
   for(const platform of ['darwin','win32']){const rows=assembled.platforms[platform].commands;assert.equal(new Set(rows.map((row:{id:string})=>row.id)).size,rows.length);assert.equal(rows.filter((row:{id:string})=>row.id==='md.bold').length,1);assert.ok(rows.some((row:{id:string,monacoId?:string})=>row.monacoId==='editor.foldAll'))}
  }finally{await rm(directory,{recursive:true,force:true})}
 })
@@ -33,7 +33,7 @@ test('CFG62-C02: actual build verifier accepts its complete pinned source snapsh
  const original=process.cwd(),directory=await mkdtemp(join(original,'tests/generated/catalog-verify62-'))
  try{
   for(const file of [...commandCatalogSources,'desktop/shared/command-catalogs.generated.json']){const path=join(directory,file);await mkdir(dirname(path),{recursive:true});await writeFile(path,await readFile(file))}
-  process.chdir(directory);const catalog=await verifyCommandCatalogs();assert.equal(catalog.platforms.darwin.commands.length,416)
+  process.chdir(directory);const catalog=await verifyCommandCatalogs();assert.equal(catalog.platforms.darwin.commands.length,417)
   await writeFile(commandCatalogSources[0],await readFile(commandCatalogSources[0],'utf8')+'\n// isolated stale source\n')
   await assert.rejects(verifyCommandCatalogs(),/Stale installed command catalog/)
  }finally{process.chdir(original);await rm(directory,{recursive:true,force:true})}

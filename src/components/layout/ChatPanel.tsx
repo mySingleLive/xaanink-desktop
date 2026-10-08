@@ -1662,12 +1662,8 @@ export function ChatPanel({
 
   return (
     <div className="chatpane flex h-full flex-col bg-chat-bg" aria-busy={!canSend}>
-      <StoryWorkflowBar novelId={conversationNovelId ?? heroNovelId} running={isGenerating} />
-      {recoveryStatus !== "ready" && <div role="status" className="border-b border-border bg-card px-4 py-2 text-sm text-muted-foreground">正在恢复会话…</div>}
-      {(recoveryNotice || storageNotice) && <div role="status" className="border-b border-border bg-card px-4 py-2 text-xs text-muted-foreground">{storageNotice ?? recoveryNotice}</div>}
-      {creatingNovel && <div role="status" className="border-b border-border bg-card px-4 py-2 text-sm text-muted-foreground">正在创建《{pendingNovelTitle}》，书名和草稿已保留…</div>}
       {/* header：标题 + 会话选择 + 关联小说指示胶囊 */}
-      <div className="flex h-11 shrink-0 items-center gap-2 border-b border-border px-3">
+      <div className="desktop-drag flex h-11 shrink-0 items-center gap-2 border-b border-border px-3">
         {/* 侧栏隐藏时的恢复入口（原顶栏按钮，按评论迁到对话区头部左侧）；
             -ml-1.5 让图标与下方消息内容左缘视觉对齐 */}
         {sidebarHidden && onShowSidebar && (
@@ -1702,6 +1698,11 @@ export function ChatPanel({
           </button>
         )}
       </div>
+
+      <StoryWorkflowBar novelId={conversationNovelId ?? heroNovelId} running={isGenerating} />
+      {recoveryStatus !== "ready" && <div role="status" className="border-b border-border bg-card px-4 py-2 text-sm text-muted-foreground">正在恢复会话…</div>}
+      {(recoveryNotice || storageNotice) && <div role="status" className="border-b border-border bg-card px-4 py-2 text-xs text-muted-foreground">{storageNotice ?? recoveryNotice}</div>}
+      {creatingNovel && <div role="status" className="border-b border-border bg-card px-4 py-2 text-sm text-muted-foreground">正在创建《{pendingNovelTitle}》，书名和草稿已保留…</div>}
 
       {/* 消息区（相对定位容器承载「回到底部」悬浮钮）；空会话时隐藏，由下方输入区转为居中引导页。
           进程面板为右上角浮层：chatpane ≥1720px 时 960 内容两侧边距已足够容纳面板，浮层不占位、

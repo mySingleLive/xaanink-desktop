@@ -1,13 +1,13 @@
 import assert from "node:assert/strict"
 import { test } from "node:test"
-import { readFileSync } from "node:fs"
+import { readFileSync,readdirSync } from "node:fs"
 import { build } from "esbuild"
 import { chromium, type Browser, type Page } from "playwright-core"
 
 // Actual current Controller, dispatcher, registry, scope/targets, input adapter,
 // React and installed Base UI. Only native clipboard and main IPC are observed
 // in memory; no user window, network, system clipboard or Electron is used.
-const css = readFileSync(".next/static/chunks/2g1tpo-0aaw7s.css", "utf8")
+const css = readdirSync(".next/static/chunks").filter(file=>file.endsWith(".css")).sort().map(file=>readFileSync(".next/static/chunks/"+file,"utf8")).join("\n")
 const bundle = build({ stdin: { loader: "tsx", resolveDir: process.cwd(), contents: `
 import React,{useEffect,useRef,useState} from 'react';import {createRoot} from 'react-dom/client';import {flushSync} from 'react-dom';
 import {AlertDialog} from '@base-ui/react/alert-dialog';

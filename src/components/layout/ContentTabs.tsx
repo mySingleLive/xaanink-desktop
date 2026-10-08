@@ -66,10 +66,11 @@ export function ContentTabs({
   return (
     <div className="content-tabs flex h-full flex-col bg-editor">
       <StagedInterceptionBootstrap />
+      {tabs.length === 0 && <div className="desktop-drag h-11 shrink-0" aria-hidden="true" />}
       {tabs.length > 0 && (
         <div
           role="tablist"
-          className="flex shrink-0 items-end border-b border-sidebar-border bg-sidebar px-2 pt-1.5"
+          className="desktop-drag flex shrink-0 items-end border-b border-sidebar-border bg-sidebar px-2 pt-1.5"
         >
           {/* top-px 挂在滚动容器上而不是每个 tab 上：tab 的相对位移会制造 1px 纵向滚动溢出，
               overflow-x-auto 会让 overflow-y 计算为 auto，从而在容器右缘冒出一条纵向滚动条 */}

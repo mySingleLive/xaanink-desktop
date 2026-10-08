@@ -214,22 +214,58 @@
     },
     {
       "id": "W04",
-      "requirement": "原栏顶部空白拖动、交互区不可拖；吸附、全屏与DPI命中",
+      "requirement": "原栏顶部空白拖动、交互区不可拖；AI 与右侧顶部（含 Tab 导轨空白）双击最大化/复原；吸附、全屏与DPI命中",
       "source": [
         "implementation-boundaries.md",
         "02-product-design.md",
         "03-ui-design.md",
-        "desktop-menu-shortcut-contract.md"
+        "desktop-menu-shortcut-contract.md",
+        "reviews/133-pane-window-drag-plan.md"
       ],
       "implementation": [
-        "desktop/main/window.ts"
+        "desktop/main/index.ts",
+        "src/components/desktop/WindowControls.tsx",
+        "src/app/desktop.css",
+        "src/components/layout/ChatPanel.tsx",
+        "src/components/layout/ContentTabs.tsx"
       ],
       "testIds": [
-        "DESK-W04"
+        "DESK-W04",
+        "DRAG-01",
+        "DRAG-02",
+        "DRAG-03",
+        "DRAG-04",
+        "DRAG-05",
+        "DRAG-06"
       ],
       "verificationKind": "NATIVE",
       "status": "planned",
-      "evidence": []
+      "evidence": [],
+      "development": {
+        "status": "macos-development-verified",
+        "evidence": [
+          "docs/reviews/133-pane-window-drag-plan.md",
+          "docs/reviews/134-pane-window-drag-plan-review.md",
+          "docs/reviews/135-pane-window-drag-test-cases.md",
+          "docs/reviews/136-pane-window-drag-test-review.md",
+          "docs/reviews/137-pane-window-drag-code-review.md",
+          "docs/reviews/138-pane-window-drag-verification.md",
+          "docs/reviews/139-pane-drag-browser-harness-repair.md",
+          "docs/reviews/140-pane-drag-verification-review.md",
+          "docs/evidence/implementation-44/pane-window-drag-native.json"
+        ],
+        "note": "本轮只实现 AI 标题、右侧无 Tab 顶部和有 Tab 导轨空白的窗口拖动/双击。活动 unit/integration 1624、browser 176 全部通过，类型及构建通过；macOS 开发版三处人工拖动确认、CUA 双击最大化/复原和双击交互排除通过。物理拖动 Tab/按钮的排除、Windows、完整安装包原生交互、吸附、多屏/DPI及全量正式业务验收本轮未执行，W04 总状态保留 planned。",
+        "repackage": {
+          "status": "macos-arm64-package-smoke-passed",
+          "evidence": [
+            "docs/reviews/141-pane-drag-repackage.md",
+            "docs/reviews/142-pane-drag-repackage-review.md",
+            "docs/evidence/implementation-45/artifacts.json",
+            "docs/evidence/implementation-45/packaged-offline-startup.json"
+          ],
+          "note": "用户后续要求重新编译打包：当前macOS arm64 DMG/ZIP已生成，14/14 package测试、静态验包、DMG完整性及实际包在renderer CDP离线条件下的隔离启动冒烟通过；不是系统完全断网、全业务、三区物理交互或Windows验收。"
+        }
+      }
     },
     {
       "id": "W05",

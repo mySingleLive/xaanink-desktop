@@ -4519,5 +4519,32 @@
       "docs/evidence/brand-rename/verification.json",
       "docs/evidence/brand-rename/native-brand.json"
     ]
+  },
+  "desktopTopRegionAdaptation": {
+    "source": "docs/reviews/133-pane-window-drag-plan.md",
+    "status": "macos-development-verified",
+    "implementation": [
+      "src/components/layout/ChatPanel.tsx",
+      "src/components/layout/ContentTabs.tsx",
+      "src/app/desktop.css"
+    ],
+    "testIds": [
+      "DRAG-01",
+      "DRAG-02",
+      "DRAG-03",
+      "DRAG-04",
+      "DRAG-05",
+      "DRAG-06"
+    ],
+    "evidence": [
+      "docs/reviews/137-pane-window-drag-code-review.md",
+      "docs/reviews/138-pane-window-drag-verification.md",
+      "docs/reviews/140-pane-drag-verification-review.md"
+    ],
+    "note": "复用真实 React 组件，仅增加/定位顶部 drag 区和交互 no-drag 命中；实际 macOS 开发版三处拖动与双击切换已验证。该记录不代表任何 contentTabs 业务迁移或 Windows/安装包验收完成，原条目 status 均保留。",
+    "repackageEvidence": [
+      "docs/reviews/141-pane-drag-repackage.md",
+      "docs/reviews/142-pane-drag-repackage-review.md"
+    ]
   }
 }
