@@ -1,0 +1,527 @@
+{
+  "scope": "UI design prototype only; not Electron/OS/disk/model acceptance",
+  "date": "2026-10-06",
+  "version": "0.3",
+  "method": "Codex in-app browser through cua_repl; DOM/AX assertions and screenshots",
+  "results": [
+    {
+      "check": "page/mac/paper/workspace",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/first",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/create",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/chat-create",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/general",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/models",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/appearance",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/shortcuts",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/migration",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/paper/recovery",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/workspace",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/first",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/create",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/chat-create",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/general",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/models",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/appearance",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/shortcuts",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/migration",
+      "status": "pass"
+    },
+    {
+      "check": "page/mac/ink/recovery",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/workspace",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/first",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/create",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/chat-create",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/general",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/models",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/appearance",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/shortcuts",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/migration",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/paper/recovery",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/workspace",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/first",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/create",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/chat-create",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/general",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/models",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/appearance",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/shortcuts",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/migration",
+      "status": "pass"
+    },
+    {
+      "check": "page/win/ink/recovery",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/workspace",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/first",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/create",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/general",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/models",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/appearance",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/shortcuts",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/migration",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/1024/recovery",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/workspace",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/first",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/create",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/general",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/models",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/appearance",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/shortcuts",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/migration",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/800/recovery",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/workspace",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/first",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/create",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/general",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/models",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/appearance",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/shortcuts",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/migration",
+      "status": "pass"
+    },
+    {
+      "check": "responsive/640/recovery",
+      "status": "pass"
+    },
+    {
+      "check": "UI-07/narrow-sidebar-settings-reachable",
+      "status": "pass"
+    },
+    {
+      "check": "UI-07/narrow-open-settings",
+      "status": "pass"
+    },
+    {
+      "check": "UI-07/long-title-safe-windows-1024",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/new-directory-required",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/explicit-selection-enables-create",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/cancel-next-work-does-not-reuse-directory",
+      "status": "pass"
+    },
+    {
+      "check": "UI-10/manual-new-empty-overview",
+      "status": "pass"
+    },
+    {
+      "check": "UI-10/template-draft-retained-after-manual",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/consumed-directory-not-next-authorization",
+      "status": "pass"
+    },
+    {
+      "check": "UI-10/restored-draft-visible-and-unsubmitted",
+      "status": "pass"
+    },
+    {
+      "check": "UI-10/compare-retains-saved-version",
+      "status": "pass"
+    },
+    {
+      "check": "UI-02/cleared-key-cannot-be-restored-by-settings-cancel",
+      "status": "pass"
+    },
+    {
+      "check": "UI-02/deletion-cannot-be-restored-by-settings-cancel",
+      "status": "pass"
+    },
+    {
+      "check": "UI-09/first-add-opens-empty-model-list",
+      "status": "pass"
+    },
+    {
+      "check": "UI-09/new-model-editor-empty-and-disabled",
+      "status": "pass"
+    },
+    {
+      "check": "UI-09/multiple-models-selectable",
+      "status": "pass"
+    },
+    {
+      "check": "UI-09/switch-selects-correct-editor",
+      "status": "pass"
+    },
+    {
+      "check": "UI-09/thinking-tier-present",
+      "status": "pass"
+    },
+    {
+      "check": "UI-02/disable-persists-after-settings-cancel",
+      "status": "pass"
+    },
+    {
+      "check": "UI-05/cancel-layout-restores-original",
+      "status": "pass"
+    },
+    {
+      "check": "UI-05/layout-cancel-keeps-chat-draft",
+      "status": "pass"
+    },
+    {
+      "check": "UI-06/empty-recording-rejected",
+      "status": "pass"
+    },
+    {
+      "check": "UI-06/reserved-recording-rejected",
+      "status": "pass"
+    },
+    {
+      "check": "UI-06/duplicate-command-recording-rejected",
+      "status": "pass"
+    },
+    {
+      "check": "UI-06/recorded-key-shown",
+      "status": "pass"
+    },
+    {
+      "check": "UI-06/cancel-restores-key",
+      "status": "pass"
+    },
+    {
+      "check": "UI-06/saved-key-retained",
+      "status": "pass"
+    },
+    {
+      "check": "UI-04/migration-needs-explicit-target",
+      "status": "pass"
+    },
+    {
+      "check": "UI-03/cancel-before-commit",
+      "status": "pass"
+    },
+    {
+      "check": "UI-03/escape-after-commit-keeps-migration",
+      "status": "pass"
+    },
+    {
+      "check": "UI-04/windows-root-updated-after-commit",
+      "status": "pass"
+    },
+    {
+      "check": "UI-04/windows-general-authoritative-root",
+      "status": "pass"
+    },
+    {
+      "check": "UI-04/cleanup-pending-new-root-authoritative",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/root-loss-recovery-paths-visible",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/invalid-backup-cannot-restore",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/verified-backup-allows-compare",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/save-failure-three-exits",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/retry-failure-keeps-app-and-draft",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/cancel-close-retains-session",
+      "status": "pass"
+    },
+    {
+      "check": "dirty-settings-switch-guard",
+      "status": "pass"
+    },
+    {
+      "check": "settings-save-failure-retains-input",
+      "status": "pass"
+    },
+    {
+      "check": "model-test-cost-confirmation",
+      "status": "pass"
+    },
+    {
+      "check": "model-test-cancel",
+      "status": "pass"
+    },
+    {
+      "check": "UI-10/compare-includes-latest-recovery-edit",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/damaged-root-backup-blocks-restore",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/root-backup-restored-to-explicit-directory",
+      "status": "pass"
+    },
+    {
+      "check": "UI-08/restored-root-visible-in-general",
+      "status": "pass"
+    },
+    {
+      "check": "UI-04/failed-target-cannot-commit",
+      "status": "pass"
+    },
+    {
+      "check": "UI-04/reselect-and-revalidate-enables-migration",
+      "status": "pass"
+    },
+    {
+      "check": "current-page/no-browser-errors",
+      "status": "pass"
+    },
+    {
+      "check": "current-page/no-external-asset-references",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/directory-child-exposed-to-accessibility",
+      "status": "pass"
+    },
+    {
+      "check": "dialog/top-layer-focus-and-inert",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/chat-directory-cancel-keeps-brainstorm",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/resend-after-cancel-needs-new-directory",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/pending-same-draft-keeps-directory",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/new-chat-cannot-reuse-pending-grant",
+      "status": "pass"
+    },
+    {
+      "check": "UI-10/new-overview-keeps-confirmed-directory",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/bound-directory-cannot-create-second-work",
+      "status": "pass"
+    },
+    {
+      "check": "UI-01/new-independent-directory-resolves-conflict",
+      "status": "pass"
+    },
+    {
+      "check": "UI-03/page-switch-after-commit-keeps-progress",
+      "status": "pass"
+    },
+    {
+      "check": "UI-04/pending-retains-distinct-original-source",
+      "status": "pass"
+    }
+  ],
+  "browserErrors": [],
+  "networkBoundary": "CSP connect-src none; no actual model or disk operations",
+  "revisionNotes": "v0.3 added chat cancellation/new-chat grant isolation, occupied-directory prevention, and top-dialog AX/focus. Twenty main screenshots refreshed; all refreshed layouts rechecked."
+}

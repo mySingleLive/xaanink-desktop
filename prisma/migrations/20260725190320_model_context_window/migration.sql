@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "AIModel" ADD COLUMN     "contextWindow" INTEGER NOT NULL DEFAULT 128000;

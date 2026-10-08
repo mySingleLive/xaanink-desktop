@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: modifier-only keys and composition never create bindings
+ok 1 - modifier-only keys and composition never create bindings
+  ---
+  duration_ms: 0.754209
+  ...
+# Subtest: physical modifier combination normalizes option-transformed letters
+ok 2 - physical modifier combination normalizes option-transformed letters
+  ---
+  duration_ms: 0.727542
+  ...
+# Subtest: single navigation keys, escape, tab, space and digits are captured
+ok 3 - single navigation keys, escape, tab, space and digits are captured
+  ---
+  duration_ms: 0.39725
+  ...
+# Subtest: punctuation and numpad have stable names accepted by validator
+ok 4 - punctuation and numpad have stable names accepted by validator
+  ---
+  duration_ms: 0.196583
+  ...
+# Subtest: aliases and chord-prefix collisions normalize, independent chords do not collide
+ok 5 - aliases and chord-prefix collisions normalize, independent chords do not collide
+  ---
+  duration_ms: 0.138
+  ...
+# Subtest: invalid, duplicate and modifier-only input cannot be saved
+ok 6 - invalid, duplicate and modifier-only input cannot be saved
+  ---
+  duration_ms: 0.059625
+  ...
+# Subtest: Plus defaults conflict with captured shifted Equal, numpad remains distinct
+ok 7 - Plus defaults conflict with captured shifted Equal, numpad remains distinct
+  ---
+  duration_ms: 1.354709
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 46.040084

@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client"
+  output = "../generated/adapter"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ProbeState {
+  DRAFT
+  FINAL
+}
+
+model Probe {
+  id String @id
+  label String @unique
+  tags String[]
+  state ProbeState @default(DRAFT)
+  payload Json
+  optional Json?
+  happenedAt DateTime
+  large BigInt
+  precise Decimal @db.Decimal(30, 8)
+  children ProbeChild[]
+}
+
+model ProbeChild {
+  id String @id
+  parentId String
+  parent Probe @relation(fields: [parentId], references: [id])
+}

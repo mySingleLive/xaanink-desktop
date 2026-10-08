@@ -1,0 +1,191 @@
+/* Copied from source globals.css; see assets-provenance.json. */
+:root {
+  --font-ui: var(--font-noto-sans), "Noto Sans SC", -apple-system, "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  --font-serif: var(--font-noto-serif), "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-kai: "Kaiti SC", "STKaiti", "KaiTi", var(--font-serif);
+  --font-mono: var(--font-jbmono), "JetBrains Mono", "SF Mono", Menlo, monospace;
+  --font-brush: "Ma Shan Zheng", "Kaiti SC", var(--font-serif);
+  --radius: 0.375rem;
+  /* 圆角四档语义值（§3.1） */
+  --r-composer: 16px;
+  --r-bubble: 14px;
+  --r-card: 12px;
+  --r-inner: 8px;
+}
+
+/* 书法字工具类：营销页装饰大字用。
+   注意：不用 Tailwind 任意值 font-[family-name:var(--font-brush)] —— 该任意值在本机扫描出的
+   类名会破坏 globals.css 的 PostCSS 解析（整站 500），故用普通类名代替。 */
+.font-brush {
+  font-family: var(--font-brush);
+}
+
+/* ============================================================
+   主题一：宣纸（白天 · 中国古典）
+   ============================================================ */
+:root,
+.paper {
+  --background: #f4edda;
+  --foreground: #2b251b;
+  --card: #faf5e8;
+  --card-foreground: #2b251b;
+  --popover: #fcf8ee;
+  --popover-foreground: #2b251b;
+  --primary: #b03524;
+  --primary-hover: #97301f;
+  --primary-foreground: #faf3e3;
+  --secondary: #e7dcc0;
+  --secondary-foreground: #4d4430;
+  --muted: #eae1c8;
+  --muted-foreground: #7d7157;
+  --accent: #e9dfc4;
+  --accent-foreground: #3c3524;
+  --destructive: #9b2c1f;
+  --destructive-foreground: #faf3e3;
+  --border: #d8cba6;
+  --input: #cfc29b;
+  --ring: rgba(176, 53, 36, 0.35);
+  --sidebar: #efe6cf;
+  --sidebar-foreground: #2b251b;
+  --sidebar-primary: #b03524;
+  --sidebar-primary-foreground: #faf3e3;
+  --sidebar-accent: #e6dab9;
+  --sidebar-accent-foreground: #3c3524;
+  --sidebar-border: #ddd0ae;
+  --sidebar-ring: rgba(176, 53, 36, 0.35);
+  --ink-blue: #3c5f5a;
+  --seal: #b03524;
+  --gold: #8f6b23;
+  --editor-bg: #f9f4e4;
+  --editor-line: #f0e7cd;
+  --success: #64804a;
+  --warning: #8f6b23;
+  --shadow-color: rgba(96, 74, 38, 0.14);
+  --shadow-1: 0 1px 2px rgba(96, 74, 38, 0.14);
+  --shadow-2: 0 8px 24px -8px rgba(96, 74, 38, 0.14);
+  --shadow-3: 0 18px 44px -18px rgba(96, 74, 38, 0.22);
+  --selected-surface: rgba(176, 53, 36, 0.08);
+  --shimmer-base: rgba(125, 113, 87, 0.5);
+  --shimmer-hi: rgba(43, 37, 27, 0.95);
+  --hover-wash: rgba(96, 74, 38, 0.06);
+  --active-wash: rgba(176, 53, 36, 0.09);
+  --grain-opacity: 0.55;
+  --grain-blend: multiply;
+  --chart-1: #b03524;
+  --chart-2: #3c5f5a;
+  --chart-3: #8f6b23;
+  --chart-4: #5a7043;
+  --chart-5: #7d5a3c;
+  /* 评分色温分档（悬浮评分指示器，score-indicator-preview）：绿=优秀 ≥80 / 橘=及格 60~79 / 红=不及格 <60 */
+  --score-high: #5d8a46;
+  --score-mid: #c4712f;
+  --score-low: #a43425;
+  --score-track: rgba(96, 74, 38, 0.13);
+  /* 屈辱·尊严类追加槽位（瘀血红/铁青/暗赭/灰紫；44~47 为预设扩展位，自定义仍用 40~43） */
+  /* 三阶段保存（§三阶段保存）：暂存态专用蓝 + git 新增绿计数 */
+  --staged-blue: #2f6fd8;
+  --staged-blue-hover: #265fc0;
+  --staged-blue-foreground: #f4f8ff;
+  --staged-tint: rgba(47, 111, 216, 0.1);
+  --staged-tint-border: rgba(47, 111, 216, 0.34);
+  --staged-count: #1f9d4d;
+  color-scheme: light;
+}
+
+/* ============================================================
+   主题二：玄墨（黑夜 · 暖玄石感）
+   ============================================================ */
+.ink {
+  --background: #0d0b0a;
+  --foreground: #ece7e1;
+  --card: #141110;
+  --card-foreground: #ece7e1;
+  --popover: #171312;
+  --popover-foreground: #ece7e1;
+  --primary: #e07a5f;
+  --primary-hover: #e99c87;
+  --primary-foreground: #1d110b;
+  --secondary: #1a1614;
+  --secondary-foreground: #ded7cf;
+  --muted: #181413;
+  --muted-foreground: #9a918a;
+  --accent: #1c1815;
+  --accent-foreground: #ece7e1;
+  --destructive: #e5534b;
+  --destructive-foreground: #f5f4f2;
+  --border: rgba(255, 248, 240, 0.09);
+  --input: rgba(255, 248, 240, 0.13);
+  --ring: rgba(224, 122, 95, 0.45);
+  --sidebar: #100d0c;
+  --sidebar-foreground: #ece7e1;
+  --sidebar-primary: #e07a5f;
+  --sidebar-primary-foreground: #1d110b;
+  --sidebar-accent: #191413;
+  --sidebar-accent-foreground: #ece7e1;
+  --sidebar-border: rgba(255, 248, 240, 0.07);
+  --sidebar-ring: rgba(224, 122, 95, 0.45);
+  --ink-blue: #e07a5f;
+  --seal: #e07a5f;
+  --gold: #d9a45b;
+  --editor-bg: #100d0c;
+  --editor-line: #171212;
+  --success: #7cb083;
+  --warning: #d9a45b;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  /* ink 禁投影：shadow-1/3 置 none，分层靠明度阶梯 + 细边；浮层用 shadow-2 + 描边 */
+  --shadow-1: none;
+  --shadow-2: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  --shadow-3: none;
+  --selected-surface: rgba(224, 122, 95, 0.14);
+  --shimmer-base: rgba(154, 145, 138, 0.55);
+  --shimmer-hi: rgba(236, 231, 225, 0.95);
+  --hover-wash: rgba(255, 248, 240, 0.05);
+  --active-wash: rgba(224, 122, 95, 0.14);
+  --grain-opacity: 0.18;
+  --grain-blend: overlay;
+  --chart-1: #e07a5f;
+  --chart-2: #7cb083;
+  --chart-3: #d9a45b;
+  --chart-4: #d98a9e;
+  --chart-5: #7fc4c9;
+  /* 评分色温分档（玄墨暖化变体，槽位语义同 paper） */
+  --score-high: #7cb083;
+  --score-mid: #d98e4f;
+  --score-low: #e5534b;
+  --score-track: rgba(255, 248, 240, 0.1);
+  /* 屈辱·尊严类追加槽位（玄墨提亮版） */
+  /* 三阶段保存（玄墨提亮版） */
+  --staged-blue: #5e9dff;
+  --staged-blue-hover: #7cb1ff;
+  --staged-blue-foreground: #0b1526;
+  --staged-tint: rgba(94, 157, 255, 0.15);
+  --staged-tint-border: rgba(94, 157, 255, 0.38);
+  --staged-count: #4ade80;
+  /* 墨石云斑纹理（界面铬件用，正文编辑区不用） */
+  --stone-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='5' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23s)' opacity='0.5'/%3E%3C/svg%3E");
+  color-scheme: dark;
+}
+
+/* ============================================================
+   对话区元素层令牌（§3.12）：只服务对话区组件，站点 --card/--border 不动
+   三级明度阶梯：--chat-bg 对话区底色 < --chat-surface 元素层（气泡/composer/卡片）
+   < --chat-overlay 浮层（进程面板等）——逐档拉开，底色、输入框、浮层两两可分辨。
+   paper = 带纸色灰度的暖白表面 + 暖棕发丝描边；ink 无投影，纯靠明度阶梯 + 细边
+   ============================================================ */
+.chatpane {
+  --chat-bg: #f0e7d1;
+  --chat-surface: #f9f4e4;
+  --chat-overlay: #fefcf4;
+  --chat-line: rgba(96, 74, 38, 0.12);
+  --chat-line-strong: rgba(96, 74, 38, 0.18);
+  container-type: inline-size;
+}
+.ink .chatpane {
+  --chat-bg: var(--background);
+  --chat-surface: #171312;
+  --chat-overlay: #1f1a17;
+  --chat-line: var(--border);
+  --chat-line-strong: var(--input);
+}
+

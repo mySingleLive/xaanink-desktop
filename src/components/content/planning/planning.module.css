@@ -1,0 +1,1124 @@
+.workspace {
+  height: 100%;
+  overflow: auto;
+  background: var(--background);
+  color: var(--foreground);
+  padding: 20px;
+  font-size: 13px;
+}
+.workspace button,
+.workspace input,
+.workspace select {
+  font: inherit;
+}
+.workspace button {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 9px;
+  background: var(--card);
+}
+.workspace button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.workspace input,
+.workspace select {
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px;
+  background: var(--card);
+  min-width: 0;
+}
+.workspace input[type="checkbox"] {
+  accent-color: var(--primary);
+}
+.workspace :focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.toolbar h2 {
+  font-size: 23px;
+  font-family: serif;
+  margin-right: auto;
+}
+.toolbar small {
+  color: var(--muted-foreground);
+}
+.breadcrumbs {
+  margin: 0 0 18px;
+  min-width: 0;
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+}
+.breadcrumbs svg {
+  flex-shrink: 0;
+  opacity: 0.65;
+}
+.breadcrumbs button,
+.breadcrumbs span {
+  min-width: 0;
+  max-width: 26ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 4px 5px;
+}
+.breadcrumbs button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+.breadcrumbs button:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+.breadcrumbs [aria-current="page"] {
+  max-width: 40ch;
+  color: var(--foreground);
+  font-weight: 500;
+}
+.notice {
+  padding: 10px;
+  background: var(--muted);
+  border-radius: 6px;
+  margin: 10px 0;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 20px;
+}
+.tree {
+  border-right: 1px solid var(--border);
+  padding-right: 10px;
+  overflow: auto;
+}
+.tree ul {
+  list-style: none;
+  margin: 0 0 0 12px;
+  padding-left: 10px;
+  border-left: 1px solid var(--border);
+}
+.tree li {
+  margin: 5px 0;
+}
+.tree button {
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+.tree .selected {
+  color: var(--primary);
+  background: var(--selected-surface);
+}
+.cards {
+  max-width: 1000px;
+}
+.card {
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--card);
+  padding: 16px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.card h3 {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 8px 0;
+}
+.card p {
+  white-space: pre-wrap;
+  margin: 9px 0;
+  line-height: 1.8;
+}
+.card.selected {
+  border-color: var(--ink-blue);
+  background: color-mix(in srgb, var(--ink-blue) 4%, var(--card));
+}
+.card:focus-visible {
+  outline-offset: -2px;
+}
+.card.editing {
+  border-color: var(--primary);
+}
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.cardHead details {
+  margin-left: auto;
+  position: relative;
+}
+.cardHead details > summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  list-style: none;
+}
+.cardHead details > summary::marker {
+  content: "";
+}
+.cardHead details > summary::-webkit-details-marker {
+  display: none;
+}
+.cardHead details > summary:hover {
+  color: var(--foreground);
+  background: var(--muted);
+}
+.menu {
+  position: absolute;
+  right: 0;
+  top: 25px;
+  z-index: 12;
+  display: grid;
+  min-width: 145px;
+  padding: 6px;
+  background: var(--popover);
+  box-shadow: var(--shadow-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.menu button {
+  border: 0;
+  text-align: left;
+}
+.pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 9px 0;
+}
+.workspace .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  border-radius: 99px;
+  background: var(--muted);
+  font-size: 12px;
+  padding: 3px 7px;
+}
+.pill img,
+.avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--selected-surface);
+  display: inline-grid;
+  place-items: center;
+}
+.workspace .pill[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 1px var(--ink-blue);
+}
+.refs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.refs button {
+  font-size: 11px;
+  color: var(--ink-blue);
+}
+.insert {
+  display: block;
+  width: 100%;
+  height: 30px;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--muted-foreground);
+}
+.insert:hover {
+  color: var(--primary);
+}
+.editor {
+  display: grid;
+  gap: 10px;
+}
+.editor label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.editor > input {
+  font-weight: 600;
+  font-size: 16px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+}
+.proseEdit {
+  height: 220px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.editor fieldset {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+}
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.muted {
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+.chapter {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 15px 0;
+  background: var(--card);
+}
+.chapter h3 {
+  font-size: 17px;
+  font-weight: 600;
+}
+.budget {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px 0;
+}
+.budget input[type="number"] {
+  width: 100px;
+}
+.chapterRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.chapterRow > span {
+  flex: 1;
+}
+.chapterRow input {
+  width: 95px;
+}
+.dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #0006;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.dialog > form,
+.dialog > .detail {
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: auto;
+  width: 100%;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: grid;
+  gap: 12px;
+}
+.dialog h3 {
+  font-size: 18px;
+}
+.empty {
+  padding: 35px;
+  text-align: center;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+}
+.dragHandle {
+  cursor: grab;
+}
+.workspace summary {
+  cursor: pointer;
+}
+.workspace [aria-pressed="true"] {
+  color: var(--primary);
+}
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tree {
+    display: none;
+  }
+  .workspace {
+    padding: 12px;
+  }
+  .budget input[type="range"] {
+    width: 100%;
+  }
+  .card {
+    padding: 12px;
+  }
+}
+
+.editor input:not([type="checkbox"]),
+.editor select {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+}
+.tree li {
+  position: relative;
+}
+.tree li:before {
+  content: "";
+  position: absolute;
+  left: -11px;
+  top: -5px;
+  width: 10px;
+  height: 20px;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-bottom-left-radius: 10px;
+}
+.dialog {
+  background: color-mix(in srgb, var(--foreground) 35%, transparent);
+}
+.card.selected:focus-visible {
+  outline: none;
+}
+.tree ul {
+  border-left: none;
+}
+.tree li::after {
+  content: "";
+  position: absolute;
+  left: -11px;
+  top: 15px;
+  bottom: -5px;
+  border-left: 1px solid var(--border);
+}
+.tree li:last-child::after {
+  display: none;
+}
+.tree li::before {
+  top: -5px;
+  height: 20px;
+  border-bottom-left-radius: 12px;
+}
+@media (max-width: 800px) {
+  .tree {
+    display: block;
+    max-height: 200px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toolbar select {
+    max-width: 100%;
+  }
+  .workspace {
+    min-width: 0;
+  }
+  .dialog {
+    padding: 8px;
+  }
+  .dialog > form {
+    padding: 16px;
+  }
+}
+
+.dragHandle {
+  touch-action: none;
+  user-select: none;
+  padding: 4px;
+}
+.dragging {
+  opacity: 0.55;
+}
+
+/* 卷章大纲：卷容器、章节折叠和双端字数范围。 */
+.volume {
+  margin-block: 20px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+.volumeHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.volumeHead h2 {
+  font-size: 24px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+.volumeNumber {
+  color: var(--muted-foreground);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+.volumeHead p {
+  margin-top: 4px;
+}
+.volume .chapter {
+  background: var(--background);
+  margin-bottom: 0;
+}
+.wordRange {
+  flex: 1;
+  min-width: min(300px, 100%);
+}
+.wordRange input[type="number"],
+.chapterStory input[type="number"] {
+  width: 96px;
+}
+.rangeRoot {
+  width: 100%;
+  padding-inline: 9px;
+}
+.rangeControl {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  width: 100%;
+  position: relative;
+  touch-action: none;
+  user-select: none;
+}
+.rangeTrack {
+  width: 100%;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  position: relative;
+}
+.rangeIndicator {
+  border-radius: inherit;
+  background: var(--primary);
+}
+.rangeThumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: var(--card);
+  box-shadow: 0 0 0 2px var(--background);
+}
+.rangeThumb:focus-within {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+.rangeRoot[data-disabled] {
+  opacity: 0.5;
+}
+.chapterDisclosure {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+.chapterDisclosure button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.chapterDisclosure .muted {
+  font-size: 11px;
+}
+.expandedChevron {
+  transform: rotate(90deg);
+}
+.chapterStory {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin-block: 10px;
+  background: var(--card);
+}
+.chapterStory .row {
+  justify-content: space-between;
+}
+.chapterTelling {
+  margin-block: 10px;
+  line-height: 1.7;
+}
+.chapterTelling p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.error {
+  color: var(--destructive);
+  font-size: 12px;
+}
+.tree button.rootLine {
+  width: 100%;
+  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  border-radius: 6px;
+}
+.rootLine svg {
+  flex-shrink: 0;
+}
+.tree button.rootLine:hover,
+.tree button.rootLine[aria-current="page"] {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+@media (max-width: 800px) {
+  .volume {
+    padding: 12px;
+  }
+  .volumeHead h2 {
+    font-size: 22px;
+  }
+}
+
+/* Worldline: time markers use true coordinates; reading cards never collapse. */
+.worldWorkspace {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.worldWorkspace > header {
+  flex: 0 0 auto;
+}
+.worldToolbar {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.worldPath {
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+.worldPath > button:first-child {
+  border: 0;
+  background: transparent;
+  padding-left: 0;
+}
+.toolbarSpacer {
+  flex: 1;
+}
+.worldRange {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  margin: -4px 0 10px;
+}
+.worldList {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background: var(--card);
+  max-height: 250px;
+  overflow: auto;
+}
+.worldList .row {
+  margin-bottom: 8px;
+}
+.timeline {
+  flex: 1 0 420px;
+  height: auto;
+  min-height: 420px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  isolation: isolate;
+  background: var(--card);
+}
+.timelineHeader {
+  position: sticky;
+  top: 0;
+  padding: 0 0 8px;
+  z-index: 12;
+  background: var(--background);
+}
+.ruler {
+  height: 32px;
+  overflow: hidden;
+}
+.ruler span {
+  top: 7px;
+  height: 25px;
+}
+.periodRow {
+  height: 44px;
+  position: relative;
+}
+.period {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  margin-top: 0;
+  margin-bottom: 6px;
+  padding: 0;
+  border-radius: 0 4px 4px 0;
+  color: var(--foreground);
+  border-color: color-mix(in srgb, var(--period-color), var(--foreground) 20%);
+  background: color-mix(in srgb, var(--period-color) 38%, var(--card));
+  cursor: grab;
+}
+.periodOpen {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--period-color) 40%, var(--card)),
+    color-mix(in srgb, var(--period-color) 10%, var(--card))
+  );
+  border-right: 0;
+}
+.period .periodTitle {
+  color: inherit;
+  border: 0;
+  flex: 1;
+  background: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  padding: 8px 12px;
+  cursor: grab;
+}
+.period .periodStart,
+.period .periodEnd {
+  flex: 0 0 12px;
+  width: 12px;
+  height: 100%;
+  padding: 0;
+  background: none;
+  color: inherit;
+  border: 0;
+  border-radius: 0;
+  float: none;
+}
+.eventSurface {
+  position: relative;
+  min-height: 300px;
+}
+.timelineGrid {
+  position: absolute;
+  inset: 0;
+  background: none;
+}
+.timelineGrid i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+  opacity: 0.75;
+}
+.eventCard {
+  min-width: 320px;
+  min-height: 214px;
+}
+.eventCard > .card {
+  height: auto;
+  min-height: 190px;
+  overflow: visible;
+}
+.worldEvent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 13px 14px;
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 8%, transparent);
+  user-select: none;
+  overflow-wrap: anywhere;
+}
+.worldEvent h3 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
+  min-width: 0;
+  white-space: normal;
+  cursor: grab;
+  touch-action: none;
+}
+.eventCard .cardHead {
+  align-items: flex-start;
+  cursor: default;
+}
+.eventCard .cardHead h3 {
+  flex: 1;
+}
+.worldEvent > small {
+  font-size: 12px;
+}
+.eventFact {
+  font-size: 12px;
+  line-height: 1.65;
+}
+.eventFact p,
+.eventChange p {
+  margin: 0;
+}
+.eventFact :is(pre, table) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.eventChange {
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+.eventChange + .eventChange {
+  border-top: 0;
+  padding-top: 0;
+}
+.eventChange small {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11px;
+}
+.worldEvent .refs {
+  margin-top: 2px;
+}
+.worldEvent .refs:empty,
+.worldEvent .pills:empty {
+  display: none;
+}
+.worldEvent .refs button {
+  white-space: normal;
+  text-align: left;
+  overflow-wrap: anywhere;
+  font-size: 11px;
+}
+.eventSelected {
+  border-color: var(--ink-blue);
+  box-shadow: inset 0 0 0 1px var(--ink-blue);
+}
+.timeBar {
+  height: 6px;
+  margin: 0 0 18px;
+  background: color-mix(in srgb, var(--ink-blue) 65%, var(--card));
+  min-width: 0;
+}
+.timeBar button {
+  width: 6px;
+  height: 12px;
+  top: -3px;
+  opacity: 0;
+  border-radius: 2px;
+}
+.eventCard:hover .timeBar button,
+.timeBar:focus-within button {
+  opacity: 1;
+}
+.timePoint {
+  width: 6px !important;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-blue);
+}
+.timeOpen {
+  background: linear-gradient(90deg, var(--ink-blue), transparent);
+}
+.timeWindow {
+  border: 1px dashed var(--ink-blue);
+  background: color-mix(in srgb, var(--ink-blue) 15%, transparent);
+}
+.worldEventEditor {
+  padding: 13px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 190px;
+}
+.eventCard > .worldEventEditor {
+  max-height: none;
+  overflow: visible;
+  width: 100%;
+}
+.eventTitleInput {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  resize: none;
+  field-sizing: content;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 2px;
+  width: 100%;
+}
+.worldEventEditor .row {
+  align-items: flex-end;
+}
+.worldEventEditor .row > label {
+  display: grid;
+  gap: 3px;
+  font-size: 11px;
+  max-width: 100%;
+}
+.worldEventEditor .row input[type="number"] {
+  width: 92px;
+}
+.worldEventEditor .row select {
+  max-width: 100%;
+}
+.worldEventEditor .row > input {
+  flex: 1 1 100px;
+  width: 100px;
+}
+.worldEventEditor fieldset {
+  min-width: 0;
+  padding: 8px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+.worldEventEditor .footer {
+  margin-top: 0;
+}
+.characterLane {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--border);
+}
+.characterLaneTitle {
+  position: sticky;
+  left: 14px;
+  padding: 7px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.workspace .characterChange {
+  position: absolute;
+  width: 230px;
+  min-height: 80px;
+  text-align: left;
+  display: grid;
+  gap: 5px;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.characterChange::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-blue);
+}
+.characterChange small {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.timelineFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.canvasEmpty {
+  padding: 25px;
+  color: var(--muted-foreground);
+}
+.eventDrawer {
+  place-items: stretch end;
+  padding: 0;
+}
+.eventDrawer > .detail {
+  width: min(420px, 100vw);
+  max-height: 100vh;
+  height: 100%;
+  overflow: auto;
+  border-radius: 0;
+  padding: 24px;
+  box-shadow: -10px 0 35px #0002;
+}
+@media (max-width: 760px) {
+  .timeline {
+    min-height: 400px;
+  }
+  .worldRange,
+  .timelineFooter {
+    flex-wrap: wrap;
+  }
+  .periodRow {
+    height: 48px;
+  }
+  .period {
+    height: 44px;
+  }
+  .eventDrawer > .detail {
+    width: 100vw;
+  }
+}
+.eventFact > :global(.markdown-body) {
+  height: auto;
+  overflow: visible;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.eventFact > :global(.markdown-body) > div {
+  padding: 0;
+  max-width: none;
+}
+.worldEvent :is(.pills, .refs) {
+  margin: 0;
+}
+.worldWorkspace > .toolbar {
+  margin-bottom: 12px;
+}
+.worldWorkspace .timeline {
+  flex-shrink: 1;
+}
+.worldWorkspace .timeline {
+  flex: 1 1 220px;
+  min-height: 220px;
+}
+.eventCard:has(details[open]) {
+  z-index: 9 !important;
+}
+.worldEventEditor > select {
+  align-self: flex-start;
+}
+.eventDrawer .detail > :global(.markdown-body) {
+  height: auto;
+  overflow: visible;
+}
+.eventDrawer .detail > :global(.markdown-body) > div {
+  padding: 12px 0;
+}
+.worldPath .breadcrumbs {
+  margin: 0;
+}
+.worldEvent .pill .avatar {
+  color: var(--ink-blue);
+  background: color-mix(in srgb, var(--ink-blue) 16%, var(--card));
+}
+.worldEvent .pill:nth-child(2n) .avatar {
+  color: var(--chart-4);
+  background: color-mix(in srgb, var(--chart-4) 16%, var(--card));
+}
+.barNote {
+  position: absolute;
+  top: -16px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.workspace .eventChildren {
+  align-self: flex-start;
+  border: 0;
+  padding: 2px 0;
+  background: transparent;
+  color: var(--ink-blue);
+  font-size: 11px;
+}
+.eventDrawer .cardHead {
+  position: sticky;
+  top: -24px;
+  padding: 10px 0;
+  background: var(--card);
+  z-index: 1;
+}
+.timeline {
+  position: relative;
+  border: 1px solid var(--border);
+  touch-action: none;
+  cursor: grab;
+}
+.ruler {
+  position: relative;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.ruler span {
+  position: absolute;
+  border-left: 1px solid var(--border);
+  padding-left: 4px;
+  white-space: nowrap;
+}
+.eventCard {
+  position: absolute;
+  cursor: default;
+}
+.timeBar {
+  position: relative;
+  cursor: ew-resize;
+  touch-action: none;
+}
+.timeBar button {
+  position: absolute;
+  left: 0;
+  padding: 0;
+  border: 0;
+  cursor: ew-resize;
+  background: var(--ink-blue);
+}
+.timeBar button + button {
+  left: auto;
+  right: 0;
+}

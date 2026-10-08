@@ -1,0 +1,356 @@
+{
+  "version": "0.5",
+  "checks": [
+    {
+      "id": "P01",
+      "pass": true,
+      "detail": "Avatar selection remains draft"
+    },
+    {
+      "id": "P02",
+      "pass": true,
+      "detail": "Selected image previews in editor"
+    },
+    {
+      "id": "P03",
+      "pass": true,
+      "detail": "Avatar left and full form height"
+    },
+    {
+      "id": "P04",
+      "pass": true,
+      "detail": "No live profile caption"
+    },
+    {
+      "id": "P05",
+      "pass": true,
+      "detail": "Save and Cancel available"
+    },
+    {
+      "id": "P06",
+      "pass": true,
+      "detail": "Typing does not commit"
+    },
+    {
+      "id": "P07",
+      "pass": true,
+      "detail": "Cancel discards name"
+    },
+    {
+      "id": "P08",
+      "pass": true,
+      "detail": "Cancel discards email"
+    },
+    {
+      "id": "P09",
+      "pass": true,
+      "detail": "Cancel discards avatar"
+    },
+    {
+      "id": "P10",
+      "pass": true,
+      "detail": "X discards profile"
+    },
+    {
+      "id": "P11",
+      "pass": true,
+      "detail": "Escape discards and closes"
+    },
+    {
+      "id": "P12",
+      "pass": true,
+      "detail": "Empty name rejected"
+    },
+    {
+      "id": "P13",
+      "pass": true,
+      "detail": "Invalid email rejected"
+    },
+    {
+      "id": "A01",
+      "pass": true,
+      "detail": "Oversize image rejected"
+    },
+    {
+      "id": "A02",
+      "pass": true,
+      "detail": "Wrong file type rejected"
+    },
+    {
+      "id": "A03",
+      "pass": true,
+      "detail": "Corrupt image rejected"
+    },
+    {
+      "id": "A04",
+      "pass": true,
+      "detail": "Avatar opens single-file chooser"
+    },
+    {
+      "id": "P14",
+      "pass": true,
+      "detail": "Failed save shows concrete cause"
+    },
+    {
+      "id": "P15",
+      "pass": true,
+      "detail": "Failed save retains draft"
+    },
+    {
+      "id": "P16",
+      "pass": true,
+      "detail": "Failure preserves confirmed name/avatar"
+    },
+    {
+      "id": "P17",
+      "pass": true,
+      "detail": "Save commits name/email together"
+    },
+    {
+      "id": "A05",
+      "pass": true,
+      "detail": "Save commits avatar to sidebar and card"
+    },
+    {
+      "id": "P18",
+      "pass": true,
+      "detail": "Save returns focus to Edit"
+    },
+    {
+      "id": "U01",
+      "pass": true,
+      "detail": "Click username opens menu"
+    },
+    {
+      "id": "U02",
+      "pass": true,
+      "detail": "No gear beside username"
+    },
+    {
+      "id": "U03",
+      "pass": true,
+      "detail": "Menu opens above trigger"
+    },
+    {
+      "id": "U04",
+      "pass": true,
+      "detail": "Menu shows confirmed profile"
+    },
+    {
+      "id": "U05",
+      "pass": true,
+      "detail": "Web appearance switch changes theme without closing menu"
+    },
+    {
+      "id": "U06",
+      "pass": true,
+      "detail": "Arrow moves to Settings"
+    },
+    {
+      "id": "U07",
+      "pass": true,
+      "detail": "Escape dismisses and restores trigger focus"
+    },
+    {
+      "id": "U08",
+      "pass": true,
+      "detail": "Outside click dismisses menu"
+    },
+    {
+      "id": "U09",
+      "pass": true,
+      "detail": "Menu Settings opens dialog"
+    },
+    {
+      "id": "M01",
+      "pass": true,
+      "detail": "Two model groups"
+    },
+    {
+      "id": "M02",
+      "pass": true,
+      "detail": "Independent image empty state"
+    },
+    {
+      "id": "M03",
+      "pass": true,
+      "detail": "Image Add initializes correct category and purpose"
+    },
+    {
+      "id": "M04",
+      "pass": true,
+      "detail": "Incomplete model cannot test"
+    },
+    {
+      "id": "M05",
+      "pass": true,
+      "detail": "Image test uses image confirmation"
+    },
+    {
+      "id": "M06",
+      "pass": true,
+      "detail": "Image record shown only in image group"
+    },
+    {
+      "id": "M07",
+      "pass": true,
+      "detail": "Image selection does not replace text model"
+    },
+    {
+      "id": "M08",
+      "pass": true,
+      "detail": "Image selection has separate current marker"
+    },
+    {
+      "id": "M09",
+      "pass": true,
+      "detail": "Text Add initializes text category"
+    },
+    {
+      "id": "M10",
+      "pass": true,
+      "detail": "Deleting earlier record preserves text selection"
+    },
+    {
+      "id": "M11",
+      "pass": true,
+      "detail": "Deleting earlier record preserves image selection"
+    },
+    {
+      "id": "M12",
+      "pass": true,
+      "detail": "Changing category resets default purpose"
+    },
+    {
+      "id": "M13",
+      "pass": true,
+      "detail": "Changing category moves record out of text group"
+    },
+    {
+      "id": "M14",
+      "pass": true,
+      "detail": "Changing current text to image clears text selection"
+    },
+    {
+      "id": "M15",
+      "pass": true,
+      "detail": "Deleting selected image does not auto-select another"
+    },
+    {
+      "id": "M16",
+      "pass": true,
+      "detail": "Returning record to text requires explicit selection"
+    },
+    {
+      "id": "M17",
+      "pass": true,
+      "detail": "Explicit selection re-enables text model"
+    },
+    {
+      "id": "B01",
+      "pass": true,
+      "detail": "Other settings still update automatically"
+    },
+    {
+      "id": "B02",
+      "pass": true,
+      "detail": "No global settings Save/Cancel footer"
+    },
+    {
+      "id": "B03",
+      "pass": true,
+      "detail": "Shortcut search retained"
+    },
+    {
+      "id": "B04",
+      "pass": true,
+      "detail": "Reserved documentation remains disabled"
+    },
+    {
+      "id": "B05",
+      "pass": true,
+      "detail": "Prototype version accurate"
+    },
+    {
+      "id": "B06",
+      "pass": true,
+      "detail": "Feedback destination unchanged"
+    },
+    {
+      "id": "N01",
+      "pass": true,
+      "detail": "640px profile remains left/right full-height"
+    },
+    {
+      "id": "N02",
+      "pass": true,
+      "detail": "640px profile no horizontal overflow"
+    },
+    {
+      "id": "N03",
+      "pass": true,
+      "detail": "640px Save/Cancel reachable"
+    },
+    {
+      "id": "N04",
+      "pass": true,
+      "detail": "Profile Tab cycles to top dialog"
+    },
+    {
+      "id": "N05",
+      "pass": true,
+      "detail": "Profile Shift+Tab cycles to Save"
+    },
+    {
+      "id": "N06",
+      "pass": true,
+      "detail": "640px group actions fit"
+    },
+    {
+      "id": "N07",
+      "pass": true,
+      "detail": "640px account menu fits"
+    },
+    {
+      "id": "W01",
+      "pass": true,
+      "detail": "Windows control group at top right"
+    },
+    {
+      "id": "W02",
+      "pass": true,
+      "detail": "1024px Windows no page overflow"
+    },
+    {
+      "id": "W03",
+      "pass": true,
+      "detail": "Windows profile controls available"
+    },
+    {
+      "id": "W04",
+      "pass": true,
+      "detail": "Windows account Settings available"
+    },
+    {
+      "id": "G01",
+      "pass": true,
+      "detail": "Sidebar spans full window height"
+    },
+    {
+      "id": "G02",
+      "pass": true,
+      "detail": "Runtime resource references local or data"
+    },
+    {
+      "id": "G03",
+      "pass": true,
+      "detail": "Prototype cannot make model network requests"
+    },
+    {
+      "id": "G04",
+      "pass": true,
+      "detail": "No console errors during final checks"
+    }
+  ],
+  "note": "Final source checks through visible UI after fixes; browser prototype only."
+}

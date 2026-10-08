@@ -1,0 +1,1413 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  // CJS 输出：Playwright 的 require 链（scripts/browser/*.spec.ts 直引 src/lib/db）
+  // 无法加载 ESM 语法的生成文件；对 Next/tsx 无差异
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum UserPlan {
+  FREE
+  BASIC
+  PRO
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum NovelStatus {
+  ACTIVE
+  ARCHIVED
+  DELETED
+}
+
+enum NovelStage {
+  THEME
+  SETTING
+  STYLE
+  CHARACTER
+  TROPE
+  MAP
+  OUTLINE
+  OUTLINE_REVIEW
+  WRITING
+  CHAPTER_REVIEW
+  DONE
+}
+
+enum SettingType {
+  LEVEL_SYSTEM
+  POWER_SYSTEM
+  CONCEPT
+  GOLD_FINGER
+  STYLE
+  MAP
+  FACTION
+  SOCIETY
+  CULTURE
+  GEOGRAPHY
+  WORLD_HISTORY
+}
+
+enum TropeKind {
+  SATISFACTION
+  TEAR
+}
+
+enum CharacterRoleType {
+  PROTAGONIST
+  SUPPORTING
+  ANTAGONIST
+}
+
+enum ChapterStatus {
+  OUTLINE
+  REVIEWED
+  WRITTEN
+  CHAPTER_REVIEWED
+  FINAL
+}
+
+enum ReviewTargetType {
+  VOLUME_OUTLINE
+  CHAPTER_OUTLINE
+  CHAPTER_CONTENT
+}
+
+enum ReviewHumanStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum CommentAuthorType {
+  USER
+  AI
+}
+
+enum CommentStatus {
+  OPEN
+  AGREED
+  APPLIED
+  REJECTED
+}
+
+enum ForeshadowStatus {
+  PLANNED
+  PLANTED
+  RESOLVED
+  DROPPED
+}
+
+enum ForeshadowTouchKind {
+  PLANT
+  MENTION
+  PAYOFF
+}
+
+enum CascadeTriggerType {
+  SETTING
+  CHARACTER
+}
+
+enum CascadeJobStatus {
+  PENDING
+  RUNNING
+  WAITING_CONFIRM
+  DONE
+  FAILED
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  TOOL
+}
+
+enum ModelTier {
+  NORMAL
+  ADVANCED
+}
+
+enum ModelKind {
+  TEXT
+  IMAGE
+}
+
+enum AttributeTarget {
+  CHARACTER
+  ITEM
+  SCENE
+}
+
+enum AttributeValueType {
+  TEXT
+  NUMBER
+  SELECT
+}
+
+enum CharacterImageKind {
+  AVATAR
+  PORTRAIT
+}
+
+enum CharacterImageSource {
+  AI
+  UPLOAD
+}
+
+enum CoverImageSource {
+  AI
+  UPLOAD
+}
+
+enum ItemImageSource {
+  AI
+  UPLOAD
+}
+
+model User {
+  id              String      @id @default(cuid())
+  email           String      @unique
+  passwordHash    String
+  name            String
+  role            UserRole    @default(USER)
+  plan            UserPlan    @default(FREE)
+  tokenQuota      BigInt      @default(100000)
+  tokenUsed       BigInt      @default(0)
+  status          UserStatus  @default(ACTIVE)
+  themePreference String      @default("light")
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  novels        Novel[]
+  conversations Conversation[]
+  usageRecords  UsageRecord[]
+  novelCreationRequests NovelCreationRequest[]
+  chatTurns ChatTurn[]
+  chatRequests ChatRequest[]
+
+  @@index([role])
+  @@index([status])
+}
+
+model Novel {
+  id           String      @id @default(cuid())
+  userId       String
+  title        String
+  coverUrl     String?
+  status       NovelStatus @default(ACTIVE)
+  currentStage NovelStage  @default(THEME)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  theme         Theme?
+  worlds        World[]
+  settings      Setting[]
+  tropes        Trope[]
+  characters    Character[]
+  items         Item[]
+  scenes        Scene[]
+  attributeDefs AttributeDefinition[]
+  volumes       Volume[]
+  reviews       Review[]
+  cascadeJobs   CascadeJob[]
+  conversations Conversation[]
+  usageRecords  UsageRecord[]
+  coverImages   NovelCoverImage[]
+  storyWorkflow StoryWorkflow?
+  planningDocument PlanningDocument?
+  artifactLinks StoryArtifactLink[]
+
+  @@index([userId, status])
+}
+
+/** 聊天创作状态；批准和检查点绑定内容指纹，不能由模型自报完成。 */
+model StoryWorkflow {
+  novelId String @id
+  version Int @default(1)
+  phase String @default("brainstorm")
+  brief String @default("") @db.Text
+  writingMode String @default("chapter")
+  targetChapters Int @default(50)
+  targetWords Int @default(2000)
+  checkpoints Json @default("{}")
+  approvals Json @default("{}")
+  revisions Json @default("[]")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  novel Novel @relation(fields: [novelId], references: [id], onDelete: Cascade)
+}
+
+/** 同书产物的补充来源边；已有分镜/章节链接仍由原字段维护。 */
+model StoryArtifactLink {
+  id String @id @default(cuid())
+  novelId String
+  sourceKey String
+  targetKey String
+  sourceHash String
+  targetHash String
+  reason String @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  novel Novel @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  @@unique([novelId, sourceKey, targetKey])
+  @@index([novelId, targetKey])
+}
+
+model Theme {
+  id             String   @id @default(cuid())
+  novelId        String   @unique
+  title          String
+  synopsis       String
+  referenceCases String
+  channel        String
+  genre          String
+  length         String   @default("")
+  authorPosition Json?
+  tags           String[]
+  sellingPoints  String
+  targetAudience String
+  version        Int      @default(1)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  novel Novel @relation(fields: [novelId], references: [id], onDelete: Cascade)
+}
+
+/** 世界：一本小说可含多个世界，树形嵌套（大千世界 → 小千世界） */
+model World {
+  id          String   @id @default(cuid())
+  novelId     String
+  parentId    String?
+  name        String
+  /** 世界观文字介绍（markdown） */
+  description String   @default("") @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  novel    Novel     @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  parent   World?    @relation("WorldChildren", fields: [parentId], references: [id], onDelete: Cascade)
+  children World[]   @relation("WorldChildren")
+  settings Setting[]
+
+  @@index([novelId, parentId])
+}
+
+/**
+ * 设定：worldId 为空 = 小说级（金手指/文风设定）；非空 = 世界级（等级/力量/概念/势力/世界地图/社会/人文/地理）。
+ * parentId 仅 MAP 类型用于子地图嵌套。
+ * 唯一性由迁移中的部分唯一索引保证：小说级 (novelId,type,name) / 世界级 (worldId,type,name) / 子地图 (parentId,name)。
+ */
+model Setting {
+  id        String      @id @default(cuid())
+  novelId   String
+  worldId   String?
+  parentId  String?
+  type      SettingType
+  name      String
+  content   Json
+  version   Int         @default(1)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  novel    Novel     @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  world    World?    @relation(fields: [worldId], references: [id], onDelete: Cascade)
+  parent   Setting?  @relation("SettingChildren", fields: [parentId], references: [id], onDelete: Cascade)
+  children Setting[] @relation("SettingChildren")
+
+  @@index([novelId, type])
+  @@index([worldId, type])
+  @@index([parentId])
+}
+
+model Trope {
+  id            String    @id @default(cuid())
+  novelId       String?
+  kind          TropeKind
+  category      String
+  content       String
+  referenceCase String
+  selected      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  novel Novel? @relation(fields: [novelId], references: [id], onDelete: Cascade)
+
+  @@index([novelId, kind])
+}
+
+model Character {
+  id              String            @id @default(cuid())
+  novelId         String
+  // ── 身份 ──
+  name            String
+  roleType        CharacterRoleType
+  /** 别名/外号（昵称，非多重身份）：字符串数组，如「老陈」「沉默的大多数」 */
+  aliases         Json              @default("[]")
+  age             String
+  gender          String            @default("")
+  occupation      String
+  /** 角色简介：一句话概括角色的个人故事线（从哪来、正经历什么、要到哪去） */
+  bio             String            @default("")
+  /** 人物描述：这个角色总体上是怎样一个人（性格底色、行事风格、内在矛盾等） */
+  personality     String
+  // ── 外在 ──
+  /** 身高（自由文本，如「183cm」） */
+  height          String            @default("")
+  /** 体重（自由文本，如「74kg」） */
+  weight          String            @default("")
+  /** 身材（如「瘦削结实」「魁梧」） */
+  build           String            @default("")
+  /** 脸型（如「瘦长有棱角」「圆脸」） */
+  faceShape       String            @default("")
+  /** 外貌身形总述：整体外观辨识度的自由描述（基础生理数据走 height/weight/build/faceShape 四列） */
+  appearance      String
+  /** 穿衣风格：具体穿着 + 抽象风格（衣服会换但风格一致） */
+  clothing        String
+  /** 品味偏好：衣食住行的具象偏好（如喜欢走路上班、五分熟牛排） */
+  tastes          String            @default("")
+  /** 行为习惯：体态与应激小动作、标志性动作（如思考时捏头发、紧张时抬镜框） */
+  habits          String            @default("")
+  catchphrase     String
+  /** 对话风格：语速/句式/用词倾向（如短句、爱反问、文绉绉） */
+  dialogueStyle   String            @default("")
+  /** 示例对话：2~4 句能代表这个角色说话方式的台词样例 */
+  sampleDialogue  String            @default("")
+  // ── 心理 ──
+  /** 性格标签：纯性格描述词（如「内向」「护短」「INTP」），字符串数组 */
+  personalityTags Json              @default("[]")
+  /** 核心动机：角色言行决策的根本驱动力，[{ items: [{ text, importance 1~5 }] }]，层有序（第 1 层最表面 → 末层最根本）、每层可并列多条 */
+  motivations     Json              @default("[]")
+  /** 核心欲望：无原因、发自内心/本能的长期想要（影响动机与言行、决定容易被什么吸引） */
+  desires         String            @default("")
+  /** 核心恐惧：角色最害怕面对的事物/情境 */
+  fears           String            @default("")
+  /** 观念：{ worldview 世界观, values 价值观, outlook 人生观, other 其他观念 }，均为可选字符串 */
+  beliefs         Json              @default("{}")
+  /** Big Five 性格五维：{ openness, conscientiousness, extraversion, agreeableness, neuroticism } 各 0~100，空表示未评估 */
+  bigFive         Json?
+  // ── 能力 ──
+  /** 能力总述：角色自身的本事（基本能力与小说世界的特殊能力；体系规则本身仍归设定，不在此展开） */
+  abilities       String            @default("")
+  // ── 弧线 ──
+  /** 出场前经历：角色登场前的过往与记忆（旧文本，arcStages 为空时兜底） */
+  backstory       String            @default("")
+  growthArc       String
+  /** 阶段卡片链（ArcStage[]，数组顺序 = 时间先后；空数组时弧线页回退 backstory/growthArc） */
+  arcStages       Json              @default("[]")
+  // ── 关系 ──
+  /** 人物关系：[{ target 名字快照, description, characterId? 链接的角色 id }] */
+  relationships   Json
+  /** 当前头像/立绘的原始图像 url（展示时按对应 crop 裁剪） */
+  avatarUrl       String?
+  portraitUrl     String?
+  /** 头像/立绘裁剪区域：{ "x":0, "y":0, "w":1, "h":1 }（相对宽高 0-1），空表示整图 */
+  avatarCrop      Json?
+  portraitCrop    Json?
+  /** 自定义属性值：[{ "definitionId": "属性定义id", "value": "值" }] */
+  attributes      Json              @default("[]")
+  extra           Json
+  version         Int               @default(1)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  novel  Novel            @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  images CharacterImage[]
+
+  @@index([novelId, roleType])
+}
+
+/** 角色头像/立绘的图像版本（AI 生成或手动上传），历史版本可回选 */
+model CharacterImage {
+  id          String              @id @default(cuid())
+  characterId String
+  kind        CharacterImageKind
+  source      CharacterImageSource
+  url         String
+  /** AI 生成时使用的提示词（上传为空） */
+  prompt      String              @default("")
+  createdAt   DateTime            @default(now())
+
+  character Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@index([characterId, kind])
+}
+
+/** 小说封面图的图像版本（AI 生成或手动上传），历史版本可回选 */
+model NovelCoverImage {
+  id        String           @id @default(cuid())
+  novelId   String
+  source    CoverImageSource
+  url       String
+  prompt    String?
+  createdAt DateTime         @default(now())
+  novel     Novel            @relation(fields: [novelId], references: [id], onDelete: Cascade)
+
+  @@index([novelId, createdAt])
+}
+
+/** 属性定义：可被角色/物品/场景挂载的自定义属性（如「品阶」「灵力上限」） */
+model AttributeDefinition {
+  id          String             @id @default(cuid())
+  novelId     String
+  name        String
+  description String             @default("")
+  targets     AttributeTarget[]
+  /** 值类型：TEXT=文本输入 / NUMBER=数字输入 / SELECT=下拉选项 */
+  valueType   AttributeValueType @default(TEXT)
+  /** valueType=SELECT 时的可选值 */
+  options     String[]           @default([])
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  novel Novel @relation(fields: [novelId], references: [id], onDelete: Cascade)
+
+  @@unique([novelId, name])
+  @@index([novelId])
+}
+
+model Item {
+  id          String   @id @default(cuid())
+  novelId     String
+  name        String
+  description String   @default("")
+  /** 别名（string[]，≤10，单个 ≤50） */
+  aliases     Json     @default("[]")
+  /** 标签（string[]，≤8，单个 ≤20） */
+  tags        Json     @default("[]")
+  /** 等级引用：[{ "settingId": "...", "pathway": "途径名|null", "level": "等级名" }] */
+  levels      Json     @default("[]")
+  /** 外形 */
+  appearance  String   @default("")
+  /** 获取方式 */
+  acquisition String   @default("")
+  /** 功效：[{ "name": "可空", "description": "..." }]（≤20 条） */
+  effects     Json     @default("[]")
+  /** 图标（1:1），对齐 Character.avatarUrl/avatarCrop */
+  iconUrl     String?
+  /** 图标裁剪区域：{ "x":0, "y":0, "w":1, "h":1 }（相对宽高 0-1），空表示整图 */
+  iconCrop    Json?
+  /** 自定义属性值：[{ "definitionId": "属性定义id", "value": "值" }] */
+  attributes  Json     @default("[]")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  novel  Novel       @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  images ItemImage[]
+
+  @@index([novelId])
+}
+
+/** 物品图标的图像版本（AI 生成或手动上传），历史版本可回选 */
+model ItemImage {
+  id        String          @id @default(cuid())
+  itemId    String
+  source    ItemImageSource
+  url       String
+  /** AI 生成时使用的提示词（上传为空） */
+  prompt    String          @default("")
+  createdAt DateTime        @default(now())
+
+  item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@index([itemId, createdAt])
+}
+
+/** 场景：几个镜头/分镜可涵盖的小空间（客厅、教室、洞府内等），非地图级区域 */
+model Scene {
+  id String @id @default(cuid())
+  novelId String
+  parentId String?
+  version Int @default(1)
+  name String
+  description String @default("")
+  coordinates String @default("")
+  attributes Json @default("[]")
+  backstory String @default("")
+  entryMethod String @default("")
+  exteriorDescription String @default("")
+  interiorDescription String @default("")
+  factionSettingId String?
+  factionId String?
+  factionNameSnapshot String?
+  exteriorImageUrl String?
+  interiorImageUrl String?
+  exteriorImageRevision Int @default(0)
+  interiorImageRevision Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  novel Novel @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  parent Scene? @relation("SceneTree", fields: [parentId], references: [id], onDelete: Restrict)
+  children Scene[] @relation("SceneTree")
+  images SceneImage[]
+  @@index([novelId, parentId])
+}
+
+model SceneImage {
+  id String @id @default(cuid())
+  sceneId String
+  kind String
+  source String
+  url String
+  filename String
+  prompt String?
+  createdAt DateTime @default(now())
+  scene Scene @relation(fields: [sceneId], references: [id], onDelete: Cascade)
+  @@index([sceneId, kind, createdAt])
+}
+
+model SceneImageRequest {
+  id String @id @default(cuid())
+  userId String
+  novelId String
+  operationId String
+  requestHash String
+  sceneId String
+  kind String
+  status String @default("pending")
+  result Json?
+  createdAt DateTime @default(now())
+  @@unique([userId, operationId])
+}
+
+model Volume {
+  id        String   @id @default(cuid())
+  novelId   String
+  index     Int
+  title     String
+  summary   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  novel    Novel     @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  chapters Chapter[]
+
+  @@unique([novelId, index])
+  @@index([novelId])
+}
+
+model Chapter {
+  id        String        @id @default(cuid())
+  volumeId  String
+  index     Int
+  title     String
+  outline   String
+  content   String        @default("")
+  wordCount Int           @default(0)
+  status    ChapterStatus @default(OUTLINE)
+  version   Int           @default(1)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  volume Volume @relation(fields: [volumeId], references: [id], onDelete: Cascade)
+
+  @@unique([volumeId, index])
+  @@index([volumeId, status])
+}
+
+model Review {
+  id           String            @id @default(cuid())
+  novelId      String
+  targetType   ReviewTargetType
+  targetId     String
+  aiScore      Float?
+  /** 多维度评分（2026-09 悬浮评分指示器）：[{ dimension, score 0~100 }]，旧数据为 null */
+  aiDimensions Json?
+  aiComments   Json?
+  humanStatus  ReviewHumanStatus @default(PENDING)
+  humanComment String?
+  contentHash String?
+  contentVersion Int?
+  candidateId String?
+  reviewConfigHash String?
+  /** current / comparison / candidate；legacy 仍为 current 但 hash 为空，不作可比评分。 */
+  purpose String @default("current")
+  sourceRunId String?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  novel Novel @relation(fields: [novelId], references: [id], onDelete: Cascade)
+
+  @@index([novelId, targetType, targetId])
+  @@index([humanStatus])
+  @@index([novelId, targetId, contentHash, reviewConfigHash])
+  @@index([candidateId])
+}
+
+model ContentVersion {
+  id         String   @id @default(cuid())
+  targetType String
+  targetId   String
+  version    Int
+  snapshot   Json
+  reason     String
+  createdAt  DateTime @default(now())
+
+  @@index([targetType, targetId, version])
+}
+
+/** 稿件提交的幂等回执；不存正文。正文保留在版本快照中。 */
+model ContentMutation {
+  id            String   @id @default(cuid())
+  userId        String
+  novelId       String
+  targetType    String
+  targetId      String
+  operationId   String
+  requestHash   String
+  beforeVersion Int?
+  afterVersion  Int?
+  beforeHash    String
+  afterHash     String
+  result        Json
+  createdAt     DateTime @default(now())
+
+  @@unique([userId, operationId])
+  @@index([novelId, targetType, targetId])
+}
+
+/** ready 后正文不可变；只允许状态迁移，重新生成另建候选。 */
+model ContentCandidate {
+  id                     String   @id @default(cuid())
+  userId                 String
+  novelId                String
+  chapterId              String
+  operationId            String
+  baseVersion            Int
+  baseHash               String
+  baseContent            String? @db.Text
+  content                String   @db.Text
+  contentHash            String
+  source                 String
+  sourceRunId            String?
+  status                 String
+  checks                 Json
+  proposedCommentActions Json     @default("[]")
+  acceptedOperationId    String?
+  withdrawnOperationId   String?
+  baselineReviewId       String?
+  candidateReviewId      String?
+  reviewConfigHash       String?
+  targetWordCount        Int?
+  wordRequirement        Json?
+  improvementId          String?
+  iteration              Int?
+  qualityDecision        Json?
+  /** 抽卡分组：同一次抽卡（默认3份候选）共享的 drawId；单次生成/改进为 null */
+  drawId                 String?
+  /** 抽卡角度键（immersive/plot/character 或 polish/restructure/bold） */
+  variant                String?
+  /** 改进抽卡的底稿候选 */
+  basedOnCandidateId     String?
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@unique([userId, operationId])
+  @@index([novelId, chapterId, createdAt])
+  @@index([improvementId])
+  @@index([chapterId, drawId])
+}
+
+/** 一次改进意图的持久预算；调用前占用次数，失败/新 toolCallId 均不重置预算。 */
+model ContentImprovementRun {
+  defaultsSnapshot Json?
+  id String @id @default(cuid())
+  userId String
+  novelId String
+  chapterId String
+  operationId String
+  requestHash String
+  turnId String?
+  attemptId String?
+  baseVersion Int
+  baseHash String
+  baseContent String @db.Text
+  authorInstructions String @db.Text
+  comments Json
+  boundaries Json
+  wordRequirement Json
+  reviewConfig Json?
+  reviewConfigHash String?
+  writerCalls Int @default(0)
+  baselineCalls Int @default(0)
+  candidateCalls Int @default(0)
+  candidateIds String[] @default([])
+  status String @default("running")
+  result Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([userId, operationId])
+  @@unique([turnId, chapterId])
+  @@index([novelId, chapterId])
+}
+
+/** 采用时原子记录评论状态/回复，撤回只恢复本次且未再编辑的 APPLIED。 */
+model CandidateCommentEffect {
+  id String @id @default(cuid())
+  novelId String
+  candidateId String
+  commentId String
+  beforeStatus String
+  afterStatus String
+  afterUpdatedAt DateTime
+  afterReplyHash String?
+  replyId String
+  withdrawnAt DateTime?
+  createdAt DateTime @default(now())
+  @@unique([candidateId, commentId])
+  @@index([novelId])
+}
+
+/**
+ * 行内评论：挂载在章大纲/章正文/世界观介绍/设定大字段上的一段原文（锚点）+ 讨论串。
+ * 纯标量无外键（同 ContentVersion 先例）；targetType 取值 CHAPTER_OUTLINE / CHAPTER_CONTENT / WORLD / SETTING。
+ * 锚点字段（quote/prefix/suffix/startOffset/endOffset）仅顶层评论有值；回复通过 parentId 自嵌套。
+ */
+model TextComment {
+  id          String            @id @default(cuid())
+  novelId     String
+  targetType  String
+  targetId    String
+  /** 回复指向顶层评论 id；顶层为 null */
+  parentId    String?
+  /** 原文照抄的锚点文本 */
+  quote       String?
+  /** 锚点前文（32 字） */
+  prefix      String?
+  /** 锚点后文（32 字） */
+  suffix      String?
+  /** 创建时锚点在原文中的偏移（含首尾） */
+  startOffset Int?
+  endOffset   Int?
+  /** 新评论创建时的原始字段 hash；旧评论为空，写入时严格重定位 */
+  anchorHash  String?
+  authorType  CommentAuthorType
+  /** 用户评论为 userId；AI 评论为 null */
+  authorId    String?
+  /** 快照：用户昵称 / "AI 评审员" */
+  authorName  String
+  /** Markdown 评论正文 */
+  content     String
+  status      CommentStatus     @default(OPEN)
+  /** 来源评审（AI 评审自动挂载时） */
+  reviewId    String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([targetType, targetId])
+  @@index([novelId])
+}
+
+/** 两步评论应用：不可变补丁；消费与文本/状态/回复同事务。 */
+model PreparedTextChange {
+  id                  String   @id @default(cuid())
+  userId              String
+  novelId             String
+  targetType          String
+  targetId            String
+  commentId           String
+  operationId         String
+  requestHash         String
+  baseVersion         Int?
+  baseUpdatedAt       DateTime
+  baseHash            String
+  oldText             String   @db.Text
+  start               Int
+  end                 Int
+  replacement         String   @db.Text
+  reply               String
+  commentUpdatedAt    DateTime
+  commentStatus       CommentStatus
+  status              String   @default("ready")
+  consumedOperationId String?
+  expiresAt           DateTime
+  createdAt           DateTime @default(now())
+
+  @@unique([userId, operationId])
+  @@index([novelId, targetType, targetId])
+}
+
+/** World 没有整数版本，保留可恢复的原始字段前后文本。 */
+model TargetTextRevision {
+  id          String   @id @default(cuid())
+  operationId String
+  targetType  String
+  targetId    String
+  field       String
+  side        String
+  text        String   @db.Text
+  hash        String
+  createdAt   DateTime @default(now())
+
+  @@unique([operationId, side])
+  @@index([targetType, targetId, createdAt])
+}
+
+/**
+ * 子代理运行记录（§7.3）：评委/读者子代理的隔离执行档案——任务、状态、回放 transcript、
+ * 结论 result 与单列计量的 tokenUsage。纯标量无外键（同 TextComment 惯例）。
+ * 2026-08 SOP 图编排：agentKind 扩展为 editor 平台编辑 / playwright 剧作家 / writer 写手 /
+ * judge 审稿人 / reader 读者；sopNodeRunId 把单次调用串进 SOP 节点运行。
+ */
+model SubAgentRun {
+  /** 本次任务五项桌面默认值，创建后不因设置变化重写。 */
+  defaultsSnapshot Json?
+  contentHash String?
+  contentVersion Int?
+  candidateId String?
+  reviewConfigHash String?
+  @@index([candidateId])
+  attemptId String?
+  @@index([attemptId])
+  id             String   @id @default(cuid())
+  novelId        String
+  conversationId String?
+  /** 子代理类型：judge 审稿人 / reader 读者 / editor 平台编辑 / playwright 剧作家 / writer 写手 */
+  agentKind      String
+  /** 任务一句话（如「评阅第 3 章 · 雨夜来客」） */
+  task           String
+  /** running / done / error */
+  status         String   @default("running")
+  /** 运行回放：评审完整 JSON / 试读感受分节等渲染友好结构（subagent tab 只读视图用） */
+  transcript     Json?
+  /** 结论摘要：{ score, commentCount? } 等 */
+  result         Json?
+  /** 单列计量的 token 消耗 { input, output }（拍板：子代理墨滴单列展示） */
+  tokenUsage     Json?
+  /** 所属 SOP 节点运行（SopNodeRun.id，纯标量关联） */
+  sopNodeRunId   String?
+  /** 评分目标关联（2026-09 悬浮评分指示器）：ScoreTargetType 字符串 + 目标 id，judge/reader 写入时携带 */
+  targetType     String?
+  targetId       String?
+  errorMessage   String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([novelId])
+  @@index([conversationId])
+  @@index([sopNodeRunId])
+  @@index([targetType, targetId])
+}
+
+/**
+ * SOP 计划（2026-08 graph-engineering SOP）：命中 SOP 路由后先规划再执行的结构化 ToDo List。
+ * 同一会话仅一个 active 计划，新建自动 supersede 旧的（未决挂账问题带入新计划）。
+ * 纯标量无外键（同 TextComment/SubAgentRun 惯例）。
+ */
+model SopPlan {
+  defaultsSnapshot Json?
+  id             String   @id @default(cuid())
+  novelId        String
+  conversationId String
+  /** 计划标题，如「从主题到角色阵容搭建」 */
+  title          String
+  /** 入口意图摘要（意图路由命中） */
+  entryIntent    String?
+  /**
+   * 任务项 [{ id, label, nodeId, targetId?, status, summary?, sopNodeRunId? }]
+   * status: pending / active / done / failed / skipped(作者拍板越过)
+   */
+  items          Json
+  /** 挂账待澄清 [{ id, nodeId, question, status(deferred/resolved), answer? }]（用户「还没想好」跳过的问题，执行到对应环节入口时再追问） */
+  deferredQuestions Json?
+  /** active / done / superseded */
+  status         String   @default("active")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([novelId])
+  @@index([conversationId])
+}
+
+/**
+ * SOP 节点运行档案（2026-08 graph-engineering SOP）：分层 DAG 上每个节点的一次执行——
+ * L0 整书 / L1 环节 / L2 实例（perCharacter/perVolume/perChapter），parentRunId 表达嵌套。
+ * 收敛 loop 的评分史存 scoreHistory；L0 整书评审路由回来的待办存 openFindings。
+ * 纯标量无外键（同 TextComment/SubAgentRun 惯例）。
+ */
+model SopNodeRun {
+  defaultsSnapshot Json?
+  id           String   @id @default(cuid())
+  novelId      String
+  /** 图节点 id：theme / world / character / setting / outline / content / novel */
+  nodeId       String
+  /** 实例锚点：characterId / chapterId / volumeId；环节级为空 */
+  targetId     String?
+  /** 嵌套：L2 实例 run 指向所属 L1 run，L1 指向 L0 run */
+  parentRunId  String?
+  /** running / done / failed / skipped(作者拍板越过) */
+  status       String   @default("running")
+  /** 收敛 loop 实际迭代轮数 */
+  iterations   Int      @default(0)
+  /** 每轮检查点评分与反馈摘要 [{ round, score, summary }] */
+  scoreHistory Json?
+  finalScore   Float?
+  /** L0 整书评审 findings 路由下来的未闭环待办 [{ issue, suggestion, fromRunId }] */
+  openFindings Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([novelId])
+  @@index([parentRunId])
+}
+
+model CascadeJob {
+  defaultsSnapshot Json?
+  id            String              @id @default(cuid())
+  novelId       String
+  triggerType   CascadeTriggerType
+  triggerId     String
+  status        CascadeJobStatus    @default(PENDING)
+  affectedItems Json
+  result        Json?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  novel Novel @relation(fields: [novelId], references: [id], onDelete: Cascade)
+
+  @@index([novelId, status])
+}
+
+model Conversation {
+  /** 会话创建时的桌面默认值；显式模型选择另存modelId，历史快照不重写。 */
+  defaultsSnapshot Json?
+  activeAttemptId String?
+  executionEpoch Int @default(0)
+  leaseExpiresAt DateTime?
+  cancelRequestedAt DateTime?
+  turns ChatTurn[]
+  id        String   @id @default(cuid())
+  userId    String
+  novelId   String?
+  title     String
+  /** 作者为本会话选择的大模型；桌面null表示未选择，绝不隐式跟随全局默认。纯标量无外键。 */
+  modelId   String?
+  /** 思考强度档位（thinking-effort.ts 能力表的 value，如 off/low/medium/high）；null=默认档（各 provider 的现状行为） */
+  thinkingEffort String?
+  /** 对话前情摘要：上下文压缩产物（context-compression.ts），覆盖 summarizedThroughId 及之前的消息 */
+  summary String @default("") @db.Text
+  /** 摘要覆盖到的最后一条消息 id（Message.id，纯标量无外键同 TextComment 惯例）；null=尚未压缩过 */
+  summarizedThroughId String?
+  /** 上下文压缩次数（观测用） */
+  compactionCount Int @default(0)
+  /** 上一轮实际输入 token 数（整轮各步累计，观测/调参用，chat 路由 onFinish 写入） */
+  lastInputTokens Int?
+  /** 上一轮单步最大实际输入 token 数（每步一次模型调用的峰值——上下文窗口不超限的真实判据） */
+  lastMaxStepInputTokens Int?
+  /** 上一轮首步实际输入 token 数（校准分子：与 lastPromptEstimate 同口径的首步真实值） */
+  lastFirstStepInputTokens Int?
+  /** 上一轮发送前估算的首步输入 token 数（校准分母：context-budget 估算器的原始输出） */
+  lastPromptEstimate Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  novel    Novel?    @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@index([userId])
+  @@index([novelId])
+}
+
+model Message {
+  turnId String?
+  attemptId String?
+  parts Json?
+  id             String      @id @default(cuid())
+  conversationId String
+  role           MessageRole
+  content        String
+  toolCalls      Json?
+  createdAt      DateTime    @default(now())
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+}
+
+model AIModel {
+  id               String    @id @default(cuid())
+  name             String
+  provider         String
+  modelId          String
+  apiKeyEncrypted  String
+  baseUrl          String?
+  tier             ModelTier @default(NORMAL)
+  /** TEXT=文本模型；IMAGE=文生图模型 */
+  kind             ModelKind @default(TEXT)
+  inputCostPer1k   Float
+  outputCostPer1k  Float
+  /** 上下文窗口大小（token 数），用于对话页展示真实上下文用量占比 */
+  contextWindow    Int       @default(128000)
+  /** 免费模型标记（官网 0 价模型）：模型选择器在名称旁展示「免费」标签 */
+  free             Boolean   @default(false)
+  enabled          Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  usageRecords UsageRecord[]
+
+  @@index([provider, enabled])
+  @@index([tier])
+}
+
+model PromptTemplate {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  name      String
+  content   String
+  variables Json
+  version   Int      @default(1)
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/** 系统级配置项（后台「设置」页维护；key 为主键，value 为 JSON 载荷） */
+model SystemConfig {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+model UsageRecord {
+  turnId String?
+  attemptId String?
+  id               String   @id @default(cuid())
+  userId           String
+  novelId          String?
+  modelId          String
+  /** Immutable request metadata; never contains a credential. */
+  modelSnapshot    Json     @default("{}")
+  action           String
+  promptTokens     Int
+  completionTokens Int
+  cost             Float
+  createdAt        DateTime @default(now())
+
+  user  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  novel Novel?   @relation(fields: [novelId], references: [id], onDelete: Cascade)
+  model AIModel  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([modelId, createdAt])
+  @@index([turnId, attemptId])
+  @@index([novelId])
+}
+
+/** 伏笔角色：身份未明的小说级全局实体（「老者」）。纯标量。 */
+model ForeshadowCharacter {
+  id                  String   @id @default(cuid())
+  novelId             String
+  name                String
+  note                String   @default("")
+  avatarUrl           String?
+  /** 揭示/转正后回填正式 Character.id，所有引用处同步归属 */
+  revealedCharacterId String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  @@index([novelId])
+}
+
+/**
+ * 伏笔：小说级情节线索档案（谜题/承诺/隐患/信物等），经触点（ForeshadowTouch）
+ * 追踪埋入/提及/回收的位置与写作质量。长度无关——触点存引用，跨卷跨百章可查。
+ * 状态机：PLANNED →（PLANT 触点）PLANTED →（PAYOFF 触点）RESOLVED；DROPPED=作者废弃。
+ * 归属校验与章/节点级联清理在服务层（纯标量引用同 TextComment 惯例）。
+ */
+model Foreshadow {
+  id             String           @id @default(cuid())
+  novelId        String
+  title          String
+  /** 伏笔内容（markdown：谜面/真相/兑现计划） */
+  content        String           @default("") @db.Text
+  /** 备注（写作备忘，不进 AI 上下文） */
+  note           String           @default("") @db.Text
+  /** 预期回收位置（自由文本，如「第三卷结尾」） */
+  expectation    String           @default("")
+  /** 预期回收的全书线性章序号（可选，逾期提醒用；按卷章排序从1连续计算） */
+  plannedChapter Int?
+  status         ForeshadowStatus @default(PLANNED)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  touches ForeshadowTouch[]
+
+  @@index([novelId, status])
+}
+
+/**
+ * 伏笔触点：一次埋入（PLANT）/提及（MENTION）/回收（PAYOFF），挂在章上。
+ * score/scoreComment=触点评分
+ * （这一笔写得好不好；时机与规划合理性归评审的「伏笔运营」维度，不在此）。
+ * 无 chapterId 的记录是故事板退役迁移（20260924_storyboard_retirement）留下的无锚点触点，面板正常展示。
+ */
+model ForeshadowTouch {
+  id           String              @id @default(cuid())
+  foreshadowId String
+  /** 冗余 novelId：按小说批量清理/按章批量查询不走 join */
+  novelId      String
+  kind         ForeshadowTouchKind
+  /** 这一笔的情节摘要（≤200 字；AI 上下文与编辑器标记锚点用，≤30 字参与锚点定位） */
+  summary      String              @default("")
+  /** 关联章；null = 无锚点记录（仅保留摘要与评分） */
+  chapterId    String?
+  /** 触点评分：0~100 + 评语（AI 评审回填或面板单点评估） */
+  score        Float?
+  scoreComment String              @default("")
+  scoredAt     DateTime?
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  foreshadow Foreshadow @relation(fields: [foreshadowId], references: [id], onDelete: Cascade)
+  references ForeshadowReference[]
+
+  @@index([novelId, chapterId])
+  @@index([foreshadowId, createdAt])
+}
+
+/** 触点的一处引用；结构位置与原文锚点分离，正文不嵌入标记。 */
+model ForeshadowReference {
+  id          String   @id @default(cuid())
+  novelId     String
+  touchId     String
+  targetType  String
+  targetId    String
+  identityKey String
+  quote       String?  @db.Text
+  prefix      String?
+  suffix      String?
+  startOffset Int?
+  endOffset   Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  touch ForeshadowTouch @relation(fields: [touchId], references: [id], onDelete: Cascade)
+
+  @@unique([touchId, identityKey])
+  @@index([novelId, targetType, targetId])
+}
+
+/**
+ * 情景试验场（2026-08）：配置角色+场景+可选开场剧情，AI 多代理扮演角色推演剧情。
+ * 聊天回合（ScenarioTurn）是唯一事实来源，主干节点/分镜卡/样文均为派生；
+ * 样文存 prose 字段，与正文列表（Chapter）完全隔离。纯标量无外键（同 TextComment 惯例）。
+ */
+model ScenarioLab {
+  id        String   @id @default(cuid())
+  novelId   String
+  title     String
+  /** 参演名单快照 [{ characterId, name, control: "ai"|"user" }]，control=user 至多一人 */
+  cast      Json     @default("[]")
+  sceneIds  String[] @default([])
+  /** 开场剧情（可选） */
+  premise   String   @default("") @db.Text
+  /** 样文（正文形式，由推演流水派生，不进正文列表） */
+  prose     String   @default("") @db.Text
+  proseAt   DateTime?
+  /** draft=配置中 / active=已开局 */
+  status    String   @default("draft")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([novelId])
+}
+
+/** 情景试验场推演回合：开局叙述（kind=opening）与逐回合推演（kind=beat）。纯标量。 */
+model ScenarioTurn {
+  defaultsSnapshot Json?
+  id        String   @id @default(cuid())
+  labId     String
+  /** 从 1 严格递增，开局=1 */
+  index     Int
+  kind      String   @default("beat")
+  /** 导演叙述（开场/回合推进裁定） */
+  narrative String   @default("") @db.Text
+  /** 角色言行 [{ characterId, name, control, say?, act?, think?, emotion?, source: "ai"|"user" }] */
+  beats     Json     @default("[]")
+  /** 时序流水（导演编排）：[{ kind: "narrative"|"say"|"act"|"think", characterId?, name?, content }]，按发生先后穿插排列；null=旧回合（按 narrative+beats 固定顺序渲染） */
+  flow      Json?
+  /** 旁观用户本轮注入的导演指示原文 */
+  direction String?  @db.Text
+  /** 一致性检查记录 [{ round, ok, score, issues[] }] */
+  checks    Json?
+  createdAt DateTime @default(now())
+  @@unique([labId, index])
+  @@index([labId])
+}
+
+/** 情景试验场主干情节点：由回合自动派生（导演返回 beatSummary），可编辑。纯标量。 */
+model ScenarioNode {
+  id        String   @id @default(cuid())
+  labId     String
+  /** 分数序号（复用 fractional-index 机制） */
+  index     Float
+  text      String   @default("") @db.Text
+  /** 溯源 ScenarioTurn.id */
+  turnId    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([labId, index])
+  @@index([labId])
+}
+
+/** 情景试验场分镜卡：从主干 AI 整理派生，可编辑/删除。纯标量。 */
+model ScenarioCard {
+  id           String   @id @default(cuid())
+  labId        String
+  index        Float
+  /** 溯源 ScenarioNode.id */
+  nodeId       String?
+  text         String   @default("") @db.Text
+  characterIds String[] @default([])
+  sceneIds     String[] @default([])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  @@unique([labId, index])
+  @@index([labId])
+}
+
+
+/** 建书请求回执；与 Novel/Theme 同事务，重放不会重复创建。 */
+model NovelCreationRequest {
+  id          String   @id @default(cuid())
+  userId      String
+  requestId   String
+  requestHash String
+  novelId     String
+  result      Json
+  createdAt   DateTime @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([userId, requestId])
+  @@index([novelId])
+}
+
+
+model ChatTurn {
+  /** 任务开始时冻结模式/思考/文本/审核/图像选择；重试沿用此快照。 */
+  defaultsSnapshot Json?
+  action Json?
+  id String @id @default(cuid())
+  userId String
+  conversationId String
+  userMessageId String @unique
+  clientRequestId String
+  status String @default("queued")
+  latestAttemptId String?
+  interaction Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  attempts ChatAttempt[]
+  requests ChatRequest[]
+  @@unique([userId, clientRequestId])
+  @@index([conversationId, createdAt])
+}
+
+model ChatAttempt {
+  requestId String?
+  id String @id @default(cuid())
+  turnId String
+  attemptNo Int
+  assistantMessageId String @unique
+  executionEpoch Int
+  status String @default("queued")
+  stage String @default("waiting_model")
+  lastEventAt DateTime @default(now())
+  lastProgressAt DateTime @default(now())
+  endedAt DateTime?
+  errorCode String?
+  errorMessage String?
+  diagnosticId String?
+  retryUsed Int @default(0)
+  hasWriteEffects Boolean @default(false)
+  lastEventSeq Int @default(0)
+  createdAt DateTime @default(now())
+  turn ChatTurn @relation(fields: [turnId], references: [id], onDelete: Cascade)
+  tools ChatToolExecution[]
+  observation AttemptObservation?
+  @@unique([turnId, attemptNo])
+}
+
+model ChatRequest {
+  id String @id @default(cuid())
+  userId String
+  clientRequestId String
+  requestHash String
+  turnId String
+  entryAttemptId String
+  createdAt DateTime @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  turn ChatTurn @relation(fields: [turnId], references: [id], onDelete: Cascade)
+  @@unique([userId, clientRequestId])
+}
+
+model ChatToolExecution {
+  id String @id @default(cuid())
+  turnId String
+  attemptId String
+  toolCallId String
+  toolName String
+  operationId String
+  requestHash String
+  input Json
+  output Json?
+  status String @default("started")
+  hasExternalEffects Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  attempt ChatAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  effects ChatWriteEffect[]
+  @@unique([attemptId, toolCallId])
+  @@index([turnId, operationId])
+}
+
+model ChatWriteEffect {
+  id String @id @default(cuid())
+  toolExecutionId String
+  targetModel String
+  targetId String?
+  operation String
+  receipt Json
+  createdAt DateTime @default(now())
+  toolExecution ChatToolExecution @relation(fields: [toolExecutionId], references: [id], onDelete: Cascade)
+  @@index([toolExecutionId])
+}
+
+/** 控制面观测，不含原文或密钥；不随普通用户的回合状态接口公开。 */
+model AttemptObservation {
+  attemptId String @id
+  turnId String
+  modelId String?
+  provider String?
+  auto Boolean @default(false)
+  data Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  attempt ChatAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  @@index([provider, modelId, createdAt])
+  @@index([turnId])
+}
+
+/** 世界线与叙事线共享的版本化作品规划聚合。 */
+model PlanningDocument {
+  novelId String @id
+  version Int @default(1)
+  data Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  novel Novel @relation(fields: [novelId], references: [id], onDelete: Cascade)
+}

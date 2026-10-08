@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN" class="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+  <title>玄印写作桌面版 · UI 审核稿</title>
+  <link rel="icon" href="assets/seal-mark-paper.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/web-tokens.css">
+  <link rel="stylesheet" href="desktop-preview.css">
+  <script src="assets/lucide.js" defer></script>
+  <script src="desktop-meta.js" defer></script>
+  <script src="provider-catalog-preview.js" defer></script>
+  <script src="desktop-commands.js" defer></script>
+  <script src="desktop-shortcut-keys.js" defer></script>
+  <script src="desktop-preview.js" defer></script>
+</head>
+<body>
+  <div class="reviewbar" role="toolbar" aria-label="设计稿调试工具栏">
+    <span class="review-name">UI 调试工具</span>
+    <label>平台 <select id="preview-platform"><option value="mac">macOS</option><option value="win">Windows</option></select></label>
+    <label>主题 <select id="preview-theme"><option value="paper">宣纸</option><option value="ink">玄墨</option></select></label>
+    <label>页面 <select id="preview-page"><option value="workspace">工作台</option><option value="first">首次启动</option><option value="create">创作向导</option><option value="chat-create">聊天建书目录</option><option value="general">设置 · 通用</option><option value="user">设置 · 用户</option><option value="about">设置 · 关于我们</option><option value="agents">设置 · 智能体</option><option value="models">设置 · 模型</option><option value="appearance">设置 · 外观</option><option value="shortcuts">设置 · 快捷键</option><option value="migration">数据迁移</option><option value="recovery">草稿恢复</option></select></label>
+    <label>状态 <select id="preview-state"><option value="normal">正常</option><option value="directory-error">目录冲突</option><option value="directory-unwritable">所选目录不可写</option><option value="directory-bound">目录已绑定作品</option><option value="save-error">关闭前保存失败</option><option value="settings-save-error">设置保存失败</option><option value="root-unavailable">数据根失联</option><option value="backup-invalid">备份损坏</option><option value="long-title">超长作品标题</option><option value="shortcut-error">快捷键冲突</option><option value="model-error">模型认证失败</option><option value="catalog-many">模型长列表（80 个示例）</option><option value="migration-error">迁移失败</option><option value="cleanup-pending">旧副本待清理</option></select></label>
+    <label>AI 门控 <select id="preview-ai-task"><option value="text">文本生成</option><option value="review">审核</option><option value="image">文生图</option></select></label><button class="button" data-action="preview-ai-task">执行示意</button>
+    <span class="review-note">示例数据 · 窗控与文件选择为示意 · 无真实 AI / 文件读写</span>
+  </div>
+  <div id="mac-system-menubar" class="mac-system-menubar" role="menubar" aria-label="macOS 系统应用菜单"></div>
+  <div id="desktop" class="desktop" data-platform="mac">
+    <span id="window-title" hidden aria-hidden="true">玄印写作</span>
+    <div class="win-controls" aria-label="Windows 原生按钮位置示意"><button id="windows-menu-trigger" class="icon-btn" data-action="toggle-app-menu" aria-label="应用程序菜单" aria-haspopup="menu" aria-controls="app-root-menu" aria-expanded="false"><i data-lucide="menu"></i></button><span>─</span><span>□</span><span>×</span></div>
+    <div class="workspace" id="workspace">
+      <aside class="sidebar bg-sidebar" aria-label="作品导航">
+        <header class="sidebar-head"><div class="navigation-tools"><div class="mac-controls" aria-label="macOS 原生按钮位置示意"><span class="traffic close"></span><span class="traffic minimize"></span><span class="traffic maximize"></span></div><button class="icon-btn" data-action="navigate-back" aria-label="后退"><i data-lucide="arrow-left"></i></button><button class="icon-btn" data-action="navigate-forward" aria-label="前进"><i data-lucide="arrow-right"></i></button><button class="icon-btn" data-action="toggle-sidebar" aria-label="展开或收起左侧导航栏"><i data-lucide="panel-left"></i></button></div></header><div class="sidebar-brand"><img id="brand" src="assets/logo-horizontal-paper.svg" alt="玄印写作"></div>
+        <button class="tree-row" data-action="create"><i data-lucide="plus"></i>创建作品</button>
+        <button class="tree-row" data-action="new-chat"><i data-lucide="message-square-plus"></i>创建对话</button>
+        <h2 class="tree-title">作品阁</h2>
+        <div class="sidebar-scroll" id="tree"></div>
+        <div class="sidebar-foot"><button id="account-menu-trigger" class="account-menu-trigger" data-action="account-menu" aria-label="账号菜单" aria-haspopup="menu" aria-expanded="false"><span class="local-avatar">本</span><span class="local-author"><span id="author-label">本地作者</span><small id="author-email">本地创作者</small></span></button><div id="account-menu" class="account-menu" role="menu" aria-label="账号菜单" hidden></div></div>
+      </aside>
+      <section class="chatpane chat" aria-label="AI 对话">
+        <header class="pane-head"><div class="compact-navigation"><div class="navigation-tools"><div class="mac-controls" aria-label="macOS 原生按钮位置示意"><span class="traffic close"></span><span class="traffic minimize"></span><span class="traffic maximize"></span></div><button class="icon-btn" data-action="navigate-back" aria-label="后退"><i data-lucide="arrow-left"></i></button><button class="icon-btn" data-action="navigate-forward" aria-label="前进"><i data-lucide="arrow-right"></i></button><button class="icon-btn" data-action="toggle-sidebar" aria-label="展开或收起左侧导航栏"><i data-lucide="panel-left"></i></button></div></div><span id="chat-title">第一章 · 纸上风声</span><button class="icon-btn" data-action="toggle-content" aria-label="展开或收起内容区"><i data-lucide="panel-right"></i></button></header>
+        <div class="chat-scroll" id="chat-body"></div>
+        <div class="composer-wrap"><div class="composer"><textarea id="composer-draft" aria-label="对话输入框" placeholder="写下你的想法，或 @ 引用作品资料…"></textarea><div class="composer-tools"><div class="composer-model-wrap"><button id="composer-model-trigger" class="model-picker" data-action="toggle-session-models" aria-label="选择对话模型" aria-haspopup="menu" aria-controls="composer-model-menu" aria-expanded="false"><span id="composer-model-logo"></span><span id="composer-model">星河写作 · 用户配置</span><i data-lucide="chevron-down"></i></button><div id="composer-model-menu" class="session-model-menu" role="menu" aria-label="对话模型" hidden></div></div><div class="composer-right"><button class="icon-btn" aria-label="对话设置" data-action="chat-settings"><i data-lucide="sliders-horizontal"></i></button><button class="send-btn" data-action="demo-send" aria-label="发送示意"><i data-lucide="arrow-up"></i></button></div></div></div><div class="composer-caption" id="composer-caption">AI 仅使用你的模型配置 · 生成稿经你批准后落稿</div></div>
+      </section>
+      <section class="content" aria-label="作品内容">
+        <header class="content-tabs"><button class="icon-btn content-return" data-action="return-chat" aria-label="返回对话"><i data-lucide="arrow-left"></i></button><div class="compact-navigation"><div class="navigation-tools"><div class="mac-controls" aria-label="macOS 原生按钮位置示意"><span class="traffic close"></span><span class="traffic minimize"></span><span class="traffic maximize"></span></div><button class="icon-btn" data-action="navigate-back" aria-label="后退"><i data-lucide="arrow-left"></i></button><button class="icon-btn" data-action="navigate-forward" aria-label="前进"><i data-lucide="arrow-right"></i></button><button class="icon-btn" data-action="toggle-sidebar" aria-label="展开或收起左侧导航栏"><i data-lucide="panel-left"></i></button></div></div><div class="content-tab active"><button class="tab-label" data-action="chapter"><i data-lucide="file-text"></i>第一章 · 正文</button><button class="tab-close" data-action="toggle-content" aria-label="关闭内容标签">×</button></div><button class="content-tab" data-action="candidate"><i data-lucide="layers"></i>候选稿</button><button class="icon-btn content-expand" data-action="content-full" aria-label="内容全屏"><i data-lucide="maximize"></i></button></header>
+        <div class="editor-toolbar"><div class="editor-views"><button class="on" data-view="preview">预览</button><button data-view="edit">编辑</button><button data-view="split">分屏</button></div><span class="saved" id="save-status"><i data-lucide="check"></i>已保存到作品目录</span><button class="icon-btn" data-action="history" aria-label="历史版本"><i data-lucide="history"></i></button></div>
+        <article class="manuscript" id="manuscript"><div class="chapter-meta">第一卷 · 风起微澜</div><h1>第一章　纸上风声</h1><p>暮色落在旧书铺的窗沿，陈砚把最后一页账册合上，纸缝里却透出一丝微光。</p><p>他从未见过这样的字。每一道笔画都像刚刚写成，墨色未干，而写下它的人已经离去三十年。</p><p>窗外的风停了。</p><p>街角那口生锈的铜钟，缓缓敲了一声。</p><p>“别打开。”</p><p>声音从书页里传来，轻得像有人隔着很远的年月，在他耳边说话。</p><p>陈砚的手停在半空。他想起母亲留下的那封信，也想起信末那句从未读懂的话。</p><p>——有些故事，只有最后一个人记得时，才真正开始。</p><div class="comment-example"><i data-lucide="message-square"></i><div><strong>作者批注</strong><p>这里的铜钟与后续伏笔保持呼应。</p></div><span>待处理</span></div></article>
+      </section>
+    </div>
+    <div id="surface" class="surface" hidden></div>
+    <div id="subdialog" class="subdialog" hidden></div>
+    <div id="app-root-menu" class="application-popup" role="menu" aria-label="应用程序菜单" hidden></div>
+    <div id="app-submenu" class="application-popup" role="menu" hidden></div>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+  </div>
+</body>
+</html>

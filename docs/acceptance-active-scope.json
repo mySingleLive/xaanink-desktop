@@ -1,0 +1,6606 @@
+{
+  "schemaVersion": 1,
+  "id": "ACTIVE-SCOPE-AFTER-USER-2026-10-08-CANCEL-BACKUPS",
+  "updatedAt": "2026-10-08",
+  "authority": "Latest user cancellation of all backup features; parent authorized independent document/scope update only",
+  "retirementManifest": "docs/backup-scope-retirement.json",
+  "counts": {
+    "historicalCases": 531,
+    "activeCases": 530,
+    "retiredWholeCases": 1,
+    "mixedActiveCases": 5,
+    "clarifiedActiveCases": 1,
+    "desktop": {
+      "historical": 107,
+      "active": 106,
+      "retired": 1,
+      "mixed": 5
+    },
+    "business": {
+      "historical": 424,
+      "active": 424,
+      "retired": 0
+    },
+    "requirements": {
+      "historical": 91,
+      "active": 90,
+      "retired": 1
+    },
+    "activeExecutionStatuses": {
+      "not-run": 530,
+      "passed": 0,
+      "running": 0,
+      "failed": 0,
+      "blocked": 0
+    }
+  },
+  "status": "not-run",
+  "resolution": "Select only activeCases; inherit the original source case fields, replacing title/steps/expected only when activeDefinition exists. Original execution status/results are historical; no original status is promoted.",
+  "activeRequirementIds": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "W01",
+    "W02",
+    "W03",
+    "W04",
+    "W05",
+    "W06",
+    "W07",
+    "W08",
+    "W09",
+    "W10",
+    "W11",
+    "W12",
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "G01",
+    "G02",
+    "G03",
+    "U01",
+    "U02",
+    "U03",
+    "U04",
+    "A01",
+    "A02",
+    "A03",
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "M06",
+    "M07",
+    "M08",
+    "M09",
+    "M10",
+    "M11",
+    "M12",
+    "M13",
+    "M14",
+    "M15",
+    "M16",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "K01",
+    "K02",
+    "K03",
+    "K04",
+    "K05",
+    "K06",
+    "K07",
+    "K08",
+    "K09",
+    "K10",
+    "K11",
+    "O01",
+    "O02",
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D09",
+    "D10",
+    "D11",
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E05",
+    "E06",
+    "B08"
+  ],
+  "retiredRequirementIds": [
+    "D08"
+  ],
+  "retiredCaseIds": [
+    "DESK-D08"
+  ],
+  "mixedCaseIds": [
+    "DESK-B07",
+    "DESK-S08",
+    "DESK-G03",
+    "DESK-D05",
+    "ADAPTER-08"
+  ],
+  "clarifiedCaseIds": [
+    "DESK-D06"
+  ],
+  "activeCases": [
+    {
+      "id": "DESK-B01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-B02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-B03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-B04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-B05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-B06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-B07",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "mixed",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "activeDefinition": {
+        "title": "演示作品/对话/模型/大小/成功结果/调试栏不进入安装版；显示真实状态",
+        "steps": [
+          "以全新隔离目录离线启动安装包",
+          "浏览工作台、设置、模型、关于和草稿恢复；确认无备份、备份列表及从备份恢复入口",
+          "搜索打包资源中的设计fixture标记",
+          "触发一次真实失败",
+          "核对公开preload/IPC/RPC和安装资源无可执行备份/恢复备份入口；普通启动/设置更新/macOS重开/关闭取消不启动备份调度，原用户备份不删除"
+        ],
+        "expected": [
+          "演示作品/对话/模型/大小/成功结果/调试栏不进入安装版；显示真实状态",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准",
+          "自动/手动备份、备份列表、应用和作品从备份恢复完全移除；不是只隐藏按钮；原工作台、正常保存、草稿恢复保持"
+        ]
+      },
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W07",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W08",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W09",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W10",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W11",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-W12",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S07",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S08",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "mixed",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "activeDefinition": {
+        "title": "普通有效配置即时响应并原子持久化；非法值/失败保留并重试",
+        "steps": [
+          "修改合法字号并重启",
+          "将仍有效的界面字号改为超出当前schema范围的值；验证不应用、不替换上一有效值",
+          "注入磁盘写失败修改设置后切组/关闭重开",
+          "恢复可写并点重试",
+          "故意乱序返回旧回执"
+        ],
+        "expected": [
+          "普通有效配置即时响应并原子持久化；非法值/失败保留并重试",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准"
+        ]
+      },
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-S09",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-G01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-G02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-G03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "mixed",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "activeDefinition": {
+        "title": "启动恢复与配置导入导出接入；旧备份字段精确兼容",
+        "steps": [
+          "修改启动时恢复上次工作台开关",
+          "导出配置",
+          "更改后导入",
+          "重启检查全部仍有效设置实际生效及导出无Key",
+          "关闭启动恢复后退出重启，确认不自动重开旧Tab；开启后重启恢复原Tab/草稿",
+          "导入坏JSON、错误schema、未来版本、冲突值及含Key/新根路径的配置；分别取消/确认可用项",
+          "使用含backupIntervalMinutes/backupRetention的隔离旧state.json及配置文件正常打开/导入；其余设置保留，旧字段不重新导出、不触发备份；任意未知字段仍按schema拒绝"
+        ],
+        "expected": [
+          "恢复开关对应真实启动行为，当前会话不因切开关丢失",
+          "非法导入不写盘；冲突明确列项；无Key导出/导入，导入路径不触发目录迁移或获得新授权",
+          "精确旧格式兼容不能复活备份字段、调度或生成；正常设置即时响应、持久化/失败重试和授权边界保持"
+        ]
+      },
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-U01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-U02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-U03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-U04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-A01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-A02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-A03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M07",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M08",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M09",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M10",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M11",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M12",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M13",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M14",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M15",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-M16",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-T01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-T02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-T03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-T04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-T05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-T06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K07",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K08",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K09",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K10",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-K11",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-O01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-O02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "mixed",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "activeDefinition": {
+        "title": "根迁移先选择后校验/过程；作品不移动、旧根仅清本应用文件",
+        "steps": [
+          "先取消迁移原生选择",
+          "选择有效新根确认迁移",
+          "核对阶段顺序、持久迁移journal/实际权威指针、作品原位置、未知旧文件保留；不要求额外迁移前数据备份快照，既有用户备份文件不因功能取消而删除"
+        ],
+        "expected": [
+          "根迁移先选择后校验/过程；作品不移动、旧根仅清本应用文件",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准"
+        ]
+      },
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active-clarified",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "activeDefinition": {
+        "title": "迁移嵌套/不足空间/失败/取消/崩溃恢复/清理待完成逐阶段正确",
+        "steps": [
+          "在校验/暂停/复制/验证/提交/清理各阶段注入错误或kill",
+          "重启",
+          "分别测试同根/嵌套/空间不足/取消/旧根清理失败",
+          "只允许一个权威根",
+          "为每个kill点记录 durable journal.phase、bootstrap指针、新旧根存在及managed/unknown文件散列",
+          "提交后只让旧根清理失败，重启后重试cleanup；新根临时不可达时只允许定位/恢复，不重建空库",
+          "分别在隔离bootstrap/root/work置入未知、损坏、未完成旧备份恢复request/phase/layout/barrier/storage pointer控制文件；普通启动不可忽略/删除/自动消费或初始化新库",
+          "对合法完成的旧存储指针/authority历史验证实际身份和checksum；只读兼容既有权威根，不重新启用备份恢复入口"
+        ],
+        "expected": [
+          "picking/validating/quiescing/copying/verifying及提交指针前失败：旧根仍权威，指针不变，旧数据完整，临时新副本不能被启用",
+          "原子指针已提交后kill或cleanup失败：新根权威，重启继续cleanup；UI显示清理待完成并列残留，不能回到旧根",
+          "未知文件/目录本身/所有作品目录始终不清理；重复恢复不重放迁移或双写",
+          "提交前取消回到旧根，提交后禁止回滚按钮；同根/嵌套/不足空间在复制/清理前拒绝",
+          "失联/坏库不跳转选择备份；未知/损坏/未完成旧控制状态在engine/session打开前安全拒绝并保留原文件",
+          "这里的恢复仅为迁移journal续行及显式目录重新定位；writer lease/普通保存保持"
+        ]
+      },
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D07",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D09",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D10",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-D11",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-E01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-E02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-E03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-E04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-E05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-E06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DESK-B08",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "ADAPTER-01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "ADAPTER-02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "ADAPTER-03",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "ADAPTER-04",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "ADAPTER-05",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "ADAPTER-06",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "ADAPTER-07",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "ADAPTER-08",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "mixed",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "activeDefinition": {
+        "title": "schema升级失败与不兼容引擎安全拒绝；不生成升级备份",
+        "steps": [
+          "在已有隔离原schema数据库执行正常随包迁移，注入schema迁移失败",
+          "普通打开不兼容的数据库/引擎主版本；核对安全拒绝，不初始化空库、不覆盖原目录",
+          "检查全局及作品schema升级不再生成dumpDataDir/before-upgrade归档；既有历史归档原文件保留"
+        ],
+        "expected": [
+          "成功升级按随包ID/校验和完成；失败不记为已升级、不伪造成功，保持原数据及受支持旧版本可读",
+          "不兼容引擎安全拒绝，不回退空库、不自动进行从备份恢复或跨主版本转换",
+          "正常事务/错误回执不依赖升级前备份；既有归档不删除"
+        ]
+      },
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "IPC-01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "IPC-02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "NET-01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "NET-02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "LIVE-01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "LIVE-02",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "CATALOG-01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "UI-PARITY-01",
+      "source": "docs/test-cases-desktop.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C01",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C02",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C03",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C04",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C05",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C06",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C07",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C08",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C09",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C10",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C11",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C12",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C13",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C14",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C15",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C16",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C17",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C18",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C19",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C20",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C21",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C22",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C23",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C24",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C25",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C26",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C27",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C28",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-C29",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-startNovelFromChat",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-askUserQuestion",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getNovelOverview",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getNovelContext",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getWorlds",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getSetting",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getCharacter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listCharacters",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listReviews",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getScoreReport",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getOutline",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getChapterContent",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listTropes",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listItems",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listScenes",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getSceneContext",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listAttributes",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-upsertTheme",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createWorld",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateWorld",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-upsertSetting",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createCharacter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateCharacter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-generateCharacterImage",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-generateNovelCover",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-deleteCharacter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createItem",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateItem",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-deleteItem",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createScene",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateScene",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-deleteScene",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-upsertAttribute",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-deleteAttribute",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createCustomTrope",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-deleteCustomTrope",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-deleteSetting",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-deleteWorld",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-selectTrope",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-generateOutline",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createVolume",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateVolumeOutline",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createChapter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateChapterOutline",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-requestAIReview",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-requestReaderReview",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-addTextComment",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listTextComments",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-handleTextComment",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-approveOutline",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-checkChapterNarrative",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getChapterCandidates",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-drawChapterCandidates",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-generateChapterContent",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-improveChapterContent",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-revertChapterReplacement",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-writeChapterContent",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getChapterFinalizationChecklist",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-finalizeChapter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getSopStatus",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-proposePlan",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createSopPlan",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateSopPlan",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-assessThemeMarket",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-summonPlaywright",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-reviewWholeNovel",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createForeshadowCharacter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listForeshadows",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getForeshadow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-createForeshadow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateForeshadow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-deleteForeshadow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-addForeshadowTouch",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-removeForeshadowTouch",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-analyzeStagedImpact",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-commitStagedChanges",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-triggerCascadeRevision",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getNovelPlanning",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getNarrativeChapter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-proposeNovelPlanning",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-applyNovelPlanningProposal",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-generateCharacterArc",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-completeStoryTask",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-requestStoryRemoval",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-listStoryRemovals",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-restoreStoryStructure",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-requestContentApproval",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-generateStoryChapters",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getStoryWorkflow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-updateStoryWorkflow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-reopenStoryPhase",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-reviewStoryCheckpoint",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-requestStoryApproval",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getStoryArtifact",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-linkStoryArtifacts",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-unlinkStoryArtifacts",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getStoryImpact",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "TOOL-getStorySources",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_config-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_config-PUT",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_models_id-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_models_id-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_models-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_models-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_prompts_id-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_prompts_id-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_prompts-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_prompts-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_sop-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-admin_usage-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_conversations_id-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_conversations_id-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_conversations_id-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_conversations_id_sop-plan-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_conversations-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_turns_turnId_cancel-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_turns_turnId_interaction-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_turns_turnId_navigation-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-chat_turns_turnId-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-generate_test-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-image-models-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-models-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_attributes_attributeId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_attributes_attributeId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_attributes-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_attributes-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cascade_jobId_apply-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cascade_jobId_apply-all-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cascade_jobId_finish-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cascade_jobId-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cascade_jobId_skip-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cascade-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_candidates_candidateId_accept-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_candidates_candidateId_discard-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_candidates_candidateId-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_candidates_candidateId_withdraw-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_candidates-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_finalization-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_generate-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_versions_versionId_restore-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_versions_versionId-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_chapters_chapterId_versions-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters_characterId_image-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters_characterId_image-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters_characterId_image-prompt-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters_characterId_images-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters_characterId_images-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters_characterId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters_characterId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters_assist-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_characters-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_comments_commentId_apply-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_comments_commentId_apply-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_comments_commentId_replies-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_comments_commentId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_comments_commentId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_comments-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_comments-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cover_image-prompt-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cover_images-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cover_images-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cover-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_cover-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadow-characters_fid_promote-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadow-characters_fid_reveal-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadow-characters_fid-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadow-characters_fid-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadow-characters-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadow-characters-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid_touches_tid_evaluate-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid_touches_tid_references_rid-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid_touches_tid_references_rid-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid_touches_tid_references-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid_touches_tid-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_fid_touches-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows_marks-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_foreshadows-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items_itemId_image-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items_itemId_image-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items_itemId_image-prompt-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items_itemId_images-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items_itemId_images-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items_itemId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items_itemId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_items-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_manuscript-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_outline_chapters_chapterId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_outline_deletion-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_outline_deletion-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_outline_generate-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_outline-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_outline_volumes_volumeId_chapters-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_outline_volumes_volumeId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_outline_volumes-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_planning-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_planning-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_review_ai-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_review_human-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_review-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_advance-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_cards_cardId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_cards_cardId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_nodes_nodeId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_nodes_nodeId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_organize-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_prose-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_reset-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_runs-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios_labId_start-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenarios-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId_image-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId_image-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId_image-prompt-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId_images_imageId_asset-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId_images-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId_images-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId_versions-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_sceneId_versions-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes_factions-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_scenes-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_score-report_improve-items-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_score-report-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_score-review-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_score-review-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_settings_settingId-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_settings_settingId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_settings_settingId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_settings_assist-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_settings-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_settings-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_story-workflow-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_theme-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_theme-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_tropes_tropeId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_tropes_tropeId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_tropes-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_tropes-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_tropes_select-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_worlds_worldId-PATCH",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_worlds_worldId-DELETE",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_worlds-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels_id_worlds-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-novels-POST",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "API-subagent-runs_id-GET",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-attempt-observation",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-attribute",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-candidate-comments",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-cascade",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-chapter-boundaries",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-chapter-draw",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-chapter-finalization",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-chapter-history",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-chapter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-character-arc",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-character-image",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-character",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-chat-action",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-chat-tool-execution",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-chat-turn",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-comment-change",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-content-candidate",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-content-commit",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-content-improvement",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-content-review",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-cover-image",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-foreshadow-character",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-foreshadow-reference",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-foreshadow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-fractional-index",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-item-image",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-item",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-map-placeholder",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-narrative-assessment",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-novel-create",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-outline-structure",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-outline",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-planning",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-resource-observation",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-review-cancellation",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-review-schema",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-review",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-scenario-ai",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-scenario-lab",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-scene-image",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-scene",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-score-report",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-setting-commit",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-setting",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-stage",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-staged-commit",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-artifacts",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-content-approval",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-entity-archive",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-material-review",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-materials",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-progress",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-structure",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-task",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-tool-runtime",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-workflow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-story-writing",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-subagent-run",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-target-text",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-text-comment",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-theme",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-trope",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-version",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-world-guard",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "SERVICE-world",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-User",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Novel",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-StoryWorkflow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-StoryArtifactLink",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Theme",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-World",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Setting",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Trope",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Character",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-CharacterImage",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-NovelCoverImage",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-AttributeDefinition",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Item",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ItemImage",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Scene",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-SceneImage",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-SceneImageRequest",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Volume",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Chapter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Review",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ContentVersion",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ContentMutation",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ContentCandidate",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ContentImprovementRun",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-CandidateCommentEffect",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-TextComment",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-PreparedTextChange",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-TargetTextRevision",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-SubAgentRun",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-SopPlan",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-SopNodeRun",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-CascadeJob",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Conversation",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Message",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-AIModel",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-PromptTemplate",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-SystemConfig",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-UsageRecord",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ForeshadowCharacter",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-Foreshadow",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ForeshadowTouch",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ForeshadowReference",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ScenarioLab",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ScenarioTurn",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ScenarioNode",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ScenarioCard",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-NovelCreationRequest",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ChatTurn",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ChatAttempt",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ChatRequest",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ChatToolExecution",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-ChatWriteEffect",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-AttemptObservation",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "DB-PlanningDocument",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X01",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X02",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X03",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X04",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X05",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X06",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X07",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X08",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X09",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X10",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    },
+    {
+      "id": "WEB-X11",
+      "source": "docs/test-cases-business.json",
+      "disposition": "active",
+      "requiredPlatforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64"
+      ],
+      "executionStatus": "not-run",
+      "results": []
+    }
+  ],
+  "preservedCapabilities": [
+    "正常保存/正文会话配置durable回执",
+    "版本CAS/幂等/ContentMutation事务快照/批准/定稿/评论锚点",
+    "异常/不匹配/较新输入草稿的保留、查看、复制、导出",
+    "目录授权/迁移journal/pointer/source保留/清理守卫/重新定位",
+    "work storage实际身份与权威指针/writer lease/异常锁修复",
+    "未知/损坏/未完成旧控制文件在engine/session打开前安全拒绝",
+    "合法完成历史只读校验，不复活备份",
+    "旧用户备份/升级归档/未知文件不删除"
+  ],
+  "completionGate": "All 530 active cases/all applicable platforms/branches must actually pass before whole App acceptance. Currently all not-run."
+}

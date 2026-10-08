@@ -1,0 +1,2003 @@
+{
+  "capturedDate": "2026-10-06",
+  "sourceRepository": "mySingleLive/xuanxiang.ink",
+  "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
+  "appSource": "root-monolith",
+  "counts": {
+    "apiRouteFiles": 121,
+    "serviceFiles": 65,
+    "prismaModels": 54
+  },
+  "files": [
+    {
+      "path": "package.json",
+      "sha256": "7bbb5b4700b7e60b29aa85d4e66a204642914304309db17fa38837698beceb3e"
+    },
+    {
+      "path": "prisma/schema.prisma",
+      "sha256": "d081d3d878db70a7eb07e18060816887b47a9c74059c12c4d6f9754efe43593d"
+    },
+    {
+      "path": "src/app/globals.css",
+      "sha256": "c1a4360e7d13a1031fbe16bd7f17cfd848011f438c06ce38c11be0581e6b499e"
+    },
+    {
+      "path": "src/components/marketing/seal.tsx",
+      "sha256": "4e232e75bf0dadd72309785920a05b64737e8e4017daff87556af0f438bda21d"
+    },
+    {
+      "path": "src/components/layout/DashboardShell.tsx",
+      "sha256": "a527960ee848cad6723c29003d5e0fd941c6a48cec614be40fa2b0f57395e830"
+    },
+    {
+      "path": "src/components/layout/SidebarTree.tsx",
+      "sha256": "6c4d58d3bce93d999536f423f625b59a33ab7739fc754651416fd01b85e9950b"
+    },
+    {
+      "path": "src/components/layout/ChatPanel.tsx",
+      "sha256": "b9ef45bfffd489a0f1220d8c9407eba516bfade56e05d822f962457dee59873a"
+    },
+    {
+      "path": "src/components/layout/ContentTabs.tsx",
+      "sha256": "1f8c9d1a6f1b7c14a9e83995289a7982b8089833ab8ef3d175b43ca94e59a478"
+    },
+    {
+      "path": "src/components/layout/CreateNovelDialog.tsx",
+      "sha256": "3a329227a8ef9a16a2eeaaa9816b4659c473814da38bf8f852a1dd42467022bf"
+    },
+    {
+      "path": "src/components/editor/MarkdownEditor.tsx",
+      "sha256": "c0ff2fb88e9dcae198fce26a658a7bad64526377c22f6cfbcb14c1d8fd1fdfaa"
+    },
+    {
+      "path": "src/components/content/registry.tsx",
+      "sha256": "50905bfc0a30b8f573a29f501c95dd613cdb32b4b9eb0c8318facfa64335f32c"
+    },
+    {
+      "path": "src/lib/db.ts",
+      "sha256": "9791c6ad18f3d59c51582e83d3ac0f6f9b148412624e0228bd4aede767bbdcb5"
+    },
+    {
+      "path": "src/lib/ai/provider.ts",
+      "sha256": "4ad393913b21b7d59e75d42ac309c2755af3c7310813137f0e36e6f7e2d53a3b"
+    },
+    {
+      "path": "src/lib/services/content-commit.ts",
+      "sha256": "bbb11433bc842e03cd38bef375e084cfc500c61bee655ef81170775e41868f67"
+    },
+    {
+      "path": "src/lib/services/novel-create.ts",
+      "sha256": "43b18f88e21375143b4c851b3a6fd331cd62d6e02d608164b1241a749ae0c323"
+    },
+    {
+      "path": "src/app/dashboard/layout.tsx",
+      "sha256": "c7aaaac8c11fe834cc8175408a5a8a7bed38da1dc157f394de7043ac5f8e8e61"
+    },
+    {
+      "path": "docs/agents/ui.md",
+      "sha256": "75b524de45f011d0b3ddcfbc0e3d2fb4c3e0b807dc0b7336dad47324c242be8f"
+    },
+    {
+      "path": "docs/agents/ai-data.md",
+      "sha256": "b56ff172b0c124564a93f682c120875629931f53a49157660e64f6d0631c5d4b"
+    }
+  ],
+  "contentTabs": [
+    {
+      "tab": "story-workflow",
+      "component": "StoryWorkflowPanel"
+    },
+    {
+      "tab": "story-review",
+      "component": "StoryReviewPanel"
+    },
+    {
+      "tab": "story-activity",
+      "component": "StoryActivityPanel"
+    },
+    {
+      "tab": "novel",
+      "component": "NovelOverview"
+    },
+    {
+      "tab": "novel-cover",
+      "component": "NovelCoverPanel"
+    },
+    {
+      "tab": "theme",
+      "component": "ThemePanel"
+    },
+    {
+      "tab": "world",
+      "component": "WorldPanel"
+    },
+    {
+      "tab": "setting",
+      "component": "SettingPanel"
+    },
+    {
+      "tab": "attributes",
+      "component": "AttributesPanel"
+    },
+    {
+      "tab": "characters",
+      "component": "CharactersPanel"
+    },
+    {
+      "tab": "character",
+      "component": "CharacterPanel"
+    },
+    {
+      "tab": "character-image",
+      "component": "CharacterImagePanel"
+    },
+    {
+      "tab": "items",
+      "component": "ItemsPanel"
+    },
+    {
+      "tab": "item",
+      "component": "ItemPanel"
+    },
+    {
+      "tab": "item-image",
+      "component": "ItemImagePanel"
+    },
+    {
+      "tab": "scenes",
+      "component": "ScenesPanel"
+    },
+    {
+      "tab": "scene",
+      "component": "ScenePanel"
+    },
+    {
+      "tab": "scene-image",
+      "component": "SceneImagePanel"
+    },
+    {
+      "tab": "trope",
+      "component": "TropePanel"
+    },
+    {
+      "tab": "worldline",
+      "component": "WorldlinePanel"
+    },
+    {
+      "tab": "narrative",
+      "component": "NarrativePanel"
+    },
+    {
+      "tab": "outline",
+      "component": "OutlineProjectionPanel"
+    },
+    {
+      "tab": "chapter-outline",
+      "component": "OutlineProjectionPanel"
+    },
+    {
+      "tab": "chapter-content",
+      "component": "ChapterContentPanel"
+    },
+    {
+      "tab": "chapter-candidate",
+      "component": "CandidatePanel"
+    },
+    {
+      "tab": "cascade",
+      "component": "CascadePanel"
+    },
+    {
+      "tab": "subagent",
+      "component": "SubAgentPanel"
+    },
+    {
+      "tab": "scenario",
+      "component": "ScenarioPanel"
+    },
+    {
+      "tab": "foreshadow",
+      "component": "ForeshadowPanel"
+    }
+  ],
+  "aiToolDefinitions": [
+    {
+      "name": "startNovelFromChat",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "X04",
+        "D01"
+      ]
+    },
+    {
+      "name": "askUserQuestion",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "X03"
+      ]
+    },
+    {
+      "name": "getNovelOverview",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "X04",
+        "D01"
+      ]
+    },
+    {
+      "name": "getNovelContext",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "X04",
+        "D01"
+      ]
+    },
+    {
+      "name": "getWorlds",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "getSetting",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "getCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "name": "listCharacters",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "name": "listReviews",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ]
+    },
+    {
+      "name": "getScoreReport",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ]
+    },
+    {
+      "name": "getOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "getChapterContent",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "listTropes",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C19"
+      ]
+    },
+    {
+      "name": "listItems",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "name": "listScenes",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "name": "getSceneContext",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "name": "listAttributes",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C09"
+      ]
+    },
+    {
+      "name": "upsertTheme",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "createWorld",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "updateWorld",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "upsertSetting",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "createCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "name": "updateCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "name": "generateCharacterImage",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "name": "generateNovelCover",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C05"
+      ]
+    },
+    {
+      "name": "deleteCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "name": "createItem",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "name": "updateItem",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "name": "deleteItem",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "name": "createScene",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "name": "updateScene",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "name": "deleteScene",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "name": "upsertAttribute",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C09"
+      ]
+    },
+    {
+      "name": "deleteAttribute",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C09"
+      ]
+    },
+    {
+      "name": "createCustomTrope",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C19"
+      ]
+    },
+    {
+      "name": "deleteCustomTrope",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C19"
+      ]
+    },
+    {
+      "name": "deleteSetting",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "deleteWorld",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "selectTrope",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C19"
+      ]
+    },
+    {
+      "name": "generateOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "createVolume",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "updateVolumeOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "createChapter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "updateChapterOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "requestAIReview",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ]
+    },
+    {
+      "name": "requestReaderReview",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ]
+    },
+    {
+      "name": "addTextComment",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ]
+    },
+    {
+      "name": "listTextComments",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ]
+    },
+    {
+      "name": "handleTextComment",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ]
+    },
+    {
+      "name": "approveOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "checkChapterNarrative",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "getChapterCandidates",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "drawChapterCandidates",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "generateChapterContent",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "improveChapterContent",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "revertChapterReplacement",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "writeChapterContent",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "getChapterFinalizationChecklist",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "finalizeChapter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "getSopStatus",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "proposePlan",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "createSopPlan",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "updateSopPlan",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "assessThemeMarket",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "name": "summonPlaywright",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "reviewWholeNovel",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ]
+    },
+    {
+      "name": "createForeshadowCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ]
+    },
+    {
+      "name": "listForeshadows",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ]
+    },
+    {
+      "name": "getForeshadow",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ]
+    },
+    {
+      "name": "createForeshadow",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ]
+    },
+    {
+      "name": "updateForeshadow",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ]
+    },
+    {
+      "name": "deleteForeshadow",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ]
+    },
+    {
+      "name": "addForeshadowTouch",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ]
+    },
+    {
+      "name": "removeForeshadowTouch",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ]
+    },
+    {
+      "name": "analyzeStagedImpact",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C26",
+        "X07"
+      ]
+    },
+    {
+      "name": "commitStagedChanges",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C26",
+        "X07"
+      ]
+    },
+    {
+      "name": "triggerCascadeRevision",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C26",
+        "X07"
+      ]
+    },
+    {
+      "name": "getNovelPlanning",
+      "source": "src/lib/ai/planning-tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "getNarrativeChapter",
+      "source": "src/lib/ai/planning-tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "proposeNovelPlanning",
+      "source": "src/lib/ai/planning-tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "applyNovelPlanningProposal",
+      "source": "src/lib/ai/planning-tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "name": "generateCharacterArc",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "name": "completeStoryTask",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "requestStoryRemoval",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "X08"
+      ]
+    },
+    {
+      "name": "listStoryRemovals",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "X08"
+      ]
+    },
+    {
+      "name": "restoreStoryStructure",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "X08"
+      ]
+    },
+    {
+      "name": "requestContentApproval",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "generateStoryChapters",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ]
+    },
+    {
+      "name": "getStoryWorkflow",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "updateStoryWorkflow",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "reopenStoryPhase",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "reviewStoryCheckpoint",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "requestStoryApproval",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "getStoryArtifact",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "linkStoryArtifacts",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "unlinkStoryArtifacts",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "getStoryImpact",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    },
+    {
+      "name": "getStorySources",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ]
+    }
+  ],
+  "writeToolNames": [
+    "proposeNovelPlanning",
+    "applyNovelPlanningProposal",
+    "completeStoryTask",
+    "generateCharacterArc",
+    "restoreStoryStructure",
+    "generateStoryChapters",
+    "startNovelFromChat",
+    "updateStoryWorkflow",
+    "reopenStoryPhase",
+    "reviewStoryCheckpoint",
+    "linkStoryArtifacts",
+    "unlinkStoryArtifacts",
+    "createSopPlan",
+    "updateSopPlan",
+    "upsertTheme",
+    "createWorld",
+    "updateWorld",
+    "upsertSetting",
+    "createCharacter",
+    "updateCharacter",
+    "deleteCharacter",
+    "generateCharacterImage",
+    "generateNovelCover",
+    "selectTrope",
+    "createItem",
+    "updateItem",
+    "deleteItem",
+    "createScene",
+    "updateScene",
+    "deleteScene",
+    "upsertAttribute",
+    "deleteAttribute",
+    "createCustomTrope",
+    "deleteCustomTrope",
+    "deleteSetting",
+    "deleteWorld",
+    "generateOutline",
+    "createVolume",
+    "updateVolumeOutline",
+    "createChapter",
+    "updateChapterOutline",
+    "approveOutline",
+    "drawChapterCandidates",
+    "revertChapterReplacement",
+    "generateChapterContent",
+    "writeChapterContent",
+    "improveChapterContent",
+    "finalizeChapter",
+    "requestAIReview",
+    "requestReaderReview",
+    "addTextComment",
+    "handleTextComment",
+    "assessThemeMarket",
+    "summonPlaywright",
+    "reviewWholeNovel",
+    "createForeshadowCharacter",
+    "createForeshadow",
+    "updateForeshadow",
+    "deleteForeshadow",
+    "addForeshadowTouch",
+    "removeForeshadowTouch",
+    "commitStagedChanges",
+    "triggerCascadeRevision"
+  ],
+  "apiRoutes": [
+    {
+      "path": "src/app/api/admin/config/route.ts",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/models/[id]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/models/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/novels/[id]/route.ts",
+      "methods": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/novels/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/observations/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/prompts/[id]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/prompts/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/sop/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/stats/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/usage/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/users/[id]/route.ts",
+      "methods": [
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/admin/users/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/auth/[...nextauth]/route.ts",
+      "methods": []
+    },
+    {
+      "path": "src/app/api/chat/conversations/[id]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/chat/conversations/[id]/sop-plan/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/chat/conversations/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/chat/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/chat/turns/[turnId]/cancel/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/chat/turns/[turnId]/interaction/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/chat/turns/[turnId]/navigation/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/chat/turns/[turnId]/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/generate/test/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/image-models/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/models/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/attributes/[attributeId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/attributes/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/apply/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/apply-all/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/finish/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/skip/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/accept/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/discard/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/withdraw/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/finalization/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/generate/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/versions/[versionId]/restore/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/versions/[versionId]/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/versions/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/[characterId]/image/route.ts",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/[characterId]/image-prompt/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/[characterId]/images/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/[characterId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/assist/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/comments/[commentId]/apply/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/comments/[commentId]/replies/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/comments/[commentId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/comments/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cover/image-prompt/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cover/images/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/cover/route.ts",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadow-characters/[fid]/promote/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadow-characters/[fid]/reveal/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadow-characters/[fid]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadow-characters/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/evaluate/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/references/[rid]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/references/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/route.ts",
+      "methods": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/marks/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/[itemId]/image/route.ts",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/[itemId]/image-prompt/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/[itemId]/images/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/[itemId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/manuscript/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/chapters/[chapterId]/route.ts",
+      "methods": [
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/deletion/route.ts",
+      "methods": [
+        "GET",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/generate/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/volumes/[volumeId]/chapters/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/volumes/[volumeId]/route.ts",
+      "methods": [
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/volumes/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/planning/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/review/ai/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/review/human/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/review/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/advance/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/cards/[cardId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/nodes/[nodeId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/organize/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/prose/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/reset/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/runs/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/start/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/image/route.ts",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/image-prompt/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/images/[imageId]/asset/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/images/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/versions/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/factions/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/score-report/improve-items/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/score-report/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/score-review/route.ts",
+      "methods": [
+        "DELETE",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/settings/[settingId]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/settings/assist/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/settings/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/story-workflow/route.ts",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/theme/route.ts",
+      "methods": [
+        "GET",
+        "PATCH"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/tropes/[tropeId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/tropes/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/tropes/select/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/worlds/[worldId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/[id]/worlds/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/novels/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/register/route.ts",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "src/app/api/subagent-runs/[id]/route.ts",
+      "methods": [
+        "GET"
+      ]
+    }
+  ],
+  "domainServices": [
+    "src/lib/services/attempt-observation.ts",
+    "src/lib/services/attribute.ts",
+    "src/lib/services/candidate-comments.ts",
+    "src/lib/services/cascade.ts",
+    "src/lib/services/chapter-boundaries.ts",
+    "src/lib/services/chapter-draw.ts",
+    "src/lib/services/chapter-finalization.ts",
+    "src/lib/services/chapter-history.ts",
+    "src/lib/services/chapter.ts",
+    "src/lib/services/character-arc.ts",
+    "src/lib/services/character-image.ts",
+    "src/lib/services/character.ts",
+    "src/lib/services/chat-action.ts",
+    "src/lib/services/chat-tool-execution.ts",
+    "src/lib/services/chat-turn.ts",
+    "src/lib/services/comment-change.ts",
+    "src/lib/services/content-candidate.ts",
+    "src/lib/services/content-commit.ts",
+    "src/lib/services/content-improvement.ts",
+    "src/lib/services/content-review.ts",
+    "src/lib/services/cover-image.ts",
+    "src/lib/services/foreshadow-character.ts",
+    "src/lib/services/foreshadow-reference.ts",
+    "src/lib/services/foreshadow.ts",
+    "src/lib/services/fractional-index.ts",
+    "src/lib/services/item-image.ts",
+    "src/lib/services/item.ts",
+    "src/lib/services/map-placeholder.ts",
+    "src/lib/services/narrative-assessment.ts",
+    "src/lib/services/novel-create.ts",
+    "src/lib/services/outline-structure.ts",
+    "src/lib/services/outline.ts",
+    "src/lib/services/planning.ts",
+    "src/lib/services/resource-observation.ts",
+    "src/lib/services/review-cancellation.ts",
+    "src/lib/services/review-schema.ts",
+    "src/lib/services/review.ts",
+    "src/lib/services/scenario-ai.ts",
+    "src/lib/services/scenario-lab.ts",
+    "src/lib/services/scene-image.ts",
+    "src/lib/services/scene.ts",
+    "src/lib/services/score-report.ts",
+    "src/lib/services/setting-commit.ts",
+    "src/lib/services/setting.ts",
+    "src/lib/services/stage.ts",
+    "src/lib/services/staged-commit.ts",
+    "src/lib/services/story-artifacts.ts",
+    "src/lib/services/story-content-approval.ts",
+    "src/lib/services/story-entity-archive.ts",
+    "src/lib/services/story-material-review.ts",
+    "src/lib/services/story-materials.ts",
+    "src/lib/services/story-progress.ts",
+    "src/lib/services/story-structure.ts",
+    "src/lib/services/story-task.ts",
+    "src/lib/services/story-tool-runtime.ts",
+    "src/lib/services/story-workflow.ts",
+    "src/lib/services/story-writing.ts",
+    "src/lib/services/subagent-run.ts",
+    "src/lib/services/target-text.ts",
+    "src/lib/services/text-comment.ts",
+    "src/lib/services/theme.ts",
+    "src/lib/services/trope.ts",
+    "src/lib/services/version.ts",
+    "src/lib/services/world-guard.ts",
+    "src/lib/services/world.ts"
+  ],
+  "dataModels": [
+    "User",
+    "Novel",
+    "StoryWorkflow",
+    "StoryArtifactLink",
+    "Theme",
+    "World",
+    "Setting",
+    "Trope",
+    "Character",
+    "CharacterImage",
+    "NovelCoverImage",
+    "AttributeDefinition",
+    "Item",
+    "ItemImage",
+    "Scene",
+    "SceneImage",
+    "SceneImageRequest",
+    "Volume",
+    "Chapter",
+    "Review",
+    "ContentVersion",
+    "ContentMutation",
+    "ContentCandidate",
+    "ContentImprovementRun",
+    "CandidateCommentEffect",
+    "TextComment",
+    "PreparedTextChange",
+    "TargetTextRevision",
+    "SubAgentRun",
+    "SopPlan",
+    "SopNodeRun",
+    "CascadeJob",
+    "Conversation",
+    "Message",
+    "AIModel",
+    "PromptTemplate",
+    "SystemConfig",
+    "UsageRecord",
+    "ForeshadowCharacter",
+    "Foreshadow",
+    "ForeshadowTouch",
+    "ForeshadowReference",
+    "ScenarioLab",
+    "ScenarioTurn",
+    "ScenarioNode",
+    "ScenarioCard",
+    "NovelCreationRequest",
+    "ChatTurn",
+    "ChatAttempt",
+    "ChatRequest",
+    "ChatToolExecution",
+    "ChatWriteEffect",
+    "AttemptObservation",
+    "PlanningDocument"
+  ]
+}

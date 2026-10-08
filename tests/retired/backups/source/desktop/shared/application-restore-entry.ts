@@ -1,0 +1,8 @@
+import {z} from 'zod'
+const simple=z.enum(['state','choose-backup','choose-parent','inspect','restart','quit','menu','locate'])
+export const applicationRestoreEntryCommandSchema=z.union([z.object({type:simple}).strict(),z.object({type:z.enum(['continue','cancel']),operationId:z.uuid()}).strict()])
+export type ApplicationRestoreEntryCommand=z.infer<typeof applicationRestoreEntryCommandSchema>
+const path=z.string().max(8192).refine(value=>!/[\x00-\x1f]/.test(value)).nullable()
+export const applicationRestoreEntryStateSchema=z.object({version:z.literal(1),revision:z.number().int().nonnegative(),theme:z.enum(['paper','ink']),platform:z.enum(['darwin','win32','linux']),phase:z.enum(['selecting','prepared','armed','running','confirming','cancelled','complete','inspection','blocked']),operationId:z.uuid().nullable(),sourcePath:path,targetPath:path,backup:z.object({id:z.uuid(),createdAt:z.iso.datetime(),bytes:z.number().int().nonnegative()}).strict().nullable(),notice:z.enum(['choose-backup','choose-parent','ready','old-process-active','inspection-required','owner-expired','cancel-pending','cancelled','activated','failed']).nullable(),canChooseBackup:z.boolean(),canChooseParent:z.boolean(),canContinue:z.boolean(),canCancel:z.boolean(),canRestart:z.boolean(),canLocate:z.boolean()}).strict()
+export type ApplicationRestoreEntryState=z.infer<typeof applicationRestoreEntryStateSchema>
+export interface ApplicationRestoreEntryBridge{state():Promise<ApplicationRestoreEntryState>;command(command:ApplicationRestoreEntryCommand):Promise<void>;subscribe(listener:(state:ApplicationRestoreEntryState)=>void):()=>void}

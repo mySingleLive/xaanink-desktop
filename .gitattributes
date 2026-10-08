@@ -1,0 +1,2 @@
+# Preserve the source CSS token snapshot, including its trailing blank line.
+design/assets/web-tokens.css whitespace=-blank-at-eof

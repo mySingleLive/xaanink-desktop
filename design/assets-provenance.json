@@ -1,0 +1,43 @@
+{
+  "sourceRepository": "mySingleLive/xuanxiang.ink",
+  "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
+  "assets": [
+    {
+      "target": "design/assets/logo-horizontal-paper.svg",
+      "source": "public/brand/logo-horizontal-paper.svg",
+      "sha256": "91917290c22bb91c45a11ed722f73e6839963ae21da507f11fd305914b17029a"
+    },
+    {
+      "target": "design/assets/logo-horizontal-ink.svg",
+      "source": "public/brand/logo-horizontal-ink.svg",
+      "sha256": "e27e6b0e56edfd422395fdd5d104caf2d97091b5f61d5a7d446075badeaad4fe"
+    },
+    {
+      "target": "design/assets/seal-mark-paper.svg",
+      "source": "public/brand/seal-mark-paper.svg",
+      "sha256": "746afcd90a5899c42ed74ad1af7a3a7ce71488c1f1c9c39cebd385ca67cbaaea"
+    },
+    {
+      "target": "design/assets/seal-mark-ink.svg",
+      "source": "public/brand/seal-mark-ink.svg",
+      "sha256": "f73bfd48423a8b81b193667d31a3c4aa1b4c2661aa024633a87ffb4fe77b1c89"
+    }
+  ],
+  "css": {
+    "source": "src/app/globals.css",
+    "method": "unchanged token block from first :root through before @layer base"
+  },
+  "font": {
+    "source": "public/fonts/noto-sans-sc/NotoSansSC-Regular.ttf.gz",
+    "license": "assets/NotoSansSC-LICENSE.txt"
+  },
+  "icons": {
+    "package": "lucide",
+    "license": "assets/Lucide-LICENSE.txt"
+  },
+  "providerLogos": {
+    "manifest": "provider-logo-provenance.json",
+    "license": "assets/providers/LICENSE.txt",
+    "scope": "user-requested colored provider menu; local static SVG assets"
+  }
+}

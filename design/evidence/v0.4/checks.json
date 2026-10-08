@@ -1,0 +1,1685 @@
+{
+  "version": "0.4",
+  "date": "2026-10-07",
+  "tool": "Codex in-app browser / cua_repl",
+  "scope": "UI prototype only; no Electron, disk persistence, live model or Windows OS acceptance",
+  "total": 157,
+  "passed": 157,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "SET-01",
+      "pass": true,
+      "detail": "主设置无保存按钮"
+    },
+    {
+      "id": "SET-02",
+      "pass": true,
+      "detail": "主设置无底部操作栏"
+    },
+    {
+      "id": "MOD-01",
+      "pass": true,
+      "detail": "模型页只有列表"
+    },
+    {
+      "id": "MOD-02",
+      "pass": true,
+      "detail": "添加打开独立子对话框"
+    },
+    {
+      "id": "MOD-03",
+      "pass": true,
+      "detail": "下层 inert"
+    },
+    {
+      "id": "PRESET-openai",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "PRESET-anthropic",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "Anthropic"
+      }
+    },
+    {
+      "id": "PRESET-google",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "PRESET-xai",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "PRESET-deepseek",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "PRESET-kimi",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "PRESET-zai",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "PRESET-xiaomi",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "PRESET-qwen",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "PRESET-minimax",
+      "pass": true,
+      "detail": {
+        "key": "",
+        "locked": true,
+        "order": [
+          "供应商",
+          "协议"
+        ],
+        "protocol": "OpenAI"
+      }
+    },
+    {
+      "id": "MOD-04",
+      "pass": true,
+      "detail": "自定义必须选择协议"
+    },
+    {
+      "id": "MOD-05",
+      "pass": true,
+      "detail": "拒绝非回环 HTTP"
+    },
+    {
+      "id": "MOD-06",
+      "pass": true,
+      "detail": "合法本机端点与假 Key 可测试"
+    },
+    {
+      "id": "MOD-07",
+      "pass": true,
+      "detail": "Anthropic 必填输出属性"
+    },
+    {
+      "id": "MOD-08",
+      "pass": true,
+      "detail": "无效思考预算阻止调用"
+    },
+    {
+      "id": "MOD-09",
+      "pass": true,
+      "detail": "合法预算自动更新"
+    },
+    {
+      "id": "MOD-10",
+      "pass": true,
+      "detail": "编辑回填属性，Key 不回填"
+    },
+    {
+      "id": "MOD-11",
+      "pass": true,
+      "detail": "测试前费用确认"
+    },
+    {
+      "id": "MOD-12",
+      "pass": true,
+      "detail": "取消测试返回编辑"
+    },
+    {
+      "id": "MOD-13",
+      "pass": true,
+      "detail": "改供应商撤销 Key"
+    },
+    {
+      "id": "USER-01",
+      "pass": true,
+      "detail": "邮件行内校验"
+    },
+    {
+      "id": "USER-02",
+      "pass": true,
+      "detail": "笔名即时更新侧栏"
+    },
+    {
+      "id": "USER-03",
+      "pass": true,
+      "detail": "无效资料保留上次有效配置"
+    },
+    {
+      "id": "USER-04",
+      "pass": true,
+      "detail": "关闭编辑用户卡保留更新"
+    },
+    {
+      "id": "ABOUT-01",
+      "pass": true,
+      "detail": "反馈指向目标仓库新建 issue"
+    },
+    {
+      "id": "ABOUT-02",
+      "pass": true,
+      "detail": "预留文档网址，尚未上线禁用"
+    },
+    {
+      "id": "ABOUT-03",
+      "pass": true,
+      "detail": "不虚构 App 版本"
+    },
+    {
+      "id": "THEME-01",
+      "pass": true,
+      "detail": "玄墨即时生效"
+    },
+    {
+      "id": "THEME-02",
+      "pass": true,
+      "detail": "三选项，无旧跟随开关"
+    },
+    {
+      "id": "THEME-03",
+      "pass": true,
+      "detail": "跟随系统模式可选"
+    },
+    {
+      "id": "THEME-04",
+      "pass": true,
+      "detail": "关闭/重开不回滚主题"
+    },
+    {
+      "id": "LIVE-01",
+      "pass": true,
+      "detail": "字号/行距/界面字号即时响应"
+    },
+    {
+      "id": "KEY-01",
+      "pass": true,
+      "detail": "上方搜索/右侧恢复/下方列表"
+    },
+    {
+      "id": "KEY-02",
+      "pass": true,
+      "detail": "去掉底部编辑器说明"
+    },
+    {
+      "id": "KEY-03",
+      "pass": true,
+      "detail": "按命令过滤"
+    },
+    {
+      "id": "KEY-04",
+      "pass": true,
+      "detail": "按组合键过滤"
+    },
+    {
+      "id": "KEY-05",
+      "pass": true,
+      "detail": "搜索无结果空态"
+    },
+    {
+      "id": "KEY-06",
+      "pass": true,
+      "detail": "空值不可确认"
+    },
+    {
+      "id": "KEY-07",
+      "pass": true,
+      "detail": "冲突阻止更新"
+    },
+    {
+      "id": "KEY-08",
+      "pass": true,
+      "detail": "系统保留键阻止更新"
+    },
+    {
+      "id": "KEY-09",
+      "pass": true,
+      "detail": "有效绑定即时更新"
+    },
+    {
+      "id": "LIVE-02",
+      "pass": true,
+      "detail": "切组保持通用配置"
+    },
+    {
+      "id": "KEY-10",
+      "pass": true,
+      "detail": "恢复默认即时更新"
+    },
+    {
+      "id": "WIN-01",
+      "pass": true,
+      "detail": "1024px 标签/全屏/系统窗控不重叠"
+    },
+    {
+      "id": "WIN-02",
+      "pass": true,
+      "detail": "1024px 内容全屏可点击"
+    },
+    {
+      "id": "WIN-03",
+      "pass": true,
+      "detail": "Windows 父目录更新展示"
+    },
+    {
+      "id": "WIN-04",
+      "pass": true,
+      "detail": "重开保留 Windows 父目录"
+    },
+    {
+      "id": "LIVE-03",
+      "pass": true,
+      "detail": "自动更新失败就地提示"
+    },
+    {
+      "id": "LIVE-04",
+      "pass": true,
+      "detail": "失败输入关闭重开仍保留待处理"
+    },
+    {
+      "id": "LIVE-05",
+      "pass": true,
+      "detail": "重试更新成功"
+    },
+    {
+      "id": "PAGE-mac-paper-workspace",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": null,
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-first",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": null,
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-create",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 170,
+          "right": 1270,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-chat-create",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 632,
+          "left": 440,
+          "right": 1000,
+          "top": 328
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-general",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-user",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-models",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-appearance",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-shortcuts",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-about",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-migration",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 735.25,
+          "left": 440,
+          "right": 1000,
+          "top": 224.75
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-paper-recovery",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 794.25,
+          "left": 440,
+          "right": 1000,
+          "top": 165.75
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-workspace",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": null,
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-first",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": null,
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-create",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 170,
+          "right": 1270,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-chat-create",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 632,
+          "left": 440,
+          "right": 1000,
+          "top": 328
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-general",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-user",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-models",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-appearance",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-shortcuts",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-about",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-migration",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 735.25,
+          "left": 440,
+          "right": 1000,
+          "top": 224.75
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-mac-ink-recovery",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 794.25,
+          "left": 440,
+          "right": 1000,
+          "top": 165.75
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-workspace",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": null,
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-first",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": null,
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-create",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 170,
+          "right": 1270,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-chat-create",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 632,
+          "left": 440,
+          "right": 1000,
+          "top": 328
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-general",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-user",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-models",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-appearance",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-shortcuts",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-about",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-migration",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 735.25,
+          "left": 440,
+          "right": 1000,
+          "top": 224.75
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-paper-recovery",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 794.25,
+          "left": 440,
+          "right": 1000,
+          "top": 165.75
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-workspace",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": null,
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-first",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": null,
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-create",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 170,
+          "right": 1270,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-chat-create",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 632,
+          "left": 440,
+          "right": 1000,
+          "top": 328
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-general",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-user",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-models",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-appearance",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-shortcuts",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-about",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 845,
+          "left": 240,
+          "right": 1200,
+          "top": 115
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-migration",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 735.25,
+          "left": 440,
+          "right": 1000,
+          "top": 224.75
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "PAGE-win-ink-recovery",
+      "pass": true,
+      "detail": {
+        "bodyWidth": 1440,
+        "bottom": 960,
+        "height": 960,
+        "panel": {
+          "bottom": 794.25,
+          "left": 440,
+          "right": 1000,
+          "top": 165.75
+        },
+        "top": 0,
+        "width": 1440,
+        "workspaceBottom": 960,
+        "workspaceTop": 0
+      }
+    },
+    {
+      "id": "USER-05",
+      "pass": true,
+      "detail": "用户明确选头像后就地预览和侧栏更新"
+    },
+    {
+      "id": "USER-06",
+      "pass": true,
+      "detail": "拒绝不支持头像格式"
+    },
+    {
+      "id": "FOCUS-01",
+      "pass": true,
+      "detail": "关闭用户编辑恢复编辑按钮焦点"
+    },
+    {
+      "id": "NARROW-1024-workspace",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": null,
+        "scroll": 1024,
+        "width": 1024
+      }
+    },
+    {
+      "id": "NARROW-1024-general",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 32,
+          "right": 992
+        },
+        "scroll": 1024,
+        "width": 1024
+      }
+    },
+    {
+      "id": "NARROW-1024-user",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 32,
+          "right": 992
+        },
+        "scroll": 1024,
+        "width": 1024
+      }
+    },
+    {
+      "id": "NARROW-1024-models",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 32,
+          "right": 992
+        },
+        "scroll": 1024,
+        "width": 1024
+      }
+    },
+    {
+      "id": "NARROW-1024-appearance",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 32,
+          "right": 992
+        },
+        "scroll": 1024,
+        "width": 1024
+      }
+    },
+    {
+      "id": "NARROW-1024-shortcuts",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 32,
+          "right": 992
+        },
+        "scroll": 1024,
+        "width": 1024
+      }
+    },
+    {
+      "id": "NARROW-1024-about",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 32,
+          "right": 992
+        },
+        "scroll": 1024,
+        "width": 1024
+      }
+    },
+    {
+      "id": "NARROW-800-workspace",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": null,
+        "scroll": 800,
+        "width": 800
+      }
+    },
+    {
+      "id": "NARROW-800-general",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 16,
+          "right": 784
+        },
+        "scroll": 800,
+        "width": 800
+      }
+    },
+    {
+      "id": "NARROW-800-user",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 16,
+          "right": 784
+        },
+        "scroll": 800,
+        "width": 800
+      }
+    },
+    {
+      "id": "NARROW-800-models",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 16,
+          "right": 784
+        },
+        "scroll": 800,
+        "width": 800
+      }
+    },
+    {
+      "id": "NARROW-800-appearance",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 16,
+          "right": 784
+        },
+        "scroll": 800,
+        "width": 800
+      }
+    },
+    {
+      "id": "NARROW-800-shortcuts",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 16,
+          "right": 784
+        },
+        "scroll": 800,
+        "width": 800
+      }
+    },
+    {
+      "id": "NARROW-800-about",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 765,
+          "left": 16,
+          "right": 784
+        },
+        "scroll": 800,
+        "width": 800
+      }
+    },
+    {
+      "id": "NARROW-640-workspace",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": null,
+        "scroll": 640,
+        "width": 640
+      }
+    },
+    {
+      "id": "NARROW-640-general",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 788,
+          "left": 16,
+          "right": 624
+        },
+        "scroll": 640,
+        "width": 640
+      }
+    },
+    {
+      "id": "NARROW-640-user",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 788,
+          "left": 16,
+          "right": 624
+        },
+        "scroll": 640,
+        "width": 640
+      }
+    },
+    {
+      "id": "NARROW-640-models",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 788,
+          "left": 16,
+          "right": 624
+        },
+        "scroll": 640,
+        "width": 640
+      }
+    },
+    {
+      "id": "NARROW-640-appearance",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 788,
+          "left": 16,
+          "right": 624
+        },
+        "scroll": 640,
+        "width": 640
+      }
+    },
+    {
+      "id": "NARROW-640-shortcuts",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 788,
+          "left": 16,
+          "right": 624
+        },
+        "scroll": 640,
+        "width": 640
+      }
+    },
+    {
+      "id": "NARROW-640-about",
+      "pass": true,
+      "detail": {
+        "overflow": 0,
+        "panel": {
+          "bottom": 788,
+          "left": 16,
+          "right": 624
+        },
+        "scroll": 640,
+        "width": 640
+      }
+    },
+    {
+      "id": "NATIVE-01",
+      "pass": true,
+      "detail": "800px 内容全屏仅一组 Mac 控件"
+    },
+    {
+      "id": "NATIVE-02",
+      "pass": true,
+      "detail": "640px 侧栏顶端入口可达"
+    },
+    {
+      "id": "MOD-14",
+      "pass": true,
+      "detail": "字段供应商/协议优先"
+    },
+    {
+      "id": "MOD-15",
+      "pass": true,
+      "detail": "自定义同样协议先于属性"
+    },
+    {
+      "id": "MOD-16",
+      "pass": true,
+      "detail": "地址内凭据被拒绝"
+    },
+    {
+      "id": "MOD-17",
+      "pass": true,
+      "detail": "测试结果归属当前配置"
+    },
+    {
+      "id": "MOD-18",
+      "pass": true,
+      "detail": "修改配置清除旧测试结果"
+    },
+    {
+      "id": "FOCUS-02",
+      "pass": true,
+      "detail": "关闭模型编辑恢复原按钮"
+    },
+    {
+      "id": "MOD-19",
+      "pass": true,
+      "detail": "删除前置模型保留模型B身份"
+    },
+    {
+      "id": "MOD-20",
+      "pass": true,
+      "detail": "删除当前模型不自动替换"
+    },
+    {
+      "id": "MOD-21",
+      "pass": true,
+      "detail": "打开另一模型不复用结果"
+    },
+    {
+      "id": "MOD-22",
+      "pass": true,
+      "detail": "首次启动清理旧模型草稿"
+    },
+    {
+      "id": "MOD-23",
+      "pass": true,
+      "detail": "首个配置可用但未选择，列表/发送状态一致"
+    },
+    {
+      "id": "MOD-24",
+      "pass": true,
+      "detail": "显式选择后 composer 可用"
+    },
+    {
+      "id": "DIR-01",
+      "pass": true,
+      "detail": "新建必须指定目录"
+    },
+    {
+      "id": "DIR-02",
+      "pass": true,
+      "detail": "放入草稿挂起当前授权"
+    },
+    {
+      "id": "DIR-03",
+      "pass": true,
+      "detail": "新对话不复用挂起授权"
+    },
+    {
+      "id": "DIR-04",
+      "pass": true,
+      "detail": "手动新建空概览保留"
+    },
+    {
+      "id": "DIR-05",
+      "pass": true,
+      "detail": "同目录第二作品仍被禁止"
+    },
+    {
+      "id": "RECOVERY-01",
+      "pass": true,
+      "detail": "恢复仍进入草稿不覆盖正文"
+    },
+    {
+      "id": "RECOVERY-02",
+      "pass": true,
+      "detail": "继续编辑后比较同步"
+    },
+    {
+      "id": "MIG-01",
+      "pass": true,
+      "detail": "提交后 Escape/切页被守卫"
+    },
+    {
+      "id": "MIG-02",
+      "pass": true,
+      "detail": "迁移结束才能关闭"
+    },
+    {
+      "id": "MIG-03",
+      "pass": true,
+      "detail": "迁移权威根同步设置"
+    },
+    {
+      "id": "FRAME-01",
+      "pass": true,
+      "detail": "纯无边框帧无审核顶底栏"
+    },
+    {
+      "id": "FRAME-02",
+      "pass": true,
+      "detail": "Mac控制组右侧箭头/侧栏顺序"
+    },
+    {
+      "id": "NAV-01",
+      "pass": true,
+      "detail": "进入新视图可后退"
+    },
+    {
+      "id": "NAV-02",
+      "pass": true,
+      "detail": "后退后可前进"
+    },
+    {
+      "id": "LOCAL-01",
+      "pass": true,
+      "detail": "无外部脚本/字体/图片资源引用"
+    },
+    {
+      "id": "CONSOLE-01",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

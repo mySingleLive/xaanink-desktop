@@ -1,0 +1,4523 @@
+{
+  "sourceRepository": "mySingleLive/xuanxiang.ink",
+  "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
+  "status": "planned",
+  "note": "Mappings are proposed local entry points, not implementation or test results.",
+  "contentTabs": [
+    {
+      "tab": "story-workflow",
+      "component": "StoryWorkflowPanel",
+      "capabilityId": "C01",
+      "local": "StoryWorkflowPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C01"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "story-review",
+      "component": "StoryReviewPanel",
+      "capabilityId": "C02",
+      "local": "StoryReviewPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C02"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "story-activity",
+      "component": "StoryActivityPanel",
+      "capabilityId": "C03",
+      "local": "StoryActivityPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C03"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "novel",
+      "component": "NovelOverview",
+      "capabilityId": "C04",
+      "local": "NovelOverview",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C04"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "novel-cover",
+      "component": "NovelCoverPanel",
+      "capabilityId": "C05",
+      "local": "NovelCoverPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C05"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "theme",
+      "component": "ThemePanel",
+      "capabilityId": "C06",
+      "local": "ThemePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C06"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "world",
+      "component": "WorldPanel",
+      "capabilityId": "C07",
+      "local": "WorldPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C07"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "setting",
+      "component": "SettingPanel",
+      "capabilityId": "C08",
+      "local": "SettingPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C08"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "attributes",
+      "component": "AttributesPanel",
+      "capabilityId": "C09",
+      "local": "AttributesPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C09"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "characters",
+      "component": "CharactersPanel",
+      "capabilityId": "C10",
+      "local": "CharactersPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C10"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "character",
+      "component": "CharacterPanel",
+      "capabilityId": "C11",
+      "local": "CharacterPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C11"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "character-image",
+      "component": "CharacterImagePanel",
+      "capabilityId": "C12",
+      "local": "CharacterImagePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C12"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "items",
+      "component": "ItemsPanel",
+      "capabilityId": "C13",
+      "local": "ItemsPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C13"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "item",
+      "component": "ItemPanel",
+      "capabilityId": "C14",
+      "local": "ItemPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C14"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "item-image",
+      "component": "ItemImagePanel",
+      "capabilityId": "C15",
+      "local": "ItemImagePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C15"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "scenes",
+      "component": "ScenesPanel",
+      "capabilityId": "C16",
+      "local": "ScenesPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C16"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "scene",
+      "component": "ScenePanel",
+      "capabilityId": "C17",
+      "local": "ScenePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C17"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "scene-image",
+      "component": "SceneImagePanel",
+      "capabilityId": "C18",
+      "local": "SceneImagePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C18"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "trope",
+      "component": "TropePanel",
+      "capabilityId": "C19",
+      "local": "TropePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C19"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "worldline",
+      "component": "WorldlinePanel",
+      "capabilityId": "C20",
+      "local": "WorldlinePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C20"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "narrative",
+      "component": "NarrativePanel",
+      "capabilityId": "C21",
+      "local": "NarrativePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C21"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "outline",
+      "component": "OutlineProjectionPanel",
+      "capabilityId": "C22",
+      "local": "OutlineProjectionPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C22"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "chapter-outline",
+      "component": "OutlineProjectionPanel",
+      "capabilityId": "C23",
+      "local": "OutlineProjectionPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C23"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "chapter-content",
+      "component": "ChapterContentPanel",
+      "capabilityId": "C24",
+      "local": "ChapterContentPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C24"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "chapter-candidate",
+      "component": "CandidatePanel",
+      "capabilityId": "C25",
+      "local": "CandidatePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C25"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "cascade",
+      "component": "CascadePanel",
+      "capabilityId": "C26",
+      "local": "CascadePanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C26"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "subagent",
+      "component": "SubAgentPanel",
+      "capabilityId": "C27",
+      "local": "SubAgentPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C27"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "scenario",
+      "component": "ScenarioPanel",
+      "capabilityId": "C28",
+      "local": "ScenarioPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C28"
+      ],
+      "status": "planned"
+    },
+    {
+      "tab": "foreshadow",
+      "component": "ForeshadowPanel",
+      "capabilityId": "C29",
+      "local": "ForeshadowPanel",
+      "implementation": "src/components/content/registry.tsx",
+      "testIds": [
+        "WEB-C29"
+      ],
+      "status": "planned"
+    }
+  ],
+  "tools": [
+    {
+      "name": "startNovelFromChat",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "X04",
+        "D01"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-startNovelFromChat"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "askUserQuestion",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "X03"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-askUserQuestion"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getNovelOverview",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "X04",
+        "D01"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getNovelOverview"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getNovelContext",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "X04",
+        "D01"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getNovelContext"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getWorlds",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getWorlds"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getSetting",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getSetting"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getCharacter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listCharacters",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listCharacters"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listReviews",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listReviews"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getScoreReport",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getScoreReport"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getOutline"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getChapterContent",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getChapterContent"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listTropes",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C19"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listTropes"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listItems",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C13",
+        "C14"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listItems"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listScenes",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listScenes"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getSceneContext",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getSceneContext"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listAttributes",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C09"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listAttributes"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "upsertTheme",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-upsertTheme"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createWorld",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createWorld"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateWorld",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateWorld"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "upsertSetting",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-upsertSetting"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createCharacter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateCharacter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "generateCharacterImage",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-generateCharacterImage"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "generateNovelCover",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-generateNovelCover"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "deleteCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-deleteCharacter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createItem",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C13",
+        "C14"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createItem"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateItem",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C13",
+        "C14"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateItem"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "deleteItem",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C13",
+        "C14"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-deleteItem"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createScene",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createScene"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateScene",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateScene"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "deleteScene",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C16",
+        "C17"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-deleteScene"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "upsertAttribute",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C09"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-upsertAttribute"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "deleteAttribute",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C09"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-deleteAttribute"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createCustomTrope",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C19"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createCustomTrope"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "deleteCustomTrope",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C19"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-deleteCustomTrope"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "deleteSetting",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-deleteSetting"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "deleteWorld",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-deleteWorld"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "selectTrope",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C19"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-selectTrope"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "generateOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-generateOutline"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createVolume",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createVolume"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateVolumeOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateVolumeOutline"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createChapter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createChapter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateChapterOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateChapterOutline"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "requestAIReview",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-requestAIReview"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "requestReaderReview",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-requestReaderReview"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "addTextComment",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-addTextComment"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listTextComments",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listTextComments"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "handleTextComment",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-handleTextComment"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "approveOutline",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-approveOutline"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "checkChapterNarrative",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-checkChapterNarrative"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getChapterCandidates",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getChapterCandidates"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "drawChapterCandidates",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-drawChapterCandidates"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "generateChapterContent",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-generateChapterContent"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "improveChapterContent",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-improveChapterContent"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "revertChapterReplacement",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-revertChapterReplacement"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "writeChapterContent",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-writeChapterContent"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getChapterFinalizationChecklist",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getChapterFinalizationChecklist"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "finalizeChapter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-finalizeChapter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getSopStatus",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getSopStatus"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "proposePlan",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-proposePlan"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createSopPlan",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createSopPlan"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateSopPlan",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateSopPlan"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "assessThemeMarket",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-assessThemeMarket"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "summonPlaywright",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-summonPlaywright"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "reviewWholeNovel",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C02",
+        "X06"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-reviewWholeNovel"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createForeshadowCharacter",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createForeshadowCharacter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listForeshadows",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listForeshadows"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getForeshadow",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getForeshadow"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "createForeshadow",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-createForeshadow"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateForeshadow",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateForeshadow"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "deleteForeshadow",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-deleteForeshadow"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "addForeshadowTouch",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-addForeshadowTouch"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "removeForeshadowTouch",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C29"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-removeForeshadowTouch"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "analyzeStagedImpact",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C26",
+        "X07"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-analyzeStagedImpact"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "commitStagedChanges",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C26",
+        "X07"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-commitStagedChanges"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "triggerCascadeRevision",
+      "source": "src/lib/ai/tools.ts",
+      "capabilityIds": [
+        "C26",
+        "X07"
+      ],
+      "implementation": "src/lib/ai/tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-triggerCascadeRevision"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getNovelPlanning",
+      "source": "src/lib/ai/planning-tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/planning-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getNovelPlanning"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getNarrativeChapter",
+      "source": "src/lib/ai/planning-tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/planning-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getNarrativeChapter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "proposeNovelPlanning",
+      "source": "src/lib/ai/planning-tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/planning-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-proposeNovelPlanning"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "applyNovelPlanningProposal",
+      "source": "src/lib/ai/planning-tools.ts",
+      "capabilityIds": [
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "implementation": "src/lib/ai/planning-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-applyNovelPlanningProposal"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "generateCharacterArc",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-generateCharacterArc"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "completeStoryTask",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-completeStoryTask"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "requestStoryRemoval",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "X08"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-requestStoryRemoval"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "listStoryRemovals",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "X08"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-listStoryRemovals"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "restoreStoryStructure",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "X08"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-restoreStoryStructure"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "requestContentApproval",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-requestContentApproval"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "generateStoryChapters",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C24",
+        "C25",
+        "X05"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-generateStoryChapters"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getStoryWorkflow",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getStoryWorkflow"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "updateStoryWorkflow",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-updateStoryWorkflow"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "reopenStoryPhase",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-reopenStoryPhase"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "reviewStoryCheckpoint",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-reviewStoryCheckpoint"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "requestStoryApproval",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-requestStoryApproval"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getStoryArtifact",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getStoryArtifact"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "linkStoryArtifacts",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-linkStoryArtifacts"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "unlinkStoryArtifacts",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-unlinkStoryArtifacts"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getStoryImpact",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getStoryImpact"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "getStorySources",
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "capabilityIds": [
+        "C01",
+        "C03",
+        "C27"
+      ],
+      "implementation": "src/lib/ai/story-workflow-tools.ts",
+      "context": "desktop/service/context.ts",
+      "testIds": [
+        "TOOL-getStorySources"
+      ],
+      "status": "planned"
+    }
+  ],
+  "routes": [
+    {
+      "path": "src/app/api/admin/config/route.ts",
+      "methods": [
+        "GET",
+        "PUT"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/admin/config/route.ts",
+      "testIds": [
+        "API-admin_config-GET",
+        "API-admin_config-PUT"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/admin/models/[id]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/admin/models/[id]/route.ts",
+      "testIds": [
+        "API-admin_models_id-PATCH",
+        "API-admin_models_id-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/admin/models/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/admin/models/route.ts",
+      "testIds": [
+        "API-admin_models-GET",
+        "API-admin_models-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/admin/novels/[id]/route.ts",
+      "methods": [
+        "DELETE"
+      ],
+      "disposition": "excluded-platform",
+      "reason": "Web在线认证/多用户管理/平台运营能力排除；不排除创作能力",
+      "local": null,
+      "testIds": [],
+      "status": "excluded"
+    },
+    {
+      "path": "src/app/api/admin/novels/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "excluded-platform",
+      "reason": "Web在线认证/多用户管理/平台运营能力排除；不排除创作能力",
+      "local": null,
+      "testIds": [],
+      "status": "excluded"
+    },
+    {
+      "path": "src/app/api/admin/observations/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "excluded-platform",
+      "reason": "Web在线认证/多用户管理/平台运营能力排除；不排除创作能力",
+      "local": null,
+      "testIds": [],
+      "status": "excluded"
+    },
+    {
+      "path": "src/app/api/admin/prompts/[id]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/admin/prompts/[id]/route.ts",
+      "testIds": [
+        "API-admin_prompts_id-PATCH",
+        "API-admin_prompts_id-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/admin/prompts/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/admin/prompts/route.ts",
+      "testIds": [
+        "API-admin_prompts-GET",
+        "API-admin_prompts-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/admin/sop/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/admin/sop/route.ts",
+      "testIds": [
+        "API-admin_sop-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/admin/stats/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "excluded-platform",
+      "reason": "Web在线认证/多用户管理/平台运营能力排除；不排除创作能力",
+      "local": null,
+      "testIds": [],
+      "status": "excluded"
+    },
+    {
+      "path": "src/app/api/admin/usage/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/admin/usage/route.ts",
+      "testIds": [
+        "API-admin_usage-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/admin/users/[id]/route.ts",
+      "methods": [
+        "PATCH"
+      ],
+      "disposition": "excluded-platform",
+      "reason": "Web在线认证/多用户管理/平台运营能力排除；不排除创作能力",
+      "local": null,
+      "testIds": [],
+      "status": "excluded"
+    },
+    {
+      "path": "src/app/api/admin/users/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "excluded-platform",
+      "reason": "Web在线认证/多用户管理/平台运营能力排除；不排除创作能力",
+      "local": null,
+      "testIds": [],
+      "status": "excluded"
+    },
+    {
+      "path": "src/app/api/auth/[...nextauth]/route.ts",
+      "methods": [],
+      "disposition": "excluded-platform",
+      "reason": "Web在线认证/多用户管理/平台运营能力排除；不排除创作能力",
+      "local": null,
+      "testIds": [],
+      "status": "excluded"
+    },
+    {
+      "path": "src/app/api/chat/conversations/[id]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/chat/conversations/[id]/route.ts",
+      "testIds": [
+        "API-chat_conversations_id-GET",
+        "API-chat_conversations_id-PATCH",
+        "API-chat_conversations_id-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/chat/conversations/[id]/sop-plan/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/chat/conversations/[id]/sop-plan/route.ts",
+      "testIds": [
+        "API-chat_conversations_id_sop-plan-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/chat/conversations/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/chat/conversations/route.ts",
+      "testIds": [
+        "API-chat_conversations-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/chat/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/chat/route.ts",
+      "testIds": [
+        "API-chat-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/chat/turns/[turnId]/cancel/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/chat/turns/[turnId]/cancel/route.ts",
+      "testIds": [
+        "API-chat_turns_turnId_cancel-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/chat/turns/[turnId]/interaction/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/chat/turns/[turnId]/interaction/route.ts",
+      "testIds": [
+        "API-chat_turns_turnId_interaction-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/chat/turns/[turnId]/navigation/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/chat/turns/[turnId]/navigation/route.ts",
+      "testIds": [
+        "API-chat_turns_turnId_navigation-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/chat/turns/[turnId]/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/chat/turns/[turnId]/route.ts",
+      "testIds": [
+        "API-chat_turns_turnId-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/generate/test/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/generate/test/route.ts",
+      "testIds": [
+        "API-generate_test-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/image-models/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/image-models/route.ts",
+      "testIds": [
+        "API-image-models-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/models/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/models/route.ts",
+      "testIds": [
+        "API-models-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/attributes/[attributeId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/attributes/[attributeId]/route.ts",
+      "testIds": [
+        "API-novels_id_attributes_attributeId-PATCH",
+        "API-novels_id_attributes_attributeId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/attributes/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/attributes/route.ts",
+      "testIds": [
+        "API-novels_id_attributes-GET",
+        "API-novels_id_attributes-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/apply/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cascade/[jobId]/apply/route.ts",
+      "testIds": [
+        "API-novels_id_cascade_jobId_apply-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/apply-all/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cascade/[jobId]/apply-all/route.ts",
+      "testIds": [
+        "API-novels_id_cascade_jobId_apply-all-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/finish/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cascade/[jobId]/finish/route.ts",
+      "testIds": [
+        "API-novels_id_cascade_jobId_finish-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cascade/[jobId]/route.ts",
+      "testIds": [
+        "API-novels_id_cascade_jobId-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/[jobId]/skip/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cascade/[jobId]/skip/route.ts",
+      "testIds": [
+        "API-novels_id_cascade_jobId_skip-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cascade/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cascade/route.ts",
+      "testIds": [
+        "API-novels_id_cascade-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/accept/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/accept/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_candidates_candidateId_accept-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/discard/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/discard/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_candidates_candidateId_discard-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_candidates_candidateId-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/withdraw/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/withdraw/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_candidates_candidateId_withdraw-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_candidates-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/finalization/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/finalization/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_finalization-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/generate/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/generate/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_generate-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId-GET",
+        "API-novels_id_chapters_chapterId-PATCH"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/versions/[versionId]/restore/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/versions/[versionId]/restore/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_versions_versionId_restore-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/versions/[versionId]/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/versions/[versionId]/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_versions_versionId-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/chapters/[chapterId]/versions/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/chapters/[chapterId]/versions/route.ts",
+      "testIds": [
+        "API-novels_id_chapters_chapterId_versions-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/[characterId]/image/route.ts",
+      "methods": [
+        "POST",
+        "PATCH"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/characters/[characterId]/image/route.ts",
+      "testIds": [
+        "API-novels_id_characters_characterId_image-POST",
+        "API-novels_id_characters_characterId_image-PATCH"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/[characterId]/image-prompt/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/characters/[characterId]/image-prompt/route.ts",
+      "testIds": [
+        "API-novels_id_characters_characterId_image-prompt-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/[characterId]/images/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/characters/[characterId]/images/route.ts",
+      "testIds": [
+        "API-novels_id_characters_characterId_images-GET",
+        "API-novels_id_characters_characterId_images-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/[characterId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/characters/[characterId]/route.ts",
+      "testIds": [
+        "API-novels_id_characters_characterId-PATCH",
+        "API-novels_id_characters_characterId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/assist/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/characters/assist/route.ts",
+      "testIds": [
+        "API-novels_id_characters_assist-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/characters/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/characters/route.ts",
+      "testIds": [
+        "API-novels_id_characters-GET",
+        "API-novels_id_characters-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/comments/[commentId]/apply/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/comments/[commentId]/apply/route.ts",
+      "testIds": [
+        "API-novels_id_comments_commentId_apply-GET",
+        "API-novels_id_comments_commentId_apply-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/comments/[commentId]/replies/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/comments/[commentId]/replies/route.ts",
+      "testIds": [
+        "API-novels_id_comments_commentId_replies-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/comments/[commentId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/comments/[commentId]/route.ts",
+      "testIds": [
+        "API-novels_id_comments_commentId-PATCH",
+        "API-novels_id_comments_commentId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/comments/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/comments/route.ts",
+      "testIds": [
+        "API-novels_id_comments-GET",
+        "API-novels_id_comments-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cover/image-prompt/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cover/image-prompt/route.ts",
+      "testIds": [
+        "API-novels_id_cover_image-prompt-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cover/images/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cover/images/route.ts",
+      "testIds": [
+        "API-novels_id_cover_images-GET",
+        "API-novels_id_cover_images-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/cover/route.ts",
+      "methods": [
+        "POST",
+        "PATCH"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/cover/route.ts",
+      "testIds": [
+        "API-novels_id_cover-POST",
+        "API-novels_id_cover-PATCH"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadow-characters/[fid]/promote/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadow-characters/[fid]/promote/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadow-characters_fid_promote-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadow-characters/[fid]/reveal/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadow-characters/[fid]/reveal/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadow-characters_fid_reveal-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadow-characters/[fid]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadow-characters/[fid]/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadow-characters_fid-PATCH",
+        "API-novels_id_foreshadow-characters_fid-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadow-characters/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadow-characters/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadow-characters-GET",
+        "API-novels_id_foreshadow-characters-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadows/[fid]/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadows_fid-GET",
+        "API-novels_id_foreshadows_fid-PATCH",
+        "API-novels_id_foreshadows_fid-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/evaluate/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/evaluate/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadows_fid_touches_tid_evaluate-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/references/[rid]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/references/[rid]/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadows_fid_touches_tid_references_rid-PATCH",
+        "API-novels_id_foreshadows_fid_touches_tid_references_rid-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/references/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/references/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadows_fid_touches_tid_references-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/route.ts",
+      "methods": [
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadows_fid_touches_tid-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/[fid]/touches/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadows_fid_touches-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/marks/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadows/marks/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadows_marks-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/foreshadows/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/foreshadows/route.ts",
+      "testIds": [
+        "API-novels_id_foreshadows-GET",
+        "API-novels_id_foreshadows-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/[itemId]/image/route.ts",
+      "methods": [
+        "POST",
+        "PATCH"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/items/[itemId]/image/route.ts",
+      "testIds": [
+        "API-novels_id_items_itemId_image-POST",
+        "API-novels_id_items_itemId_image-PATCH"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/[itemId]/image-prompt/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/items/[itemId]/image-prompt/route.ts",
+      "testIds": [
+        "API-novels_id_items_itemId_image-prompt-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/[itemId]/images/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/items/[itemId]/images/route.ts",
+      "testIds": [
+        "API-novels_id_items_itemId_images-GET",
+        "API-novels_id_items_itemId_images-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/[itemId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/items/[itemId]/route.ts",
+      "testIds": [
+        "API-novels_id_items_itemId-PATCH",
+        "API-novels_id_items_itemId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/items/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/items/route.ts",
+      "testIds": [
+        "API-novels_id_items-GET",
+        "API-novels_id_items-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/manuscript/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/manuscript/route.ts",
+      "testIds": [
+        "API-novels_id_manuscript-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/chapters/[chapterId]/route.ts",
+      "methods": [
+        "PATCH"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/outline/chapters/[chapterId]/route.ts",
+      "testIds": [
+        "API-novels_id_outline_chapters_chapterId-PATCH"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/deletion/route.ts",
+      "methods": [
+        "GET",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/outline/deletion/route.ts",
+      "testIds": [
+        "API-novels_id_outline_deletion-GET",
+        "API-novels_id_outline_deletion-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/generate/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/outline/generate/route.ts",
+      "testIds": [
+        "API-novels_id_outline_generate-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/outline/route.ts",
+      "testIds": [
+        "API-novels_id_outline-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/volumes/[volumeId]/chapters/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/outline/volumes/[volumeId]/chapters/route.ts",
+      "testIds": [
+        "API-novels_id_outline_volumes_volumeId_chapters-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/volumes/[volumeId]/route.ts",
+      "methods": [
+        "PATCH"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/outline/volumes/[volumeId]/route.ts",
+      "testIds": [
+        "API-novels_id_outline_volumes_volumeId-PATCH"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/outline/volumes/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/outline/volumes/route.ts",
+      "testIds": [
+        "API-novels_id_outline_volumes-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/planning/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/planning/route.ts",
+      "testIds": [
+        "API-novels_id_planning-GET",
+        "API-novels_id_planning-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/review/ai/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/review/ai/route.ts",
+      "testIds": [
+        "API-novels_id_review_ai-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/review/human/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/review/human/route.ts",
+      "testIds": [
+        "API-novels_id_review_human-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/review/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/review/route.ts",
+      "testIds": [
+        "API-novels_id_review-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/route.ts",
+      "testIds": [
+        "API-novels_id-GET",
+        "API-novels_id-PATCH",
+        "API-novels_id-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/advance/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/advance/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId_advance-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/cards/[cardId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/cards/[cardId]/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId_cards_cardId-PATCH",
+        "API-novels_id_scenarios_labId_cards_cardId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/nodes/[nodeId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/nodes/[nodeId]/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId_nodes_nodeId-PATCH",
+        "API-novels_id_scenarios_labId_nodes_nodeId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/organize/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/organize/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId_organize-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/prose/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/prose/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId_prose-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/reset/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/reset/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId_reset-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId-GET",
+        "API-novels_id_scenarios_labId-PATCH",
+        "API-novels_id_scenarios_labId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/runs/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/runs/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId_runs-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/[labId]/start/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/[labId]/start/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios_labId_start-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenarios/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenarios/route.ts",
+      "testIds": [
+        "API-novels_id_scenarios-GET",
+        "API-novels_id_scenarios-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/image/route.ts",
+      "methods": [
+        "POST",
+        "PATCH"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenes/[sceneId]/image/route.ts",
+      "testIds": [
+        "API-novels_id_scenes_sceneId_image-POST",
+        "API-novels_id_scenes_sceneId_image-PATCH"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/image-prompt/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenes/[sceneId]/image-prompt/route.ts",
+      "testIds": [
+        "API-novels_id_scenes_sceneId_image-prompt-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/images/[imageId]/asset/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenes/[sceneId]/images/[imageId]/asset/route.ts",
+      "testIds": [
+        "API-novels_id_scenes_sceneId_images_imageId_asset-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/images/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenes/[sceneId]/images/route.ts",
+      "testIds": [
+        "API-novels_id_scenes_sceneId_images-GET",
+        "API-novels_id_scenes_sceneId_images-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenes/[sceneId]/route.ts",
+      "testIds": [
+        "API-novels_id_scenes_sceneId-GET",
+        "API-novels_id_scenes_sceneId-PATCH",
+        "API-novels_id_scenes_sceneId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/[sceneId]/versions/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenes/[sceneId]/versions/route.ts",
+      "testIds": [
+        "API-novels_id_scenes_sceneId_versions-GET",
+        "API-novels_id_scenes_sceneId_versions-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/factions/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenes/factions/route.ts",
+      "testIds": [
+        "API-novels_id_scenes_factions-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/scenes/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/scenes/route.ts",
+      "testIds": [
+        "API-novels_id_scenes-GET",
+        "API-novels_id_scenes-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/score-report/improve-items/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/score-report/improve-items/route.ts",
+      "testIds": [
+        "API-novels_id_score-report_improve-items-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/score-report/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/score-report/route.ts",
+      "testIds": [
+        "API-novels_id_score-report-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/score-review/route.ts",
+      "methods": [
+        "DELETE",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/score-review/route.ts",
+      "testIds": [
+        "API-novels_id_score-review-DELETE",
+        "API-novels_id_score-review-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/settings/[settingId]/route.ts",
+      "methods": [
+        "GET",
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/settings/[settingId]/route.ts",
+      "testIds": [
+        "API-novels_id_settings_settingId-GET",
+        "API-novels_id_settings_settingId-PATCH",
+        "API-novels_id_settings_settingId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/settings/assist/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/settings/assist/route.ts",
+      "testIds": [
+        "API-novels_id_settings_assist-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/settings/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/settings/route.ts",
+      "testIds": [
+        "API-novels_id_settings-GET",
+        "API-novels_id_settings-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/story-workflow/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/story-workflow/route.ts",
+      "testIds": [
+        "API-novels_id_story-workflow-GET"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/theme/route.ts",
+      "methods": [
+        "GET",
+        "PATCH"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/theme/route.ts",
+      "testIds": [
+        "API-novels_id_theme-GET",
+        "API-novels_id_theme-PATCH"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/tropes/[tropeId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/tropes/[tropeId]/route.ts",
+      "testIds": [
+        "API-novels_id_tropes_tropeId-PATCH",
+        "API-novels_id_tropes_tropeId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/tropes/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/tropes/route.ts",
+      "testIds": [
+        "API-novels_id_tropes-GET",
+        "API-novels_id_tropes-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/tropes/select/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/tropes/select/route.ts",
+      "testIds": [
+        "API-novels_id_tropes_select-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/worlds/[worldId]/route.ts",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/worlds/[worldId]/route.ts",
+      "testIds": [
+        "API-novels_id_worlds_worldId-PATCH",
+        "API-novels_id_worlds_worldId-DELETE"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/[id]/worlds/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/novels/[id]/worlds/route.ts",
+      "testIds": [
+        "API-novels_id_worlds-GET",
+        "API-novels_id_worlds-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/novels/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "disposition": "replace-boundary",
+      "reason": "迁为本地设置/目录聚合/模板/模型command，保留相关能力",
+      "local": "desktop/handlers/novels/route.ts",
+      "testIds": [
+        "API-novels-GET",
+        "API-novels-POST"
+      ],
+      "status": "planned"
+    },
+    {
+      "path": "src/app/api/register/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "disposition": "excluded-platform",
+      "reason": "Web在线认证/多用户管理/平台运营能力排除；不排除创作能力",
+      "local": null,
+      "testIds": [],
+      "status": "excluded"
+    },
+    {
+      "path": "src/app/api/subagent-runs/[id]/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "disposition": "migrate-handler",
+      "reason": "保留原payload与领域服务，提取为本地handler，不提供HTTP路由",
+      "local": "desktop/handlers/subagent-runs/[id]/route.ts",
+      "testIds": [
+        "API-subagent-runs_id-GET"
+      ],
+      "status": "planned"
+    }
+  ],
+  "services": [
+    {
+      "source": "src/lib/services/attempt-observation.ts",
+      "local": "src/lib/services/attempt-observation.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-attempt-observation"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/attribute.ts",
+      "local": "src/lib/services/attribute.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-attribute"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/candidate-comments.ts",
+      "local": "src/lib/services/candidate-comments.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-candidate-comments"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/cascade.ts",
+      "local": "src/lib/services/cascade.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-cascade"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/chapter-boundaries.ts",
+      "local": "src/lib/services/chapter-boundaries.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-chapter-boundaries"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/chapter-draw.ts",
+      "local": "src/lib/services/chapter-draw.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-chapter-draw"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/chapter-finalization.ts",
+      "local": "src/lib/services/chapter-finalization.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-chapter-finalization"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/chapter-history.ts",
+      "local": "src/lib/services/chapter-history.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-chapter-history"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/chapter.ts",
+      "local": "src/lib/services/chapter.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-chapter"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/character-arc.ts",
+      "local": "src/lib/services/character-arc.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-character-arc"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/character-image.ts",
+      "local": "src/lib/services/character-image.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-character-image"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/character.ts",
+      "local": "src/lib/services/character.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-character"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/chat-action.ts",
+      "local": "src/lib/services/chat-action.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-chat-action"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/chat-tool-execution.ts",
+      "local": "src/lib/services/chat-tool-execution.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-chat-tool-execution"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/chat-turn.ts",
+      "local": "src/lib/services/chat-turn.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-chat-turn"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/comment-change.ts",
+      "local": "src/lib/services/comment-change.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-comment-change"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/content-candidate.ts",
+      "local": "src/lib/services/content-candidate.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-content-candidate"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/content-commit.ts",
+      "local": "src/lib/services/content-commit.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-content-commit"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/content-improvement.ts",
+      "local": "src/lib/services/content-improvement.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-content-improvement"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/content-review.ts",
+      "local": "src/lib/services/content-review.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-content-review"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/cover-image.ts",
+      "local": "src/lib/services/cover-image.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-cover-image"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/foreshadow-character.ts",
+      "local": "src/lib/services/foreshadow-character.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-foreshadow-character"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/foreshadow-reference.ts",
+      "local": "src/lib/services/foreshadow-reference.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-foreshadow-reference"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/foreshadow.ts",
+      "local": "src/lib/services/foreshadow.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-foreshadow"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/fractional-index.ts",
+      "local": "src/lib/services/fractional-index.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-fractional-index"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/item-image.ts",
+      "local": "src/lib/services/item-image.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-item-image"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/item.ts",
+      "local": "src/lib/services/item.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-item"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/map-placeholder.ts",
+      "local": "src/lib/services/map-placeholder.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-map-placeholder"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/narrative-assessment.ts",
+      "local": "src/lib/services/narrative-assessment.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-narrative-assessment"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/novel-create.ts",
+      "local": "src/lib/services/novel-create.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-novel-create"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/outline-structure.ts",
+      "local": "src/lib/services/outline-structure.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-outline-structure"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/outline.ts",
+      "local": "src/lib/services/outline.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-outline"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/planning.ts",
+      "local": "src/lib/services/planning.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-planning"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/resource-observation.ts",
+      "local": "src/lib/services/resource-observation.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-resource-observation"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/review-cancellation.ts",
+      "local": "src/lib/services/review-cancellation.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-review-cancellation"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/review-schema.ts",
+      "local": "src/lib/services/review-schema.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-review-schema"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/review.ts",
+      "local": "src/lib/services/review.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-review"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/scenario-ai.ts",
+      "local": "src/lib/services/scenario-ai.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-scenario-ai"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/scenario-lab.ts",
+      "local": "src/lib/services/scenario-lab.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-scenario-lab"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/scene-image.ts",
+      "local": "src/lib/services/scene-image.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-scene-image"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/scene.ts",
+      "local": "src/lib/services/scene.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-scene"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/score-report.ts",
+      "local": "src/lib/services/score-report.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-score-report"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/setting-commit.ts",
+      "local": "src/lib/services/setting-commit.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-setting-commit"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/setting.ts",
+      "local": "src/lib/services/setting.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-setting"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/stage.ts",
+      "local": "src/lib/services/stage.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-stage"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/staged-commit.ts",
+      "local": "src/lib/services/staged-commit.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-staged-commit"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-artifacts.ts",
+      "local": "src/lib/services/story-artifacts.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-artifacts"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-content-approval.ts",
+      "local": "src/lib/services/story-content-approval.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-content-approval"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-entity-archive.ts",
+      "local": "src/lib/services/story-entity-archive.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-entity-archive"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-material-review.ts",
+      "local": "src/lib/services/story-material-review.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-material-review"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-materials.ts",
+      "local": "src/lib/services/story-materials.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-materials"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-progress.ts",
+      "local": "src/lib/services/story-progress.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-progress"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-structure.ts",
+      "local": "src/lib/services/story-structure.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-structure"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-task.ts",
+      "local": "src/lib/services/story-task.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-task"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-tool-runtime.ts",
+      "local": "src/lib/services/story-tool-runtime.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-tool-runtime"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-workflow.ts",
+      "local": "src/lib/services/story-workflow.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-workflow"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/story-writing.ts",
+      "local": "src/lib/services/story-writing.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-story-writing"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/subagent-run.ts",
+      "local": "src/lib/services/subagent-run.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-subagent-run"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/target-text.ts",
+      "local": "src/lib/services/target-text.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-target-text"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/text-comment.ts",
+      "local": "src/lib/services/text-comment.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-text-comment"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/theme.ts",
+      "local": "src/lib/services/theme.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-theme"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/trope.ts",
+      "local": "src/lib/services/trope.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-trope"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/version.ts",
+      "local": "src/lib/services/version.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-version"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/world-guard.ts",
+      "local": "src/lib/services/world-guard.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-world-guard"
+      ],
+      "status": "planned"
+    },
+    {
+      "source": "src/lib/services/world.ts",
+      "local": "src/lib/services/world.ts",
+      "databaseContext": "desktop/service/context.ts",
+      "testIds": [
+        "SERVICE-world"
+      ],
+      "status": "planned"
+    }
+  ],
+  "dataModels": [
+    {
+      "name": "User",
+      "storage": "global editable profile; local-author identity reference in every work/inbox database; no cross-database FK",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-User"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Novel",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Novel"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "StoryWorkflow",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-StoryWorkflow"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "StoryArtifactLink",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-StoryArtifactLink"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Theme",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Theme"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "World",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-World"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Setting",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Setting"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Trope",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Trope"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Character",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Character"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "CharacterImage",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-CharacterImage"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "NovelCoverImage",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-NovelCoverImage"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "AttributeDefinition",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-AttributeDefinition"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Item",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Item"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ItemImage",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ItemImage"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Scene",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Scene"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "SceneImage",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-SceneImage"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "SceneImageRequest",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-SceneImageRequest"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Volume",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Volume"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Chapter",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Chapter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Review",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Review"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ContentVersion",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ContentVersion"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ContentMutation",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ContentMutation"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ContentCandidate",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ContentCandidate"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ContentImprovementRun",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ContentImprovementRun"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "CandidateCommentEffect",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-CandidateCommentEffect"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "TextComment",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-TextComment"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "PreparedTextChange",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-PreparedTextChange"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "TargetTextRevision",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-TargetTextRevision"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "SubAgentRun",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-SubAgentRun"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "SopPlan",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-SopPlan"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "SopNodeRun",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-SopNodeRun"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "CascadeJob",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-CascadeJob"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Conversation",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Conversation"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Message",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Message"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "AIModel",
+      "storage": "global authoritative model config; per-work/inbox non-callable reference with empty encrypted key and enabled=false; retain after global removal",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-AIModel"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "PromptTemplate",
+      "storage": "global repository",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-PromptTemplate"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "SystemConfig",
+      "storage": "global repository",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-SystemConfig"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "UsageRecord",
+      "storage": "owning work/inbox database; local User/AIModel FK plus immutable modelSnapshot metadata; preserve after model deletion and import",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-UsageRecord"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ForeshadowCharacter",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ForeshadowCharacter"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "Foreshadow",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-Foreshadow"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ForeshadowTouch",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ForeshadowTouch"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ForeshadowReference",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ForeshadowReference"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ScenarioLab",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ScenarioLab"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ScenarioTurn",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ScenarioTurn"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ScenarioNode",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ScenarioNode"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ScenarioCard",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ScenarioCard"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "NovelCreationRequest",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-NovelCreationRequest"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ChatTurn",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ChatTurn"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ChatAttempt",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ChatAttempt"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ChatRequest",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ChatRequest"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ChatToolExecution",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ChatToolExecution"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "ChatWriteEffect",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-ChatWriteEffect"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "AttemptObservation",
+      "storage": "owning work database; unassociated inbox context only until linked",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-AttemptObservation"
+      ],
+      "status": "planned"
+    },
+    {
+      "name": "PlanningDocument",
+      "storage": "owning work database",
+      "local": "prisma/schema.prisma",
+      "testIds": [
+        "DB-PlanningDocument"
+      ],
+      "status": "planned"
+    }
+  ],
+  "brandRename": {
+    "updatedAt": "2026-10-08",
+    "names": {
+      "full": "玄印写作",
+      "short": "玄印",
+      "english": "XaanInk"
+    },
+    "compatibility": "旧目录、作品、锁和控制文件按原家族继续读取；新建应用/作品和导出使用新名称；不重写旧数据。",
+    "status": "verified-macos-arm64",
+    "scope": "本次品牌改名、完整活动核心1618项、打包14项及真实macOS安装包升级；不代替既有正式业务或Windows验收。",
+    "implementation": [
+      "desktop/shared/brand-names.ts",
+      "desktop/core/brand-names.ts",
+      "desktop/main/brand-startup-paths.ts",
+      "desktop/main/index.ts",
+      "src/lib/chat-session.ts",
+      "electron-builder.config.cjs",
+      "public/brand/"
+    ],
+    "tests": [
+      "tests/unit/brand-product-identity.test.ts",
+      "tests/unit/brand-names.test.ts",
+      "tests/unit/brand-chat-session.test.ts",
+      "tests/unit/brand-startup-paths.test.ts",
+      "tests/integration/brand-data-compatibility.test.ts",
+      "scripts/smoke-brand.mjs"
+    ],
+    "evidence": [
+      "docs/reviews/130-brand-rename-verification.md",
+      "docs/reviews/128-brand-product-code-review.md",
+      "docs/reviews/129-brand-compatibility-code-review.md",
+      "docs/reviews/131-brand-verification-harness-review.md",
+      "docs/evidence/brand-rename/verification.json",
+      "docs/evidence/brand-rename/native-brand.json"
+    ]
+  }
+}

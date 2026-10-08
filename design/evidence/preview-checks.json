@@ -1,0 +1,515 @@
+{
+  "scope": "UI design prototype only; not Electron/OS/disk/model acceptance",
+  "date": "2026-10-06",
+  "browser": "installed Google Chrome via Playwright",
+  "results": [
+    {
+      "check": "page-state",
+      "mode": "workspace",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "first",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "create",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "chat-create",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "general",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "models",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "appearance",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "shortcuts",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "migration",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "recovery",
+      "platform": "mac",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "workspace",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "first",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "create",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "chat-create",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "general",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "models",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "appearance",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "shortcuts",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "migration",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "recovery",
+      "platform": "mac",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "workspace",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "first",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "create",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "chat-create",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "general",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "models",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "appearance",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "shortcuts",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "migration",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "recovery",
+      "platform": "win",
+      "theme": "paper",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "workspace",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "first",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "create",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "chat-create",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "general",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "models",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "appearance",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "shortcuts",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "migration",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "page-state",
+      "mode": "recovery",
+      "platform": "win",
+      "theme": "ink",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "workspace",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "first",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "create",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "general",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "models",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "appearance",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "shortcuts",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "migration",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "recovery",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "workspace",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "first",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "create",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "general",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "models",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "appearance",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "shortcuts",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "migration",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "recovery",
+      "width": 800,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "workspace",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "first",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "create",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "general",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "models",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "appearance",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "shortcuts",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "migration",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "responsive",
+      "mode": "recovery",
+      "width": 640,
+      "status": "pass"
+    },
+    {
+      "check": "explicit-directory-and-unsent-draft",
+      "status": "pass"
+    },
+    {
+      "check": "dirty-settings-preserved-and-confirmed",
+      "status": "pass"
+    },
+    {
+      "check": "appearance-preview-cancel-restores",
+      "status": "pass"
+    },
+    {
+      "check": "model-test-explicit-confirmation-and-cancel",
+      "status": "pass"
+    },
+    {
+      "check": "directory-and-shortcut-errors-block-submit",
+      "status": "pass"
+    },
+    {
+      "check": "migration-before-commit-cancel",
+      "status": "pass"
+    }
+  ],
+  "runtimeErrors": [],
+  "unexpectedExternalRequests": []
+}

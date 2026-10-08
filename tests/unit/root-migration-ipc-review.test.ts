@@ -1,0 +1,86 @@
+import assert from 'node:assert/strict'
+import {test} from 'node:test'
+import {readFileSync} from 'node:fs'
+import {mkdtemp,mkdir,realpath,rm,writeFile,readFile} from 'node:fs/promises'
+import {join} from 'node:path'
+import {tmpdir} from 'node:os'
+import {randomUUID} from 'node:crypto'
+import ts from 'typescript'
+import {transformSync} from 'esbuild'
+import {z} from 'zod'
+import {readdir} from 'node:fs/promises'
+import {DataRootManager} from '../../desktop/core/data-root'
+import {directoryIdentity} from '../../desktop/core/root-ownership'
+import {DirectoryAuthority} from '../../desktop/main/directory-authority'
+import {RootMigrationRequests} from '../../desktop/main/root-migration-request'
+import {RootMigrationHandoff} from '../../desktop/main/root-migration-handoff'
+import {CloseCoordinator} from '../../desktop/main/close-coordinator'
+import {BusinessGate} from '../../desktop/main/business-gate'
+import {ApplicationMetadataGate} from '../../desktop/main/application-metadata-gate'
+
+const syntax=ts.createSourceFile('main.ts',readFileSync('desktop/main/index.ts','utf8'),ts.ScriptTarget.Latest,true)
+function declaration(name:string){const node=syntax.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text===name);assert.ok(node);return node.getText(syntax)}
+let callback='',services='';const walk=(node:ts.Node)=>{
+ if(ts.isCallExpression(node)&&node.expression.getText(syntax)==='ipcMain.handle'&&node.arguments[0]?.getText(syntax)==='"desktop:migrate-root"')callback=node.arguments[1].getText(syntax)
+ if(ts.isNewExpression(node)&&node.expression.getText(syntax)==='CloseCoordinator')services=node.arguments![0].getText(syntax)
+ ts.forEachChild(node,walk)
+};walk(syntax);assert.ok(callback&&services)
+async function fixture(){
+ const base=await realpath(await mkdtemp(join(tmpdir(),'xuanxiang-migration-ipc71-'))),bootstrap=join(base,'bootstrap'),source=join(base,'source'),target=join(base,'target')
+ for(const path of [bootstrap,source,target])await mkdir(path)
+ await writeFile(join(source,'xuanxiang-app.json'),JSON.stringify({schemaVersion:1,app:'Xuanxiangxiezuo-Desktop',id:randomUUID(),phase:'ready',inboxReady:false}))
+ await writeFile(join(source,'catalog.json'),JSON.stringify({schemaVersion:1,revision:0,value:[]}));await new DataRootManager(bootstrap,source).adopt(await directoryIdentity(source))
+ const trace:string[]=[],pickerEntered=Promise.withResolvers<void>(),pickerGate=Promise.withResolvers<void>(),confirmEntered=Promise.withResolvers<void>(),confirmGate=Promise.withResolvers<void>(),flushEntered=Promise.withResolvers<void>(),flushGate=Promise.withResolvers<void>()
+ let cancelledPicker=false,declined=false,holdPicker=false,holdConfirm=false,holdFlush=false
+ const frame={url:'xaanink://app/'},contents={id:71,mainFrame:frame},event={sender:contents,senderFrame:frame},owner={owner:71,id:randomUUID(),ready:true}
+ const dependencies={workLease:null,applicationMetadata:new ApplicationMetadataGate(),draftJournal:{read:async()=>null},conversationDirectories:{revokeAll(){},flush:async()=>{}},recoveryExports:{cancelWindow(){},flush:async()=>{}},fileExports:{cancelWindow(){},flush:async()=>{}},bootstrapPath:bootstrap,dataRoot:source,DataRootManager,RootMigrationRequests,RootMigrationHandoff,CloseCoordinator,BusinessGate,DirectoryAuthority,authority:new DirectoryAuthority(),z,
+  window:{webContents:contents,isDestroyed:()=>false,close:()=>trace.push('window-close')},draftSession:owner,
+  repository:{read:async()=>{trace.push('read-settings');return{settings:{general:{defaultParent:source}}}}},homedir:()=>source,
+  dialog:{showOpenDialog:async()=>{trace.push('picker');pickerEntered.resolve();if(holdPicker)await pickerGate.promise;return{canceled:cancelledPicker,filePaths:cancelledPicker?[]:[target]}},showMessageBox:async(_owner:unknown,options:{title:string})=>{if(options.title==='迁移应用数据'){trace.push('confirm');confirmEntered.resolve();if(holdConfirm)await confirmGate.promise;return{response:declined?0:1}}return{response:2}}},
+  app:{hasSingleInstanceLock:()=>true,relaunch:()=>trace.push('relaunch'),quit:()=>trace.push('quit')},readdir,
+  modelService:{activeCount:0,close:async()=>trace.push('stop-models'),resume:()=>trace.push('resume-models')},modelConfiguration:{activeCount:0,cancelOwner(){}},avatarAssets:{cancelOwner(){}},
+  configurationFiles:{cancelWindow(){},flush:async()=>{trace.push('flush-configuration')}},responseOwners:new Map(),
+  service:{call:async(method:string)=>{trace.push(`worker:${method}`);if(method==='stop-tasks')assert.equal(JSON.parse(await readFile(join(bootstrap,'root-migration-request.json'),'utf8')).active.phase,'prepared');return{active:0}}},
+  flushDraftForClose:async()=>{trace.push('flush-draft');flushEntered.resolve();if(holdFlush)await flushGate.promise;trace.push('draft-ack')},closeChannel:{cancel(){}},worker:{terminate:async()=>trace.push('terminate')},send:(value:{type:string})=>trace.push(`event:${value.type}`),
+ }
+ const code=`let businessClosed=false,closingFlow=null,closeCommitted=false,quitting=false,migrationHandoff=null;const businessGate=new BusinessGate(),closePermits=new WeakSet();
+ ${['trusted','chooseDirectory','restoreBusiness','retryMigrationCancellation','beginClose'].map(declaration).join('\n')}
+ const closeCoordinator=new CloseCoordinator(${services});const callback=${callback};
+ return{call(input,event){return callback(event,input)},replaceSession(){draftSession={...draftSession,id:${'randomUUID'}()}},state(){return{businessClosed,closed:businessGate.closed,closeCommitted}}}`
+ const all={...dependencies,randomUUID};const api=new Function(...Object.keys(all),transformSync(code,{loader:'ts'}).code)(...Object.values(all)) as {call(input:unknown,event:unknown):Promise<unknown>;replaceSession():void;state():{businessClosed:boolean;closed:boolean;closeCommitted:boolean}}
+ return{...api,base,bootstrap,source,target,event,trace,pickerEntered,confirmEntered,flushEntered,
+  picker(cancel=false,hold=false){cancelledPicker=cancel;holdPicker=hold},confirm(decline=false,hold=false){declined=decline;holdConfirm=hold},flush(hold=true){holdFlush=hold},releasePicker:()=>pickerGate.resolve(),releaseConfirm:()=>confirmGate.resolve(),releaseFlush:()=>flushGate.resolve(),
+  async cleanup(){pickerGate.resolve();confirmGate.resolve();flushGate.resolve();await rm(base,{recursive:true,force:true})},
+ }
+}
+
+test('I71-01: actual migrate IPC trusts only current main frame and validates action before opening any native dialog',{timeout:5000},async()=>{
+ const r=await fixture()
+ try{
+  for(const event of [{...r.event,sender:{}},{...r.event,senderFrame:{url:'xaanink://app/'}},{...r.event,senderFrame:{url:'https://remote.invalid/'}}])await assert.rejects(r.call('start',event),/不受信/)
+  for(const input of ['prepare',{},null])await assert.rejects(r.call(input,r.event));assert.deepEqual(r.trace,[]);await assert.rejects(readFile(join(r.bootstrap,'root-migration-request.json')),{code:'ENOENT'})
+ }finally{await r.cleanup()}
+})
+
+test('I71-02: cancelled chooser or declined native confirmation produces no request or close side effect',{timeout:5000},async()=>{
+ for(const reason of ['picker','confirm']){const r=await fixture();try{
+  if(reason==='picker')r.picker(true);else r.confirm(true)
+  assert.equal(await r.call('start',r.event),false);assert.ok(!r.trace.includes('worker:stop-tasks'));assert.ok(!r.trace.includes('flush-draft'));assert.ok(!r.trace.includes('relaunch'));await assert.rejects(readFile(join(r.bootstrap,'root-migration-request.json')),{code:'ENOENT'})
+ }finally{await r.cleanup()}}
+})
+
+test('I71-03: actual grant and ledger remain prepared until the same owner draft ACK, then arm before relaunch and quit',{timeout:5000},async()=>{
+ const r=await fixture();r.flush();const work=r.call('start',r.event)
+ try{
+  await Promise.race([r.flushEntered.promise,work.then(()=>{throw Error('draft flush boundary was not entered')})]);const path=join(r.bootstrap,'root-migration-request.json'),prepared=JSON.parse(await readFile(path,'utf8'));assert.equal(prepared.active.phase,'prepared');assert.equal(prepared.active.target.path,r.target);assert.equal(prepared.active.source.root.path,r.source);assert.equal(r.state().businessClosed,false);assert.ok(!r.trace.includes('relaunch'));assert.ok(!r.trace.includes('quit'))
+  r.releaseFlush();assert.equal(await work,true);const armed=JSON.parse(await readFile(path,'utf8'));assert.equal(armed.active.phase,'armed');assert.equal(armed.active.requestId,prepared.active.requestId);assert.equal(armed.active.ownerNonce,prepared.active.ownerNonce)
+  assert.equal(r.state().businessClosed,true);assert.equal(r.state().closed,true);assert.equal(r.state().closeCommitted,true);assert.ok(r.trace.indexOf('confirm')<r.trace.indexOf('worker:stop-tasks'));assert.ok(r.trace.indexOf('draft-ack')<r.trace.indexOf('worker:close'));assert.ok(r.trace.indexOf('worker:close')<r.trace.indexOf('relaunch'));assert.ok(r.trace.indexOf('relaunch')<r.trace.indexOf('quit'))
+ }finally{r.releaseFlush();await work.catch(()=>{});await r.cleanup()}
+})
+
+test('I71-04: replaced draft lifetime after picker or confirmation cannot prepare a request or close the new owner',{timeout:5000},async()=>{
+ for(const boundary of ['picker','confirm']){const r=await fixture();if(boundary==='picker')r.picker(false,true);else r.confirm(false,true);const work=r.call('start',r.event)
+ try{
+  await Promise.race([boundary==='picker'?r.pickerEntered.promise:r.confirmEntered.promise,work.then(()=>{throw Error('native owner boundary was not entered')})]);r.replaceSession();r.releasePicker();r.releaseConfirm();await assert.rejects(work,/迁移所属窗口已变化/);await assert.rejects(readFile(join(r.bootstrap,'root-migration-request.json')),{code:'ENOENT'});assert.ok(!r.trace.includes('worker:stop-tasks'));assert.ok(!r.trace.includes('relaunch'))
+ }finally{r.releasePicker();r.releaseConfirm();await work.catch(()=>{});await r.cleanup()}}
+})

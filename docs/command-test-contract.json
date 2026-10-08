@@ -1,0 +1,102 @@
+{
+  "version": "1.0",
+  "status": "planned; runtime commands are not yet assembled",
+  "runtimeSources": [
+    "Monaco getSupportedActions and keybinding registrations",
+    "menu command registry",
+    "AI composer and ordinary input command registrations"
+  ],
+  "requiredCaseFields": [
+    "commandId",
+    "platform",
+    "scope",
+    "fixtureId",
+    "setupSteps",
+    "invokeSteps",
+    "expectedAssertions",
+    "evidence",
+    "status"
+  ],
+  "gate": "Every runtime command must resolve to an explicit fixture and observable oracle. Unknown/missing mappings are blocked; list membership or run() resolution is not a pass. Every menu entry refers to the same stable ID. Unsupported in Markdown requires explicit reason and independent review.",
+  "fixtures": [
+    {
+      "id": "edit-text",
+      "setup": "3 lines of Chinese/English text, selection [line1:2..6], known undo stack",
+      "oracles": [
+        "exact resulting text",
+        "model version increments only for writes",
+        "undo/redo returns exact prior text"
+      ]
+    },
+    {
+      "id": "markdown-format",
+      "setup": "Markdown source with selected text and supported format action",
+      "oracles": [
+        "command-specific delimiters/heading/list/code/table in exact text",
+        "selection offsets and undo one step",
+        "autosave persisted result"
+      ]
+    },
+    {
+      "id": "cursor-selection",
+      "setup": "fixed multiline text, start position and selections explicit",
+      "oracles": [
+        "exact getPosition/getSelections ranges/cursor count",
+        "document text unchanged"
+      ]
+    },
+    {
+      "id": "find-replace",
+      "setup": "three known matches, query/replacement configured through UI",
+      "oracles": [
+        "visible find/replace surface",
+        "active match/selection positions",
+        "replace changes only intended matches and persists"
+      ]
+    },
+    {
+      "id": "fold-scroll",
+      "setup": "nested Markdown headings with exact line numbers and viewport",
+      "oracles": [
+        "target folded/visible ranges and viewport line bounds",
+        "document text unchanged"
+      ]
+    },
+    {
+      "id": "clipboard-input",
+      "setup": "isolated clipboard marker plus focused editor/composer/input",
+      "oracles": [
+        "exact clipboard/resulting text and focus",
+        "read-only surface refuses mutation",
+        "paste plain text strips formatting"
+      ]
+    },
+    {
+      "id": "workbench-view",
+      "setup": "workA open with two tabs and a dirty draft",
+      "oracles": [
+        "actual active panel/mode/tab and pixel bounds",
+        "draft/editor identity/undo preserved"
+      ]
+    },
+    {
+      "id": "ai-composer",
+      "setup": "draft and entity fixture plus mock network counters and optional pending task/question",
+      "oracles": [
+        "correct request count/body/conversationId",
+        "chip/cursor/selection or question slot reflects command",
+        "stop cancels only target attempt"
+      ]
+    },
+    {
+      "id": "native-window",
+      "setup": "real OS window/menu and isolated work",
+      "oracles": [
+        "OS window state/bounds/native focus",
+        "real file dialog result",
+        "durable data before exit"
+      ]
+    }
+  ],
+  "generationRule": "Bind individual IDs by audited registry metadata to explicit per-command expected assertions; do not assign a generic success oracle by fuzzy action name. Capture runtime set as versioned artifact, fail on additions/removals until mapped."
+}

@@ -1,0 +1,1758 @@
+{
+  "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
+  "note": "Desktop settings are new React components; the prototype workbench is prohibited as implementation. Every imported-file modification needs a reason in this manifest.",
+  "files": [
+    {
+      "source": "src/components/admin/AdminShell.tsx",
+      "sha256": "ecead754fd573dcc1c60e9991d2b43c52a46f47fb6ebd80db9e67e6c7fd09254",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/admin/ModelsClient.tsx",
+      "sha256": "8437d0349064abd9be9f5da2e908338903c7a8531512cdb9fb1840cdef9608fd",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/admin/NovelsClient.tsx",
+      "sha256": "0c4ff40da640b87389ffcd8c157a947b48d5e48c5ea8ed407fb7190d97b4f65b",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/admin/OverviewClient.tsx",
+      "sha256": "6ee413ee1009d89ae11b023f6170e2831705eebe4ca4d5abdbc40d5b1dd537d0",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/admin/PromptsClient.tsx",
+      "sha256": "f2c44e7ac96777c85f3eadda86c0591631ca0172fb6ba49170c80eaa5dc6d48f",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "Local library transport/identity and import/export; preserve prompt editor UI"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/admin/SettingsClient.tsx",
+      "sha256": "62b970f0613560daec771d85feeb29c8ff5a26b417f861c735902c8e3aa6a7b4",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/admin/SopClient.tsx",
+      "sha256": "1a71c3b07bcb626cb8c68cb5f56d82b7e51eb4c547a4cd8ba030779b7933b897",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/admin/UsageClient.tsx",
+      "sha256": "738c51cbd05ca67c0bfb86085b215e60a436d0438a5b5c264db3b1d6f0f63d26",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/admin/UsersClient.tsx",
+      "sha256": "e55b6036fef6609ca1eab96e655996bc072403de64ba8e26f781dcb0574f9d6c",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/admin/shared.tsx",
+      "sha256": "0216ffd3d82133008be24dd850e708b0a85f93f802e281607fa018a383f346ce",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "Local library transport/identity and import/export; preserve prompt editor UI"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/AskUserPanel.tsx",
+      "sha256": "fa710653de7ebc046a8bc746145d283e74511bebc5038799ecb97adc74459aa2",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/CandidateActionPanel.tsx",
+      "sha256": "1dc3b01292ae85d5854a7d3a4b7a1b8ed477dfa89ac0d4573424751567ee303c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/CandidateDrawCard.tsx",
+      "sha256": "6f15c24d1d1f33863cc31b822b99708a2f71f52227697528f87819977e428ad3",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ChangesCard.tsx",
+      "sha256": "f0fb2c1f5f69f2eda4a9f1c5a69c9d35cf9afb1112c0e022f07ce215bdd45100",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/Collapse.tsx",
+      "sha256": "ff09dafcc9074ba423d191f2272723211ee724626afc142ba91cc4f8074e1c4f",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ComposerChipHoverCard.tsx",
+      "sha256": "4146a4c9af05bc1aa2ad7d73b64605162124e3bb1cba248100b704ce2ebd66ab",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/EntityHoverCard.tsx",
+      "sha256": "e46093952699c35e70039f9103822f8a89d5dbd71152793f89aa9d257fe38f44",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/FileCard.tsx",
+      "sha256": "42faa799e944aadd1843a36ee49131fe824ffcb11dcf6ed927828767e62a1788",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/GroupedToolRows.tsx",
+      "sha256": "18768af46731d2772921369a138cfd612576686ef4aa582e664c0567ec6766e7",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ImageCard.tsx",
+      "sha256": "246266888b6d9a1d3ed475d55dd58a19899cf041f3650d5754340098670fb0ce",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ManuscriptCard.tsx",
+      "sha256": "8ffe5bf10c5ca478d0fd8111a32850a1b83469143128c68d30437ff0f5caad9d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/MentionPopup.tsx",
+      "sha256": "4e6969900f07289d6ae8bebb0bc60268a53540f3b57b5d5352b4f94ad6c5ebaa",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ModelPicker.tsx",
+      "sha256": "8cee582ea868d5a2af112b8be70749cad2d702555f42da58d6969e8d0bff91eb",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "3ee706fa708c77687ccafcf4a89dd478536a7686ae3c02a48ebc32156dba82c1",
+      "reason": "Preserve the Web model-picker layout; add the desktop model-settings entry and replace platform-admin empty-state text."
+    },
+    {
+      "source": "src/components/chat/NarrativeCheckCard.tsx",
+      "sha256": "9e182a101475ffdbb55029a43069a2d20e38db5f6de929579b831588bdff6095",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ProgressPanel.tsx",
+      "sha256": "030225f082c8f9bdf50f1ceeef57af60239504dd9a08f4005febd58383994593",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/QueueRow.tsx",
+      "sha256": "7d9d99dcbd1943643cfab25005d94a95cca929f0bd09d812e58e407ff194e254",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ReviewCard.tsx",
+      "sha256": "384d913a56bd0ceb22debf5a395d58c1c6297733c7dc97994383322b36e28934",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/SearchPalette.tsx",
+      "sha256": "e8da6cd21a982660990f52e238c5ed3cd8d09579c12a995e48c45f0391709a95",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/SopPlanCard.tsx",
+      "sha256": "b3ccc1b5721461786938744467ff199fc4f5619e6e8451c840ac59998bc65cbb",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/StagedChips.tsx",
+      "sha256": "44bca87021394bcbd8dfeda13d287ef246564f4784e0513eb889cc70281472bf",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/StoryTaskNavigationPanel.tsx",
+      "sha256": "77f66fea7fb8d258f30e5f85401b500fcadeed30d6cae4af0299b26fe9b5c85d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/SubAgentRow.tsx",
+      "sha256": "484513df9b3962f72f692b3c73cfc80cab7d3d261ff854fd4820d64f641a68ea",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/TaskReferenceInput.tsx",
+      "sha256": "5d706394899586a396c1421b1f18b367f64c020707c87aec5398d30606382954",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ToolCallCard.tsx",
+      "sha256": "96d4c3463ad7a440eafa1b58d443791422d6b008384c9d178d187e53a8857831",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/TurnProgressCard.tsx",
+      "sha256": "478fa17b193e0f1ece6f96021a316dca1702ae4027cbee39b6aa88dae19c2c31",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/chip-drag.ts",
+      "sha256": "18ee0148d229868ef68289cb8baddf10df5168ac6a13743afad371e26fe065a6",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/composer-editor.ts",
+      "sha256": "c348f2fa7fa0773d5015f0089ba45f6be356fa0f3eebc99752d2414edbed6a9a",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/cost-estimate.ts",
+      "sha256": "8cf34076b3a2083d23603fa8017927e4495d86fdd9a050d6fa1f8044c788a51b",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/entity-refs.ts",
+      "sha256": "84371aa7afe67cfa3c5dd0039c3a7ca9dd85be27ebcb9dae671bfdb3efa8f42c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/level-chip.ts",
+      "sha256": "5f12690677cb79aac5cb18232d1d03d704a7837d9733c7ee6c2a0cd2c32607b8",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/pending-answer.ts",
+      "sha256": "1cb0bb401427d5dc8e15ceb791a719d8fb56d2c41e91a2c85041832afeb828b2",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/provider-logos.tsx",
+      "sha256": "41d90b0dd3c4afbc7414c79037debcc51bd538c49c7c2fbce91dfa0ec66407a8",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "676f7fd77a4e98afbe8c5cca1494641d106ae211eb68a1e72f6b2cb3580280f2",
+      "reason": "Use approved local supplier/family SVG assets and desktop aliases; preserve the original ProviderLogo component API."
+    },
+    {
+      "source": "src/components/chat/scene-receipts.ts",
+      "sha256": "ad11c5bd62e1f1c518be7821b6baeb09a87938660d837cddb6cd44b89f8bdbe9",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/story-focus.ts",
+      "sha256": "240307ac1be47b9a038c27c57c03a6c654a6a0d246b3e923e64c56d29851dc4e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/types.ts",
+      "sha256": "470af0e7d6999083539ddad7915daeef7dd56ac4a5d068d0ec58c20266fcb174",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ui-events.ts",
+      "sha256": "35701916e544cf9d88c8cc7c743853ad01497d6050f3a979e97d5d6776532f1d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-agent-chat.ts",
+      "sha256": "66ef9e5cdae21409d0927f6a0d132c4783af16fbf2197fa81b340f62d53d0f1d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-card-selection.ts",
+      "sha256": "555fa1986710350495db750ff9e89744d5292481814aae9ff30ea905087bb1cb",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-draw-redraw-settings.ts",
+      "sha256": "adcf023b9dc3056538135b17e897bd3841995d7a7d5702e2d9a39c5616032922",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-entity-index.ts",
+      "sha256": "d85b2e78ec7e547600b78d002e81aa73d7ecaf0976d39d6ee1ba492a423b7c9c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-mention-candidates.ts",
+      "sha256": "444d6ae516a2f3ae3894ad55d36c1981a9be7631484730fec0e223fc7ffe7642",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/CommentBubble.tsx",
+      "sha256": "6219c90ebe9c12d7f2db533a21bdacdf913c357da5e8a6cb2b621fe685894668",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/CommentComposer.tsx",
+      "sha256": "a453aa7e9d279dec7298ab7f2188fc63dc3c1b2c905e94a845056adebc312672",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/CommentablePreview.tsx",
+      "sha256": "24754b26e4e0639d3fae6ab1b34229401915ad4b4f90b8fa7933ab23fa0f3764",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/comment-drafts.tsx",
+      "sha256": "8a38ee7973f540557d1c262ce8e16e2caffd41a046df3a32b89e3c684e13fa5e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/comment-save-coordinator.ts",
+      "sha256": "96e41d3e03b3b0a1ce46c772ac540f509530c3221492074617fd929e8b67915c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/types.ts",
+      "sha256": "a3b0d46a61828240f8df6ce3dce6fc5ec86e6cd554174adf0095c8aa36b795a4",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/use-monaco-comments.tsx",
+      "sha256": "f32c23a4d009e0eb2cd9ce1c46ef3c8beffa20286520e86c52c86953e84904ce",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/use-text-comments.ts",
+      "sha256": "23c98885782873ed570788b3b76d701d9a6e5fe2c1ec9bcbe542a9a2a06fc152",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/AttributesPanel.tsx",
+      "sha256": "d4db91f06cbb584a7e680c38700074fdd107ef824f52956b6dfd650f9f6a229c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/BubbleInput.tsx",
+      "sha256": "e6c7a82b24df0b2c5752b9a72caddca5df9e3fec6cfadc56a0aec04bf1812ac4",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CandidatePanel.tsx",
+      "sha256": "95518f213d55800cde4386d429e0a54f779482a2c69f53488953fd2acf92cf2e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CascadePanel.tsx",
+      "sha256": "457adb1e532eb45a5ae1d84dd904f3b8eff1621364ce072b58f64a707839e6bb",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterConflictDialog.tsx",
+      "sha256": "7e3ce52310acbba44953d1b1dc24031d698581a74edff4853f06b5d908193a8d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterContentPanel.tsx",
+      "sha256": "90a5e39f08f5478048366d33894b025dae3075c0453df310369d91b6d7770018",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterFinalizationDialog.tsx",
+      "sha256": "4e7c8ca40139418180ddac6e1ebcc1cca10d6fad858511f5c0a2a8241713ad03",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterHistory.tsx",
+      "sha256": "cbd5405ceca6565ec3bab9b54a9ecd2c290eb3d187f54065d39c3e9c7ae5a767",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterOutlinePanel.tsx",
+      "sha256": "9d5f1cecfe14162a80697d1fef47ce982e9c8f4aa3aa6034e5d94b67b2f7be48",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CharacterImagePanel.tsx",
+      "sha256": "da1834c51eccd565e46f085d37fc1bebce0387e22e7129976cbbefbe8877fd05",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "31f6efadd16f377c6afec6df5f8c1dba6815be72d726ab3ade8b33d1324e0211",
+      "reason": "Keep the original image-panel UI and add the approved model Logo to existing model choices."
+    },
+    {
+      "source": "src/components/content/CharacterPanel.tsx",
+      "sha256": "708c2905fcf85086ca53f963aad332d8d8c57f4b53f739150320340c7f7699cd",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CharactersPanel.tsx",
+      "sha256": "09713ac972a7bac0abdcf811abc1c3a7604a1990e34f03bc22cd4a97b49af7ed",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CreateLevelSystemDialog.tsx",
+      "sha256": "cab04fc64f16908f2776a751bcf6047245bc3f25b4f01c232e4b3f1d4c78404a",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CroppedImage.tsx",
+      "sha256": "15c25a3367db6d4631728e7464f753abce284e868abaf2ee1ee4e6f997cb218e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/DraftConflictTools.tsx",
+      "sha256": "b93ff09840c6dc94f421d1811f203550de76dc7d17b6f04bf0d6a3b82ee4f1bd",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/EntityAttributesEditor.tsx",
+      "sha256": "42f81ee3dd00f280ae1af63492a17ff8b8d299cac775a4b9d90a8c712fcfcba3",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ForeshadowPanel.tsx",
+      "sha256": "325a2a73a060eb8c1904696a1c56ecc876664c8d8835b369e3e382d6b158c35a",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ImageCropEditor.tsx",
+      "sha256": "eb1580defd63777ea0a3f984056c7da0d40a505fc1cfbf450242b518eea54f11",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ItemIcon.tsx",
+      "sha256": "0eb03c6188e6b5eb786858f626f14831e2711ee4ad4c5eff1007d92ecc60c3cd",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ItemImagePanel.tsx",
+      "sha256": "d796a4c6334f20f24b9f82893946ffd21f39aacb9221cc962a8c8d2fab8d8d9b",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "6038ff1b5bc8eb07270f455e1ddf550ca1a8517fcecc6fa09b446d6a652f306b",
+      "reason": "Keep the original image-panel UI and add the approved model Logo to existing model choices."
+    },
+    {
+      "source": "src/components/content/ItemLevelPicker.tsx",
+      "sha256": "8924eba47003cbe11d11dfe53ca79e3ff82750a8ce13c1bd30fd9a5b08d8a11a",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ItemPanel.tsx",
+      "sha256": "f1812118336b78a64004e9918f2d86107e8cf90693138bdd7cceb339e556196e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ItemsPanel.tsx",
+      "sha256": "9c418dd15922c4372ee9ed9e4a3bce1a7843368cf88170cfbe1d4136543d9fa3",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/LevelSystemEditor.tsx",
+      "sha256": "70f807c8a4cdfdeab5c62a5a318b2cb0c60df42c820cfa1a2cf41c7f79fcb937",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ManuscriptExportItems.tsx",
+      "sha256": "a80051c9981889db4b43f2f5379f8873587ea3b5197a90f80fa24cc059cf2749",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/NovelCoverPanel.tsx",
+      "sha256": "7f5a45b956f7ccbd202bf5979e2c50ab223f48b0f3afafc02bc1066873ed8c99",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "2a027342969c45fb3ac14b3ba8f90058c60686706b55ac36f4d5afdde1758970",
+      "reason": "Keep the original cover-panel UI and add the approved model Logo to existing model choices."
+    },
+    {
+      "source": "src/components/content/NovelOverview.tsx",
+      "sha256": "970c8d074ecc3a7f18768cb63f52071a89e9ca1767855f1251309bf7d4eeb0e4",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/OutlinePanel.tsx",
+      "sha256": "b8a5135a8115a30a13f660e4fc7f3d90db0a9d521b68f76a43ec11611bf8cf19",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/PlaceholderPanel.tsx",
+      "sha256": "536867fd430c773a3147114db21ae2b110f83c5b07b4adcc8f49861f02bc2389",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ReviewCard.tsx",
+      "sha256": "8705711f91d8bde7f8630824b01b56ed3777522a96d9ffdbaf57c8c87759e265",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ReviewHistory.tsx",
+      "sha256": "8fcc54ba2af545f4446a17ae0e251e9bb09b58344be0c779d758503b65f7aa58",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ScenePanel.tsx",
+      "sha256": "167eb50f1de5013f9338a3cc4d04da781f71def0131087969d006a686f3ac544",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ScenesPanel.tsx",
+      "sha256": "930f2f1263d0350563c96714a0b235315438e98710001d65d2b0879512b157d1",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/SettingContentEditor.tsx",
+      "sha256": "cf3f23a64a5b53e313e161b27b2b34565f29d5f3dd817ce110e6e35721593115",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/SettingPanel.tsx",
+      "sha256": "61f42053f6a2e21828ef760410f30a6660f16f35080982b07c71e2d29228cd12",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/StagedSaveSurface.tsx",
+      "sha256": "f3422b53a2f114a95f61ef90d04ea51784add328777cd0db48b69db788143c1b",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/StoryReviewPanel.tsx",
+      "sha256": "e7003ff450d492a03da6e606c5227b61a466df92767cf7da3180f5b7a194c30e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/StoryWorkflowPanel.tsx",
+      "sha256": "20104d25da1cf5ea929ef9285b474a24c2bbaebc429f82a04c5b61d61d6aa117",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/SubAgentPanel.tsx",
+      "sha256": "2e5ec896564db66803ecac7bd5d14e72509340739f637c2a028224a5228acfae",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ThemePanel.tsx",
+      "sha256": "aff844c8e53ce79dd8be84abdf67c2591de14a7efc2da5f188cd5207d1c9b75e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/TropePanel.tsx",
+      "sha256": "57d54cad2ea8155cbce87f7a7b5a69884f6c00d6cf60bd122b01c09bf8630f7a",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/WorldPanel.tsx",
+      "sha256": "2270db87b191f90b383b69ac211fb0a54895c5e31db28731c80ea631b79d9863",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/api.ts",
+      "sha256": "010710c08cb432e5557ecce75e48a790fde8616ebab4785d3e9a02fa03549160",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/candidate-accept.ts",
+      "sha256": "8a7366d1254a5a7961b7678eae2fc1a08b2e77f3929b5a3eedabd470b84190e2",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/chapter-status.ts",
+      "sha256": "032a484ce50305373c1622e1e03b1c142a4a7cab54fe18d0b35e68c4b0338332",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-chain.tsx",
+      "sha256": "ef95ce25924cbbb10aef1580e70650eaceba52c5a363eca0de98621828b91647",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-change-editor.tsx",
+      "sha256": "f37e88b25be088092fc2264ee6ef05c04fc7c0816a8412f41a5d0a583254d781",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-marker-input.tsx",
+      "sha256": "933e6b99cbfd7b571271a4ccf6c6d2fa7e2c71ca16fceb4aad4da4bb645aef90",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-stage-editor.tsx",
+      "sha256": "72041e49d63d82acc165356cbc5dad8e735c7a4ff414c2c1188e5db2abe8f2d5",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-tab.tsx",
+      "sha256": "71255d8b43a57df71e218fd163ec94dbb1ac05cccdc2de600e888fd52e621085",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-fields.tsx",
+      "sha256": "f4b65cdc95936067846dfd22ec6d08e9bf41a658c585dfa5b34884bb0bf6fc8c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/image-prompt.ts",
+      "sha256": "a9bd958a24234551b151fab3d7b364d5ad13bfee8aa6eaadd99c8b23be9c1967",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/item-levels.ts",
+      "sha256": "3f8f4b08bab8d87450068ba8bab5bb5875b2e4012401f535931b3d2627215df7",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/labels.ts",
+      "sha256": "96178b812bf7f4ed5409e466197c87e85ba78fd50df9a6466bdf6d5ddbaa7040",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/level-card-parts.tsx",
+      "sha256": "a776ff013029008ca322506af469bb5f8a376bb48f6be7524356ab09acc8d19e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/planning/PlanningWorkspace.tsx",
+      "sha256": "2f5ecfc904fe44183cda2d45de7c0d4d6e4671ee0eb0b681e3accb841f7d9f68",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/planning/planning.module.css",
+      "sha256": "fbbc607031b8d620d23c03316b96f83d6267bd9283d276abc1910f438118c5de",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/registry.tsx",
+      "sha256": "50905bfc0a30b8f573a29f501c95dd613cdb32b4b9eb0c8318facfa64335f32c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/ConfigForm.tsx",
+      "sha256": "40de08cf8c8776ca3a3bf3e87ea7b1f0b9fa620e7ed896bbbcb4ed74b2de9108",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/ScenarioPanel.tsx",
+      "sha256": "459c30fe76bb89d3beac11c2ccd50f2e8c97b0ae97cd7da369abc77cfbea8e88",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/beats/BeatsView.tsx",
+      "sha256": "99005f3883a06addce3c2601df527ce97a469e7910ab73290ce9e1a094ef1dab",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/chat/ChatView.tsx",
+      "sha256": "c58835133e15514aa580a90cb77e60cbabbb5dd04c49f4b1d52b502f5de452f1",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/prose/ProseView.tsx",
+      "sha256": "83bc718a4c3cdbb27658d8ab25c11f6bfc908f1ca869ea3a85f76333d44a80d3",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/queries.ts",
+      "sha256": "abbb10e172286fe217ab888c45399102d1e4ed285b7c3a9b35bc8d3c8409d82b",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/trunk/TrunkView.tsx",
+      "sha256": "71206f75395751ea8348fe95ba09b04ef6d11e28ab3b3df5616644c204aa974c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/types.ts",
+      "sha256": "5e5949684634297e713a8d068dc9b9f0aa953418384dc535ea5afac5544032ec",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/SceneEditor.tsx",
+      "sha256": "5bb08c3e3a96506a64270779fbda908b19f1898369ebf2d1d8bcbe0728923fa5",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/SceneImagePanel.tsx",
+      "sha256": "91434d84a29004b1dea247905b096d7d402c23f85a341c28e1883f4b11910440",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/SceneTree.tsx",
+      "sha256": "433349b41220e992e13bc1b9499f1dab5bfa51689e483522ae121b3fab9434a9",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/SceneWorkspace.tsx",
+      "sha256": "9105921e4b2fa3870e09399d1c311489f1618bb236b10b23452c3bab664826a0",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/scene.css",
+      "sha256": "b2866434af627a7d2d740892113b33f8eb81b6afefb9afa56acff657e36bbbc2",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/use-scenes.ts",
+      "sha256": "e86fe10d14536cd223d4a101ac78d13ba0872bfac320d05f3989b605b6224e51",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/setting-content.ts",
+      "sha256": "3615146219f1d8d2dc3d92c2e3edbc44776dd09383a691a7243ca6d68e566ade",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/types.ts",
+      "sha256": "cf9c6a9827ec5d292484c3500b5bf87d9677348a5169549369b77822c04e8940",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/use-autosave.tsx",
+      "sha256": "bd053baf5706dc34d6a2e0709786098cc31e97dc17d4b11a5ea1efd16f39e412",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/editor/MarkdownEditor.tsx",
+      "sha256": "c0ff2fb88e9dcae198fce26a658a7bad64526377c22f6cfbcb14c1d8fd1fdfaa",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "4acebd907863aa40eef7f630167b95ad51d52ed1f259df491ae7cbfb40d1e59f",
+      "reason": "Add a desktop-scoped wrapper for local body typography; preserve the original editor, autosave, modes and comments."
+    },
+    {
+      "source": "src/components/editor/MarkdownPreview.tsx",
+      "sha256": "515add47c83cc25fe9b131d6baf7db288be23bd96a04110850f82a700e502fa1",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/editor/MonacoMarkdownEditor.tsx",
+      "sha256": "f2f97b391fbecb139b0ad8e95b48c21c6c58ff29af8b5534ef508ba5f603033c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "87d5574537b3bc3e67c5cfe84a886ab9a2096a2e7a07963f60876795eb93f2c5",
+      "reason": "Apply desktop body font, size, line-height, line-number and wrapping preferences through the existing editor options without remounting its model or undo history."
+    },
+    {
+      "source": "src/components/editor/monaco-setup.ts",
+      "sha256": "8361a4c9c2d9e705715782dd7019b5731912f0605c3a49db3b3d438ca0ad4191",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/editor/use-editor-commands.ts",
+      "sha256": "0ba9301fcf9b9000a4554656e796675d446009765cd32cd8059a78813274ba65",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/foreshadow/preview-references.tsx",
+      "sha256": "44eae5179a4c743ade8af0b4b09a2c0562937b37c4d280abf7bf72d9ce989707",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/foreshadow/references.tsx",
+      "sha256": "5b311f1fc9db9c985dcfa5973b8dfce5488fa16b34cc7595c7ec3d9b16672c32",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/foreshadow/use-editor-references.tsx",
+      "sha256": "ea892f32f47a4667ad3761b4b9dcfa09a52f25394f67b8d1080b626be4842b08",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/foreshadow/use-panel-focus.ts",
+      "sha256": "2a8f0bc935a0eaf621ea273943a46bbea5ea09baa8a28a57740d9e9d4ee2a8fe",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/ChatPanel.tsx",
+      "sha256": "b9ef45bfffd489a0f1220d8c9407eba516bfade56e05d822f962457dee59873a",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/ContentTabs.tsx",
+      "sha256": "1f8c9d1a6f1b7c14a9e83995289a7982b8089833ab8ef3d175b43ca94e59a478",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/CreateNovelDialog.tsx",
+      "sha256": "3a329227a8ef9a16a2eeaaa9816b4659c473814da38bf8f852a1dd42467022bf",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/DashboardShell.tsx",
+      "sha256": "a527960ee848cad6723c29003d5e0fd941c6a48cec614be40fa2b0f57395e830",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "ea209083139e181a43a639c7dd44a2b94d4259f3417612cae7f3c5d4b50f1707",
+      "reason": "Pass an optional local avatar URL through the existing Web shell; retain its original panels, sizing and visibility animations."
+    },
+    {
+      "source": "src/components/layout/OutlineTreeMenu.tsx",
+      "sha256": "765687e69259d5d508b955294133ece9949828c737d87bd8bff35f7d00a72201",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/ScenarioCreateDialog.tsx",
+      "sha256": "08f8a69505a1e4df82b48d56abd7fe9d08c412c94445b64af6181d3487ad9cd8",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/SidebarHoverCard.tsx",
+      "sha256": "19db0820848f4d1e36748a9e297eafa10fed00c7e9e67321589aa1791c2249c7",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/SidebarTree.tsx",
+      "sha256": "6c4d58d3bce93d999536f423f625b59a33ab7739fc754651416fd01b85e9950b",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "91278f2d4347d4ef492d4f45e70348dbb5f1f9277512d39edad7366fe743b156",
+      "reason": "Keep the Web tree/account-menu layout, desktop window-controls/settings entry and confirmed local profile; render only the saved local avatar in the original account icon slots."
+    },
+    {
+      "source": "src/components/marketing/auth-shell.tsx",
+      "sha256": "36ab051f0093b10e066a721d51fffe46b5cf560451acff8d1131ac85b840e08e",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/marketing/faq-cta.tsx",
+      "sha256": "3188e99a6a5015976dafdbc0f46912569edae58b49973a4457e0938af096130c",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/marketing/features.tsx",
+      "sha256": "0cf8110a16e7f1da41f9bd586c7f58717591faf6e0d35bc0d3230c5f4a65386e",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/marketing/hero.tsx",
+      "sha256": "4da206647671b97dc9138b420fe93d2bec1168e2b9f9bd12cd9590ffa4043911",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/marketing/pricing.tsx",
+      "sha256": "3d94135d8ad7d1d687cec9b02a61ed5b54c86f76cb812db44a03d81c097a58fe",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/marketing/seal.tsx",
+      "sha256": "4e232e75bf0dadd72309785920a05b64737e8e4017daff87556af0f438bda21d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/marketing/section-heading.tsx",
+      "sha256": "cdad228f2a4ac7b77a42196db0cb791bc9d38a16701d6ab7e29de68e909e96a1",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/marketing/site-footer.tsx",
+      "sha256": "9cdeaecbb563bcf9f82bc59e043b108a87232a77a5c0bb7a9275e5cb755f3c13",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/marketing/site-header.tsx",
+      "sha256": "13fd3aa7d2c92333833d9b57e2a967d0c12a34914c32a4c3be2870919e089684",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/marketing/workflow.tsx",
+      "sha256": "092a93f4f904ecc632e5f7c880d59b323cbaaf85df61a88fb435d3b3b4ac8eb6",
+      "disposition": "excluded-platform",
+      "allowedChanges": [],
+      "status": "not-imported"
+    },
+    {
+      "source": "src/components/score/ImproveContentDialog.tsx",
+      "sha256": "4f01fcc53c6a91e8a6e619e19b6050650272c4cdf915263d396043540ee26e5b",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ReviewCommentsSection.tsx",
+      "sha256": "6bf8022d6cb8162dfe950a65cb3ff65b3f3067ca6a002a2600445da1bd7172d6",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ScoreHoverCard.tsx",
+      "sha256": "30e1fd87832a57a56b0d59859023f7e7c516a6c8b02093926a2e072d813036c9",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ScoreIndicator.tsx",
+      "sha256": "02977009d3e9ac9c1a46b0b28c58ac5ef57b2f5d5bfe055fa86a4068dff7d604",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ScoreReportPanel.tsx",
+      "sha256": "1b00d0110a4cf1cdcb86655814ad30204684952579b20278a83717c883ff4108",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/use-improve-dialog-settings.ts",
+      "sha256": "c7e892756a4a385f65647e0fbc8d67a52f397636bf8663139e788488b5746d2b",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/use-score-report.ts",
+      "sha256": "35f940944b7fa5fd3809fc24eaa8c31f366ed68a76c090b3dc6cde3217c0d1a3",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/theme/ThemeSwitcher.tsx",
+      "sha256": "647ad39154374d141abfdcb8fb68d7095d43c58d5fbc51b3e4e4981161ec7c4d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/avatar.tsx",
+      "sha256": "357b2f9aac0192c071cb2ed65cb6e4c8ec01fa02fc15cf50d889b85731b75666",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/badge.tsx",
+      "sha256": "968b0403af74a785c9408ca69a677235e49d0c80b2c27fb9858ad421a8778c7d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/button.tsx",
+      "sha256": "d14549ab3ba7a9d5d1f424c2599233bffa0b317121abf3b6efa2fb902d5e2781",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/card.tsx",
+      "sha256": "d8113cbf964f8d1aadf2649d2944d8bbc6e3cfd49d36746f76868cbc4dde3cfe",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/checkbox.tsx",
+      "sha256": "5b7c192cb21dc5dc5810503c2a8250ce3a615d9e1b697dde29a766fc3506edeb",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/dialog.tsx",
+      "sha256": "ccabf6cc674a68b09d9168904bb46b7c1075a67312cf6f51f3e38b8eeacd2fdb",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/dropdown-menu.tsx",
+      "sha256": "7c72e5f3a80edee1e429c23da1675c8e0eb5ff502f38f1449eb5286543ab738d",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/form.tsx",
+      "sha256": "d19ea96791f9706e1206161318841a66e78ad8bb20caa972124e5899799832d8",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/input.tsx",
+      "sha256": "f7d6ecff9a4d631feeaf401c02bb87e26ddb38131c55d15a43b9290747390847",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/label.tsx",
+      "sha256": "7f19b8476658d25ff197c84030e58cd7395059d876a54630e025951e474ebdae",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/scroll-area.tsx",
+      "sha256": "42de3962daca60255bf1d3cd90bd3c038db73a3ed61ecaac6cffc6a153181e4a",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/select.tsx",
+      "sha256": "ca3bd1b370ea67b84632d435c22d8270752fa6013c06c365162af265e4a0e87e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/separator.tsx",
+      "sha256": "75085bd84ff6965e4a356c53a4689799cabf65caa93c0bba064d5a0c6fa78f13",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/sonner.tsx",
+      "sha256": "2dd975ad2170ba2570b00e58713dcbda90f26a7fffdaceb1ef7255f450c2d2a6",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/switch.tsx",
+      "sha256": "c98e4b259d28463c34c65cdbfba447d5ccd4fed0a138b7acf8c796309e61e2d6",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/table.tsx",
+      "sha256": "a13f55a7c1406197608f223006cf16f211a257b213362caaef0d2abf3a389c8f",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/tabs.tsx",
+      "sha256": "8bf9ee3935ab86c268a2a71cb5b4b67d3d5587ca9f2e0bf25f37ffdb1980434c",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/tentative-badge.tsx",
+      "sha256": "68c28410de0d9d6dbc9eb8557a6f301a845b278bbcdb98ddec81bcef71836747",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/textarea.tsx",
+      "sha256": "58b58d84fc54ba5f4ca46937870c619349fd9eccc4d494250ac7bc73a94e05e9",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/tooltip.tsx",
+      "sha256": "2cea2294d4947b88d815860f64e0b5e0eb47a59bde47cfd194aac2230c923865",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/stores/chat.ts",
+      "sha256": "c0f32dda8be682bdee7493bd303a89ecd21fc2e1f6a6851e436263717ad595e4",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/stores/scene-ui.ts",
+      "sha256": "2d3e9c4965538686da6c2b2a03ff6696f7301cbff3896ecac2cb3649017871b7",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/stores/staged-changes.ts",
+      "sha256": "49e6fd7130ac17ad69895797d24e360ea86e5285dc36a78783a96a9a0ac5bcd0",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "d6083296784088e5ab4528311f77d8ba7f008002e6ad0f3e49bf93dc2f905f80",
+      "reason": "Clarify that staged candidates do not increment committed version tokens; final approval and service CAS retain the original boundary."
+    },
+    {
+      "source": "src/stores/story-activity.ts",
+      "sha256": "84c56a898e7f4cd576f605d1c0ab6b98db9688dd7b6437029575863e0dc13c6b",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/stores/tabs.ts",
+      "sha256": "d5492da7109fa9206938735889af6066d1e5d75b884f358cd672aa9e33c87f92",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop platform adapter only; preserve original rendering/behavior"
+      ],
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/globals.css",
+      "sha256": "c1a4360e7d13a1031fbe16bd7f17cfd848011f438c06ce38c11be0581e6b499e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop theme/local resources integration"
+      ],
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "1c525396a7b2f6726b884be92395034ada375784495b860c895fc2b14258561c",
+      "reason": "Keep original semantic tokens and Web UI styles; exclude prototype fixtures from Tailwind scanning."
+    },
+    {
+      "source": "src/app/providers.tsx",
+      "sha256": "9e97c52e99c957aa969cb2cd65ada80f130306391e744e33bbed2f271f5ac14e",
+      "disposition": "reuse",
+      "allowedChanges": [
+        "desktop theme/local resources integration"
+      ],
+      "status": "imported-unmodified"
+    }
+  ]
+}

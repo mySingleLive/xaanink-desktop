@@ -1,0 +1,11 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const {capturedKey,validShortcut,canonicalKey,shortcutConflicts}=require('./desktop-shortcut-keys.js');
+test('modifier-only keys and composition never create bindings',()=>{for(const key of ['Control','Shift','Alt','Meta','Dead','Unidentified'])assert.equal(capturedKey({key}),null);assert.equal(capturedKey({key:'a',code:'KeyA',isComposing:true}),null);assert.equal(capturedKey({key:'a',code:'KeyA',repeat:true}),null);});
+test('physical modifier combination normalizes option-transformed letters',()=>assert.equal(capturedKey({key:'å',code:'KeyA',metaKey:true,altKey:true,shiftKey:true}),'Cmd+Alt+Shift+A'));
+test('single navigation keys, escape, tab, space and digits are captured',()=>{for(const key of ['Escape','Tab','ArrowLeft','F12','Delete'])assert.equal(capturedKey({key,code:key}),key);assert.equal(capturedKey({key:' ',code:'Space'}),'Space');assert.equal(capturedKey({key:'!',code:'Digit1',shiftKey:true}),'Shift+1');});
+test('punctuation and numpad have stable names accepted by validator',()=>{for(const code of ['Equal','BracketLeft','BracketRight','Backslash','Quote','NumpadAdd','Numpad7','NumpadEnter','IntlBackslash']){const key=capturedKey({key:'?',code,ctrlKey:true});assert.equal(key,'Ctrl+'+code);assert.equal(validShortcut(key),true);}});
+test('aliases and chord-prefix collisions normalize, independent chords do not collide',()=>{assert.equal(canonicalKey('Command+Shift+A'),canonicalKey('Shift+Meta+A'));assert.equal(shortcutConflicts('Ctrl+K','Control+K Control+C'),true);assert.equal(shortcutConflicts('Ctrl+K Ctrl+C','Ctrl+K Ctrl+U'),false);});
+test('invalid, duplicate and modifier-only input cannot be saved',()=>{for(const key of ['','Ctrl','Ctrl+Ctrl+A','Ctrl+Shift','Cmd+Unidentified','Ctrl+K garbage'])assert.equal(validShortcut(key),false);assert.equal(validShortcut('Cmd+K Cmd+C'),true);});
+
+test('Plus defaults conflict with captured shifted Equal, numpad remains distinct',()=>{const key=capturedKey({key:'+',code:'Equal',metaKey:true,shiftKey:true});assert.equal(shortcutConflicts('Cmd+Plus',key),true);assert.equal(validShortcut('Cmd+Shift+Plus'),true);assert.equal(shortcutConflicts('Cmd+Plus','Cmd+NumpadAdd'),false);});

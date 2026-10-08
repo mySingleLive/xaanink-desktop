@@ -1,0 +1,2 @@
+ALTER TABLE "Theme" ADD COLUMN "length" TEXT NOT NULL DEFAULT '';
+ALTER TABLE "Theme" ADD COLUMN "authorPosition" JSONB;

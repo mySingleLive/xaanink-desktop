@@ -1,0 +1,296 @@
+{
+  "version": "0.11",
+  "date": "2026-10-07",
+  "scope": "仅本轮设置布局原型检查，不构成真实桌面验收",
+  "checks": [
+    {
+      "id": "A01",
+      "description": "主题标题在上、三张图示占满下一行",
+      "pass": true,
+      "detail": {
+        "aligned": true,
+        "full": true,
+        "previewHeight": 112,
+        "stacked": true
+      }
+    },
+    {
+      "id": "A02",
+      "description": "两个目录配置标题在上，全宽路径和动作同行",
+      "pass": true,
+      "detail": [
+        {
+          "actionSameRow": true,
+          "full": true,
+          "fullPath": true,
+          "stacked": true,
+          "width": 673
+        },
+        {
+          "actionSameRow": true,
+          "full": true,
+          "fullPath": true,
+          "stacked": true,
+          "width": 673
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "description": "短配置继续左右布局",
+      "pass": true
+    },
+    {
+      "id": "A04",
+      "description": "目录选择回填并保留完整路径提示",
+      "pass": true
+    },
+    {
+      "id": "U01",
+      "description": "用户卡片新背景与带可访问名称的纯编辑图标",
+      "pass": true,
+      "detail": {
+        "avatarWidth": 72,
+        "background": "linear-gradient(115deg, color(srgb 0.951373 0.88549 0.832941), color(srgb 0.971686 0.938196 0.886745))",
+        "buttonWidth": 34,
+        "iconOnly": true,
+        "label": "编辑用户",
+        "title": "编辑用户"
+      }
+    },
+    {
+      "id": "U02",
+      "description": "编辑图标可由Tab聚焦并用Enter打开",
+      "pass": true
+    },
+    {
+      "id": "U03",
+      "description": "用户编辑仍保留全高左头像与右属性布局",
+      "pass": true
+    },
+    {
+      "id": "U04",
+      "description": "图标编辑取消仍保留原资料",
+      "pass": true
+    },
+    {
+      "id": "U05",
+      "description": "640玄墨长笔名/邮件省略且编辑按钮保持可见",
+      "pass": true,
+      "detail": {
+        "buttonVisible": true,
+        "email": "long.profile.layout.review@example.invalid",
+        "noOverflow": true,
+        "theme": "ink",
+        "title": "长笔名布局验证：行到水穷处坐看云起时"
+      }
+    },
+    {
+      "id": "U06",
+      "description": "窄窗长资料的编辑按钮实际可点击",
+      "pass": true
+    },
+    {
+      "id": "M01",
+      "description": "窄窗模型卡片至少80px且操作按钮可见",
+      "pass": true
+    },
+    {
+      "id": "M02",
+      "description": "预设模型全部属性上标题下全宽控件",
+      "pass": true,
+      "detail": [
+        {
+          "full": true,
+          "label": "供应商",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "API Key",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "可用模型",
+          "stacked": true
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "description": "短窗模型全宽下拉可搜索且不越界",
+      "pass": true,
+      "detail": {
+        "full": true,
+        "inside": true,
+        "items": 1,
+        "open": true
+      }
+    },
+    {
+      "id": "M04",
+      "description": "全宽长目录End末项完整可见且保持单选",
+      "pass": true
+    },
+    {
+      "id": "M05",
+      "description": "新布局保存只新增已选的一个模型",
+      "pass": true
+    },
+    {
+      "id": "M06",
+      "description": "自定义全部八项含高级属性均上下全宽",
+      "pass": true,
+      "detail": [
+        {
+          "full": true,
+          "label": "供应商",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "供应商名称",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "协议",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "展示名称",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "Base URL",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "模型 ID",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "API Key",
+          "stacked": true
+        },
+        {
+          "full": true,
+          "label": "上下文上限（可选）",
+          "stacked": true
+        }
+      ]
+    },
+    {
+      "id": "M07",
+      "description": "640×560长表单可滚到高级字段且底部按钮始终可见",
+      "pass": true,
+      "detail": {
+        "fields": [
+          {
+            "full": true,
+            "label": "供应商",
+            "stacked": true
+          },
+          {
+            "full": true,
+            "label": "供应商名称",
+            "stacked": true
+          },
+          {
+            "full": true,
+            "label": "协议",
+            "stacked": true
+          },
+          {
+            "full": true,
+            "label": "展示名称",
+            "stacked": true
+          },
+          {
+            "full": true,
+            "label": "Base URL",
+            "stacked": true
+          },
+          {
+            "full": true,
+            "label": "模型 ID",
+            "stacked": true
+          },
+          {
+            "full": true,
+            "label": "API Key",
+            "stacked": true
+          },
+          {
+            "full": true,
+            "label": "上下文上限（可选）",
+            "stacked": true
+          }
+        ],
+        "footerVisible": true,
+        "scrollable": true,
+        "scrolled": true
+      }
+    },
+    {
+      "id": "M08",
+      "description": "长表单滚回顶部的供应商菜单不越内容边界",
+      "pass": true
+    },
+    {
+      "id": "M09",
+      "description": "上下结构编辑取消仍保留原模型记录",
+      "pass": true
+    },
+    {
+      "id": "M10",
+      "description": "普通窗口模型卡片至少86px，多行细线与圆角保留",
+      "pass": true
+    },
+    {
+      "id": "A05",
+      "description": "Windows640玄墨主题上下结构、三选项同排且无溢出",
+      "pass": true,
+      "detail": {
+        "noOverflow": true,
+        "oneRow": true,
+        "platform": "win",
+        "stacked": true,
+        "theme": "ink"
+      }
+    },
+    {
+      "id": "A06",
+      "description": "Windows窄窗目录保持上下全宽且无横溢出",
+      "pass": true,
+      "detail": {
+        "overflow": false,
+        "paths": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "D01",
+      "description": "DOM ID唯一、资源本地且继续禁止远程请求",
+      "pass": true,
+      "detail": {
+        "csp": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'",
+        "duplicates": [],
+        "external": []
+      }
+    },
+    {
+      "id": "D02",
+      "description": "页面无控制台错误",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

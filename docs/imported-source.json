@@ -1,0 +1,3627 @@
+{
+  "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
+  "files": [
+    {
+      "source": "postcss.config.mjs",
+      "destination": "postcss.config.mjs",
+      "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/0001_init.sql",
+      "destination": "prisma/migrations/0001_init.sql",
+      "sha256": "bba69ada3c5d76f76ed8cffbace43da1a489c255620cdb98af2e6f9cb06ed389",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260720165526_init/migration.sql",
+      "destination": "prisma/migrations/20260720165526_init/migration.sql",
+      "sha256": "fa57bb14a13e17029ab058706616a80dbf8e075edb220a1d4f5786f85ef1bf21",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260722145525_attributes_items_scenes_character_images_model_kind/migration.sql",
+      "destination": "prisma/migrations/20260722145525_attributes_items_scenes_character_images_model_kind/migration.sql",
+      "sha256": "d728b9a7abb53f5ab7d21ec8b4b933df0fbef568080fb66f5e992a331dd02924",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260722155610_character_image_versions_crop/migration.sql",
+      "destination": "prisma/migrations/20260722155610_character_image_versions_crop/migration.sql",
+      "sha256": "3a39fe72814043cfa577a346431022838113cb2ee1744643bb2f3bf41f5186f4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260722171345_attribute_value_type/migration.sql",
+      "destination": "prisma/migrations/20260722171345_attribute_value_type/migration.sql",
+      "sha256": "2cc35ed27fa7f3e60f15b274a3ff892956345529bcaf504f21506ba84acc8758",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260724004334_world_tree/migration.sql",
+      "destination": "prisma/migrations/20260724004334_world_tree/migration.sql",
+      "sha256": "123eed9ca4c86a72064388715248aaf8d04a163e299d1e62a85df9b2685bffdd",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260725190320_model_context_window/migration.sql",
+      "destination": "prisma/migrations/20260725190320_model_context_window/migration.sql",
+      "sha256": "438d087f149768db6465ef2fce6283f4dd544e011b8654b94f480f4110fac5a0",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260729170657_text_comments/migration.sql",
+      "destination": "prisma/migrations/20260729170657_text_comments/migration.sql",
+      "sha256": "1ea1ba1dd6aeae3471c8cf207f1314012bbf532cfbfc7f424f391f3bba17057e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260731162125_novel_cover_image/migration.sql",
+      "destination": "prisma/migrations/20260731162125_novel_cover_image/migration.sql",
+      "sha256": "b066e7b3af36998fe699682942400e91995c8a9d6f7857d57d358a2aab274873",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260804161643_add_character_gender/migration.sql",
+      "destination": "prisma/migrations/20260804161643_add_character_gender/migration.sql",
+      "sha256": "92c84578880e383c32959f2c0516eb3cb4c23b1f28880db3a9fb27e6ccf7deb7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260806191549_subagent_run/migration.sql",
+      "destination": "prisma/migrations/20260806191549_subagent_run/migration.sql",
+      "sha256": "618d9202e8a94fe23dd1c08bbb0e3950fadc4466304cec0602a1bfc88a5775fa",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260807162040_sop_graph/migration.sql",
+      "destination": "prisma/migrations/20260807162040_sop_graph/migration.sql",
+      "sha256": "e0d0fb4785b08259b5ee604b218c1721cd2fa087c181341724205b13e5d40121",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260811125225_storyboard/migration.sql",
+      "destination": "prisma/migrations/20260811125225_storyboard/migration.sql",
+      "sha256": "00f3d7c918d2a5e88f009443c9322945d308533fde1cd56956bc9c6e24fe3639",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260812182453_storyboard_node_xy/migration.sql",
+      "destination": "prisma/migrations/20260812182453_storyboard_node_xy/migration.sql",
+      "sha256": "c8c2ec184855ecce35217643d9143555173e386b326b9bab0137dd8ef51a2b9c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260816161145_add_storyboard_emotions/migration.sql",
+      "destination": "prisma/migrations/20260816161145_add_storyboard_emotions/migration.sql",
+      "sha256": "a2bc437f485d6a7d70a282c85ef064032bc6c033ef54c19efd13f08cf6ecfb7e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260817083453_storyboard_timeline/migration.sql",
+      "destination": "prisma/migrations/20260817083453_storyboard_timeline/migration.sql",
+      "sha256": "81fc1901d7b4f120c70eea60265290e505e716d2c11527790f573b30202b1964",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260817192127_trunk_node_dialogues/migration.sql",
+      "destination": "prisma/migrations/20260817192127_trunk_node_dialogues/migration.sql",
+      "sha256": "bd8be696567f1d7d262996f78154a0a94d406222db4044777bc616e439aa7d93",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260818132918_character_motivations/migration.sql",
+      "destination": "prisma/migrations/20260818132918_character_motivations/migration.sql",
+      "sha256": "f5d5219dc039aa73e78bf6bb99a0ca09cbc1c5d9250ede4b939fa047e6402689",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260818175142_character_personality_tags/migration.sql",
+      "destination": "prisma/migrations/20260818175142_character_personality_tags/migration.sql",
+      "sha256": "8015c6c3fbeafa4290b5482c96dcb9265d43b2d383f168850f330085bf070ccb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260820120000_character_profile_sections/migration.sql",
+      "destination": "prisma/migrations/20260820120000_character_profile_sections/migration.sql",
+      "sha256": "b00e9477e41fd1cf3eb0fd716f58db267b234a8d4fd053e8f2419594990d84c2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260820150000_character_physique_fields/migration.sql",
+      "destination": "prisma/migrations/20260820150000_character_physique_fields/migration.sql",
+      "sha256": "57e144404c05fa5708073437d6370f4ddd96de44785dfd67cb482f74864561e3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260823134012_scenario_lab/migration.sql",
+      "destination": "prisma/migrations/20260823134012_scenario_lab/migration.sql",
+      "sha256": "17b7dd7e6fec5c29d83b0f04511be8a133fc5b93e7bf13955cdd42166ce8b1e6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260824150324_scenario_turn_flow/migration.sql",
+      "destination": "prisma/migrations/20260824150324_scenario_turn_flow/migration.sql",
+      "sha256": "8db92752dc4ea8cd307b9688c4ad6ee2c9e8aad0d56cdf07c9252968571308fb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260826181918_shotcard_strict_node/migration.sql",
+      "destination": "prisma/migrations/20260826181918_shotcard_strict_node/migration.sql",
+      "sha256": "722a9d4e0faf7f05b2a99ed89d6a9363044a8051f51fedc8e00b25393fad6228",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260827083824_shot_card_detail/migration.sql",
+      "destination": "prisma/migrations/20260827083824_shot_card_detail/migration.sql",
+      "sha256": "eccda8772090a73642687d7291334e9c2b2e9344455339b66e9a8554111b6ab4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260827114721_shotcard_detail_source/migration.sql",
+      "destination": "prisma/migrations/20260827114721_shotcard_detail_source/migration.sql",
+      "sha256": "6412167c640fa6bcdd7fddb1b2b2b2e54b2cbafe30507600f6d4f413a0615316",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260828081935_storyboard_prose/migration.sql",
+      "destination": "prisma/migrations/20260828081935_storyboard_prose/migration.sql",
+      "sha256": "e656783d27027e2b35774241d9db28ee90e3cb49f862287d0213d5373aeb57dc",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260829171249_storyboard_outline_kind/migration.sql",
+      "destination": "prisma/migrations/20260829171249_storyboard_outline_kind/migration.sql",
+      "sha256": "f1c11e6d79d6371b0c15e1c6aeae98d355594b6c1521c51899514992fec5a426",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260902180947_score_report_target_dims/migration.sql",
+      "destination": "prisma/migrations/20260902180947_score_report_target_dims/migration.sql",
+      "sha256": "b517882c61cafb2702a1bfc5bacbfe47867b7fd5f96401ea40ca6c36c43512e7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260903224749_comment_status_rejected/migration.sql",
+      "destination": "prisma/migrations/20260903224749_comment_status_rejected/migration.sql",
+      "sha256": "e7f7955e6c9a8ade4eb361a7e79ebd2ee07b2ea4e91d4d9d34649f0a6a927e7a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260905143302_conversation_model_choice/migration.sql",
+      "destination": "prisma/migrations/20260905143302_conversation_model_choice/migration.sql",
+      "sha256": "781c1a6803a5dac1b889710260267b3181eace689c583ca382d400131e726e27",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260905175758_ai_model_free_flag/migration.sql",
+      "destination": "prisma/migrations/20260905175758_ai_model_free_flag/migration.sql",
+      "sha256": "1c4490db264b2527e58f5378b1d7bf444e3a602dc7570ebff236a3687392a802",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260906144754_conversation_context_compaction/migration.sql",
+      "destination": "prisma/migrations/20260906144754_conversation_context_compaction/migration.sql",
+      "sha256": "57143c36f16eca9a424f0a270a7756dbc1c8fedbf332167b89a94066ebe14d69",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260906150304_conversation_max_step_input/migration.sql",
+      "destination": "prisma/migrations/20260906150304_conversation_max_step_input/migration.sql",
+      "sha256": "432485d4ef2414a01a995e1976593c2162d2101a61287e2084fdcdec90fc3ab6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260906151057_conversation_calibration_fields/migration.sql",
+      "destination": "prisma/migrations/20260906151057_conversation_calibration_fields/migration.sql",
+      "sha256": "3f7d2e57bf80b4e003faccba02f9f128b03effcd90153d67cd21e6ac0d73c0ac",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260908120000_system_config/migration.sql",
+      "destination": "prisma/migrations/20260908120000_system_config/migration.sql",
+      "sha256": "16af081ae8be585e4f31c4bf36cf96d9275deface66143e0638a2b0a28865b05",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909100000_safe_content_commit/migration.sql",
+      "destination": "prisma/migrations/20260909100000_safe_content_commit/migration.sql",
+      "sha256": "88ede6eccacd0d31080b709bce2715e18567bf57afee935907a114299ca85813",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909110000_content_candidates/migration.sql",
+      "destination": "prisma/migrations/20260909110000_content_candidates/migration.sql",
+      "sha256": "19f9f96824579ea66ed88362305e8377b9b7335f05afbf07073421153a02fb1f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909120000_atomic_comments/migration.sql",
+      "destination": "prisma/migrations/20260909120000_atomic_comments/migration.sql",
+      "sha256": "3b8f28c595c9b1aec618d8034f4fb609020c928e8bb1fa6fc4b793b9b4cf4e20",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909130000_novel_creation_request/migration.sql",
+      "destination": "prisma/migrations/20260909130000_novel_creation_request/migration.sql",
+      "sha256": "43afec435303fc1bffb3f1acbcfefcd51fe24fd3445a9637ab7daf55ea92878f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909140000_chat_turn_protocol/migration.sql",
+      "destination": "prisma/migrations/20260909140000_chat_turn_protocol/migration.sql",
+      "sha256": "f9e4f4693ff45f9cb22bfb190906578a9d0d5d4980cec8124da7617c74641962",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909140100_chat_request_attempt_link/migration.sql",
+      "destination": "prisma/migrations/20260909140100_chat_request_attempt_link/migration.sql",
+      "sha256": "b5dd8a59e4fdf84af3ed3236eb3d01223b4b8026c3d8ccedc3c7fc996ef110fe",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909150000_chat_actions_single_plan/migration.sql",
+      "destination": "prisma/migrations/20260909150000_chat_actions_single_plan/migration.sql",
+      "sha256": "2539d147103a33a2eb03674234d5c9264c70ca39f3b544466c78a3a8d1d5a452",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909160000_candidate_quality/migration.sql",
+      "destination": "prisma/migrations/20260909160000_candidate_quality/migration.sql",
+      "sha256": "a5e3eb397ee17d482affbcdc3f9f3cb875468cb3213d2890cb6dce6dbd6ec3f0",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909160100_candidate_comment_thread/migration.sql",
+      "destination": "prisma/migrations/20260909160100_candidate_comment_thread/migration.sql",
+      "sha256": "0d4f2d36417c297d5807df6662196e2e1da3031570e25b14b8d710fafb0dfc46",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909160200_candidate_withdraw_status/migration.sql",
+      "destination": "prisma/migrations/20260909160200_candidate_withdraw_status/migration.sql",
+      "sha256": "943261eb9a9b9447a724fec5bf752dff7e907f3ab6a9b8c88d0bd3b6d5e97f13",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909160300_candidate_reviewing_status/migration.sql",
+      "destination": "prisma/migrations/20260909160300_candidate_reviewing_status/migration.sql",
+      "sha256": "8cb5068bd62a4c3e7c04164dd305c87dfaf99d7c3070c6afa1b2e788c3346fcb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909170000_world_tree_guard/migration.sql",
+      "destination": "prisma/migrations/20260909170000_world_tree_guard/migration.sql",
+      "sha256": "46cbcc99a07b2a25b93659e1f4454ede2f98bffed121b98695549e02ae88f762",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260909180000_cost_observation/migration.sql",
+      "destination": "prisma/migrations/20260909180000_cost_observation/migration.sql",
+      "sha256": "0a1e390bee8b7f3bfb22129d7e4e2df528731cd9bff09b4c56554d9e81a2aee6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260911073226_foreshadow/migration.sql",
+      "destination": "prisma/migrations/20260911073226_foreshadow/migration.sql",
+      "sha256": "864e4e16040464f9c89439ba3c52f233570164bf5f6a17cf67505e2858e12d5a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260911120844_setting_world_history/migration.sql",
+      "destination": "prisma/migrations/20260911120844_setting_world_history/migration.sql",
+      "sha256": "1ae6a41e35b923cef814af15b112ed11b4a728c242bc82b19cbbc64d40cfe491",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260914090000_foreshadow_references/migration.sql",
+      "destination": "prisma/migrations/20260914090000_foreshadow_references/migration.sql",
+      "sha256": "4c66c0b78a0cfa8caadd1d36709cafa9d3c2d52df36d5e2fa51b53d50fe5b380",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260914090000_story_workflow/migration.sql",
+      "destination": "prisma/migrations/20260914090000_story_workflow/migration.sql",
+      "sha256": "2f32bae941b4f8c44eb16f1bf51ec266c1b494f1a42bb88cc99f8a1308b26147",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260918181112_item_card_redesign/migration.sql",
+      "destination": "prisma/migrations/20260918181112_item_card_redesign/migration.sql",
+      "sha256": "1c6fc259c1398906f1ccff561714cabf6a8d22ea066caaf15cf7f75c51af9e0a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260919094416_add_character_arc_stages/migration.sql",
+      "destination": "prisma/migrations/20260919094416_add_character_arc_stages/migration.sql",
+      "sha256": "5b23eab6e98de06b3eb017680adaaaedb837f388b2b0c6cbd14889a2a61e10f7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260923090000_planning_document/migration.sql",
+      "destination": "prisma/migrations/20260923090000_planning_document/migration.sql",
+      "sha256": "dd0dc201d09be4d4f5e0683786364baaace568ef7fb514f0e6571f4b7c4cd5d9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260924_storyboard_retirement/migration.sql",
+      "destination": "prisma/migrations/20260924_storyboard_retirement/migration.sql",
+      "sha256": "7eadbbbe36be439db6a0ab684a5de530f9ed5de96e8014f1c3ddd9de6413ce3b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20260928064347_candidate_draw/migration.sql",
+      "destination": "prisma/migrations/20260928064347_candidate_draw/migration.sql",
+      "sha256": "e0c16b4a7bf69586f1f62f7bd3c58f1b259f544520edaa9f34fa45a5c450b839",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20261003090000_theme_position/migration.sql",
+      "destination": "prisma/migrations/20261003090000_theme_position/migration.sql",
+      "sha256": "2b81863bdc91414341d85b8bded690c2563b56f61fd140f07d2e27c99e253439",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/20261004000100_recursive_scenes/migration.sql",
+      "destination": "prisma/migrations/20261004000100_recursive_scenes/migration.sql",
+      "sha256": "5f26d350e116a977f96e986aa102e080c1a6df26eab8e1b24c706295fb5caf72",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/migrations/migration_lock.toml",
+      "destination": "prisma/migrations/migration_lock.toml",
+      "sha256": "99836963713b4f5b269ad49af0ed3d7b0b2e336115c2f92dc9ac683d139d0900",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "prisma/schema.prisma",
+      "destination": "prisma/schema.prisma",
+      "sha256": "d081d3d878db70a7eb07e18060816887b47a9c74059c12c4d6f9754efe43593d",
+      "status": "adapted-desktop-boundary",
+      "reason": "Add immutable-request usage metadata carrier modelSnapshot; no credentials in local model references",
+      "currentSha256": "8aa540edfb14209e98252fcd71d4c96ca99e1ab3b089e59792dea01891a52d37"
+    },
+    {
+      "source": "prisma/seed-templates.ts",
+      "destination": "prisma/seed-templates.ts",
+      "sha256": "5b53c9f288d034314cb813664f7412204b892aa4ded3cca95994533717aee098",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/favicon.svg",
+      "destination": "public/brand/favicon.svg",
+      "sha256": "214f2f71895816bbcfb42b02a573a653baa87c69341073d412db38bd030fe355",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-avatar-ink.svg",
+      "destination": "public/brand/logo-avatar-ink.svg",
+      "sha256": "5416a92725415781a64b33538f4f36786a03946cce79f11d8f259f808f833e48",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-avatar-paper.svg",
+      "destination": "public/brand/logo-avatar-paper.svg",
+      "sha256": "776d9defbd617f38830c025bee2454a2b7d022c63878d4306bfae8e9b34a8231",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-formal-ink.svg",
+      "destination": "public/brand/logo-formal-ink.svg",
+      "sha256": "900fe03f54c6344df979ecd410105e7bf017ea9b6bdf6bdf43a5ef67b3d46147",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-formal-paper.svg",
+      "destination": "public/brand/logo-formal-paper.svg",
+      "sha256": "4f8deb36dd76f8ffc53d3e83e80ef9ae725f9fe8d5e2b91da9d19f26d2bb63fa",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-horizontal-ink.svg",
+      "destination": "public/brand/logo-horizontal-ink.svg",
+      "sha256": "e27e6b0e56edfd422395fdd5d104caf2d97091b5f61d5a7d446075badeaad4fe",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-horizontal-paper.svg",
+      "destination": "public/brand/logo-horizontal-paper.svg",
+      "sha256": "91917290c22bb91c45a11ed722f73e6839963ae21da507f11fd305914b17029a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-icon-ink.svg",
+      "destination": "public/brand/logo-icon-ink.svg",
+      "sha256": "f73bfd48423a8b81b193667d31a3c4aa1b4c2661aa024633a87ffb4fe77b1c89",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-icon-mono.svg",
+      "destination": "public/brand/logo-icon-mono.svg",
+      "sha256": "dfec406028c9939a1717646f007b3ed0558088fa36efcf9a4cd42e57d17f0031",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/logo-icon-paper.svg",
+      "destination": "public/brand/logo-icon-paper.svg",
+      "sha256": "746afcd90a5899c42ed74ad1af7a3a7ce71488c1f1c9c39cebd385ca67cbaaea",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/seal-ink.png",
+      "destination": "public/brand/seal-ink.png",
+      "sha256": "b0c9e5fa417340f428674e15eccaaeec3a35885174eecd8315c36cfec3733911",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/seal-ink.svg",
+      "destination": "public/brand/seal-ink.svg",
+      "sha256": "5bc0e785d5216ec94036df678cf913db625747c895b0f4f460a40ef251690bcc",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/seal-mark-ink.png",
+      "destination": "public/brand/seal-mark-ink.png",
+      "sha256": "802a57c19defe41e68dbd8df8956a443d3fd7647a1a2b1ae03614f2fd7551b34",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/seal-mark-ink.svg",
+      "destination": "public/brand/seal-mark-ink.svg",
+      "sha256": "f73bfd48423a8b81b193667d31a3c4aa1b4c2661aa024633a87ffb4fe77b1c89",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/seal-mark-paper.png",
+      "destination": "public/brand/seal-mark-paper.png",
+      "sha256": "e969fb667343e6a9b44a2de5eefbcbe8d98a69fc2ff4615bfe26c42a5776b33c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/seal-mark-paper.svg",
+      "destination": "public/brand/seal-mark-paper.svg",
+      "sha256": "746afcd90a5899c42ed74ad1af7a3a7ce71488c1f1c9c39cebd385ca67cbaaea",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/seal-paper.png",
+      "destination": "public/brand/seal-paper.png",
+      "sha256": "fb4aa810ed124a76edcb699b547396d5b9953c79022992463b02c352204a4266",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/brand/seal-paper.svg",
+      "destination": "public/brand/seal-paper.svg",
+      "sha256": "fc89e3a8faead7b0578950f269d30ac4a07a4da153c1a14bef2a878c4f6afe22",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/design-preview",
+      "destination": "public/design-preview",
+      "sha256": "7dc0af96805416277176fb456f2eee1495a4c22f18dff33ac123ac43048da1c9",
+      "status": "removed-platform",
+      "currentSha256": null,
+      "reason": "Remove an imported serialized preview symlink; design fixtures and debugger are not shipped in the desktop app."
+    },
+    {
+      "source": "public/file.svg",
+      "destination": "public/file.svg",
+      "sha256": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/fonts/noto-sans-sc/LICENSE",
+      "destination": "public/fonts/noto-sans-sc/LICENSE",
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/fonts/noto-sans-sc/NotoSansSC-Regular.ttf.gz",
+      "destination": "public/fonts/noto-sans-sc/NotoSansSC-Regular.ttf.gz",
+      "sha256": "cff80a0848ccb2c2da3660dcc3349f9df32ea8fd7e0af3ffc2a79633f09e0699",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/fonts/noto-sans-sc/README.md",
+      "destination": "public/fonts/noto-sans-sc/README.md",
+      "sha256": "f1412c047464fd23a9fc150d6b30ebf43eff8568e6677e33ef4f17121910d3f0",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/globe.svg",
+      "destination": "public/globe.svg",
+      "sha256": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/next.svg",
+      "destination": "public/next.svg",
+      "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/vercel.svg",
+      "destination": "public/vercel.svg",
+      "sha256": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "public/window.svg",
+      "destination": "public/window.svg",
+      "sha256": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/admin/config/route.ts",
+      "destination": "desktop/handlers/admin/config/route.ts",
+      "sha256": "ec78b105a3aea58b1831fc74c88b0dacf68897f95af7d18dbf5cd384bdfe8aed",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/admin/models/[id]/route.ts",
+      "destination": "desktop/handlers/admin/models/[id]/route.ts",
+      "sha256": "fbae879042497ddf6c209b11fd4457341149a0fefd325598dbde151850086496",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/admin/models/route.ts",
+      "destination": "desktop/handlers/admin/models/route.ts",
+      "sha256": "9a10c8ca0f8b2cdbe5007555b57d7cc210143c13044b388cc260a7bef8eec93c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/admin/prompts/[id]/route.ts",
+      "destination": "desktop/handlers/admin/prompts/[id]/route.ts",
+      "sha256": "feaf4362218317e982faff8ebc908525c00b9d71015fd0aa1cac9f2ad4125fcd",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/admin/prompts/route.ts",
+      "destination": "desktop/handlers/admin/prompts/route.ts",
+      "sha256": "5eb860e266d358db94bc7d9340784133df27599d203e1fe921dc9dcd542f9ef6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/admin/sop/route.ts",
+      "destination": "desktop/handlers/admin/sop/route.ts",
+      "sha256": "656aa70de789396abc661010e8a1592a5fafe45c13c7a26d7b01161fca4e7578",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "3ab5626a85967449c9ad88f2c6f6efd6969ee23ea96ff19bcb84a538941241d7",
+      "reason": "Use shared local global-library database and relocated local-author helper."
+    },
+    {
+      "source": "src/app/api/admin/usage/route.ts",
+      "destination": "desktop/handlers/admin/usage/route.ts",
+      "sha256": "6e14f798d7fe0be0f118af14322b13809b454d526f86557eed498d746a011a6e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/chat/conversations/[id]/route.ts",
+      "destination": "desktop/handlers/chat/conversations/[id]/route.ts",
+      "sha256": "df75593e9f52f55c459b6fe9262a1a2af001aa5807482a6e5bea96deb25b03ba",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "325de2910cb5802c6014a3c6f6536303f69463a40fb59b1a0cadce0d67e56df5",
+      "reason": "Validate selected model through the main-process vault; remove platform tier/Auto fallback."
+    },
+    {
+      "source": "src/app/api/chat/conversations/[id]/sop-plan/route.ts",
+      "destination": "desktop/handlers/chat/conversations/[id]/sop-plan/route.ts",
+      "sha256": "2f7faa76d9a3abfedb4944f97e4df468ba0aedf306e619f066f7cfb4915ea790",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/chat/conversations/route.ts",
+      "destination": "desktop/handlers/chat/conversations/route.ts",
+      "sha256": "c30a598dc8703fc8f6c9272b670f6469a74f1dd17e93a025957dbef69495ca88",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/chat/route.ts",
+      "destination": "desktop/handlers/chat/route.ts",
+      "sha256": "cf62ebeabb91ebdc7cdb2b2809990830bd1e2258c1926afa92b237984b8e7d79",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "74a7a390770182cbbf37cd71c8470c2f9f011ed1e798029dbc31d6480a8f7ecf",
+      "reason": "Use configured local text model; retain detached task through heartbeat/checkpoint/final writes, remove platform automatic routing."
+    },
+    {
+      "source": "src/app/api/chat/turns/[turnId]/cancel/route.ts",
+      "destination": "desktop/handlers/chat/turns/[turnId]/cancel/route.ts",
+      "sha256": "51eb6bd2ba278c264b3ce022c0ee1fbebbbe3787426f2a1b886b35a60b7efd52",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/chat/turns/[turnId]/interaction/route.ts",
+      "destination": "desktop/handlers/chat/turns/[turnId]/interaction/route.ts",
+      "sha256": "0fbfac0ea6955c9afc6cd58b06cacc4505a212a8a0ae60c59e9a008ca326ee01",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/chat/turns/[turnId]/navigation/route.ts",
+      "destination": "desktop/handlers/chat/turns/[turnId]/navigation/route.ts",
+      "sha256": "3dc428e9c7548cd0bc39fe0b609b7456bd4dd1190b1d875c2b93dfe749c19ba6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/chat/turns/[turnId]/route.ts",
+      "destination": "desktop/handlers/chat/turns/[turnId]/route.ts",
+      "sha256": "55a35e56a60eb780f61970b28982b1c3fc8d0db64085976ed59f316e026610b8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/generate/test/route.ts",
+      "destination": "desktop/handlers/generate/test/route.ts",
+      "sha256": "5cc380148a3c8ec54efcfd1685dba20ae1b50c3ffe6586aa385e2e4b70e750c5",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/image-models/route.ts",
+      "destination": "desktop/handlers/image-models/route.ts",
+      "sha256": "3a3a8b092f91ebe1e08dbb0b92e08a721fda10791aab34132d1c0e3c835e847e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/models/route.ts",
+      "destination": "desktop/handlers/models/route.ts",
+      "sha256": "90fa60ac6456c5bb00a7961697ddb69121120f806b26a178efca4d25d3152f6b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/attributes/[attributeId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/attributes/[attributeId]/route.ts",
+      "sha256": "d45ef6d6c2a32a6365c5835d72b4b6f03cfaf23f9a80e83b713337b77102d9a4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/attributes/route.ts",
+      "destination": "desktop/handlers/novels/[id]/attributes/route.ts",
+      "sha256": "c6c19aec9b9bad9b07cff43e7dc1f887def062aa818fe505c7f40808edd7e1bd",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cascade/[jobId]/apply-all/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cascade/[jobId]/apply-all/route.ts",
+      "sha256": "4e35905eddd14fbdae53ec946a18a87001edc0215672179b090b09d1db912a2d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cascade/[jobId]/apply/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cascade/[jobId]/apply/route.ts",
+      "sha256": "99fbc23977784751c08ecd2ab7635b745afac61dfe56d9ca4887f3dcefd5a118",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cascade/[jobId]/finish/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cascade/[jobId]/finish/route.ts",
+      "sha256": "4947304f6391efeffa1757c060f705ae2a52fa2f3756d93500d867a9f06bb4da",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cascade/[jobId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cascade/[jobId]/route.ts",
+      "sha256": "8b768265f40ac02d3a49821997943f9ac1600198c6e09b6bd1cc03212d7c9355",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cascade/[jobId]/skip/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cascade/[jobId]/skip/route.ts",
+      "sha256": "3a371df4d3fb21374c98a4903385d2e7b3549910255b8b2a0589e2ad5de57465",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cascade/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cascade/route.ts",
+      "sha256": "6538eb7f18ed62c755ae472b9276e70d0b096ffffb151ecd629f3fff4843f5f3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/accept/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/accept/route.ts",
+      "sha256": "52fe11d18df2837f550a3fdf24ccf932fba9821082c19bd66bf656c44d195632",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/discard/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/discard/route.ts",
+      "sha256": "cfdf7f68b43ebc75054c8a604c0c887677c7b28caabce2073cf71844fafc3971",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/route.ts",
+      "sha256": "ee15419d5c9c29e647439667b8e79bbcc95d8925bb4aaa4cde85615c262014ce",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/withdraw/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/[candidateId]/withdraw/route.ts",
+      "sha256": "c218a27c4fc6f1841bf3eb01056b47eb5509154add8d99e3e01a6dcb13672783",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/candidates/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/candidates/route.ts",
+      "sha256": "1b160ba9d9ac980908282f113157381554f047b01fbda7d7fac60f4b2dce2fe9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/finalization/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/finalization/route.ts",
+      "sha256": "512e4b849198aaae7fd5371759bdd9756c9291dd3f9ffd287941576b6a15fe0b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/generate/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/generate/route.ts",
+      "sha256": "6a1282d5106a620cac570cded196badf25d61001b76ea781e16b97e402bfc7fe",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/route.ts",
+      "sha256": "b93634c1c9a9c4ebcdcd041052a339e32f94b3c7b8988aff824ce9cf6529b474",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/versions/[versionId]/restore/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/versions/[versionId]/restore/route.ts",
+      "sha256": "a9d39459de692e37f3758db8f533af836d3663a970e1fe37ed39bcbf6f676125",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/versions/[versionId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/versions/[versionId]/route.ts",
+      "sha256": "bddda2dfded390e01e182810181aa9697a3cb758b35aebcaa6d396746ea9df6e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/versions/route.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/versions/route.ts",
+      "sha256": "96e6a87d95d433d53c6dba4260dd9d4a3ed28808ac3909fee07ec096d6d0b751",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/characters/[characterId]/image-prompt/route.ts",
+      "destination": "desktop/handlers/novels/[id]/characters/[characterId]/image-prompt/route.ts",
+      "sha256": "ae49f00ce92bc7f4c59303735315e3e38f76bd07860b28732aca90487364d010",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/characters/[characterId]/image/route.ts",
+      "destination": "desktop/handlers/novels/[id]/characters/[characterId]/image/route.ts",
+      "sha256": "1f3ac5fd4d5c2a68828dd0404b0fe5dacf0e9bca1629ded53e1e575e79644045",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/characters/[characterId]/images/route.ts",
+      "destination": "desktop/handlers/novels/[id]/characters/[characterId]/images/route.ts",
+      "sha256": "562c60e83ce03c3cb72c09c19edb7f26c54539d3e9bc3899a8fa5c01a968b2ae",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/characters/[characterId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/characters/[characterId]/route.ts",
+      "sha256": "29620f582826602136685113359cc93582f16c171393ee66d1234fbe6a83e760",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/characters/assist/route.ts",
+      "destination": "desktop/handlers/novels/[id]/characters/assist/route.ts",
+      "sha256": "7237f9c12ae9c79e9302fd3ace4abc91ad9b19a9e64c15e136e6fd7438ce571b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/characters/route.ts",
+      "destination": "desktop/handlers/novels/[id]/characters/route.ts",
+      "sha256": "44dee21da7c85bbe7320d34bfb08a5755f9f2d423da188b98c7217907e0693b2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/comments/[commentId]/apply/route.ts",
+      "destination": "desktop/handlers/novels/[id]/comments/[commentId]/apply/route.ts",
+      "sha256": "d1bc5683be15b817f9e6525350c0f77bf9c532b785cc03e288e808279b1071e0",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/comments/[commentId]/replies/route.ts",
+      "destination": "desktop/handlers/novels/[id]/comments/[commentId]/replies/route.ts",
+      "sha256": "c335839b5be55e5d0858c1b228facbd66494e9a8beb594a6b8aedeffa76bbf3c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/comments/[commentId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/comments/[commentId]/route.ts",
+      "sha256": "c4ec85c8c9d93eacbfc49e12f963ba2d535fe5cdcb66f9dbcb75c4596faf128b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/comments/route.ts",
+      "destination": "desktop/handlers/novels/[id]/comments/route.ts",
+      "sha256": "d19702c35c1a3bfaf20a1e4d137982cb75c2ca000afe526619d3f3063d88593b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cover/image-prompt/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cover/image-prompt/route.ts",
+      "sha256": "c4368015db0d63e34254ca68ba5b4e0a32b0874421da6b4af994a732b0a1bc7c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cover/images/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cover/images/route.ts",
+      "sha256": "0dd0b74dddf3a9a79905134060f1fd58b01ddf55496f8bbb238f45cc00abc0de",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/cover/route.ts",
+      "destination": "desktop/handlers/novels/[id]/cover/route.ts",
+      "sha256": "af6d4f5ed115be93d1e389958115372f13fc4b3899d44e4410aa590b1877fcad",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadow-characters/[fid]/promote/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadow-characters/[fid]/promote/route.ts",
+      "sha256": "7595c7663f031efe75c2451a3748edaa34359ea38550eda6b1bd8503171f38d1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadow-characters/[fid]/reveal/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadow-characters/[fid]/reveal/route.ts",
+      "sha256": "a0882be7430356c4c42f59822b07914987edbda5952cb5dfa8de7f1b620ba9e4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadow-characters/[fid]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadow-characters/[fid]/route.ts",
+      "sha256": "38f42e91db9ea5ef75131cfedc018978ae7ef3df3e452020091c881c757a8892",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadow-characters/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadow-characters/route.ts",
+      "sha256": "8e0a063627792fb5a4ea092d3542e4d6c75161360e06457ec21ad06db22cf97b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/[fid]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/[fid]/route.ts",
+      "sha256": "91a50da918c1ea71a92b54aa9ce441d7481b550043bd4e52b2c808d4be13fa8c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/evaluate/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/evaluate/route.ts",
+      "sha256": "7452fe1d5def0efa2246b95c9304fd729389a096ec6ae669cc2df3cdad56f212",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/references/[rid]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/references/[rid]/route.ts",
+      "sha256": "d1fe2df9db0c4b7fc0c9c6589d8f45ab7e8c22028e2b09986351bfadc4cf27bf",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "8719030e9bd522ccd63845c7c1971d3f99a905a6093c3f0d7a3b6330f4f274a5",
+      "reason": "Adapt relative local handler helper import after route relocation; preserve original behavior."
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/references/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/references/route.ts",
+      "sha256": "0d0982913797291e756f7df8d75ce05ca7298d271c000e95f6c8bd6346e14a51",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "bdb48c70cc15fdbd27ad22cc8f36339872f2602547c474c677724f1a54fe72da",
+      "reason": "Adapt relative local handler helper import after route relocation; preserve original behavior."
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/route.ts",
+      "sha256": "7480c293a19fc399b81fdb4188827341a6522f595b9ebaef3982fbc233ee1954",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/[fid]/touches/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/route.ts",
+      "sha256": "78ddee70ee6ebae2386bd6d339c5e68ee38ae5f0c2d9bcbb9569a16d37312ea4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/marks/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/marks/route.ts",
+      "sha256": "c498ef4d052f563a004e9f53ba97341db035d2f61628509639f47ebfaa5367bb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/route.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/route.ts",
+      "sha256": "5c6cf51f59969397e0000f38a35e5dacd48e2209071905d4b31d6ea319e66c3f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/items/[itemId]/image-prompt/route.ts",
+      "destination": "desktop/handlers/novels/[id]/items/[itemId]/image-prompt/route.ts",
+      "sha256": "18da45f746bf5cb49acce8e8c9ac1691af88629c365b1b61525afd53ed2ef083",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/items/[itemId]/image/route.ts",
+      "destination": "desktop/handlers/novels/[id]/items/[itemId]/image/route.ts",
+      "sha256": "2809c09abd1b3f11ac7c61b2bbf96305fffe800a6ba2dd34c26302653aa45768",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/items/[itemId]/images/route.ts",
+      "destination": "desktop/handlers/novels/[id]/items/[itemId]/images/route.ts",
+      "sha256": "01de3581d3569e342578c9e9bd187cff5ed00d4b29a7420be84c64ab99c798a7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/items/[itemId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/items/[itemId]/route.ts",
+      "sha256": "224a3daa529ec49e2e3f58d32873db0b44b0dc21ff4005009bdda4afd3d20413",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/items/route.ts",
+      "destination": "desktop/handlers/novels/[id]/items/route.ts",
+      "sha256": "3766fecd119f829795c1a4734968a943f3714aed0c9db3cd2ac904753cb5165f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/manuscript/route.ts",
+      "destination": "desktop/handlers/novels/[id]/manuscript/route.ts",
+      "sha256": "6d88e9cfe795e9cfc9358212aaf0ec0776f9d312b418ff43ea9925a3b69f5735",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/outline/chapters/[chapterId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/outline/chapters/[chapterId]/route.ts",
+      "sha256": "ade77b34ffa3513016426f2bb7c76504284f7bf596d67989774fc6e77a97d696",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/outline/deletion/route.ts",
+      "destination": "desktop/handlers/novels/[id]/outline/deletion/route.ts",
+      "sha256": "a172f575fa71b31675089f40dd7b04b18c89128a7299f22af045f7f154341490",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/outline/generate/route.ts",
+      "destination": "desktop/handlers/novels/[id]/outline/generate/route.ts",
+      "sha256": "ecceabbfad86777ab9461ab706bcb2e6d8b75ce7d39e4139db62434d49d4711a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/outline/route.ts",
+      "destination": "desktop/handlers/novels/[id]/outline/route.ts",
+      "sha256": "9cd140297d27f6138455725ee90c7511919b38679f54232f69ebabec74688eda",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/outline/volumes/[volumeId]/chapters/route.ts",
+      "destination": "desktop/handlers/novels/[id]/outline/volumes/[volumeId]/chapters/route.ts",
+      "sha256": "0c41ae5045d60b700d37c1b95c2fb6bd60c24b8c1faac04b4dd9a6dd6d0ce636",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/outline/volumes/[volumeId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/outline/volumes/[volumeId]/route.ts",
+      "sha256": "2078c1307cc6ff6670f85a296d5e5fd04d52f6d8d33e509f25af219f7d594f44",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/outline/volumes/route.ts",
+      "destination": "desktop/handlers/novels/[id]/outline/volumes/route.ts",
+      "sha256": "78f22298e503da6cec77ad314df4a5b7b95b0470a6de5d4a0712710629f65d55",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/planning/route.ts",
+      "destination": "desktop/handlers/novels/[id]/planning/route.ts",
+      "sha256": "a93e10014f3b1f311f706a691f84dc3c6a614a43311e80106a9d665d418d667a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/review/ai/route.ts",
+      "destination": "desktop/handlers/novels/[id]/review/ai/route.ts",
+      "sha256": "e2bee2753f86d83d1344feee25e95a0a267dbc94f859efb87d3e1f96bc95f7f2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/review/human/route.ts",
+      "destination": "desktop/handlers/novels/[id]/review/human/route.ts",
+      "sha256": "ad03392156a3d6f77d4f26efff2f893f1b6fdf3c4772f6007eb66ac55891e4fc",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/review/route.ts",
+      "destination": "desktop/handlers/novels/[id]/review/route.ts",
+      "sha256": "8a4e541121f99686f0534a3156438d349a643c6b8cf7129bb9c49ac3c1dd1417",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/route.ts",
+      "sha256": "a1925d29072c4ccfe33e965f91d31ead2d7a321f39d1b9fd04f53d694d215bd1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/advance/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/advance/route.ts",
+      "sha256": "8e490533b36c59c34247418263a57ea4d1b9e70776f4d0a58d4da97593bef419",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/cards/[cardId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/cards/[cardId]/route.ts",
+      "sha256": "8304b6e44791a6c4c45ead3f83aa4c33b374206d42a184fd31882aba8914b97a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/nodes/[nodeId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/nodes/[nodeId]/route.ts",
+      "sha256": "ce95d1a2f74a582db86d0d467247dd92f8ea32b772114af1b5d3264b825d2b99",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/organize/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/organize/route.ts",
+      "sha256": "fa399d7135043f1a4192a050ce7107fe60260442703c04e6c19e3a958c86e2eb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/prose/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/prose/route.ts",
+      "sha256": "b5d0670170031d6826146debaaadb1f969e17de0fa9e28bbf09566d1cd58847a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/reset/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/reset/route.ts",
+      "sha256": "b5487226dba8d6fc4e2c8ae0bc0e9497d2bd3bc4a3b3deb8c35a042e07878377",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/route.ts",
+      "sha256": "c752bc0d2f8ebb971d92f1458423ac46de949816f1d492fdff606e30ee0c279c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/runs/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/runs/route.ts",
+      "sha256": "c15c899700b9bba66547e4bf413b3a86d2b2e1d2fa6f96c6d015b0b2f31efd9d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/[labId]/start/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/[labId]/start/route.ts",
+      "sha256": "9ac6ac2c538e213b1ccbdfd1221dee6452beac45adafe5dabb192dd7de60bbd7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/route.ts",
+      "sha256": "6f58438a3a1f5f4bcf7786a578a829d503708b84e711cf0f75563e60ef59c9ab",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/[sceneId]/image-prompt/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/[sceneId]/image-prompt/route.ts",
+      "sha256": "d16f1afe44a8a6c994db9245c6beffa2d1af6d79b6d50a540ae9c81f7d421219",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/[sceneId]/image/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/[sceneId]/image/route.ts",
+      "sha256": "f81d740a5badb9c20e69fd300c165dbd68654686c0c4712feabd8d9a80590392",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/[sceneId]/images/[imageId]/asset/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/[sceneId]/images/[imageId]/asset/route.ts",
+      "sha256": "897248c06512aa1c7e7e2c87a5be91e04ee5d2185faf80f622094819a1fc6bcb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/[sceneId]/images/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/[sceneId]/images/route.ts",
+      "sha256": "785447add1da2e87db3c32970cfc17b2fe0b475896ed0cad6781d4a87ad8546a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/[sceneId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/[sceneId]/route.ts",
+      "sha256": "a6eb2655386d08a95ac07a39c0edd8bc50c34029aa6d80a54dea9abdc3bda1cf",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/[sceneId]/versions/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/[sceneId]/versions/route.ts",
+      "sha256": "e8b7358049eaee85d2b58c64e74acd2db6e3fbac8554903118cb9392f44bc04b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/factions/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/factions/route.ts",
+      "sha256": "f03387cc9ae06aaffd0e8fe9877dfaa182193cdeb85f6aaab19adc14e36fd149",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/route.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/route.ts",
+      "sha256": "e61bc8c9b30032af541e7b3d2678d5830df46433e7fc93cf5d6ab69b8e125eaa",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/score-report/improve-items/route.ts",
+      "destination": "desktop/handlers/novels/[id]/score-report/improve-items/route.ts",
+      "sha256": "1bb5da82ca1ed25fdd094ebb10d6e7ed13c3dc1f1eb64c137f2dfee8c6c42b8e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/score-report/route.ts",
+      "destination": "desktop/handlers/novels/[id]/score-report/route.ts",
+      "sha256": "e9c53ca5c7265ecc7103a4edc1070d50f1fa03590c69c2a6b7c1edcd01ef3dc8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/score-review/route.ts",
+      "destination": "desktop/handlers/novels/[id]/score-review/route.ts",
+      "sha256": "47bae96102aa151e1477294d7de354941b3e0ea2a38f36a91657b94117997f49",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/settings/[settingId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/settings/[settingId]/route.ts",
+      "sha256": "34dd6c9b7ebd8859bcbdf8649facd3c7f1aeb6f25bb29d1c9b87245f0ce7351f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/settings/assist/route.ts",
+      "destination": "desktop/handlers/novels/[id]/settings/assist/route.ts",
+      "sha256": "ce73d3e20b297421b8b2efa09acec67dfeed6635dfe99a421bd38141861a73f9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/settings/route.ts",
+      "destination": "desktop/handlers/novels/[id]/settings/route.ts",
+      "sha256": "f455bc93eb1a7fbcec64b1e392fa2e46c98c80bbe4466e985c5da8e6dcc50004",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/story-workflow/route.ts",
+      "destination": "desktop/handlers/novels/[id]/story-workflow/route.ts",
+      "sha256": "2b4c632e227810b2f8eba2e88259abe32270404755c503697281a572322a14fc",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/theme/route.ts",
+      "destination": "desktop/handlers/novels/[id]/theme/route.ts",
+      "sha256": "5643f499fe77b12d8498120fc6a192823f1d1a5986a575e4316fee3b274bfb1f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/tropes/[tropeId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/tropes/[tropeId]/route.ts",
+      "sha256": "ddfcc6096e2c407fb1d43c6ddcd69badd37fb766c20ca3f7f7ce34e515caf738",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/tropes/route.ts",
+      "destination": "desktop/handlers/novels/[id]/tropes/route.ts",
+      "sha256": "b1d600bbae0b789b5ab8a4930b6d5ad121279cbd87aa2cdc566816ed2eb8149d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/tropes/select/route.ts",
+      "destination": "desktop/handlers/novels/[id]/tropes/select/route.ts",
+      "sha256": "31f328e8ec29b28b15dbae1a414c58312f373bd77fc7680660711b3f6bd3eeca",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/worlds/[worldId]/route.ts",
+      "destination": "desktop/handlers/novels/[id]/worlds/[worldId]/route.ts",
+      "sha256": "ea54466cc074b32749980194afbafddfaf1b577d54f75ea923ecb50784ef054c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/worlds/route.ts",
+      "destination": "desktop/handlers/novels/[id]/worlds/route.ts",
+      "sha256": "6d8839f30558b8b5e9d9ac7037828af98894b72ce295cb75d98b1d3b9d5c96af",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/route.ts",
+      "destination": "desktop/handlers/novels/route.ts",
+      "sha256": "505a840376a2970de8d448ab2dae23e0d06939bda7eceb87de5cfd4e215f6648",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/subagent-runs/[id]/route.ts",
+      "destination": "desktop/handlers/subagent-runs/[id]/route.ts",
+      "sha256": "81847c08bb92ce70de1e7e35fdaa5799199678d6938ea00bd38c1c295cef7513",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "e5b16d206864665b6f121fea714ce1ec933722071f93230f9baab02e64c8831b",
+      "reason": "Adapt relative local handler helper import after route relocation; preserve original behavior."
+    },
+    {
+      "source": "src/app/globals.css",
+      "destination": "src/app/globals.css",
+      "sha256": "c1a4360e7d13a1031fbe16bd7f17cfd848011f438c06ce38c11be0581e6b499e",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "1c525396a7b2f6726b884be92395034ada375784495b860c895fc2b14258561c",
+      "reason": "Keep original semantic tokens and Web UI styles; exclude prototype fixtures from Tailwind scanning."
+    },
+    {
+      "source": "src/app/providers.tsx",
+      "destination": "src/app/providers.tsx",
+      "sha256": "9e97c52e99c957aa969cb2cd65ada80f130306391e744e33bbed2f271f5ac14e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/admin/PromptsClient.tsx",
+      "destination": "src/components/admin/PromptsClient.tsx",
+      "sha256": "f2c44e7ac96777c85f3eadda86c0591631ca0172fb6ba49170c80eaa5dc6d48f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/admin/shared.tsx",
+      "destination": "src/components/admin/shared.tsx",
+      "sha256": "0216ffd3d82133008be24dd850e708b0a85f93f802e281607fa018a383f346ce",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/AskUserPanel.tsx",
+      "destination": "src/components/chat/AskUserPanel.tsx",
+      "sha256": "fa710653de7ebc046a8bc746145d283e74511bebc5038799ecb97adc74459aa2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/CandidateActionPanel.tsx",
+      "destination": "src/components/chat/CandidateActionPanel.tsx",
+      "sha256": "1dc3b01292ae85d5854a7d3a4b7a1b8ed477dfa89ac0d4573424751567ee303c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/CandidateDrawCard.tsx",
+      "destination": "src/components/chat/CandidateDrawCard.tsx",
+      "sha256": "6f15c24d1d1f33863cc31b822b99708a2f71f52227697528f87819977e428ad3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ChangesCard.tsx",
+      "destination": "src/components/chat/ChangesCard.tsx",
+      "sha256": "f0fb2c1f5f69f2eda4a9f1c5a69c9d35cf9afb1112c0e022f07ce215bdd45100",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/Collapse.tsx",
+      "destination": "src/components/chat/Collapse.tsx",
+      "sha256": "ff09dafcc9074ba423d191f2272723211ee724626afc142ba91cc4f8074e1c4f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ComposerChipHoverCard.tsx",
+      "destination": "src/components/chat/ComposerChipHoverCard.tsx",
+      "sha256": "4146a4c9af05bc1aa2ad7d73b64605162124e3bb1cba248100b704ce2ebd66ab",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/EntityHoverCard.tsx",
+      "destination": "src/components/chat/EntityHoverCard.tsx",
+      "sha256": "e46093952699c35e70039f9103822f8a89d5dbd71152793f89aa9d257fe38f44",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/FileCard.tsx",
+      "destination": "src/components/chat/FileCard.tsx",
+      "sha256": "42faa799e944aadd1843a36ee49131fe824ffcb11dcf6ed927828767e62a1788",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/GroupedToolRows.tsx",
+      "destination": "src/components/chat/GroupedToolRows.tsx",
+      "sha256": "18768af46731d2772921369a138cfd612576686ef4aa582e664c0567ec6766e7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ImageCard.tsx",
+      "destination": "src/components/chat/ImageCard.tsx",
+      "sha256": "246266888b6d9a1d3ed475d55dd58a19899cf041f3650d5754340098670fb0ce",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ManuscriptCard.tsx",
+      "destination": "src/components/chat/ManuscriptCard.tsx",
+      "sha256": "8ffe5bf10c5ca478d0fd8111a32850a1b83469143128c68d30437ff0f5caad9d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/MentionPopup.tsx",
+      "destination": "src/components/chat/MentionPopup.tsx",
+      "sha256": "4e6969900f07289d6ae8bebb0bc60268a53540f3b57b5d5352b4f94ad6c5ebaa",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ModelPicker.tsx",
+      "destination": "src/components/chat/ModelPicker.tsx",
+      "sha256": "8cee582ea868d5a2af112b8be70749cad2d702555f42da58d6969e8d0bff91eb",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "3ee706fa708c77687ccafcf4a89dd478536a7686ae3c02a48ebc32156dba82c1",
+      "reason": "Preserve the Web model-picker layout; add the desktop model-settings entry and replace platform-admin empty-state text."
+    },
+    {
+      "source": "src/components/chat/NarrativeCheckCard.tsx",
+      "destination": "src/components/chat/NarrativeCheckCard.tsx",
+      "sha256": "9e182a101475ffdbb55029a43069a2d20e38db5f6de929579b831588bdff6095",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ProgressPanel.tsx",
+      "destination": "src/components/chat/ProgressPanel.tsx",
+      "sha256": "030225f082c8f9bdf50f1ceeef57af60239504dd9a08f4005febd58383994593",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/QueueRow.tsx",
+      "destination": "src/components/chat/QueueRow.tsx",
+      "sha256": "7d9d99dcbd1943643cfab25005d94a95cca929f0bd09d812e58e407ff194e254",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ReviewCard.tsx",
+      "destination": "src/components/chat/ReviewCard.tsx",
+      "sha256": "384d913a56bd0ceb22debf5a395d58c1c6297733c7dc97994383322b36e28934",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/SearchPalette.tsx",
+      "destination": "src/components/chat/SearchPalette.tsx",
+      "sha256": "e8da6cd21a982660990f52e238c5ed3cd8d09579c12a995e48c45f0391709a95",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/SopPlanCard.tsx",
+      "destination": "src/components/chat/SopPlanCard.tsx",
+      "sha256": "b3ccc1b5721461786938744467ff199fc4f5619e6e8451c840ac59998bc65cbb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/StagedChips.tsx",
+      "destination": "src/components/chat/StagedChips.tsx",
+      "sha256": "44bca87021394bcbd8dfeda13d287ef246564f4784e0513eb889cc70281472bf",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/StoryTaskNavigationPanel.tsx",
+      "destination": "src/components/chat/StoryTaskNavigationPanel.tsx",
+      "sha256": "77f66fea7fb8d258f30e5f85401b500fcadeed30d6cae4af0299b26fe9b5c85d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/SubAgentRow.tsx",
+      "destination": "src/components/chat/SubAgentRow.tsx",
+      "sha256": "484513df9b3962f72f692b3c73cfc80cab7d3d261ff854fd4820d64f641a68ea",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/TaskReferenceInput.tsx",
+      "destination": "src/components/chat/TaskReferenceInput.tsx",
+      "sha256": "5d706394899586a396c1421b1f18b367f64c020707c87aec5398d30606382954",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ToolCallCard.tsx",
+      "destination": "src/components/chat/ToolCallCard.tsx",
+      "sha256": "96d4c3463ad7a440eafa1b58d443791422d6b008384c9d178d187e53a8857831",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/TurnProgressCard.tsx",
+      "destination": "src/components/chat/TurnProgressCard.tsx",
+      "sha256": "478fa17b193e0f1ece6f96021a316dca1702ae4027cbee39b6aa88dae19c2c31",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/chip-drag.ts",
+      "destination": "src/components/chat/chip-drag.ts",
+      "sha256": "18ee0148d229868ef68289cb8baddf10df5168ac6a13743afad371e26fe065a6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/composer-editor.ts",
+      "destination": "src/components/chat/composer-editor.ts",
+      "sha256": "c348f2fa7fa0773d5015f0089ba45f6be356fa0f3eebc99752d2414edbed6a9a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/cost-estimate.ts",
+      "destination": "src/components/chat/cost-estimate.ts",
+      "sha256": "8cf34076b3a2083d23603fa8017927e4495d86fdd9a050d6fa1f8044c788a51b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/entity-refs.ts",
+      "destination": "src/components/chat/entity-refs.ts",
+      "sha256": "84371aa7afe67cfa3c5dd0039c3a7ca9dd85be27ebcb9dae671bfdb3efa8f42c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/level-chip.ts",
+      "destination": "src/components/chat/level-chip.ts",
+      "sha256": "5f12690677cb79aac5cb18232d1d03d704a7837d9733c7ee6c2a0cd2c32607b8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/pending-answer.ts",
+      "destination": "src/components/chat/pending-answer.ts",
+      "sha256": "1cb0bb401427d5dc8e15ceb791a719d8fb56d2c41e91a2c85041832afeb828b2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/provider-logos.tsx",
+      "destination": "src/components/chat/provider-logos.tsx",
+      "sha256": "41d90b0dd3c4afbc7414c79037debcc51bd538c49c7c2fbce91dfa0ec66407a8",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "676f7fd77a4e98afbe8c5cca1494641d106ae211eb68a1e72f6b2cb3580280f2",
+      "reason": "Use approved local supplier/family SVG assets and desktop aliases; preserve the original ProviderLogo component API."
+    },
+    {
+      "source": "src/components/chat/scene-receipts.ts",
+      "destination": "src/components/chat/scene-receipts.ts",
+      "sha256": "ad11c5bd62e1f1c518be7821b6baeb09a87938660d837cddb6cd44b89f8bdbe9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/story-focus.ts",
+      "destination": "src/components/chat/story-focus.ts",
+      "sha256": "240307ac1be47b9a038c27c57c03a6c654a6a0d246b3e923e64c56d29851dc4e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/types.ts",
+      "destination": "src/components/chat/types.ts",
+      "sha256": "470af0e7d6999083539ddad7915daeef7dd56ac4a5d068d0ec58c20266fcb174",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/ui-events.ts",
+      "destination": "src/components/chat/ui-events.ts",
+      "sha256": "35701916e544cf9d88c8cc7c743853ad01497d6050f3a979e97d5d6776532f1d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-agent-chat.ts",
+      "destination": "src/components/chat/use-agent-chat.ts",
+      "sha256": "66ef9e5cdae21409d0927f6a0d132c4783af16fbf2197fa81b340f62d53d0f1d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-card-selection.ts",
+      "destination": "src/components/chat/use-card-selection.ts",
+      "sha256": "555fa1986710350495db750ff9e89744d5292481814aae9ff30ea905087bb1cb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-draw-redraw-settings.ts",
+      "destination": "src/components/chat/use-draw-redraw-settings.ts",
+      "sha256": "adcf023b9dc3056538135b17e897bd3841995d7a7d5702e2d9a39c5616032922",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-entity-index.ts",
+      "destination": "src/components/chat/use-entity-index.ts",
+      "sha256": "d85b2e78ec7e547600b78d002e81aa73d7ecaf0976d39d6ee1ba492a423b7c9c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/chat/use-mention-candidates.ts",
+      "destination": "src/components/chat/use-mention-candidates.ts",
+      "sha256": "444d6ae516a2f3ae3894ad55d36c1981a9be7631484730fec0e223fc7ffe7642",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/CommentBubble.tsx",
+      "destination": "src/components/comments/CommentBubble.tsx",
+      "sha256": "6219c90ebe9c12d7f2db533a21bdacdf913c357da5e8a6cb2b621fe685894668",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/CommentComposer.tsx",
+      "destination": "src/components/comments/CommentComposer.tsx",
+      "sha256": "a453aa7e9d279dec7298ab7f2188fc63dc3c1b2c905e94a845056adebc312672",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/CommentablePreview.tsx",
+      "destination": "src/components/comments/CommentablePreview.tsx",
+      "sha256": "24754b26e4e0639d3fae6ab1b34229401915ad4b4f90b8fa7933ab23fa0f3764",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/comment-drafts.tsx",
+      "destination": "src/components/comments/comment-drafts.tsx",
+      "sha256": "8a38ee7973f540557d1c262ce8e16e2caffd41a046df3a32b89e3c684e13fa5e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/comment-save-coordinator.ts",
+      "destination": "src/components/comments/comment-save-coordinator.ts",
+      "sha256": "96e41d3e03b3b0a1ce46c772ac540f509530c3221492074617fd929e8b67915c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/types.ts",
+      "destination": "src/components/comments/types.ts",
+      "sha256": "a3b0d46a61828240f8df6ce3dce6fc5ec86e6cd554174adf0095c8aa36b795a4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/use-monaco-comments.tsx",
+      "destination": "src/components/comments/use-monaco-comments.tsx",
+      "sha256": "f32c23a4d009e0eb2cd9ce1c46ef3c8beffa20286520e86c52c86953e84904ce",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/comments/use-text-comments.ts",
+      "destination": "src/components/comments/use-text-comments.ts",
+      "sha256": "23c98885782873ed570788b3b76d701d9a6e5fe2c1ec9bcbe542a9a2a06fc152",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/AttributesPanel.tsx",
+      "destination": "src/components/content/AttributesPanel.tsx",
+      "sha256": "d4db91f06cbb584a7e680c38700074fdd107ef824f52956b6dfd650f9f6a229c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/BubbleInput.tsx",
+      "destination": "src/components/content/BubbleInput.tsx",
+      "sha256": "e6c7a82b24df0b2c5752b9a72caddca5df9e3fec6cfadc56a0aec04bf1812ac4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CandidatePanel.tsx",
+      "destination": "src/components/content/CandidatePanel.tsx",
+      "sha256": "95518f213d55800cde4386d429e0a54f779482a2c69f53488953fd2acf92cf2e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CascadePanel.tsx",
+      "destination": "src/components/content/CascadePanel.tsx",
+      "sha256": "457adb1e532eb45a5ae1d84dd904f3b8eff1621364ce072b58f64a707839e6bb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterConflictDialog.tsx",
+      "destination": "src/components/content/ChapterConflictDialog.tsx",
+      "sha256": "7e3ce52310acbba44953d1b1dc24031d698581a74edff4853f06b5d908193a8d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterContentPanel.tsx",
+      "destination": "src/components/content/ChapterContentPanel.tsx",
+      "sha256": "90a5e39f08f5478048366d33894b025dae3075c0453df310369d91b6d7770018",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterFinalizationDialog.tsx",
+      "destination": "src/components/content/ChapterFinalizationDialog.tsx",
+      "sha256": "4e7c8ca40139418180ddac6e1ebcc1cca10d6fad858511f5c0a2a8241713ad03",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterHistory.tsx",
+      "destination": "src/components/content/ChapterHistory.tsx",
+      "sha256": "cbd5405ceca6565ec3bab9b54a9ecd2c290eb3d187f54065d39c3e9c7ae5a767",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ChapterOutlinePanel.tsx",
+      "destination": "src/components/content/ChapterOutlinePanel.tsx",
+      "sha256": "9d5f1cecfe14162a80697d1fef47ce982e9c8f4aa3aa6034e5d94b67b2f7be48",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CharacterImagePanel.tsx",
+      "destination": "src/components/content/CharacterImagePanel.tsx",
+      "sha256": "da1834c51eccd565e46f085d37fc1bebce0387e22e7129976cbbefbe8877fd05",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "31f6efadd16f377c6afec6df5f8c1dba6815be72d726ab3ade8b33d1324e0211",
+      "reason": "Keep the original image-panel UI and add the approved model Logo to existing model choices."
+    },
+    {
+      "source": "src/components/content/CharacterPanel.tsx",
+      "destination": "src/components/content/CharacterPanel.tsx",
+      "sha256": "708c2905fcf85086ca53f963aad332d8d8c57f4b53f739150320340c7f7699cd",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CharactersPanel.tsx",
+      "destination": "src/components/content/CharactersPanel.tsx",
+      "sha256": "09713ac972a7bac0abdcf811abc1c3a7604a1990e34f03bc22cd4a97b49af7ed",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CreateLevelSystemDialog.tsx",
+      "destination": "src/components/content/CreateLevelSystemDialog.tsx",
+      "sha256": "cab04fc64f16908f2776a751bcf6047245bc3f25b4f01c232e4b3f1d4c78404a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/CroppedImage.tsx",
+      "destination": "src/components/content/CroppedImage.tsx",
+      "sha256": "15c25a3367db6d4631728e7464f753abce284e868abaf2ee1ee4e6f997cb218e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/DraftConflictTools.tsx",
+      "destination": "src/components/content/DraftConflictTools.tsx",
+      "sha256": "b93ff09840c6dc94f421d1811f203550de76dc7d17b6f04bf0d6a3b82ee4f1bd",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/EntityAttributesEditor.tsx",
+      "destination": "src/components/content/EntityAttributesEditor.tsx",
+      "sha256": "42f81ee3dd00f280ae1af63492a17ff8b8d299cac775a4b9d90a8c712fcfcba3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ForeshadowPanel.tsx",
+      "destination": "src/components/content/ForeshadowPanel.tsx",
+      "sha256": "325a2a73a060eb8c1904696a1c56ecc876664c8d8835b369e3e382d6b158c35a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ImageCropEditor.tsx",
+      "destination": "src/components/content/ImageCropEditor.tsx",
+      "sha256": "eb1580defd63777ea0a3f984056c7da0d40a505fc1cfbf450242b518eea54f11",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ItemIcon.tsx",
+      "destination": "src/components/content/ItemIcon.tsx",
+      "sha256": "0eb03c6188e6b5eb786858f626f14831e2711ee4ad4c5eff1007d92ecc60c3cd",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ItemImagePanel.tsx",
+      "destination": "src/components/content/ItemImagePanel.tsx",
+      "sha256": "d796a4c6334f20f24b9f82893946ffd21f39aacb9221cc962a8c8d2fab8d8d9b",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "6038ff1b5bc8eb07270f455e1ddf550ca1a8517fcecc6fa09b446d6a652f306b",
+      "reason": "Keep the original image-panel UI and add the approved model Logo to existing model choices."
+    },
+    {
+      "source": "src/components/content/ItemLevelPicker.tsx",
+      "destination": "src/components/content/ItemLevelPicker.tsx",
+      "sha256": "8924eba47003cbe11d11dfe53ca79e3ff82750a8ce13c1bd30fd9a5b08d8a11a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ItemPanel.tsx",
+      "destination": "src/components/content/ItemPanel.tsx",
+      "sha256": "f1812118336b78a64004e9918f2d86107e8cf90693138bdd7cceb339e556196e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ItemsPanel.tsx",
+      "destination": "src/components/content/ItemsPanel.tsx",
+      "sha256": "9c418dd15922c4372ee9ed9e4a3bce1a7843368cf88170cfbe1d4136543d9fa3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/LevelSystemEditor.tsx",
+      "destination": "src/components/content/LevelSystemEditor.tsx",
+      "sha256": "70f807c8a4cdfdeab5c62a5a318b2cb0c60df42c820cfa1a2cf41c7f79fcb937",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ManuscriptExportItems.tsx",
+      "destination": "src/components/content/ManuscriptExportItems.tsx",
+      "sha256": "a80051c9981889db4b43f2f5379f8873587ea3b5197a90f80fa24cc059cf2749",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/NovelCoverPanel.tsx",
+      "destination": "src/components/content/NovelCoverPanel.tsx",
+      "sha256": "7f5a45b956f7ccbd202bf5979e2c50ab223f48b0f3afafc02bc1066873ed8c99",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "2a027342969c45fb3ac14b3ba8f90058c60686706b55ac36f4d5afdde1758970",
+      "reason": "Keep the original cover-panel UI and add the approved model Logo to existing model choices."
+    },
+    {
+      "source": "src/components/content/NovelOverview.tsx",
+      "destination": "src/components/content/NovelOverview.tsx",
+      "sha256": "970c8d074ecc3a7f18768cb63f52071a89e9ca1767855f1251309bf7d4eeb0e4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/OutlinePanel.tsx",
+      "destination": "src/components/content/OutlinePanel.tsx",
+      "sha256": "b8a5135a8115a30a13f660e4fc7f3d90db0a9d521b68f76a43ec11611bf8cf19",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/PlaceholderPanel.tsx",
+      "destination": "src/components/content/PlaceholderPanel.tsx",
+      "sha256": "536867fd430c773a3147114db21ae2b110f83c5b07b4adcc8f49861f02bc2389",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ReviewCard.tsx",
+      "destination": "src/components/content/ReviewCard.tsx",
+      "sha256": "8705711f91d8bde7f8630824b01b56ed3777522a96d9ffdbaf57c8c87759e265",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ReviewHistory.tsx",
+      "destination": "src/components/content/ReviewHistory.tsx",
+      "sha256": "8fcc54ba2af545f4446a17ae0e251e9bb09b58344be0c779d758503b65f7aa58",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ScenePanel.tsx",
+      "destination": "src/components/content/ScenePanel.tsx",
+      "sha256": "167eb50f1de5013f9338a3cc4d04da781f71def0131087969d006a686f3ac544",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ScenesPanel.tsx",
+      "destination": "src/components/content/ScenesPanel.tsx",
+      "sha256": "930f2f1263d0350563c96714a0b235315438e98710001d65d2b0879512b157d1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/SettingContentEditor.tsx",
+      "destination": "src/components/content/SettingContentEditor.tsx",
+      "sha256": "cf3f23a64a5b53e313e161b27b2b34565f29d5f3dd817ce110e6e35721593115",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/SettingPanel.tsx",
+      "destination": "src/components/content/SettingPanel.tsx",
+      "sha256": "61f42053f6a2e21828ef760410f30a6660f16f35080982b07c71e2d29228cd12",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/StagedSaveSurface.tsx",
+      "destination": "src/components/content/StagedSaveSurface.tsx",
+      "sha256": "f3422b53a2f114a95f61ef90d04ea51784add328777cd0db48b69db788143c1b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/StoryReviewPanel.tsx",
+      "destination": "src/components/content/StoryReviewPanel.tsx",
+      "sha256": "e7003ff450d492a03da6e606c5227b61a466df92767cf7da3180f5b7a194c30e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/StoryWorkflowPanel.tsx",
+      "destination": "src/components/content/StoryWorkflowPanel.tsx",
+      "sha256": "20104d25da1cf5ea929ef9285b474a24c2bbaebc429f82a04c5b61d61d6aa117",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/SubAgentPanel.tsx",
+      "destination": "src/components/content/SubAgentPanel.tsx",
+      "sha256": "2e5ec896564db66803ecac7bd5d14e72509340739f637c2a028224a5228acfae",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/ThemePanel.tsx",
+      "destination": "src/components/content/ThemePanel.tsx",
+      "sha256": "aff844c8e53ce79dd8be84abdf67c2591de14a7efc2da5f188cd5207d1c9b75e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/TropePanel.tsx",
+      "destination": "src/components/content/TropePanel.tsx",
+      "sha256": "57d54cad2ea8155cbce87f7a7b5a69884f6c00d6cf60bd122b01c09bf8630f7a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/WorldPanel.tsx",
+      "destination": "src/components/content/WorldPanel.tsx",
+      "sha256": "2270db87b191f90b383b69ac211fb0a54895c5e31db28731c80ea631b79d9863",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/api.ts",
+      "destination": "src/components/content/api.ts",
+      "sha256": "010710c08cb432e5557ecce75e48a790fde8616ebab4785d3e9a02fa03549160",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/candidate-accept.ts",
+      "destination": "src/components/content/candidate-accept.ts",
+      "sha256": "8a7366d1254a5a7961b7678eae2fc1a08b2e77f3929b5a3eedabd470b84190e2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/chapter-status.ts",
+      "destination": "src/components/content/chapter-status.ts",
+      "sha256": "032a484ce50305373c1622e1e03b1c142a4a7cab54fe18d0b35e68c4b0338332",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-chain.tsx",
+      "destination": "src/components/content/character-arc/arc-chain.tsx",
+      "sha256": "ef95ce25924cbbb10aef1580e70650eaceba52c5a363eca0de98621828b91647",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-change-editor.tsx",
+      "destination": "src/components/content/character-arc/arc-change-editor.tsx",
+      "sha256": "f37e88b25be088092fc2264ee6ef05c04fc7c0816a8412f41a5d0a583254d781",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-marker-input.tsx",
+      "destination": "src/components/content/character-arc/arc-marker-input.tsx",
+      "sha256": "933e6b99cbfd7b571271a4ccf6c6d2fa7e2c71ca16fceb4aad4da4bb645aef90",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-stage-editor.tsx",
+      "destination": "src/components/content/character-arc/arc-stage-editor.tsx",
+      "sha256": "72041e49d63d82acc165356cbc5dad8e735c7a4ff414c2c1188e5db2abe8f2d5",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-arc/arc-tab.tsx",
+      "destination": "src/components/content/character-arc/arc-tab.tsx",
+      "sha256": "71255d8b43a57df71e218fd163ec94dbb1ac05cccdc2de600e888fd52e621085",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/character-fields.tsx",
+      "destination": "src/components/content/character-fields.tsx",
+      "sha256": "f4b65cdc95936067846dfd22ec6d08e9bf41a658c585dfa5b34884bb0bf6fc8c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/image-prompt.ts",
+      "destination": "src/components/content/image-prompt.ts",
+      "sha256": "a9bd958a24234551b151fab3d7b364d5ad13bfee8aa6eaadd99c8b23be9c1967",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/item-levels.ts",
+      "destination": "src/components/content/item-levels.ts",
+      "sha256": "3f8f4b08bab8d87450068ba8bab5bb5875b2e4012401f535931b3d2627215df7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/labels.ts",
+      "destination": "src/components/content/labels.ts",
+      "sha256": "96178b812bf7f4ed5409e466197c87e85ba78fd50df9a6466bdf6d5ddbaa7040",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/level-card-parts.tsx",
+      "destination": "src/components/content/level-card-parts.tsx",
+      "sha256": "a776ff013029008ca322506af469bb5f8a376bb48f6be7524356ab09acc8d19e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/planning/PlanningWorkspace.tsx",
+      "destination": "src/components/content/planning/PlanningWorkspace.tsx",
+      "sha256": "2f5ecfc904fe44183cda2d45de7c0d4d6e4671ee0eb0b681e3accb841f7d9f68",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/planning/planning.module.css",
+      "destination": "src/components/content/planning/planning.module.css",
+      "sha256": "fbbc607031b8d620d23c03316b96f83d6267bd9283d276abc1910f438118c5de",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/registry.tsx",
+      "destination": "src/components/content/registry.tsx",
+      "sha256": "50905bfc0a30b8f573a29f501c95dd613cdb32b4b9eb0c8318facfa64335f32c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/ConfigForm.tsx",
+      "destination": "src/components/content/scenario/ConfigForm.tsx",
+      "sha256": "40de08cf8c8776ca3a3bf3e87ea7b1f0b9fa620e7ed896bbbcb4ed74b2de9108",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/ScenarioPanel.tsx",
+      "destination": "src/components/content/scenario/ScenarioPanel.tsx",
+      "sha256": "459c30fe76bb89d3beac11c2ccd50f2e8c97b0ae97cd7da369abc77cfbea8e88",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/beats/BeatsView.tsx",
+      "destination": "src/components/content/scenario/beats/BeatsView.tsx",
+      "sha256": "99005f3883a06addce3c2601df527ce97a469e7910ab73290ce9e1a094ef1dab",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/chat/ChatView.tsx",
+      "destination": "src/components/content/scenario/chat/ChatView.tsx",
+      "sha256": "c58835133e15514aa580a90cb77e60cbabbb5dd04c49f4b1d52b502f5de452f1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/prose/ProseView.tsx",
+      "destination": "src/components/content/scenario/prose/ProseView.tsx",
+      "sha256": "83bc718a4c3cdbb27658d8ab25c11f6bfc908f1ca869ea3a85f76333d44a80d3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/queries.ts",
+      "destination": "src/components/content/scenario/queries.ts",
+      "sha256": "abbb10e172286fe217ab888c45399102d1e4ed285b7c3a9b35bc8d3c8409d82b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/trunk/TrunkView.tsx",
+      "destination": "src/components/content/scenario/trunk/TrunkView.tsx",
+      "sha256": "71206f75395751ea8348fe95ba09b04ef6d11e28ab3b3df5616644c204aa974c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scenario/types.ts",
+      "destination": "src/components/content/scenario/types.ts",
+      "sha256": "5e5949684634297e713a8d068dc9b9f0aa953418384dc535ea5afac5544032ec",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/SceneEditor.tsx",
+      "destination": "src/components/content/scene/SceneEditor.tsx",
+      "sha256": "5bb08c3e3a96506a64270779fbda908b19f1898369ebf2d1d8bcbe0728923fa5",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/SceneImagePanel.tsx",
+      "destination": "src/components/content/scene/SceneImagePanel.tsx",
+      "sha256": "91434d84a29004b1dea247905b096d7d402c23f85a341c28e1883f4b11910440",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/SceneTree.tsx",
+      "destination": "src/components/content/scene/SceneTree.tsx",
+      "sha256": "433349b41220e992e13bc1b9499f1dab5bfa51689e483522ae121b3fab9434a9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/SceneWorkspace.tsx",
+      "destination": "src/components/content/scene/SceneWorkspace.tsx",
+      "sha256": "9105921e4b2fa3870e09399d1c311489f1618bb236b10b23452c3bab664826a0",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/scene.css",
+      "destination": "src/components/content/scene/scene.css",
+      "sha256": "b2866434af627a7d2d740892113b33f8eb81b6afefb9afa56acff657e36bbbc2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/scene/use-scenes.ts",
+      "destination": "src/components/content/scene/use-scenes.ts",
+      "sha256": "e86fe10d14536cd223d4a101ac78d13ba0872bfac320d05f3989b605b6224e51",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/setting-content.ts",
+      "destination": "src/components/content/setting-content.ts",
+      "sha256": "3615146219f1d8d2dc3d92c2e3edbc44776dd09383a691a7243ca6d68e566ade",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/types.ts",
+      "destination": "src/components/content/types.ts",
+      "sha256": "cf9c6a9827ec5d292484c3500b5bf87d9677348a5169549369b77822c04e8940",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/content/use-autosave.tsx",
+      "destination": "src/components/content/use-autosave.tsx",
+      "sha256": "bd053baf5706dc34d6a2e0709786098cc31e97dc17d4b11a5ea1efd16f39e412",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/editor/MarkdownEditor.tsx",
+      "destination": "src/components/editor/MarkdownEditor.tsx",
+      "sha256": "c0ff2fb88e9dcae198fce26a658a7bad64526377c22f6cfbcb14c1d8fd1fdfaa",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "4acebd907863aa40eef7f630167b95ad51d52ed1f259df491ae7cbfb40d1e59f",
+      "reason": "Add a desktop-scoped wrapper for local body typography; preserve the original editor, autosave, modes and comments."
+    },
+    {
+      "source": "src/components/editor/MarkdownPreview.tsx",
+      "destination": "src/components/editor/MarkdownPreview.tsx",
+      "sha256": "515add47c83cc25fe9b131d6baf7db288be23bd96a04110850f82a700e502fa1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/editor/MonacoMarkdownEditor.tsx",
+      "destination": "src/components/editor/MonacoMarkdownEditor.tsx",
+      "sha256": "f2f97b391fbecb139b0ad8e95b48c21c6c58ff29af8b5534ef508ba5f603033c",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "87d5574537b3bc3e67c5cfe84a886ab9a2096a2e7a07963f60876795eb93f2c5",
+      "reason": "Apply desktop body font, size, line-height, line-number and wrapping preferences through the existing editor options without remounting its model or undo history."
+    },
+    {
+      "source": "src/components/editor/monaco-setup.ts",
+      "destination": "src/components/editor/monaco-setup.ts",
+      "sha256": "8361a4c9c2d9e705715782dd7019b5731912f0605c3a49db3b3d438ca0ad4191",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/editor/use-editor-commands.ts",
+      "destination": "src/components/editor/use-editor-commands.ts",
+      "sha256": "0ba9301fcf9b9000a4554656e796675d446009765cd32cd8059a78813274ba65",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/foreshadow/preview-references.tsx",
+      "destination": "src/components/foreshadow/preview-references.tsx",
+      "sha256": "44eae5179a4c743ade8af0b4b09a2c0562937b37c4d280abf7bf72d9ce989707",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/foreshadow/references.tsx",
+      "destination": "src/components/foreshadow/references.tsx",
+      "sha256": "5b311f1fc9db9c985dcfa5973b8dfce5488fa16b34cc7595c7ec3d9b16672c32",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/foreshadow/use-editor-references.tsx",
+      "destination": "src/components/foreshadow/use-editor-references.tsx",
+      "sha256": "ea892f32f47a4667ad3761b4b9dcfa09a52f25394f67b8d1080b626be4842b08",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/foreshadow/use-panel-focus.ts",
+      "destination": "src/components/foreshadow/use-panel-focus.ts",
+      "sha256": "2a8f0bc935a0eaf621ea273943a46bbea5ea09baa8a28a57740d9e9d4ee2a8fe",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/ChatPanel.tsx",
+      "destination": "src/components/layout/ChatPanel.tsx",
+      "sha256": "b9ef45bfffd489a0f1220d8c9407eba516bfade56e05d822f962457dee59873a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/ContentTabs.tsx",
+      "destination": "src/components/layout/ContentTabs.tsx",
+      "sha256": "1f8c9d1a6f1b7c14a9e83995289a7982b8089833ab8ef3d175b43ca94e59a478",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/CreateNovelDialog.tsx",
+      "destination": "src/components/layout/CreateNovelDialog.tsx",
+      "sha256": "3a329227a8ef9a16a2eeaaa9816b4659c473814da38bf8f852a1dd42467022bf",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/DashboardShell.tsx",
+      "destination": "src/components/layout/DashboardShell.tsx",
+      "sha256": "a527960ee848cad6723c29003d5e0fd941c6a48cec614be40fa2b0f57395e830",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "ea209083139e181a43a639c7dd44a2b94d4259f3417612cae7f3c5d4b50f1707",
+      "reason": "Pass an optional local avatar URL through the existing Web shell; retain its original panels, sizing and visibility animations."
+    },
+    {
+      "source": "src/components/layout/OutlineTreeMenu.tsx",
+      "destination": "src/components/layout/OutlineTreeMenu.tsx",
+      "sha256": "765687e69259d5d508b955294133ece9949828c737d87bd8bff35f7d00a72201",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/ScenarioCreateDialog.tsx",
+      "destination": "src/components/layout/ScenarioCreateDialog.tsx",
+      "sha256": "08f8a69505a1e4df82b48d56abd7fe9d08c412c94445b64af6181d3487ad9cd8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/SidebarHoverCard.tsx",
+      "destination": "src/components/layout/SidebarHoverCard.tsx",
+      "sha256": "19db0820848f4d1e36748a9e297eafa10fed00c7e9e67321589aa1791c2249c7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/layout/SidebarTree.tsx",
+      "destination": "src/components/layout/SidebarTree.tsx",
+      "sha256": "6c4d58d3bce93d999536f423f625b59a33ab7739fc754651416fd01b85e9950b",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "91278f2d4347d4ef492d4f45e70348dbb5f1f9277512d39edad7366fe743b156",
+      "reason": "Keep the Web tree/account-menu layout, desktop window-controls/settings entry and confirmed local profile; render only the saved local avatar in the original account icon slots."
+    },
+    {
+      "source": "src/components/marketing/seal.tsx",
+      "destination": "src/components/marketing/seal.tsx",
+      "sha256": "4e232e75bf0dadd72309785920a05b64737e8e4017daff87556af0f438bda21d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ImproveContentDialog.tsx",
+      "destination": "src/components/score/ImproveContentDialog.tsx",
+      "sha256": "4f01fcc53c6a91e8a6e619e19b6050650272c4cdf915263d396043540ee26e5b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ReviewCommentsSection.tsx",
+      "destination": "src/components/score/ReviewCommentsSection.tsx",
+      "sha256": "6bf8022d6cb8162dfe950a65cb3ff65b3f3067ca6a002a2600445da1bd7172d6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ScoreHoverCard.tsx",
+      "destination": "src/components/score/ScoreHoverCard.tsx",
+      "sha256": "30e1fd87832a57a56b0d59859023f7e7c516a6c8b02093926a2e072d813036c9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ScoreIndicator.tsx",
+      "destination": "src/components/score/ScoreIndicator.tsx",
+      "sha256": "02977009d3e9ac9c1a46b0b28c58ac5ef57b2f5d5bfe055fa86a4068dff7d604",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/ScoreReportPanel.tsx",
+      "destination": "src/components/score/ScoreReportPanel.tsx",
+      "sha256": "1b00d0110a4cf1cdcb86655814ad30204684952579b20278a83717c883ff4108",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/use-improve-dialog-settings.ts",
+      "destination": "src/components/score/use-improve-dialog-settings.ts",
+      "sha256": "c7e892756a4a385f65647e0fbc8d67a52f397636bf8663139e788488b5746d2b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/score/use-score-report.ts",
+      "destination": "src/components/score/use-score-report.ts",
+      "sha256": "35f940944b7fa5fd3809fc24eaa8c31f366ed68a76c090b3dc6cde3217c0d1a3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/theme/ThemeSwitcher.tsx",
+      "destination": "src/components/theme/ThemeSwitcher.tsx",
+      "sha256": "647ad39154374d141abfdcb8fb68d7095d43c58d5fbc51b3e4e4981161ec7c4d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/avatar.tsx",
+      "destination": "src/components/ui/avatar.tsx",
+      "sha256": "357b2f9aac0192c071cb2ed65cb6e4c8ec01fa02fc15cf50d889b85731b75666",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/badge.tsx",
+      "destination": "src/components/ui/badge.tsx",
+      "sha256": "968b0403af74a785c9408ca69a677235e49d0c80b2c27fb9858ad421a8778c7d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/button.tsx",
+      "destination": "src/components/ui/button.tsx",
+      "sha256": "d14549ab3ba7a9d5d1f424c2599233bffa0b317121abf3b6efa2fb902d5e2781",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/card.tsx",
+      "destination": "src/components/ui/card.tsx",
+      "sha256": "d8113cbf964f8d1aadf2649d2944d8bbc6e3cfd49d36746f76868cbc4dde3cfe",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/checkbox.tsx",
+      "destination": "src/components/ui/checkbox.tsx",
+      "sha256": "5b7c192cb21dc5dc5810503c2a8250ce3a615d9e1b697dde29a766fc3506edeb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/dialog.tsx",
+      "destination": "src/components/ui/dialog.tsx",
+      "sha256": "ccabf6cc674a68b09d9168904bb46b7c1075a67312cf6f51f3e38b8eeacd2fdb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/dropdown-menu.tsx",
+      "destination": "src/components/ui/dropdown-menu.tsx",
+      "sha256": "7c72e5f3a80edee1e429c23da1675c8e0eb5ff502f38f1449eb5286543ab738d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/form.tsx",
+      "destination": "src/components/ui/form.tsx",
+      "sha256": "d19ea96791f9706e1206161318841a66e78ad8bb20caa972124e5899799832d8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/input.tsx",
+      "destination": "src/components/ui/input.tsx",
+      "sha256": "f7d6ecff9a4d631feeaf401c02bb87e26ddb38131c55d15a43b9290747390847",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/label.tsx",
+      "destination": "src/components/ui/label.tsx",
+      "sha256": "7f19b8476658d25ff197c84030e58cd7395059d876a54630e025951e474ebdae",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/scroll-area.tsx",
+      "destination": "src/components/ui/scroll-area.tsx",
+      "sha256": "42de3962daca60255bf1d3cd90bd3c038db73a3ed61ecaac6cffc6a153181e4a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/select.tsx",
+      "destination": "src/components/ui/select.tsx",
+      "sha256": "ca3bd1b370ea67b84632d435c22d8270752fa6013c06c365162af265e4a0e87e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/separator.tsx",
+      "destination": "src/components/ui/separator.tsx",
+      "sha256": "75085bd84ff6965e4a356c53a4689799cabf65caa93c0bba064d5a0c6fa78f13",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/sonner.tsx",
+      "destination": "src/components/ui/sonner.tsx",
+      "sha256": "2dd975ad2170ba2570b00e58713dcbda90f26a7fffdaceb1ef7255f450c2d2a6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/switch.tsx",
+      "destination": "src/components/ui/switch.tsx",
+      "sha256": "c98e4b259d28463c34c65cdbfba447d5ccd4fed0a138b7acf8c796309e61e2d6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/table.tsx",
+      "destination": "src/components/ui/table.tsx",
+      "sha256": "a13f55a7c1406197608f223006cf16f211a257b213362caaef0d2abf3a389c8f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/tabs.tsx",
+      "destination": "src/components/ui/tabs.tsx",
+      "sha256": "8bf9ee3935ab86c268a2a71cb5b4b67d3d5587ca9f2e0bf25f37ffdb1980434c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/tentative-badge.tsx",
+      "destination": "src/components/ui/tentative-badge.tsx",
+      "sha256": "68c28410de0d9d6dbc9eb8557a6f301a845b278bbcdb98ddec81bcef71836747",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/textarea.tsx",
+      "destination": "src/components/ui/textarea.tsx",
+      "sha256": "58b58d84fc54ba5f4ca46937870c619349fd9eccc4d494250ac7bc73a94e05e9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/components/ui/tooltip.tsx",
+      "destination": "src/components/ui/tooltip.tsx",
+      "sha256": "2cea2294d4947b88d815860f64e0b5e0eb47a59bde47cfd194aac2230c923865",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/abortable-stream.ts",
+      "destination": "src/lib/abortable-stream.ts",
+      "sha256": "91e40332e2f5ea8aca414daf654bee5127264fefd3f26d5250a1ff784cd1e62b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/auto-model.ts",
+      "destination": "src/lib/ai/auto-model.ts",
+      "sha256": "abf8a17f60b8a4edab1c5abc66e6b507262b058e817152de93627956a1d3f3b8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/chat.ts",
+      "destination": "src/lib/ai/chat.ts",
+      "sha256": "350346c12205a41f2e76d8daff68dfa86b7b2440c65d17a43343e5b50988fe1b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/compact-tools.ts",
+      "destination": "src/lib/ai/compact-tools.ts",
+      "sha256": "a430ae1c58e86205be96ee2c99e7490bbbedc1f982ad1d0a716afd49db3b5d7d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/context-budget.ts",
+      "destination": "src/lib/ai/context-budget.ts",
+      "sha256": "38238a7abfad2a6fa8ccee5dcb1daa4a308d423af2f35be5c24e1720f68d9579",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/context-compression.ts",
+      "destination": "src/lib/ai/context-compression.ts",
+      "sha256": "db7f972013a8f389f4d28314251ad311b82f62d1770169621cf9df0a23dd5cae",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/context-protection.ts",
+      "destination": "src/lib/ai/context-protection.ts",
+      "sha256": "5096dceece37669a8ed4b566c6c8332daa8009a733134d9171e44e733ce4dea3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/context.ts",
+      "destination": "src/lib/ai/context.ts",
+      "sha256": "acae9df2ce27cd7d60ae65d7e122c77990d6eedd9b41d57162431d7b5b01e363",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/cost-config.ts",
+      "destination": "src/lib/ai/cost-config.ts",
+      "sha256": "ae74a3347acc2480aab7561da33f12961fb7285c0c1effd4a556af376a73f671",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "413e29aa85029cadf79bd2a5ced6bfe162b3c6ad5f8b5c2a3884116b14af88e7",
+      "reason": "Read and write application-level configuration/templates through the local global-library database rather than a work database."
+    },
+    {
+      "source": "src/lib/ai/error-classification.ts",
+      "destination": "src/lib/ai/error-classification.ts",
+      "sha256": "a46e3408fc4268208d764fbb23c0aa282c2f00c767a8752622dca5c518c0d12b",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "3af6def35bbfb8d32f6ef7d11144aa06d5dc3087805315736e2208bef8410c70",
+      "reason": "Recognize safe RPC network and authorization-revocation codes while retaining original failure classification."
+    },
+    {
+      "source": "src/lib/ai/errors.ts",
+      "destination": "src/lib/ai/errors.ts",
+      "sha256": "d33f45b10efdc2be9092c4374f2281d5694ae7be635cecf6fccab704b7c51119",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/generate.ts",
+      "destination": "src/lib/ai/generate.ts",
+      "sha256": "545425fc722872aa3b19291379e8f2645f1ef57e9f3914a4c66f46542eb49b72",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "8c3e0a88b8409b1e8ed4373f1f33713c40dbd2c0a15b8d3aaccb7394a85dc514",
+      "reason": "Retain local workspace until actual stream consumption and onFinish writes settle; persist immutable model usage snapshots."
+    },
+    {
+      "source": "src/lib/ai/image.ts",
+      "destination": "src/lib/ai/image.ts",
+      "sha256": "c91f45767a2d3d67cb8f932a156c31aa34e29b0218b43d0e0e2283ef1d1746c0",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/model-availability.ts",
+      "destination": "src/lib/ai/model-availability.ts",
+      "sha256": "e89fb781515c94bf8c9444e298845c46010661004e2c502b5b4ad853dcc11695",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/model-request-lane.ts",
+      "destination": "src/lib/ai/model-request-lane.ts",
+      "sha256": "1dce835e8174bd20194d4f223b1dd889ac76fb419e74b1cf6f7eaccd0568e33a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/network-retry.ts",
+      "destination": "src/lib/ai/network-retry.ts",
+      "sha256": "9ef6fc9623319356515905af19f6c5e1e79ba06343a2c26f2e437a5cbedce75a",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "3c130d4e15f98cd84d53d3beff4fcc449a0aee3f70adf1dca59a7833e76968d1",
+      "reason": "Read and write application-level configuration/templates through the local global-library database rather than a work database."
+    },
+    {
+      "source": "src/lib/ai/openrouter.ts",
+      "destination": "src/lib/ai/openrouter.ts",
+      "sha256": "6b7e9d3b91f607a902e590975fd5fb70933d2b48ff558e238780cba510fdb645",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/planning-tools.ts",
+      "destination": "src/lib/ai/planning-tools.ts",
+      "sha256": "244a393684f92cead0b23a1e635d5594bb4bcb445e2f2f8fed100e6bdaffac73",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/prompt-budget.ts",
+      "destination": "src/lib/ai/prompt-budget.ts",
+      "sha256": "45ec56b653733908c4914fa7e5e7411b4c5fed8c708fef5d344db0db0d11c0e8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/provider.ts",
+      "destination": "src/lib/ai/provider.ts",
+      "sha256": "4ad393913b21b7d59e75d42ac309c2755af3c7310813137f0e36e6f7e2d53a3b",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "8d28fa50d6f5060e0af680a0ad5fb189ab0529f87f7ccf7d125e22ca5a3ff7d1",
+      "reason": "Resolve explicit local-vault model snapshots by task role; use the main-process authorized network transport without platform fallback or worker Key access; normalize only provider family aliases for existing SDK compatibility."
+    },
+    {
+      "source": "src/lib/ai/soft-stop.ts",
+      "destination": "src/lib/ai/soft-stop.ts",
+      "sha256": "f02cbcf7c4c2f517a6eddb65d612d7f5a852bdab0a4b1bb092e7c97b77158978",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/story-workflow-summary.ts",
+      "destination": "src/lib/ai/story-workflow-summary.ts",
+      "sha256": "3b32bbf151d54f53b510a9d58c96a1dd1a57622cf1f51f28fb19af2e1997cf98",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/story-workflow-tools.ts",
+      "destination": "src/lib/ai/story-workflow-tools.ts",
+      "sha256": "bea954cc7f9e84a1204c6575e29b186a3c78f4d876e0b637e076b710dc441e36",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/task-context.ts",
+      "destination": "src/lib/ai/task-context.ts",
+      "sha256": "ec0279e732d0f5df7593dfa0d67d63dc1a44fb9e6b2b35cc3048854bb6c5be47",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/thinking-effort.ts",
+      "destination": "src/lib/ai/thinking-effort.ts",
+      "sha256": "ad9ab82d5be4bb63fdbf9f65cebce8fa8996dc48afbaf5615f297698b2120b5a",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "1076ee8a4d4ef6b0efba790cbf21a4fb2ae48ea2301e360c250bd5917cdd496f",
+      "reason": "Reuse the original thinking capability table with desktop supplier-family aliases; preserve stored supplier IDs and authorization scopes."
+    },
+    {
+      "source": "src/lib/ai/timeouts.ts",
+      "destination": "src/lib/ai/timeouts.ts",
+      "sha256": "0442932ee9ea253feef0f996c563b7badc261685c40dca402b26d5a5f760372f",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "89a67baa538337f5d96c78b0fa34e1d6d1802915aa35271d2934c3da3246c8b9",
+      "reason": "Read and write application-level configuration/templates through the local global-library database rather than a work database."
+    },
+    {
+      "source": "src/lib/ai/tool-compatible-model.ts",
+      "destination": "src/lib/ai/tool-compatible-model.ts",
+      "sha256": "a86c14aa919290214823d20933ced14e02c63500b690499e0ba4478daebe3d63",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/tool-input-repair.ts",
+      "destination": "src/lib/ai/tool-input-repair.ts",
+      "sha256": "41ec65630c221f2f9290abcf366de11add48a7be716d3e332f41a2515ba96403",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/tool-names.ts",
+      "destination": "src/lib/ai/tool-names.ts",
+      "sha256": "4e83377906179f5eba09093a13398f0b7460a221907bfc17296688ab6a67635e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/ai/tools.ts",
+      "destination": "src/lib/ai/tools.ts",
+      "sha256": "5ac7cb6e0669fef76932e899de9c71c87b5acd70877a87774e4b202b5279137e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/aliases.ts",
+      "destination": "src/lib/aliases.ts",
+      "sha256": "7ec5b83c96b03598845b30f88b92a6c055dc873b21277ceb102b9d20aea1781d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/arc-stage.ts",
+      "destination": "src/lib/arc-stage.ts",
+      "sha256": "c43a2cd2f3f67d113b488a557086f62631dc9e3db40b06a3d903396b39555e6d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/auth.config.ts",
+      "destination": "src/lib/auth.config.ts",
+      "sha256": "22897d1cbc48a7a01adcd5ca341b07ca1125c77d46d302007b414d645e5f8696",
+      "status": "removed-platform-boundary",
+      "currentSha256": null,
+      "reason": "Remove Web account/session auth configuration from the local-only application."
+    },
+    {
+      "source": "src/lib/auth.ts",
+      "destination": "src/lib/auth.ts",
+      "sha256": "a6a7ce508890ea31ed9de296388427d793a3ac99fa3dbcac23cebf3c6d0e2fac",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "e07a174b23d6c82f3d2b25e09cba92f3234f0968d5bf574549fd64bac21481c1",
+      "reason": "Resolve the fixed local author only within trusted request database context; remove remote account authentication."
+    },
+    {
+      "source": "src/lib/autosave-controller.ts",
+      "destination": "src/lib/autosave-controller.ts",
+      "sha256": "a0f5e0684a9779195750b1ca750eeef76cebf4432482a80edef555ce98624d08",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/beliefs.ts",
+      "destination": "src/lib/beliefs.ts",
+      "sha256": "f444a2cc594d804ed2afd082e207edb81ce23a98843c74d66e1fc58df9e3670a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/big-five.ts",
+      "destination": "src/lib/big-five.ts",
+      "sha256": "698a336be50a836909b213e2608b986eddd3279a5c1f8cbae82a9703aa6a4582",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/candidate-quality-policy.ts",
+      "destination": "src/lib/candidate-quality-policy.ts",
+      "sha256": "54a34ede8d0ab7209f1d5569426ea696f4fc3436de2a8a19c9945d0036f5205a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/card-select-actions.ts",
+      "destination": "src/lib/card-select-actions.ts",
+      "sha256": "501666047159073b48df2e70a1d6573571fb3c2ae551f6e663d0d10f5b3c3ace",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/chapter-material-reconciliation.ts",
+      "destination": "src/lib/chapter-material-reconciliation.ts",
+      "sha256": "ba2eddf9ba01819a456ad235a286b5923d2b81c3f5b1da92f1494aa73d4c36a2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/chapter-task-sources.ts",
+      "destination": "src/lib/chapter-task-sources.ts",
+      "sha256": "e95b68a12d3f76aa86c80ca27ae3ee9b203b991610ccb677abfdd4423cfee13a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/character-image-prompt.ts",
+      "destination": "src/lib/character-image-prompt.ts",
+      "sha256": "bff19a4235286a2c10073236dbdde363a95c023e57d8099986329eee16a5f10f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/chat-execution.ts",
+      "destination": "src/lib/chat-execution.ts",
+      "sha256": "df0e4ea8de30bd71df61507a0b5ddeb630ac0500998762441450fca8fd1406d4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/chat-parts.ts",
+      "destination": "src/lib/chat-parts.ts",
+      "sha256": "903832c6c729add9b4856a70343471f13b27cb75686142210ee3737b7259af72",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/chat-protocol.ts",
+      "destination": "src/lib/chat-protocol.ts",
+      "sha256": "195f6c1405f199112fdcf242aa5e417e2171b2c5b9610c56a0ae316cd215943e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/chat-session.ts",
+      "destination": "src/lib/chat-session.ts",
+      "sha256": "fe07f196c8a2f61a4c363ba1795b6ea362fc08d74225392e8eb30be5a5c93c74",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/chat-stage.ts",
+      "destination": "src/lib/chat-stage.ts",
+      "sha256": "04fd0d26f5f81e63763a322d1d07f2b0f263c3150468f0886a2e17fb45dce64a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/chat-stream.ts",
+      "destination": "src/lib/chat-stream.ts",
+      "sha256": "84fd29bb92d8838f625660d8b7d8a87a1c9a96c7b12b27359c02f05147b368ef",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/collection-export.ts",
+      "destination": "src/lib/collection-export.ts",
+      "sha256": "668d6e31a2a87ea3a12b2eb3f02fbf2b46f5a7d71edea06ddca19954866fc83a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/comment-anchor.ts",
+      "destination": "src/lib/comment-anchor.ts",
+      "sha256": "20aa3c75ae19e96864ae50f58d39d6beb540267c1935a9e6ff154bcdaab60d99",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/comment-drafts.ts",
+      "destination": "src/lib/comment-drafts.ts",
+      "sha256": "ea1d1c0a0a0f7f41bfcd436f4d10397594c46f5a5ebe88afc5b5c5bcca31353a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/comment-selection.ts",
+      "destination": "src/lib/comment-selection.ts",
+      "sha256": "5e99f2b396eb17b7ea3999691ae2ef44814918f4bc477d19cc7aae7ab147f05c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/content-errors.ts",
+      "destination": "src/lib/content-errors.ts",
+      "sha256": "429765f36eaa726a35131f8c900cca64df6165c91be9a59d103487e1756be83a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/content-policy.ts",
+      "destination": "src/lib/content-policy.ts",
+      "sha256": "2cc2b33ce36fce1c4b39a036259d5f09fe7222cbd8ab8b38722861505ad4596d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/cover-image-prompt.ts",
+      "destination": "src/lib/cover-image-prompt.ts",
+      "sha256": "ee868409f3094856b9f1f57fc31834327ab7fe173095e1f78be5655650f7dab0",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/compose.ts",
+      "destination": "src/lib/creation-wizard/compose.ts",
+      "sha256": "0a5f42252f384d028f13cad609778bc38a1b80e384ebe3a901ff0ed6aa1c2e8e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/fallback-title.ts",
+      "destination": "src/lib/creation-wizard/fallback-title.ts",
+      "sha256": "eb58594b9852f54cf73405e751f00bb039377d400a99ac9244c12df15cd57d0b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/filter.ts",
+      "destination": "src/lib/creation-wizard/filter.ts",
+      "sha256": "1566e9a5d90374eb71d270429e11cc34efc926e839de32ece49f319f08685fa6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/icon-manifest.ts",
+      "destination": "src/lib/creation-wizard/icon-manifest.ts",
+      "sha256": "d3d000599f0125a9ca1220622ce7a189094c00758ecf9f247c472797887302c7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/position.ts",
+      "destination": "src/lib/creation-wizard/position.ts",
+      "sha256": "615336ec8d16666a8649df1eeebe6acda0f547f69d5a7037e25ab4d1e4891e7f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/taxonomy.ts",
+      "destination": "src/lib/creation-wizard/taxonomy.ts",
+      "sha256": "c518e19409c9648cbdfd159960df89f4081b3cdf8841e174e6266c68f4840aee",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/char-a.ts",
+      "destination": "src/lib/creation-wizard/templates/char-a.ts",
+      "sha256": "9fb31098e401000574c8f895de4303b69bbd1a81a54a6d6ef415e02981f09652",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/char-b.ts",
+      "destination": "src/lib/creation-wizard/templates/char-b.ts",
+      "sha256": "3cd159542a21f658d7e88de0a6721c66097755c37dcc4638faf8ea9ddff60d2c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/index.ts",
+      "destination": "src/lib/creation-wizard/templates/index.ts",
+      "sha256": "8ff23948e2fc60179184c1f62bb4035a75d7984adbf16a6105f5ec5fea6cae63",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/plot-a.ts",
+      "destination": "src/lib/creation-wizard/templates/plot-a.ts",
+      "sha256": "ace0ec15f4223964c5917c483c8b2e3211f01d6a6c1b37bca35b6cba8d7f3fe2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/plot-b.ts",
+      "destination": "src/lib/creation-wizard/templates/plot-b.ts",
+      "sha256": "ae66da04ac93e8e7f99bdd5d7c5a33a47cb81e5072c935240ed6530cf5b7a1ef",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/theme-a.ts",
+      "destination": "src/lib/creation-wizard/templates/theme-a.ts",
+      "sha256": "c315e2c77c7f278643a88ba30fdae25e3744a106220afa28be04fbd20e78aba1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/theme-b.ts",
+      "destination": "src/lib/creation-wizard/templates/theme-b.ts",
+      "sha256": "5b0cd15114fd46139326d71cb3f5640041a1076174e3146022cc6e3f5f6772b8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/world-a.ts",
+      "destination": "src/lib/creation-wizard/templates/world-a.ts",
+      "sha256": "600032491ced2a3e118216efa3aca668f16558b17903ff8bf89ad220f0671711",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/creation-wizard/templates/world-b.ts",
+      "destination": "src/lib/creation-wizard/templates/world-b.ts",
+      "sha256": "843f0248f55251d5912a4809ae5acd3cb76738dff5a9ec251fd6deea6e3cb71d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/crypto.ts",
+      "destination": "src/lib/crypto.ts",
+      "sha256": "c26d9b53554dba25f295187dcfd3beb2b6dab320f2d22053c5221619f2b9c3e5",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/db.ts",
+      "destination": "src/lib/db.ts",
+      "sha256": "9791c6ad18f3d59c51582e83d3ac0f6f9b148412624e0228bd4aede767bbdcb5",
+      "status": "adapted-desktop-boundary",
+      "reason": "Expose request-scoped and global-library Prisma facades over isolated per-work PGlite databases.",
+      "currentSha256": "e786ac6b2b6b9e630c96e698ee7648e779328802aac1fb4e6d127e5ed5780c5b"
+    },
+    {
+      "source": "src/lib/draw-redraw.ts",
+      "destination": "src/lib/draw-redraw.ts",
+      "sha256": "d4cee74fd4095bd0234bf18448d14aa9d98ca34ec24283ec852b11916b32627a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/duration.ts",
+      "destination": "src/lib/duration.ts",
+      "sha256": "bb56090fb19af49b54c4f65573bd8dbcbb11e8f858ef84ce865d05764288e5e3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/entity-name.ts",
+      "destination": "src/lib/entity-name.ts",
+      "sha256": "3df88401efebb80ce12ec4ad3c04f04596440641ce50d04a7127747629af7518",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/faction-identity.ts",
+      "destination": "src/lib/faction-identity.ts",
+      "sha256": "36e53a0d5b22b8104ee304e8bbb85134ff107ece3c0fe49bab25423b9abaf993",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/foreshadow-reference-card.ts",
+      "destination": "src/lib/foreshadow-reference-card.ts",
+      "sha256": "8cc6b339d17882e92bd9049fe3fb074c6ea4dc8949dfbc9ddcd11e033075b5ae",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/foreshadow-reference-evidence.ts",
+      "destination": "src/lib/foreshadow-reference-evidence.ts",
+      "sha256": "c169f0fa86f1e272ce66538d86c5d60c886ab2131e639df7b537a8a1132893e3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/foreshadow-reference.ts",
+      "destination": "src/lib/foreshadow-reference.ts",
+      "sha256": "05ce8778b6608fcbecc52ccc991979634cb44c1f5f4f8a88f43b22a071d7d075",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/foreshadow.ts",
+      "destination": "src/lib/foreshadow.ts",
+      "sha256": "89b69159f2e01d7876873ff52a691971e3658bc7f686659aa35b93c35b9db696",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/improve-draw.ts",
+      "destination": "src/lib/improve-draw.ts",
+      "sha256": "554190d85e821633f6c6f01293cba73641acf45633811012e94ceee3da76e59e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/item-image-prompt.ts",
+      "destination": "src/lib/item-image-prompt.ts",
+      "sha256": "1fb37586a9f3980dba141d4ef904cbb8ff6f1dfd1f5429ff592cc66f4e02106d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/item-tags.ts",
+      "destination": "src/lib/item-tags.ts",
+      "sha256": "e70a00f476f56a5b37f69a34fd328dda181fb05902eb8ec6d568f0f8ea08df46",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/local-chat-cancellation.ts",
+      "destination": "src/lib/local-chat-cancellation.ts",
+      "sha256": "9efdbcb1ae2c7b736bb2748bc2ab6292143514cec4ba893ae09dffbc75b99add",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "99e3ce944f596aade4be3991e98aff3f301b945722b354559e092b93add9390d",
+      "reason": "Retain workspace for each active detached chat attempt and expose local attempt cancellation for app lifecycle."
+    },
+    {
+      "source": "src/lib/long-task.ts",
+      "destination": "src/lib/long-task.ts",
+      "sha256": "7ef50bce06be8ee01075f03c05d29b82d2fb2ee95032182cb1088da35125b733",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "b5fcead1194200be91364a94f317f83a8680a974920d1e8b5d3cde02f2898b5c",
+      "reason": "Retain database lease during asynchronous queue acquisition and task lifetime, releasing on failure/completion."
+    },
+    {
+      "source": "src/lib/manuscript-export-cover.ts",
+      "destination": "src/lib/manuscript-export-cover.ts",
+      "sha256": "30fb2eb3e190bfcd537114a8363f299149e65d2f11438d4428486637c6e60c3c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/manuscript-export-docx.ts",
+      "destination": "src/lib/manuscript-export-docx.ts",
+      "sha256": "503f5a04647d182429e745c56a426f853042ea8e976d52ee6b44bab08429b30c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/manuscript-export-layout.ts",
+      "destination": "src/lib/manuscript-export-layout.ts",
+      "sha256": "efe89acf0d1ba0a1edcf8990b307caec7dd349c017ee23af6108eb6cd7e864e7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/manuscript-export-pdf.ts",
+      "destination": "src/lib/manuscript-export-pdf.ts",
+      "sha256": "24f6e67db515cb411f432987f7ff3df6f9c3211833b65bf415717d525d7c3e1a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/manuscript-export.ts",
+      "destination": "src/lib/manuscript-export.ts",
+      "sha256": "1f79d011ceb2945571086a7bb4a7516faafcd4d80d07dd3b088d881437630a58",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/markdown.ts",
+      "destination": "src/lib/markdown.ts",
+      "sha256": "5b05ec8e23442617c1dae2587b5773ad23f48d5d39dd61e959176e38544a9a7b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/material-reference.ts",
+      "destination": "src/lib/material-reference.ts",
+      "sha256": "41bad3572eaac1da986a79df9a247440cc074b17d5e02c896cf544e579ec7f39",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/material-task-readiness.ts",
+      "destination": "src/lib/material-task-readiness.ts",
+      "sha256": "d2f9beda02540faa8dd94e397cf26290e0ff9cd60dcdf2d7391b5c845104b494",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/mention-token.ts",
+      "destination": "src/lib/mention-token.ts",
+      "sha256": "3e0340cb5c4707780dc44cf26e47a1a504f9e022664b58baa2938866c3b96b42",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/motivation.ts",
+      "destination": "src/lib/motivation.ts",
+      "sha256": "1da4345af4b95693c786990cf9c834d622c6c7e9541a5e7b012a5e0c213a90b7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/narrative-alignment.ts",
+      "destination": "src/lib/narrative-alignment.ts",
+      "sha256": "ec78a25835a859d1942f6ae78445c0481e8e6539a04177cb844bfb589abfbde2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/novel-title.ts",
+      "destination": "src/lib/novel-title.ts",
+      "sha256": "3e6940540d4f12955c26d60d8a01847a795e0ba31bfd38164924e4a17bbe968b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/outline-collection.ts",
+      "destination": "src/lib/outline-collection.ts",
+      "sha256": "0ae82620e05747b1870ba73f113e72fd862e8411611dd84711cba6fdd933ff52",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/personality-tags.ts",
+      "destination": "src/lib/personality-tags.ts",
+      "sha256": "c396549c92f632fc6112a33708aac5a69e5549f5ea7add7ac5b0c9e24931c067",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/planning-adjustment.ts",
+      "destination": "src/lib/planning-adjustment.ts",
+      "sha256": "64893b769f241bb95d540541ed581dd45327e59bd996b6524a7763e9d597c831",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/planning/domain.ts",
+      "destination": "src/lib/planning/domain.ts",
+      "sha256": "71cdcc245d0566d0c368f0037bb401334747045b75c37e244c66e1e838a413d9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/planning/timeline.ts",
+      "destination": "src/lib/planning/timeline.ts",
+      "sha256": "468c830fbc2a7179a208213b4f4e848565b2d265d527236e7e57a4a424f679c1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/prompts/chat-system.ts",
+      "destination": "src/lib/prompts/chat-system.ts",
+      "sha256": "0cc12ef23b09197f34efd3a9f3c24b551a0fdc34e45fb4a57ba6d6a6fce090d8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/prompts/render.ts",
+      "destination": "src/lib/prompts/render.ts",
+      "sha256": "68422196704060f24e443278000f31bd7e8d6d5c99e8068f16d50cb03cc60457",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "9240df0e37ec45c467ace9abf88a5ec6e39e83575cc4883fa9f71ac21187cc3a",
+      "reason": "Read and write application-level configuration/templates through the local global-library database rather than a work database."
+    },
+    {
+      "source": "src/lib/prompts/scene-migration.ts",
+      "destination": "src/lib/prompts/scene-migration.ts",
+      "sha256": "bad9102cbe443e6d548174b829662f289102fb4a8e83160a2868c17487bd0b10",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/prompts/story-workflow.ts",
+      "destination": "src/lib/prompts/story-workflow.ts",
+      "sha256": "a15779856af8793be06df055f3d9564b42b65306e6f99b7cb1f844a3e1c85b26",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/quota.ts",
+      "destination": "src/lib/quota.ts",
+      "sha256": "b34f41eb38167aa00e92af85f4ad2c89800e25316ec15a7ba76fdbf288a88b42",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "44426cc37bc0fe1b7c00c278c6d60c96a1124369729a71338f8fc2fdf0d11f0f",
+      "reason": "Remove Web account quota checks and preserve local author validation; record local immutable per-call model and pricing snapshots."
+    },
+    {
+      "source": "src/lib/review-dimensions.ts",
+      "destination": "src/lib/review-dimensions.ts",
+      "sha256": "54adf1a0d571310be135573ca46b243af9edb71239f4c18781cd7ceb3337b731",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/scenario-lab.ts",
+      "destination": "src/lib/scenario-lab.ts",
+      "sha256": "a9edeafdef01c16d07247da1432a4916fa4542ad0bbc0fa3dc40e3ba8b013aa8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/scene-context.ts",
+      "destination": "src/lib/scene-context.ts",
+      "sha256": "ed9daf6ba1af3384ec0dabd6db34795284fb37bac10f068df51bd49f037e3e76",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/scene-image-prompt.ts",
+      "destination": "src/lib/scene-image-prompt.ts",
+      "sha256": "6c2dc909611972689bf1a2d5c935f05cb280d77cf21b8c7641490a16c524a972",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/scene-schema.ts",
+      "destination": "src/lib/scene-schema.ts",
+      "sha256": "1eb27adbedc0ebb50c73dc48402dd51ffba4242eb5f114cebe693c9b44e8b4c4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/scene-tree.ts",
+      "destination": "src/lib/scene-tree.ts",
+      "sha256": "635aa5708dfeb259df58582b4c4444ce0af8c1951530040e0aa389443ff5c866",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/score-types.ts",
+      "destination": "src/lib/score-types.ts",
+      "sha256": "9d9a6cae7c3637f4b4fdeddeca0bcc915f63650e0e4836e23476af431f696dd4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/attempt-observation.ts",
+      "destination": "src/lib/services/attempt-observation.ts",
+      "sha256": "c2d6820d683be7631dbbe2c9332d366d075a9cc016adf1423014a55e6db62670",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/attribute.ts",
+      "destination": "src/lib/services/attribute.ts",
+      "sha256": "44c32aeef3b9f7e5ea39e8bb61b4b71a07017570b4a30462e141822a2e3e351d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/candidate-comments.ts",
+      "destination": "src/lib/services/candidate-comments.ts",
+      "sha256": "e99732b145e0ba746c516b2f761ee5887f8b261457a04b48a7eb8f3609bfb6f6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/cascade.ts",
+      "destination": "src/lib/services/cascade.ts",
+      "sha256": "c73aa9b70ce2d09fbab5f66c5f3bac859a5c3f82c79adf127e565273d331399a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/chapter-boundaries.ts",
+      "destination": "src/lib/services/chapter-boundaries.ts",
+      "sha256": "dabbc0bd8f563773a6e484bca03c1f62d779f37b868508a7a52f40420f40bc59",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/chapter-draw.ts",
+      "destination": "src/lib/services/chapter-draw.ts",
+      "sha256": "6a0a527be279b964197551cf498efb9e11e00177a7e9c814ee19d4bf7b607746",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/chapter-finalization.ts",
+      "destination": "src/lib/services/chapter-finalization.ts",
+      "sha256": "db1a018b815a2679e9af256f0752a35698afcf4876a6540fd4039070c938f67f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/chapter-history.ts",
+      "destination": "src/lib/services/chapter-history.ts",
+      "sha256": "3d421beb34573bc274c5e5044e5d0b4d13c1fcbf72e03aeca8196be53174a73c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/chapter.ts",
+      "destination": "src/lib/services/chapter.ts",
+      "sha256": "e59187b40393a12ddf4e4eeb9adfb50379f547cd7fcd530f7ee33ce0555d8a34",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/character-arc.ts",
+      "destination": "src/lib/services/character-arc.ts",
+      "sha256": "26a4e55f0f5c0c89c3928136d64524b61674367f0820acb7290cca1ac2bb3d8b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/character-image.ts",
+      "destination": "src/lib/services/character-image.ts",
+      "sha256": "0b66edc28a19ae265f43c7020d4d2961d9d7559ce5c91624560ed6c7ac2e2e48",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/character.ts",
+      "destination": "src/lib/services/character.ts",
+      "sha256": "c26a029acb67494dd9406e5d65e56c69ee93724b153320fb90fc8b592c157a22",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/chat-action.ts",
+      "destination": "src/lib/services/chat-action.ts",
+      "sha256": "55ce349ceac8aa6fc2bbbda66b20404a4c1d6c95fa296b7edaf293bf3509eebe",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/chat-tool-execution.ts",
+      "destination": "src/lib/services/chat-tool-execution.ts",
+      "sha256": "88e2b7997ed089e45c3d5abdb51ab8bbfa832748f1a92cb0f643ea8b84585829",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/chat-turn.ts",
+      "destination": "src/lib/services/chat-turn.ts",
+      "sha256": "85172deb5ab01189c3c4f35814c023c981caa4c8939801bbd1dc778a5740ef24",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/comment-change.ts",
+      "destination": "src/lib/services/comment-change.ts",
+      "sha256": "fb52f17c6ad3a415b4696f5037551f23cbf43e7cca3afeb76e051e10b1c5b9b7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/content-candidate.ts",
+      "destination": "src/lib/services/content-candidate.ts",
+      "sha256": "0fae6a30d0897ec40a5265273eb2081e46363b86b812ba0c2963c4bf0768bd89",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/content-commit.ts",
+      "destination": "src/lib/services/content-commit.ts",
+      "sha256": "bbb11433bc842e03cd38bef375e084cfc500c61bee655ef81170775e41868f67",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/content-improvement.ts",
+      "destination": "src/lib/services/content-improvement.ts",
+      "sha256": "bc0513275aed63db13e93c27249c9601bd55ff9a02a147e559952613820e1ba3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/content-review.ts",
+      "destination": "src/lib/services/content-review.ts",
+      "sha256": "06cb1b8763946546f93654de747be9a0a68d48733791703979524811dc732203",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "af479faa90ee7121d0082db45fce470e1fab7e9a92f6183d2339cc26ec8e3e34",
+      "reason": "Use explicitly configured review model instead of inheriting the chat model or platform fallback."
+    },
+    {
+      "source": "src/lib/services/cover-image.ts",
+      "destination": "src/lib/services/cover-image.ts",
+      "sha256": "f3dd7e6df2d7f34776d202a1c56791404bb7a662c78a18554e35a2858268cbf9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/foreshadow-character.ts",
+      "destination": "src/lib/services/foreshadow-character.ts",
+      "sha256": "5621c48f99153c14e8bbdbc4eeaa1de692198cb9edf38677120f9cc480e50ae3",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/foreshadow-reference.ts",
+      "destination": "src/lib/services/foreshadow-reference.ts",
+      "sha256": "49a66996887c18a53a4995210a0679b2b26245a8b15bc15d6f23f5cd97e3cf67",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/foreshadow.ts",
+      "destination": "src/lib/services/foreshadow.ts",
+      "sha256": "97d5a561e8f5ba0623826d3ee75eca3ee492b49bb07238bfc60c86eddaf5825f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/fractional-index.ts",
+      "destination": "src/lib/services/fractional-index.ts",
+      "sha256": "32b9bae11547e1f2b70b7e5a78017aecdd780700f4d8e4dee7d4dc8013c5a645",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/item-image.ts",
+      "destination": "src/lib/services/item-image.ts",
+      "sha256": "b3b23eb23e61bfa653595e02c5405f8b04af831b93c6d57fa8dbb83ae5e1ab42",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/item.ts",
+      "destination": "src/lib/services/item.ts",
+      "sha256": "719c5254aa1bae844f1798d52423ea7222c143f48da9471b2b5650a50b96b823",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/map-placeholder.ts",
+      "destination": "src/lib/services/map-placeholder.ts",
+      "sha256": "b5cc3c7653e0eff04f2ba53d58f89af5838f753a91e57ee3465ddde7ac86f071",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/narrative-assessment.ts",
+      "destination": "src/lib/services/narrative-assessment.ts",
+      "sha256": "1f37a86958af4798d641560f77f2c8b71ce67c2eb8455e11b1fd6c4be5984a62",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/novel-create.ts",
+      "destination": "src/lib/services/novel-create.ts",
+      "sha256": "43b18f88e21375143b4c851b3a6fd331cd62d6e02d608164b1241a749ae0c323",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "1fde2a5242638c1e27282a00026f649ff8f1cf671e3353206458f772140236d6",
+      "reason": "Require the trusted native-directory creation context before original idempotent novel creation."
+    },
+    {
+      "source": "src/lib/services/outline-structure.ts",
+      "destination": "src/lib/services/outline-structure.ts",
+      "sha256": "5cbe518ae24a7cc5f7c756d53ae251d03e9f895705d4e8fea0695ba139bb6502",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/outline.ts",
+      "destination": "src/lib/services/outline.ts",
+      "sha256": "040889c54618a6ed55f54c3ed691e88c2bccc010073d2ea9bea25fc8cb888330",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/planning.ts",
+      "destination": "src/lib/services/planning.ts",
+      "sha256": "d613d465b9c68f9f261a2f688d51a181d249e44c842701698957df192601a17f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/resource-observation.ts",
+      "destination": "src/lib/services/resource-observation.ts",
+      "sha256": "bc80350d8d2116c911a49c05826ad2f2c25320a72fabe17c8766f0f246e35141",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/review-cancellation.ts",
+      "destination": "src/lib/services/review-cancellation.ts",
+      "sha256": "a0a0aa3be6b369a8e2ae158b6c5b179410f8af0cbef88e95dfd243a38f9b17e4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/review-schema.ts",
+      "destination": "src/lib/services/review-schema.ts",
+      "sha256": "b404029a97c1376d243347f83017bde49b44dd911c57f7e0e3d881b537c1b313",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/review.ts",
+      "destination": "src/lib/services/review.ts",
+      "sha256": "83a86415f2c314a39f0c32baf1bee4ccac692e9cd114bc5c495b0465fcbc1fe1",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/scenario-ai.ts",
+      "destination": "src/lib/services/scenario-ai.ts",
+      "sha256": "72ebeeaf8e344fb2cf4c2d6fa43dab7fc56de88d928253a4679a3614b64e42a4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/scenario-lab.ts",
+      "destination": "src/lib/services/scenario-lab.ts",
+      "sha256": "75008fa745c91b75d4ffb4a9226dc934880617a5eefec534b893374858f10f6a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/scene-image.ts",
+      "destination": "src/lib/services/scene-image.ts",
+      "sha256": "4da35e9485cab5a2bafe36da654f18d62d0a8edd956fa1abb265443f756318f5",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/scene.ts",
+      "destination": "src/lib/services/scene.ts",
+      "sha256": "c84ddf99c979669221897e8bea03f931b4f0ec953fd687afe12f188fa8f2fd94",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/score-report.ts",
+      "destination": "src/lib/services/score-report.ts",
+      "sha256": "0e65829aa6cc4abcaadac19fe475fcbfe2cddfe2fdef2b8363fa2e028928f3ab",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/setting-commit.ts",
+      "destination": "src/lib/services/setting-commit.ts",
+      "sha256": "a95080b7079404ed1127e25f98b9d76de6aece6de64ce2c8035999201f60268b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/setting.ts",
+      "destination": "src/lib/services/setting.ts",
+      "sha256": "2667fc4a70a55474476f0361f840e2af24422cabe3dce84ceae59a6403bc178e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/stage.ts",
+      "destination": "src/lib/services/stage.ts",
+      "sha256": "da8bbacb8ce6cb697b0c4f0df32abd483992c2f79348c5458d2867d25d8afa5a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/staged-commit.ts",
+      "destination": "src/lib/services/staged-commit.ts",
+      "sha256": "f9be28152e47c861286d9f0b90b41001faa76cc3d5eb880fed823638c96fd728",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-artifacts.ts",
+      "destination": "src/lib/services/story-artifacts.ts",
+      "sha256": "467e5de65f474b1c350b9a24d8953385d5997f33b5533714999c9b1788412573",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-content-approval.ts",
+      "destination": "src/lib/services/story-content-approval.ts",
+      "sha256": "8ba05e43d67be89cf42b88f01f558f845ef0bd6d59bc82c21e4643e68d46c1ed",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-entity-archive.ts",
+      "destination": "src/lib/services/story-entity-archive.ts",
+      "sha256": "ba94a57d269ad15a9d00414b52931fcbbe130485533a7f6fc678fdec4d54e35b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-material-review.ts",
+      "destination": "src/lib/services/story-material-review.ts",
+      "sha256": "0f271247d98cb4802e92fa33cd34820aa4a42d3aa3137b5dc46c1685cb3c7018",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-materials.ts",
+      "destination": "src/lib/services/story-materials.ts",
+      "sha256": "12719b10ce2d6ce3718c966f863586a1fa0849cc654dbec3991ff608d6c1ddf0",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-progress.ts",
+      "destination": "src/lib/services/story-progress.ts",
+      "sha256": "8eb03c3e2deecd730220d266352daad7a20efe2ae305941b64b84147172566f9",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-structure.ts",
+      "destination": "src/lib/services/story-structure.ts",
+      "sha256": "f1da351cef2166f05beccc5501ec514c2e0672c6267a5d61036838f1be3a3c6d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-task.ts",
+      "destination": "src/lib/services/story-task.ts",
+      "sha256": "53742c90ae34bc6ccef94d6d6eb6cd82a2972bbd514cd75b2a3262a22d84178d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-tool-runtime.ts",
+      "destination": "src/lib/services/story-tool-runtime.ts",
+      "sha256": "2a92f1643a621028c2d36ab59b3a93f8f34a83763177f4fe65df7071d9f0c474",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-workflow.ts",
+      "destination": "src/lib/services/story-workflow.ts",
+      "sha256": "30087d22e8057fb1b5fa6459e788e6e8f30a6822da238170ce7ef4cb153f750f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/story-writing.ts",
+      "destination": "src/lib/services/story-writing.ts",
+      "sha256": "f8f748c460b9f55c618e099de49bf352be0d50aadad515d2794d5bf7172bf035",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/subagent-run.ts",
+      "destination": "src/lib/services/subagent-run.ts",
+      "sha256": "3aa506b4e9951230034373d270449f199b724e33409a60a87e168e02f315c64a",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/target-text.ts",
+      "destination": "src/lib/services/target-text.ts",
+      "sha256": "2a6e648c51d39430fdd4bb270ba802dbfeafa99321ba39e1a3e7c30120308f57",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/text-comment.ts",
+      "destination": "src/lib/services/text-comment.ts",
+      "sha256": "f3769e5e54eb4999a38b1335c78628dc15cb60f5cb7934bb55680e36cca14ee4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/theme.ts",
+      "destination": "src/lib/services/theme.ts",
+      "sha256": "874358f4e5a365ce47f23392752c4574ddeeaf887947a0b9470693c146a8b82d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/trope.ts",
+      "destination": "src/lib/services/trope.ts",
+      "sha256": "5ae3e498bcd496f9fd6bd31c6e6c8d9333eb201869649cd9b6263aa6322fc3b7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/version.ts",
+      "destination": "src/lib/services/version.ts",
+      "sha256": "0f1bb9e1980fc6c6a9ef80b35a5e33fb8b592314b321d76a0b0bbb42e3805d4f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/world-guard.ts",
+      "destination": "src/lib/services/world-guard.ts",
+      "sha256": "8a3d2af53d9f06c548194882f7f7686735bcb636c5eb6a0a7a4811196005d363",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/services/world.ts",
+      "destination": "src/lib/services/world.ts",
+      "sha256": "8623ef8a753f4fb26b164b3b495d2307dee422ec8f85370f5e7e9603069cc72f",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/setting-types.ts",
+      "destination": "src/lib/setting-types.ts",
+      "sha256": "bc217539c2d5187c8c7cbb55816d24f299278cc7e4b89a655ebdeea6a6e5f602",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/sop/agents.ts",
+      "destination": "src/lib/sop/agents.ts",
+      "sha256": "9b04aa421cb871c497c983354156ba692963ca8fccb06fb77dc6a608d8a3cb2c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/sop/graph.ts",
+      "destination": "src/lib/sop/graph.ts",
+      "sha256": "bad7d2c78c7ffc9b47f8e4121681b2380bf3d08b041c413b69a51af57f1c9006",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/sop/plan.ts",
+      "destination": "src/lib/sop/plan.ts",
+      "sha256": "67330b84afee91d648ea7cc25b62bd0f3267171868a543f7a1a5aa1000e29932",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/sop/runner.ts",
+      "destination": "src/lib/sop/runner.ts",
+      "sha256": "d95f3c1bc0823ab6523e39b00081885cb17adfdae92b3d9f73b10710d25951d2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/sop/status.ts",
+      "destination": "src/lib/sop/status.ts",
+      "sha256": "7c7a110d11a2fc106b4dc4ec716971f61c9752eaf96f14097cff65394367b168",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/sse.ts",
+      "destination": "src/lib/sse.ts",
+      "sha256": "519f22b42a920138253e95ae2752dc39c38c6ada8188e0e1759ec0dbb3aab9b8",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/staged-save.ts",
+      "destination": "src/lib/staged-save.ts",
+      "sha256": "30a66f3ec648cdcc290e1317f5b459970cfa06c20829cddb4adc9911ce00d29a",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "8a2e985615bef7e0fdee3cd5aa4e1acc27303412855e700429d33c5cedce8025",
+      "reason": "Pending draft receipts retain the committed server version and timestamp, preventing false external-conflict alerts before an author-approved commit."
+    },
+    {
+      "source": "src/lib/story-draft.ts",
+      "destination": "src/lib/story-draft.ts",
+      "sha256": "e2b510cbcd886c2a886e1417d87e4f61f91b223566dfb6b25600af1a29ff7512",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/story-materials.ts",
+      "destination": "src/lib/story-materials.ts",
+      "sha256": "ab9053b87e972ee8a43891bf3ec2501f47d6b9b8f4b30042141f6e6f1d0e6580",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/story-navigation.ts",
+      "destination": "src/lib/story-navigation.ts",
+      "sha256": "3d64a106bc62fc98334c0b246daca561a5e93f0841ef4d50de03315047f4b01c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/story-task.ts",
+      "destination": "src/lib/story-task.ts",
+      "sha256": "eeb19dc9e76722df2b33c2eb18ad38eb84cf856dd80cae56eff732b52c0bec09",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/story-workflow.ts",
+      "destination": "src/lib/story-workflow.ts",
+      "sha256": "01bfd81447a09b4f92cd29499a3f07d52043471536481edfbb98ad2adb29726c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/text-baseline.ts",
+      "destination": "src/lib/text-baseline.ts",
+      "sha256": "dd431afc9e7d6b2bf178f9a1cefba7fa4df9f68799e8416ef48ef8087cbd65f6",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/text-diff.ts",
+      "destination": "src/lib/text-diff.ts",
+      "sha256": "18cd33c390ffc3bffc20f76ed1c9e566b1ea78d5edfae4119c31cd45f66ce77e",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/text.ts",
+      "destination": "src/lib/text.ts",
+      "sha256": "da2e05344999e015854c76454b74a291fd89bdd9a53bf311fc7ba8db4a34eaba",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/theme-tags.ts",
+      "destination": "src/lib/theme-tags.ts",
+      "sha256": "91d1627a8513b37c5f6d7087cf0721e994cb4d7c84fea06d566fc7e32ec54ef4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/utils.ts",
+      "destination": "src/lib/utils.ts",
+      "sha256": "7c8c3dfc0cdd370d44932828eb067ef771c8fe7996693221d5d4b90af6d54f2d",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/word-requirement.ts",
+      "destination": "src/lib/word-requirement.ts",
+      "sha256": "c2ad67e9d3f2782d39684d2fd79355def939172dc9b352ec010d97bb885044e7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/world-schema.ts",
+      "destination": "src/lib/world-schema.ts",
+      "sha256": "ff38f667213d04d91eca275b7bc71b1708232fdb776a112be0eb978af4a8da48",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/lib/world-tree.ts",
+      "destination": "src/lib/world-tree.ts",
+      "sha256": "12194bd7eb726830657a052e3fbe16174765ea2738653a43136489a7b1d0059c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/stores/chat.ts",
+      "destination": "src/stores/chat.ts",
+      "sha256": "c0f32dda8be682bdee7493bd303a89ecd21fc2e1f6a6851e436263717ad595e4",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/stores/scene-ui.ts",
+      "destination": "src/stores/scene-ui.ts",
+      "sha256": "2d3e9c4965538686da6c2b2a03ff6696f7301cbff3896ecac2cb3649017871b7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/stores/staged-changes.ts",
+      "destination": "src/stores/staged-changes.ts",
+      "sha256": "49e6fd7130ac17ad69895797d24e360ea86e5285dc36a78783a96a9a0ac5bcd0",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "d6083296784088e5ab4528311f77d8ba7f008002e6ad0f3e49bf93dc2f905f80",
+      "reason": "Clarify that staged candidates do not increment committed version tokens; final approval and service CAS retain the original boundary."
+    },
+    {
+      "source": "src/stores/story-activity.ts",
+      "destination": "src/stores/story-activity.ts",
+      "sha256": "84c56a898e7f4cd576f605d1c0ab6b98db9688dd7b6437029575863e0dc13c6b",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/stores/tabs.ts",
+      "destination": "src/stores/tabs.ts",
+      "sha256": "d5492da7109fa9206938735889af6066d1e5d75b884f358cd672aa9e33c87f92",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/admin/lib.ts",
+      "destination": "desktop/handlers/admin/lib.ts",
+      "sha256": "a4d2539348c417f77794a7e0f8d96c8fbc7145e6585e7ca5472592f6e5eb3cef",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "a87a2335c78f1d140b60eca89e4279693560935295fb9336e3408bb88e5225dc",
+      "reason": "Replace Web admin authorization with trusted local-author request context for retained local library handlers."
+    },
+    {
+      "source": "src/app/api/novels/[id]/chapters/[chapterId]/history-api.ts",
+      "destination": "desktop/handlers/novels/[id]/chapters/[chapterId]/history-api.ts",
+      "sha256": "76b667cd589100bef3a01267b9e29bdd25185266004502b8f558631061e85451",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/characters/character-schema.ts",
+      "destination": "desktop/handlers/novels/[id]/characters/character-schema.ts",
+      "sha256": "99b5b919bf0e4fb4b417301bf142892ee14d3b54f4e4a2ade3cddc7f270bcc7c",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/foreshadows/[fid]/touches/[tid]/references/response.ts",
+      "destination": "desktop/handlers/novels/[id]/foreshadows/[fid]/touches/[tid]/references/response.ts",
+      "sha256": "0169170be545d0a2f9cc77d734a65f218b63a224b1052ce94f308ccd15c5ffeb",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/items/item-schema.ts",
+      "destination": "desktop/handlers/novels/[id]/items/item-schema.ts",
+      "sha256": "dc09c567f6d435348772e1b7d3a684bcea127acab93645755fa04ae1ab2ff6a7",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/lib.ts",
+      "destination": "desktop/handlers/novels/[id]/lib.ts",
+      "sha256": "54b50ecfb219d5282f243ad6ba6658718e92e56c6f0134273f457d81051522de",
+      "status": "adapted-desktop-boundary",
+      "currentSha256": "6eaff44b0c4fbdd2b0cf5235017a022e42ed45ac67390aab1929e8dccf96387c",
+      "reason": "Use local-author context and relocated handler imports, retaining original work ownership checks."
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenarios/lib.ts",
+      "destination": "desktop/handlers/novels/[id]/scenarios/lib.ts",
+      "sha256": "3682fb51e52b6b3a63891dfc83330b3b957dc31625a1e359266fa9b0bdf651d2",
+      "status": "imported-unmodified"
+    },
+    {
+      "source": "src/app/api/novels/[id]/scenes/lib.ts",
+      "destination": "desktop/handlers/novels/[id]/scenes/lib.ts",
+      "sha256": "4408f98dd75a676da0cfd500ecf63597d31f05fb305282ff20d212b5bbcd9c5d",
+      "status": "imported-unmodified"
+    }
+  ]
+}

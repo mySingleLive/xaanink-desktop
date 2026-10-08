@@ -1,0 +1,1314 @@
+/* UI command catalogue: one ID per action; actual Monaco actions are merged at App implementation. */
+window.DESKTOP_COMMANDS = [
+  {
+    "id": "app.settings",
+    "label": "设置",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+,",
+    "win": "Ctrl+,",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "app.about",
+    "label": "关于玄印写作",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "file.new",
+    "label": "创建作品",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+N",
+    "win": "Ctrl+N",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "file.open",
+    "label": "打开作品",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+O",
+    "win": "Ctrl+O",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "file.chat",
+    "label": "创建对话",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Shift+N",
+    "win": "Ctrl+Shift+N",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "file.save",
+    "label": "保存当前稿",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+S",
+    "win": "Ctrl+S",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "file.export",
+    "label": "导出当前稿",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Shift+E",
+    "win": "Ctrl+Shift+E",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "file.close",
+    "label": "关闭当前标签",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+W",
+    "win": "Ctrl+W",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.preview",
+    "label": "正文预览",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Alt+1",
+    "win": "Ctrl+Alt+1",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.edit",
+    "label": "正文编辑",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Alt+2",
+    "win": "Ctrl+Alt+2",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.split",
+    "label": "正文分屏",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Alt+3",
+    "win": "Ctrl+Alt+3",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.sidebar",
+    "label": "显示/隐藏导航栏",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Alt+B",
+    "win": "Ctrl+Alt+B",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.content",
+    "label": "显示/隐藏内容区",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Alt+R",
+    "win": "Ctrl+Alt+R",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.zoomIn",
+    "label": "放大界面",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Plus",
+    "win": "Ctrl+Plus",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.zoomOut",
+    "label": "缩小界面",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Minus",
+    "win": "Ctrl+Minus",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.zoomReset",
+    "label": "恢复界面缩放",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+0",
+    "win": "Ctrl+0",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.lineNumbers",
+    "label": "显示正文行号",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.wrap",
+    "label": "正文自动换行",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Alt+Z",
+    "win": "Alt+Z",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "view.fullscreen",
+    "label": "全屏",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Ctrl+Cmd+F",
+    "win": "F11",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "window.maximize",
+    "label": "最大化/还原",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "window.front",
+    "label": "所有窗口置前",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "help.docs",
+    "label": "帮助文档",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "help.feedback",
+    "label": "问题反馈",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "composer.focus",
+    "label": "聚焦 AI 输入框",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+L",
+    "win": "Ctrl+L",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "editor.focus",
+    "label": "聚焦正文编辑器",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Alt+L",
+    "win": "Ctrl+Alt+L",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "chat.search",
+    "label": "搜索当前对话",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+K",
+    "win": "Ctrl+K",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "window.minimize",
+    "label": "最小化窗口",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+M",
+    "win": "",
+    "locked": true,
+    "platform": null
+  },
+  {
+    "id": "window.close",
+    "label": "关闭当前窗口",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Shift+W",
+    "win": "Alt+F4",
+    "locked": true,
+    "platform": null
+  },
+  {
+    "id": "app.quit",
+    "label": "退出玄印",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Q",
+    "win": "",
+    "locked": true,
+    "platform": null
+  },
+  {
+    "id": "app.hide",
+    "label": "隐藏玄印",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+H",
+    "win": "",
+    "locked": true,
+    "platform": "mac"
+  },
+  {
+    "id": "app.hideOthers",
+    "label": "隐藏其他应用",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Cmd+Alt+H",
+    "win": "",
+    "locked": true,
+    "platform": "mac"
+  },
+  {
+    "id": "app.showAll",
+    "label": "显示所有应用",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": true,
+    "platform": "mac"
+  },
+  {
+    "id": "app.services",
+    "label": "服务",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": true,
+    "platform": "mac"
+  },
+  {
+    "id": "menu.file",
+    "label": "打开文件菜单",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "Ctrl+F2",
+    "win": "Alt+F",
+    "locked": true,
+    "platform": null
+  },
+  {
+    "id": "menu.edit",
+    "label": "打开编辑菜单",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "Alt+E",
+    "locked": true,
+    "platform": null
+  },
+  {
+    "id": "menu.view",
+    "label": "打开视图菜单",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "Alt+V",
+    "locked": true,
+    "platform": null
+  },
+  {
+    "id": "menu.window",
+    "label": "打开窗口菜单",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "Alt+W",
+    "locked": true,
+    "platform": null
+  },
+  {
+    "id": "menu.help",
+    "label": "打开帮助菜单",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "Alt+H",
+    "locked": true,
+    "platform": null
+  },
+  {
+    "id": "menu.app",
+    "label": "打开玄印菜单",
+    "group": "应用菜单",
+    "scope": "global",
+    "mac": "",
+    "win": "",
+    "locked": true,
+    "platform": "mac"
+  },
+  {
+    "id": "text.undo",
+    "label": "撤销",
+    "group": "文本编辑",
+    "scope": "text",
+    "mac": "Cmd+Z",
+    "win": "Ctrl+Z",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "text.redo",
+    "label": "重做",
+    "group": "文本编辑",
+    "scope": "text",
+    "mac": "Cmd+Shift+Z",
+    "win": "Ctrl+Y",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "text.cut",
+    "label": "剪切",
+    "group": "文本编辑",
+    "scope": "text",
+    "mac": "Cmd+X",
+    "win": "Ctrl+X",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "text.copy",
+    "label": "复制",
+    "group": "文本编辑",
+    "scope": "text",
+    "mac": "Cmd+C",
+    "win": "Ctrl+C",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "text.paste",
+    "label": "粘贴",
+    "group": "文本编辑",
+    "scope": "text",
+    "mac": "Cmd+V",
+    "win": "Ctrl+V",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "text.pastePlain",
+    "label": "粘贴为纯文本",
+    "group": "文本编辑",
+    "scope": "text",
+    "mac": "Cmd+Shift+V",
+    "win": "Ctrl+Shift+V",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "text.selectAll",
+    "label": "全选",
+    "group": "文本编辑",
+    "scope": "text",
+    "mac": "Cmd+A",
+    "win": "Ctrl+A",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.find",
+    "label": "查找",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+F",
+    "win": "Ctrl+F",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.replace",
+    "label": "替换",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Alt+F",
+    "win": "Ctrl+H",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.findNext",
+    "label": "查找下一个",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+G",
+    "win": "F3",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.findPrevious",
+    "label": "查找上一个",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Shift+G",
+    "win": "Shift+F3",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.gotoLine",
+    "label": "跳转到行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Ctrl+G",
+    "win": "Ctrl+G",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.commandPalette",
+    "label": "编辑器命令面板",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "F1",
+    "win": "F1",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.bold",
+    "label": "加粗",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+B",
+    "win": "Ctrl+B",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.italic",
+    "label": "斜体",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+I",
+    "win": "Ctrl+I",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.strikethrough",
+    "label": "删除线",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.link",
+    "label": "插入链接",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.image",
+    "label": "插入图片",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.quote",
+    "label": "块引用",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.orderedList",
+    "label": "有序列表",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.unorderedList",
+    "label": "无序列表",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.taskList",
+    "label": "任务列表",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.inlineCode",
+    "label": "行内代码",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.codeBlock",
+    "label": "代码块",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.table",
+    "label": "插入表格",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.horizontalRule",
+    "label": "分隔线",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.escapeMarkup",
+    "label": "转义 Markdown 标记",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.indent",
+    "label": "增加缩进",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Tab",
+    "win": "Tab",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.outdent",
+    "label": "减少缩进",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Shift+Tab",
+    "win": "Shift+Tab",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.moveUp",
+    "label": "向上移动行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Alt+ArrowUp",
+    "win": "Alt+ArrowUp",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.moveDown",
+    "label": "向下移动行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Alt+ArrowDown",
+    "win": "Alt+ArrowDown",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.duplicateUp",
+    "label": "向上复制行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Shift+Alt+ArrowUp",
+    "win": "Shift+Alt+ArrowUp",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.duplicateDown",
+    "label": "向下复制行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Shift+Alt+ArrowDown",
+    "win": "Shift+Alt+ArrowDown",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.deleteLine",
+    "label": "删除当前行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Shift+K",
+    "win": "Ctrl+Shift+K",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.insertLineAfter",
+    "label": "在下方插入行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Enter",
+    "win": "Ctrl+Enter",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.insertLineBefore",
+    "label": "在上方插入行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Shift+Enter",
+    "win": "Ctrl+Shift+Enter",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.joinLines",
+    "label": "合并行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Ctrl+J",
+    "win": "Ctrl+J",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.selectLine",
+    "label": "选择当前行",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Shift+L",
+    "win": "Ctrl+Shift+L",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.selectNextOccurrence",
+    "label": "选择下一匹配项",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+D",
+    "win": "Ctrl+D",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.selectAllOccurrences",
+    "label": "选择所有匹配项",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Shift+O",
+    "win": "Ctrl+Shift+O",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.cursorAbove",
+    "label": "在上方添加光标",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Alt+ArrowUp",
+    "win": "Ctrl+Alt+ArrowUp",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.cursorBelow",
+    "label": "在下方添加光标",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Alt+ArrowDown",
+    "win": "Ctrl+Alt+ArrowDown",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.toggleComment",
+    "label": "切换行注释",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Cmd+Slash",
+    "win": "Ctrl+Slash",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.blockComment",
+    "label": "切换块注释",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Shift+Alt+A",
+    "win": "Shift+Alt+A",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.fold",
+    "label": "折叠当前段",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.unfold",
+    "label": "展开当前段",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.foldAll",
+    "label": "折叠全部",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.unfoldAll",
+    "label": "展开全部",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.trimWhitespace",
+    "label": "删除行尾空格",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.comment",
+    "label": "添加正文评论",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.reference",
+    "label": "插入正文引用",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.selectionCancel",
+    "label": "取消多光标/选择",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "Escape",
+    "win": "Escape",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.heading1",
+    "label": "标题 1",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.heading2",
+    "label": "标题 2",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.heading3",
+    "label": "标题 3",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.heading4",
+    "label": "标题 4",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.heading5",
+    "label": "标题 5",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "md.heading6",
+    "label": "标题 6",
+    "group": "Markdown 编辑器",
+    "scope": "markdown",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.send",
+    "label": "发送消息",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "Enter",
+    "win": "Enter",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.newline",
+    "label": "插入换行",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "Shift+Enter",
+    "win": "Shift+Enter",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.stop",
+    "label": "停止生成",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "Escape",
+    "win": "Escape",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.models",
+    "label": "选择对话模型",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "Cmd+Shift+M",
+    "win": "Ctrl+Shift+M",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.mention",
+    "label": "插入 @ 引用",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.mentionNext",
+    "label": "引用候选下一项",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "ArrowDown",
+    "win": "ArrowDown",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.mentionPrev",
+    "label": "引用候选上一项",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "ArrowUp",
+    "win": "ArrowUp",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.mentionConfirm",
+    "label": "确认引用候选",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "Tab",
+    "win": "Tab",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.mentionClose",
+    "label": "关闭引用候选",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.clear",
+    "label": "清空输入草稿",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "",
+    "win": "",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.historyPrev",
+    "label": "上一条输入",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "Alt+ArrowUp",
+    "win": "Alt+ArrowUp",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "ai.historyNext",
+    "label": "下一条输入",
+    "group": "AI 输入框",
+    "scope": "composer",
+    "mac": "Alt+ArrowDown",
+    "win": "Alt+ArrowDown",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.left",
+    "label": "光标左移",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "ArrowLeft",
+    "win": "ArrowLeft",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.right",
+    "label": "光标右移",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "ArrowRight",
+    "win": "ArrowRight",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.up",
+    "label": "光标上移",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "ArrowUp",
+    "win": "ArrowUp",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.down",
+    "label": "光标下移",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "ArrowDown",
+    "win": "ArrowDown",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.wordLeft",
+    "label": "上一词",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Alt+ArrowLeft",
+    "win": "Ctrl+ArrowLeft",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.wordRight",
+    "label": "下一词",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Alt+ArrowRight",
+    "win": "Ctrl+ArrowRight",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.home",
+    "label": "行首",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Cmd+ArrowLeft",
+    "win": "Home",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.end",
+    "label": "行尾",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Cmd+ArrowRight",
+    "win": "End",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.documentStart",
+    "label": "全文开头",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Cmd+ArrowUp",
+    "win": "Ctrl+Home",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.documentEnd",
+    "label": "全文末尾",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Cmd+ArrowDown",
+    "win": "Ctrl+End",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.selectLeft",
+    "label": "向左扩选",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Shift+ArrowLeft",
+    "win": "Shift+ArrowLeft",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.selectRight",
+    "label": "向右扩选",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Shift+ArrowRight",
+    "win": "Shift+ArrowRight",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.selectWordLeft",
+    "label": "向左选择词",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Shift+Alt+ArrowLeft",
+    "win": "Ctrl+Shift+ArrowLeft",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.selectWordRight",
+    "label": "向右选择词",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Shift+Alt+ArrowRight",
+    "win": "Ctrl+Shift+ArrowRight",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.selectHome",
+    "label": "选择到行首",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Cmd+Shift+ArrowLeft",
+    "win": "Shift+Home",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.selectEnd",
+    "label": "选择到行尾",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Cmd+Shift+ArrowRight",
+    "win": "Shift+End",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.deletePrevious",
+    "label": "删除前一字符",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Backspace",
+    "win": "Backspace",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.deleteNext",
+    "label": "删除后一字符",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Delete",
+    "win": "Delete",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.deleteWordLeft",
+    "label": "删除前一词",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Alt+Backspace",
+    "win": "Ctrl+Backspace",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.deleteWordRight",
+    "label": "删除后一词",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Alt+Delete",
+    "win": "Ctrl+Delete",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.confirm",
+    "label": "确认输入",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Enter",
+    "win": "Enter",
+    "locked": false,
+    "platform": null
+  },
+  {
+    "id": "input.cancel",
+    "label": "取消输入",
+    "group": "普通文本输入框",
+    "scope": "input",
+    "mac": "Escape",
+    "win": "Escape",
+    "locked": false,
+    "platform": null
+  }
+];
+window.DESKTOP_MENU_GROUPS = {"app": ["app.about", "app.settings", "app.services", "app.hide", "app.hideOthers", "app.showAll", "app.quit"], "file": ["file.new", "file.open", "file.chat", "file.save", "file.export", "file.close"], "edit": ["text.undo", "text.redo", "text.cut", "text.copy", "text.paste", "text.pastePlain", "text.selectAll", "md.find", "md.replace"], "view": ["view.preview", "view.edit", "view.split", "view.sidebar", "view.content", "view.lineNumbers", "view.wrap", "view.zoomIn", "view.zoomOut", "view.zoomReset"], "window": ["window.minimize", "window.maximize", "view.fullscreen", "window.front", "window.close"], "help": ["help.docs", "help.feedback"]};

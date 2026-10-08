@@ -1,0 +1,509 @@
+{
+  "version": "0.6",
+  "date": "2026-10-06T20:55:54.008Z",
+  "tool": "Codex in-app browser / cua_repl",
+  "scope": "UI prototype only; real app/provider/network/storage not exercised",
+  "viewport": "Default restored after 640x780 and 1024x768 checks",
+  "checks": [
+    {
+      "id": "model-manual-footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "no-model-obsolete-fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider-option-names",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider-logos-loaded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider-menu-scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider-end-key",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider-escape-one-layer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-OpenAI",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-Anthropic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-Google",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-xAI",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-深度求索",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-月之暗面",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-质谱",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-Xiaomi",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-阿里巴巴",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-MiniMax",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-腾讯",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "preset-simple-字节跳动",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "custom-fields-retained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "add-cancel-no-placeholder",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "draft-does-not-add-records",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-save-ready",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "catalog-no-highlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-footer-right",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "test-text-and-fee",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "test-result-bound-target",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "test-did-not-save",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "multi-save-adds-two",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "saved-list-no-selected-highlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "duplicate-models-disabled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "edit-catalog-single-select",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "edit-key-not-refilled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider-change-needs-new-key",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "edit-cancel-retains-old-model",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "settings-seven-order",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "agents-five-field-order",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-cube-icon",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "default-text-saved-only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "image-no-text-options",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "agent-control-focus-kept",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "default-not-current-conversation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "compatible-effort-preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "unsupported-effort-disabled-and-reset",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "disabled-model-has-enable-path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "disabled-default-missing-no-fallback",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "disable-resets-effort",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "explicit-enable-restores-same-reference",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "reenable-does-not-switch-conversation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "new-chat-uses-saved-default",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "image-entry-inherits-group",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "image-test-not-text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "image-default-separated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "failed-test-binds-second-target",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "failed-test-retains-selection",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "save-failure-keeps-draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "save-retry-commits-once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "agent-save-failure-visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "retry-rejects-stale-pending-default",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "agent-correction-clears-failure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "custom-remote-http-rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "custom-url-credentials-rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "custom-local-loopback-accepted",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "custom-does-not-inherit-old-provider-efforts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "delete-other-record-preserves-all-references",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "deleted-default-cleared-no-replacement",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "new-key-cleared-cannot-save",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-x-discards-new-draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "reopen-does-not-reuse-canceled-draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "stopped-test-returns-draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-escape-discards-draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "stopped-result-cannot-leak-to-new-draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-tab-trap-wraps",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-tab-trap-reverse",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "active-disable-caption-unavailable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "active-reenable-caption-recovers-same-model",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "reenable-survives-close-settings",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "enable-save-failure-remains-disabled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "agents-640-visible-fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-list-640-no-page-overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-footer-640-contained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider-menu-640-contained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "theme-ink-live",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "agent-defaults-retained-across-sections",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "agents-1024-no-horizontal-overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "model-1024-footer-visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "windows-1024-control-position",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "user-menu-settings-preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "no-global-settings-footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "docs-reserved-disabled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "about-real-version-boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "shortcut-search-retained",
+      "pass": true,
+      "detail": "表头+1条过滤结果；首次断言误计表头，已按可见DOM修正。"
+    },
+    {
+      "id": "user-profile-manual-footer-retained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "user-edit-no-live-profile-write",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "user-cancel-retains-profile",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "provider-menu-home-shows-top-logos",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "no-unloaded-local-images",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "prototype-model-network-disabled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "browser-console-no-errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "id": "check-ids-unique",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

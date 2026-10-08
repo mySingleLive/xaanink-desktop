@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict'
+import {test} from 'node:test'
+import {randomUUID} from 'node:crypto'
+import {mkdtemp,mkdir,writeFile,realpath,rm,symlink,readFile} from 'node:fs/promises'
+import {join} from 'node:path'
+import {tmpdir} from 'node:os'
+import {rootMaintenanceRequired} from '../../desktop/main/root-maintenance-preflight'
+async function fixture(){const base=await realpath(await mkdtemp(join(tmpdir(),'xuanxiang-triage12-'))),boot=join(base,'bootstrap');await mkdir(boot);return{base,boot,path:join(boot,'root-migration-request.json'),close:()=>rm(base,{recursive:true,force:true})}}
+const empty={schemaVersion:1,revision:0,active:null,results:[]}
+const request=()=>({requestId:randomUUID(),ownerNonce:randomUUID(),source:{schemaVersion:1,revision:1,rootId:randomUUID(),migrationId:null,root:{path:'/old',device:'1',inode:'2'}},target:{path:'/new',device:'1',inode:'3'},createdAt:new Date().toISOString(),phase:'prepared'})
+test('missing and strictly valid empty ledger allow ordinary startup without creating a session or ledger',async()=>{const f=await fixture();try{assert.equal(rootMaintenanceRequired(f.boot),false);await assert.rejects(readFile(f.path),{code:'ENOENT'});await writeFile(f.path,JSON.stringify(empty));assert.equal(rootMaintenanceRequired(f.boot),false)}finally{await f.close()}})
+test('prepared, armed, executing and unacknowledged result all require isolated maintenance',async()=>{const f=await fixture();try{for(const phase of ['prepared','armed','executing']){const active={...request(),phase,...(phase!=='prepared'?{armedAt:new Date().toISOString()}:{}),...(phase==='executing'?{executionNonce:randomUUID(),startedAt:new Date().toISOString()}:{})};await writeFile(f.path,JSON.stringify({...empty,revision:1,active}));assert.equal(rootMaintenanceRequired(f.boot),true)}const {phase,...base}=request();void phase;await writeFile(f.path,JSON.stringify({...empty,revision:2,results:[{...base,receiptId:randomUUID(),executionNonce:null,finishedAt:new Date().toISOString(),outcome:{status:'cancelled'}}]}));assert.equal(rootMaintenanceRequired(f.boot),true)}finally{await f.close()}})
+test('malformed, oversized, invalid shape and symlink ledgers fail closed without following an external file',async()=>{const f=await fixture();try{for(const content of ['{',JSON.stringify({...empty,extra:true}),' '.repeat(256*1024+1),JSON.stringify({...empty,active:{}})]){await writeFile(f.path,content);assert.equal(rootMaintenanceRequired(f.boot),true)}await rm(f.path);const outside=join(f.base,'outside');await writeFile(outside,JSON.stringify(empty));await symlink(outside,f.path);assert.equal(rootMaintenanceRequired(f.boot),true);assert.equal(await readFile(outside,'utf8'),JSON.stringify(empty))}finally{await f.close()}})

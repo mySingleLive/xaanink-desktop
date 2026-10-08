@@ -1,0 +1,26 @@
+node_modules/
+.next/
+out/
+dist/
+release/
+test-results/
+playwright-report/
+.env*
+!.env.example
+*.db
+*.db-shm
+*.db-wal
+*.sqlite*
+.DS_Store
+
+
+src/generated/
+tests/generated/
+*.tsbuildinfo
+build/icon.png
+build/icon.ico
+build/icon.icns
+runtime-licenses/
+
+# Raw native acceptance logs contain local paths and test environment metadata.
+docs/evidence/

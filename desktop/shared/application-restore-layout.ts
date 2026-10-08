@@ -1,0 +1,7 @@
+import {z} from 'zod'
+import {rootIdentitySchema} from '../core/root-ownership'
+import {applicationRestorePhaseReferenceSchema} from './application-restore-request'
+export const APPLICATION_RESTORE_LAYOUT_LIMITS={records:16,entries:512,bytes:65536} as const
+export const applicationRestoreLayoutSchema=z.object({version:z.literal(1),id:z.uuid(),revision:z.number().int().min(1).max(3),bootstrap:rootIdentitySchema,base:rootIdentitySchema,ownerNonce:z.uuid(),sourceKind:z.enum(['healthy','missing','closed-source']),createdAt:z.iso.datetime(),phase:z.enum(['allocating','allocated','bound']),names:z.object({candidate:z.uuid(),raw:z.uuid(),before:z.uuid(),verify:z.uuid()}).strict(),parents:z.object({candidate:rootIdentitySchema,raw:rootIdentitySchema,before:rootIdentitySchema,verify:rootIdentitySchema}).strict().nullable(),binding:z.object({operationId:z.uuid(),prepared:applicationRestorePhaseReferenceSchema}).strict().nullable()}).strict().superRefine((row,ctx)=>{if(new Set(Object.values(row.names)).size!==4||row.phase==='allocating'&&(row.revision!==1||row.parents!==null||row.binding!==null)||row.phase==='allocated'&&(row.revision!==2||!row.parents||row.binding!==null)||row.phase==='bound'&&(row.revision!==3||!row.parents||!row.binding))ctx.addIssue({code:'custom',message:'Invalid layout phase'})})
+export type ApplicationRestoreLayout=z.infer<typeof applicationRestoreLayoutSchema>
+export type AllocatedApplicationRestoreLayout=ApplicationRestoreLayout&{parents:NonNullable<ApplicationRestoreLayout['parents']>}

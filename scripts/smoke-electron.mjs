@@ -1,0 +1,88 @@
+import { _electron as electron } from 'playwright'
+import { expect } from '@playwright/test'
+import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join, resolve } from 'node:path'
+import assert from 'node:assert/strict'
+if (process.argv.includes('--appearance')) { await import('./smoke-appearance.mjs'); process.exit(0) }
+if (process.argv.includes('--models')) { await import('./smoke-models.mjs'); process.exit(0) }
+if (process.argv.includes('--profile')) { await import('./smoke-profile.mjs'); process.exit(0) }
+if (process.argv.includes('--commands')) { await import('./smoke-commands.mjs'); process.exit(0) }
+const temporary = await mkdtemp(join(tmpdir(), 'xaanink-electron-smoke-'))
+let app
+const errors = []
+const startedAt = new Date().toISOString()
+try {
+  app = await electron.launch({ args: [resolve('.')], env: { ...process.env, XAANINK_TEST_ROOT: join(temporary, 'data') }, timeout: 45000 })
+  app.process().stderr.on('data', data => { process.stderr.write(data) })
+  const page = await app.firstWindow({ timeout: 45000 })
+  page.on('pageerror', error => errors.push(error.message))
+  await page.getByRole('button', { name: '账号菜单' }).waitFor({ timeout: 45000 })
+  assert.equal(page.url(), 'xaanink://app/')
+  assert.deepEqual(await page.evaluate(async () => (await (await fetch('/api/novels')).json()).novels), [])
+  await page.getByRole('button', { name: '账号菜单' }).click()
+  await page.getByRole('menuitem', { name: '设置', exact: true }).click()
+  await page.getByRole('button', { name: '外观', exact: true }).click()
+  await page.getByRole('button', { name: '玄墨', exact: true }).click()
+  await page.waitForFunction(() => document.documentElement.classList.contains('ink'))
+  const settings = await page.evaluate(() => window.desktop.bootstrap())
+  assert.equal(settings.settings.appearance.theme, 'ink')
+  const menus = await app.evaluate(({ Menu }) => Menu.getApplicationMenu()?.items.map(item => item.label))
+  assert.deepEqual(menus, ['玄印','文件','编辑','视图','窗口','帮助'])
+  assert.equal(await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].webContents.getLastWebPreferences().sandbox), true)
+  await page.screenshot({ path: 'docs/evidence/implementation-02/first-native-settings.png' })
+  await page.getByRole('button', { name: '快捷键', exact: true }).click()
+  const search = page.getByRole('textbox', { name: '快捷键搜索' })
+  await search.fill('file.new')
+  await page.getByRole('button', { name: '添加 创建作品 的快捷键', exact: true }).click()
+  const record = page.getByRole('textbox', { name: '录制快捷键' })
+  await expect(record).toBeFocused()
+  await page.keyboard.press('F8')
+  await expect(record).toHaveValue('F8')
+  const editor = page.getByRole('dialog', { name: '添加快捷键', exact: true })
+  const save = editor.getByRole('button', { name: '保存', exact: true })
+  await expect(save).toBeFocused()
+  for (let i = 0; i < 4; i++) await page.keyboard.press('Shift+Tab')
+  await expect(record).toBeFocused()
+  await expect(record).not.toHaveAttribute('data-desktop-recording')
+  await page.keyboard.press('Tab')
+  await expect(record).toHaveValue('F8')
+  await save.click()
+  await expect(editor).not.toBeVisible()
+  await expect(page.getByRole('button', { name: '添加 创建作品 的快捷键', exact: true })).toBeFocused()
+  await search.fill('F8')
+  await page.getByRole('button', { name: '删除 创建作品 的 F8', exact: true }).click()
+  await expect(search).toBeFocused()
+  await expect(page.getByText('没有匹配的命令', { exact: true })).toBeVisible()
+  await search.fill('file.new')
+  await page.getByRole('button', { name: '添加 创建作品 的快捷键', exact: true }).click()
+  await page.keyboard.down('Escape')
+  await expect(record).toHaveValue('Escape')
+  await page.keyboard.down('Escape') // CDP emits isAutoRepeat for the held key.
+  await expect(editor).toBeVisible()
+  await page.keyboard.up('Escape')
+  await editor.getByRole('button', { name: '重新录制', exact: true }).click()
+  await page.keyboard.down('Enter')
+  await expect(record).toHaveValue('Enter')
+  await page.keyboard.down('Enter')
+  await expect(editor).toBeVisible()
+  await expect(page.getByRole('dialog', { name: '快捷键冲突', exact: true })).not.toBeVisible()
+  await page.keyboard.up('Enter')
+  await editor.getByRole('button', { name: '重新录制', exact: true }).click()
+  await page.keyboard.press('Meta+s')
+  await expect(record).toHaveValue('Cmd+S')
+  await save.click()
+  const conflict = page.getByRole('dialog', { name: '快捷键冲突', exact: true })
+  await expect(conflict).toBeVisible()
+  await conflict.getByRole('button', { name: '跳转到 保存当前稿 命令查看', exact: true }).click()
+  await expect(search).toHaveValue('file.save')
+  await expect(page.getByRole('button', { name: '添加 保存当前稿 的快捷键', exact: true })).toBeFocused()
+  await page.screenshot({ path: 'docs/evidence/implementation-02/native-shortcuts.png' })
+  await mkdir('docs/evidence/implementation-02' , { recursive: true })
+  assert.deepEqual(errors, [])
+  await writeFile('docs/evidence/implementation-02/native-smoke.json', JSON.stringify({ scope: 'development Electron bootstrap and shortcut configuration only, not full acceptance', startedAt, completedAt: new Date().toISOString(), keyboardDriver: 'Playwright Electron/CDP; repeated keyboard.down produces isAutoRepeat, not physical long-press or IME/OS acceptance', passed: true, platform: process.platform, arch: process.arch, checks: ['original SidebarTree and DashboardShell mounted', 'local request bridge', 'account settings entry', 'persisted theme change', 'native macOS top-level menu', 'sandboxed renderer', 'shortcut key recording and focus navigation', 'delete filtered binding restores search focus', 'repeated Escape and Enter keydown do not dismiss or save', 'record menu accelerator and conflict jump'], errors }, null, 2)+'\n')
+  console.log('Native Electron bootstrap smoke passed.')
+} finally {
+  await app?.close().catch(() => {})
+  await rm(temporary, { recursive: true, force: true })
+}

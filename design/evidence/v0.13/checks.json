@@ -1,0 +1,333 @@
+{
+  "version": "0.13",
+  "date": "2026-10-07",
+  "boundary": "Memory UI prototype; Windows is a style preview on macOS host.",
+  "notes": [
+    "UI13-01: title font shorthand failed because its family variable contained an unresolved value; fixed with inherited family and explicit size/weight, then rerun L01.",
+    "UI13-02: short-window scroll overlap reproduced, fixed by reserving space outside scrolling body; L04/L08 cover final result."
+  ],
+  "checks": [
+    {
+      "id": "L01",
+      "description": "无顶部标题栏、左标题19px与全高左右结构",
+      "pass": true,
+      "actual": {
+        "categoryHeadingCount": 0,
+        "close": {
+          "bottom": 184.25,
+          "left": 945,
+          "right": 973,
+          "top": 156.25
+        },
+        "content": {
+          "bottom": 868.25,
+          "left": 205,
+          "right": 991,
+          "top": 140.25
+        },
+        "emblems": 0,
+        "focus": "关闭设置",
+        "headerCount": 0,
+        "nav": {
+          "bottom": 868.25,
+          "left": 33,
+          "right": 205,
+          "top": 140.25
+        },
+        "panel": {
+          "bottom": 869.25,
+          "left": 32,
+          "right": 992,
+          "top": 139.25
+        },
+        "title": {
+          "bottom": 207.84375,
+          "left": 45,
+          "right": 192,
+          "top": 157.25
+        },
+        "titleColor": "rgb(43, 37, 27)",
+        "titleSize": "19px"
+      }
+    },
+    {
+      "id": "L02",
+      "description": "右侧无分类大标题、系统图示无圆角标",
+      "pass": true,
+      "actual": {
+        "categoryHeadingCount": 0,
+        "close": {
+          "bottom": 184.25,
+          "left": 945,
+          "right": 973,
+          "top": 156.25
+        },
+        "content": {
+          "bottom": 868.25,
+          "left": 205,
+          "right": 991,
+          "top": 140.25
+        },
+        "emblems": 0,
+        "focus": "关闭设置",
+        "headerCount": 0,
+        "nav": {
+          "bottom": 868.25,
+          "left": 33,
+          "right": 205,
+          "top": 140.25
+        },
+        "panel": {
+          "bottom": 869.25,
+          "left": 32,
+          "right": 992,
+          "top": 139.25
+        },
+        "title": {
+          "bottom": 207.84375,
+          "left": 45,
+          "right": 192,
+          "top": 157.25
+        },
+        "titleColor": "rgb(43, 37, 27)",
+        "titleSize": "19px"
+      }
+    },
+    {
+      "id": "L03",
+      "description": "右上关闭按钮与初次键盘焦点",
+      "pass": true,
+      "actual": {
+        "categoryHeadingCount": 0,
+        "close": {
+          "bottom": 184.25,
+          "left": 945,
+          "right": 973,
+          "top": 156.25
+        },
+        "content": {
+          "bottom": 868.25,
+          "left": 205,
+          "right": 991,
+          "top": 140.25
+        },
+        "emblems": 0,
+        "focus": "关闭设置",
+        "headerCount": 0,
+        "nav": {
+          "bottom": 868.25,
+          "left": 33,
+          "right": 205,
+          "top": 140.25
+        },
+        "panel": {
+          "bottom": 869.25,
+          "left": 32,
+          "right": 992,
+          "top": 139.25
+        },
+        "title": {
+          "bottom": 207.84375,
+          "left": 45,
+          "right": 192,
+          "top": 157.25
+        },
+        "titleColor": "rgb(43, 37, 27)",
+        "titleSize": "19px"
+      }
+    },
+    {
+      "id": "L04",
+      "description": "640×560滚动区从关闭/反馈以下开始，导航标题17px",
+      "pass": true,
+      "actual": {
+        "bodyTop": 225,
+        "closeBottom": 215,
+        "feedbackBottom": 211.5,
+        "nav": 126,
+        "scroll": 8524.5,
+        "titleSize": "17px"
+      }
+    },
+    {
+      "id": "L05",
+      "description": "滚到底仍可键盘关闭",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "id": "P-general",
+      "description": "分类 通用 保持左右结构且无重复分类大标题",
+      "pass": true,
+      "actual": {
+        "bodyOverflow": false,
+        "categoryTitles": 0,
+        "closeVisible": true,
+        "leftTitle": "设置",
+        "topHeaders": 0
+      }
+    },
+    {
+      "id": "P-user",
+      "description": "分类 用户 保持左右结构且无重复分类大标题",
+      "pass": true,
+      "actual": {
+        "bodyOverflow": false,
+        "categoryTitles": 0,
+        "closeVisible": true,
+        "leftTitle": "设置",
+        "topHeaders": 0
+      }
+    },
+    {
+      "id": "P-agents",
+      "description": "分类 智能体 保持左右结构且无重复分类大标题",
+      "pass": true,
+      "actual": {
+        "bodyOverflow": false,
+        "categoryTitles": 0,
+        "closeVisible": true,
+        "leftTitle": "设置",
+        "topHeaders": 0
+      }
+    },
+    {
+      "id": "P-models",
+      "description": "分类 模型 保持左右结构且无重复分类大标题",
+      "pass": true,
+      "actual": {
+        "bodyOverflow": false,
+        "categoryTitles": 0,
+        "closeVisible": true,
+        "leftTitle": "设置",
+        "topHeaders": 0
+      }
+    },
+    {
+      "id": "P-appearance",
+      "description": "分类 外观 保持左右结构且无重复分类大标题",
+      "pass": true,
+      "actual": {
+        "bodyOverflow": false,
+        "categoryTitles": 0,
+        "closeVisible": true,
+        "leftTitle": "设置",
+        "topHeaders": 0
+      }
+    },
+    {
+      "id": "P-shortcuts",
+      "description": "分类 快捷键 保持左右结构且无重复分类大标题",
+      "pass": true,
+      "actual": {
+        "bodyOverflow": false,
+        "categoryTitles": 0,
+        "closeVisible": true,
+        "leftTitle": "设置",
+        "topHeaders": 0
+      }
+    },
+    {
+      "id": "P-about",
+      "description": "分类 关于我们 保持左右结构且无重复分类大标题",
+      "pass": true,
+      "actual": {
+        "bodyOverflow": false,
+        "categoryTitles": 0,
+        "closeVisible": true,
+        "leftTitle": "设置",
+        "topHeaders": 0
+      }
+    },
+    {
+      "id": "F01",
+      "description": "去标题后更新失败提示和重试仍正常插入内容区",
+      "pass": true,
+      "actual": "自动更新失败：目录不可写。待处理修改已保留，当前仍使用上次确认的配置。\n重试更新"
+    },
+    {
+      "id": "F02",
+      "description": "重试成功保留即时状态且清除失败提示",
+      "pass": true,
+      "actual": "已自动更新（设计示意）"
+    },
+    {
+      "id": "F03",
+      "description": "设置壳变化未移除子编辑标题且焦点留在子对话框",
+      "pass": true,
+      "actual": "编辑用户\n本\n点击更换头像\nPNG / JPEG / WebP · 最大 2 MB\n笔名\n邮件\n仅保存在本机，不用于登录或发送邮件。\n取消\n保存"
+    },
+    {
+      "id": "T01",
+      "description": "去圆形装饰后跟随系统仍可选择并只使用纸墨色板",
+      "pass": true,
+      "actual": "true"
+    },
+    {
+      "id": "L06",
+      "description": "玄墨标题继承两主题语义前景色和19px字号",
+      "pass": true,
+      "actual": {
+        "foreground": "#ece7e1",
+        "size": "19px",
+        "titleColor": "rgb(236, 231, 225)"
+      }
+    },
+    {
+      "id": "L07",
+      "description": "640窄窗仍为纯左右且右上关闭可达",
+      "pass": true,
+      "actual": {
+        "closeBottom": 185,
+        "closeRight": 611,
+        "contentBottom": 683,
+        "contentLeft": 143,
+        "contentTop": 145,
+        "navBottom": 683,
+        "navRight": 143,
+        "navTop": 145,
+        "navWidth": 126,
+        "overflow": false,
+        "panelRight": 624,
+        "titleSize": "17px"
+      }
+    },
+    {
+      "id": "L08",
+      "description": "外观内容滚动不会进入固定关闭按钮区域",
+      "pass": true,
+      "actual": {
+        "bodyTop": 195,
+        "closeBottom": 185,
+        "scroll": 407
+      }
+    },
+    {
+      "id": "L09",
+      "description": "滚动后右上关闭按钮可鼠标点击",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "id": "L10",
+      "description": "外点关闭规则保持",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "id": "V01",
+      "description": "当前DOM ID唯一且所有资源本地",
+      "pass": true,
+      "actual": {
+        "duplicates": [],
+        "external": []
+      }
+    },
+    {
+      "id": "V02",
+      "description": "相关交互后无控制台错误或警告",
+      "pass": true,
+      "actual": []
+    }
+  ]
+}

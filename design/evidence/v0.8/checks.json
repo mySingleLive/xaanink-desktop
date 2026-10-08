@@ -1,0 +1,366 @@
+{
+  "version": "0.8",
+  "scope": "memory-only UI prototype",
+  "checks": [
+    {
+      "id": "B01",
+      "description": "默认显示调试工具栏",
+      "pass": true
+    },
+    {
+      "id": "B02",
+      "description": "工具栏含平台主题页面异常切换",
+      "pass": true
+    },
+    {
+      "id": "B03",
+      "description": "工具栏独立占行不覆盖工作台",
+      "pass": true
+    },
+    {
+      "id": "B04",
+      "description": "Windows工具切换与窗口按钮位置",
+      "pass": true
+    },
+    {
+      "id": "A01",
+      "description": "设置分类和调试页面外观命名",
+      "pass": true
+    },
+    {
+      "id": "A02",
+      "description": "主题示意图不含实际文字",
+      "pass": true
+    },
+    {
+      "id": "A03",
+      "description": "三图保留标题正文占位",
+      "pass": true
+    },
+    {
+      "id": "A04",
+      "description": "玄墨主题立即生效",
+      "pass": true
+    },
+    {
+      "id": "L01",
+      "description": "供应商每项都有已加载 Logo",
+      "pass": true
+    },
+    {
+      "id": "L02",
+      "description": "智谱引用官方黑底 SVG",
+      "pass": true
+    },
+    {
+      "id": "L03",
+      "description": "GLM 目录项带已加载 Z.ai Logo",
+      "pass": true
+    },
+    {
+      "id": "L04",
+      "description": "阿里巴巴供应商与 Qwen 家族 Logo 分离",
+      "pass": true
+    },
+    {
+      "id": "M01",
+      "description": "默认文本模型选项有图标且不混入文生图",
+      "pass": true
+    },
+    {
+      "id": "K01",
+      "description": "End 到最后选项",
+      "pass": true
+    },
+    {
+      "id": "K02",
+      "description": "Home 到占位选项",
+      "pass": true
+    },
+    {
+      "id": "K03",
+      "description": "方向键遍历",
+      "pass": true
+    },
+    {
+      "id": "K04",
+      "description": "Escape 仅关菜单并返回触发器",
+      "pass": true
+    },
+    {
+      "id": "K05",
+      "description": "Tab 关菜单后进入相邻模式控件",
+      "pass": true
+    },
+    {
+      "id": "K06",
+      "description": "Shift+Tab 关菜单并退到设置导航末项",
+      "pass": true
+    },
+    {
+      "id": "M02",
+      "description": "选择默认 GLM 立即确认并显示 Logo",
+      "pass": true
+    },
+    {
+      "id": "M03",
+      "description": "推理模型更新思考强度选项",
+      "pass": true
+    },
+    {
+      "id": "M04",
+      "description": "审核模型选项只含带图标的文本记录",
+      "pass": true
+    },
+    {
+      "id": "M05",
+      "description": "文生图菜单只含已添加图像记录和 Logo",
+      "pass": true
+    },
+    {
+      "id": "L05",
+      "description": "已保存两类模型行全部有品牌或自定义图标",
+      "pass": true
+    },
+    {
+      "id": "R01",
+      "description": "640×720 底部菜单向上完整显示",
+      "pass": true
+    },
+    {
+      "id": "R02",
+      "description": "窄窗 End 到图像选项且可见",
+      "pass": true
+    },
+    {
+      "id": "R03",
+      "description": "窄窗 Enter 选择且返回触发器",
+      "pass": true
+    },
+    {
+      "id": "R04",
+      "description": "640×560 文生图菜单不越过滚动面板",
+      "pass": true
+    },
+    {
+      "id": "R05",
+      "description": "末项 Tab 回到设置首控件",
+      "pass": true
+    },
+    {
+      "id": "R06",
+      "description": "短窗默认文本菜单限制在可视面板内",
+      "pass": true
+    },
+    {
+      "id": "R07",
+      "description": "短窗末项可滚动到完整可见",
+      "pass": true
+    },
+    {
+      "id": "R08",
+      "description": "短窗 Shift+Tab 关闭菜单并返回导航",
+      "pass": true
+    },
+    {
+      "id": "S01",
+      "description": "会话模型菜单只列文本且全部有图标",
+      "pass": true
+    },
+    {
+      "id": "S02",
+      "description": "会话菜单在触发器上方展开",
+      "pass": true
+    },
+    {
+      "id": "S03",
+      "description": "会话选择更新 Qwen Logo 并保留草稿",
+      "pass": true
+    },
+    {
+      "id": "S04",
+      "description": "会话切换不修改智能体默认模型",
+      "pass": true
+    },
+    {
+      "id": "L06",
+      "description": "七种模型家族目录图标加载且对应正确",
+      "pass": true,
+      "evidence": [
+        {
+          "provider": "Anthropic",
+          "pass": true
+        },
+        {
+          "provider": "Google",
+          "pass": true
+        },
+        {
+          "provider": "xAI",
+          "pass": true
+        },
+        {
+          "provider": "月之暗面",
+          "pass": true
+        },
+        {
+          "provider": "阿里巴巴",
+          "pass": true
+        },
+        {
+          "provider": "腾讯",
+          "pass": true
+        },
+        {
+          "provider": "字节跳动",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "id": "R09",
+      "description": "打开菜单后缩窗关闭菜单且保留触发焦点",
+      "pass": true
+    },
+    {
+      "id": "B05",
+      "description": "隐藏工具栏会安全关闭菜单保留设置",
+      "pass": true
+    },
+    {
+      "id": "B06",
+      "description": "显示工具栏关闭菜单并保留设置值",
+      "pass": true
+    },
+    {
+      "id": "B07",
+      "description": "平台与色板切换保留模型草稿",
+      "pass": true
+    },
+    {
+      "id": "T01",
+      "description": "直接启动且按钮 busy 禁重入无前置对话框",
+      "pass": true
+    },
+    {
+      "id": "T02",
+      "description": "结束结果弹层出现并展示模型结果",
+      "pass": true
+    },
+    {
+      "id": "T03",
+      "description": "结果返回保留选择和可保存草稿",
+      "pass": true
+    },
+    {
+      "id": "B08",
+      "description": "忙态切调试页取消配置与测试",
+      "pass": true
+    },
+    {
+      "id": "T04",
+      "description": "测试或取消不新增模型记录",
+      "pass": true
+    },
+    {
+      "id": "M06",
+      "description": "即时设置失败保留待处理模型和 Logo",
+      "pass": true
+    },
+    {
+      "id": "M07",
+      "description": "待处理默认修改不改当前会话模型",
+      "pass": true
+    },
+    {
+      "id": "M08",
+      "description": "重开仍显示待处理模型",
+      "pass": true
+    },
+    {
+      "id": "M09",
+      "description": "异常未解除时重试继续保留待处理修改",
+      "pass": true
+    },
+    {
+      "id": "M12",
+      "description": "异常解除后重试确认模型并清除失败提示",
+      "pass": true
+    },
+    {
+      "id": "M10",
+      "description": "失效默认保留 Logo 和不可用提示且不静默替代",
+      "pass": true
+    },
+    {
+      "id": "M11",
+      "description": "失效项禁用并从可用文本选项移除",
+      "pass": true
+    },
+    {
+      "id": "K07",
+      "description": "缩窗关闭供应商菜单并返焦",
+      "pass": true
+    },
+    {
+      "id": "K08",
+      "description": "工具显隐关闭供应商菜单并返焦",
+      "pass": true
+    },
+    {
+      "id": "M13",
+      "description": "无图像模型时仅占位选项和添加提示",
+      "pass": true
+    },
+    {
+      "id": "A05",
+      "description": "跟随系统仍是第三主题选项且没有额外开关",
+      "pass": true
+    },
+    {
+      "id": "R10",
+      "description": "最终源码缩窗关闭模型菜单且返焦",
+      "pass": true
+    },
+    {
+      "id": "R11",
+      "description": "最终短窗文生图菜单完整在面板内",
+      "pass": true
+    },
+    {
+      "id": "B09",
+      "description": "纯 App 预览参数隐藏工具栏且三栏满高",
+      "pass": true
+    },
+    {
+      "id": "B10",
+      "description": "默认重新打开显示调试工具栏",
+      "pass": true
+    },
+    {
+      "id": "D01",
+      "description": "DOM ID 唯一",
+      "pass": true
+    },
+    {
+      "id": "D02",
+      "description": "CSP 禁生成联网且所有当前图标为本地资源",
+      "pass": true
+    },
+    {
+      "id": "D03",
+      "description": "当前页面控制台无错误",
+      "pass": true
+    }
+  ],
+  "startedAt": "2026-10-07T04:34:07.719Z",
+  "completedAt": "2026-10-07T04:45:36.825Z",
+  "passed": 64,
+  "failed": 0,
+  "notes": [
+    "Only local in-memory UI prototype checks; no Electron, real provider request, fee, disk persistence or App acceptance.",
+    "Settings, models and API Keys are disposable demo fixtures; all entered Keys were fake.",
+    "Corrected model-row selector, first-load image timing and retry expectation before final assertions.",
+    "Fixed clipped short-window menus and dynamic resize/toolbar focus; final R09-R11 and K07-K08/B05-B06 verify repairs."
+  ]
+}

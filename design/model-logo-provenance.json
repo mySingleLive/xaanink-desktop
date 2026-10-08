@@ -1,0 +1,68 @@
+{
+  "version": "1.95.1",
+  "license": "MIT for package-sourced assets; official Kimi entry has separate brand attribution",
+  "tarball": "https://registry.npmjs.org/@lobehub/icons-static-svg/-/icons-static-svg-1.95.1.tgz",
+  "integrity": "sha512-Hw7EPPgVnC4NZLXBfTNJG6hyQgqECfUPC11VVXodPSr1aebKcFxDZlSpxhWwYNdCc6bhxps/x5TtXoPmfKH2ag==",
+  "assets": [
+    {
+      "target": "design/assets/models/anthropic.svg",
+      "packageAsset": "claude-color.svg",
+      "originalSha256": "a3101f3047a119aa11825ad9369510f0c472428c8c52d420e31bc62db44a8364",
+      "sha256": "a3101f3047a119aa11825ad9369510f0c472428c8c52d420e31bc62db44a8364",
+      "method": "original color SVG"
+    },
+    {
+      "target": "design/assets/models/google.svg",
+      "packageAsset": "gemini-color.svg",
+      "originalSha256": "8ab0a9bafec11f7e69bcb9fc4ffd8f1bc927d1ddcbbb6ff36dee5ae8b5a9d602",
+      "sha256": "8ab0a9bafec11f7e69bcb9fc4ffd8f1bc927d1ddcbbb6ff36dee5ae8b5a9d602",
+      "method": "original color SVG"
+    },
+    {
+      "target": "design/assets/models/xai.svg",
+      "packageAsset": "grok.svg",
+      "originalSha256": "9175fc90c22655160231976c849f25a03b888d7cc0e04c5f1b987b659bb07c95",
+      "sha256": "f597ff5bc53c5be65f1e1c221e3328a7df57e2bd30a9a68b8514ad5a54f087ac",
+      "method": "original monochrome paths; preview tint #767b91"
+    },
+    {
+      "target": "design/assets/models/qwen.svg",
+      "packageAsset": "qwen-color.svg",
+      "originalSha256": "77f5768c66d08ce1d3d14e73373975c1bc0454be88c81523ddd0ffd7e2974029",
+      "sha256": "77f5768c66d08ce1d3d14e73373975c1bc0454be88c81523ddd0ffd7e2974029",
+      "method": "original color SVG"
+    },
+    {
+      "target": "design/assets/models/tencent.svg",
+      "packageAsset": "hunyuan-color.svg",
+      "originalSha256": "510e7bb438506b5aadfaf8b9551d1606efd5b4171161a64a64204c72a453658a",
+      "sha256": "510e7bb438506b5aadfaf8b9551d1606efd5b4171161a64a64204c72a453658a",
+      "method": "original color SVG"
+    },
+    {
+      "target": "design/assets/models/bytedance.svg",
+      "packageAsset": "doubao-color.svg",
+      "originalSha256": "3cd31ba03ae44b8c29561597a3b863809efecb13fcdfd08407a086df86a69b55",
+      "sha256": "3cd31ba03ae44b8c29561597a3b863809efecb13fcdfd08407a086df86a69b55",
+      "method": "original color SVG"
+    },
+    {
+      "target": "design/assets/models/openai.svg",
+      "packageAsset": "openai.svg",
+      "originalSha256": "a595df6b423920c67a7f8f73c063e4bfb72d415948097b6cac063a2366bb5186",
+      "sha256": "76f621128c2f9b530c8315eb11b9b6c44cbc75446fb260a2c35483f40bd0f780",
+      "method": "original monochrome paths; black on paper, CSS inverted to white on ink"
+    },
+    {
+      "target": "design/assets/models/kimi.svg",
+      "source": "https://statics.moonshot.cn/kimi-web-seo/assets/kimi.icon-CElMvu4q.js",
+      "reference": "https://www.kimi.com/pwa-192.png",
+      "originalSha256": "775218eaadcb227c283baf354210f03cd71a6383c9765af91bd500c1d9676dbd",
+      "sha256": "1d0cbe13a173cba10833b80838b637684edd0ea50fd1a658dd9d23bb9fa956ad",
+      "method": "official KforKimi_f1 glyph; white K and blue dot on user-requested black rounded tile",
+      "license": "Official brand asset; not claimed MIT"
+    }
+  ],
+  "fallback": "Other known families use provider assets; unrecognised/custom endpoints use the generic icon, no fabricated brand.",
+  "licenseFile": "design/assets/providers/LICENSE.txt"
+}

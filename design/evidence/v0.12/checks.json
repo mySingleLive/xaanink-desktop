@@ -1,0 +1,474 @@
+{
+  "version": "0.12",
+  "date": "2026-10-07",
+  "environment": "Codex in-app browser; macOS host; platform and native windows are design previews",
+  "boundary": "Memory-only prototype. No model requests, actual system directory chooser, OS shortcut registration, or disk migration.",
+  "checks": [
+    {
+      "id": "A01",
+      "description": "主题位于界面组首项且设置有外部阴影",
+      "pass": true,
+      "actual": {
+        "groups": [],
+        "shadow": "rgba(0, 0, 0, 0.333) 0px 26px 70px -12px, rgba(0, 0, 0, 0.2) 0px 8px 24px -6px, color(srgb 0.847059 0.796078 0.65098 / 0.75) 0px 0px 0px 1px",
+        "themeGroup": "界面主题工作台与编辑器外观宣纸玄墨跟随系统界面字体系统默认Not"
+      }
+    },
+    {
+      "id": "S01",
+      "description": "外点立即关闭且不会穿透创建其他界面",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "id": "S02",
+      "description": "外点关闭后已确认设置保留",
+      "pass": true,
+      "actual": "14"
+    },
+    {
+      "id": "K01",
+      "description": "直接按Control+Alt+9捕获为组合，输入只读，焦点到保存",
+      "pass": true,
+      "actual": {
+        "focus": "confirm-key",
+        "readonly": true,
+        "value": "Ctrl+Alt+9"
+      }
+    },
+    {
+      "id": "K02",
+      "description": "单修饰键释放不形成可保存组合",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "id": "K03",
+      "description": "显式重录可捕获Escape且不会误关弹框",
+      "pass": true,
+      "actual": "Escape"
+    },
+    {
+      "id": "K04",
+      "description": "点击重录可捕获Tab并返回保存焦点",
+      "pass": true,
+      "actual": "Tab"
+    },
+    {
+      "id": "K05",
+      "description": "显式追加连续组合",
+      "pass": true,
+      "actual": "Ctrl+Alt+8 Ctrl+Alt+7"
+    },
+    {
+      "id": "K06",
+      "description": "新录制替换草稿而追加保存保留原命令多绑定",
+      "pass": true,
+      "actual": [
+        "Cmd+N",
+        "Ctrl+Alt+9",
+        "Ctrl+Alt+8"
+      ]
+    },
+    {
+      "id": "K07",
+      "description": "跨命令冲突弹框给出命令及三种选择",
+      "pass": true,
+      "actual": "快捷键冲突\n\nCtrl+Alt+9 与以下命令的绑定冲突：\n\n创建作品\nCtrl+Alt+9\n\n仅移除列出的冲突绑定，其他快捷键保持不变。\n\n取消\n删除 创建作品 命令的按键绑定再保存\n跳转到 创建作品 命令查看"
+    },
+    {
+      "id": "K08",
+      "description": "冲突取消返回并保留录制草稿",
+      "pass": true,
+      "actual": "Ctrl+Alt+9"
+    },
+    {
+      "id": "K09",
+      "description": "冲突跳转定位命令且保留全部旧绑定",
+      "pass": true,
+      "actual": [
+        "Cmd+N",
+        "Ctrl+Alt+9",
+        "Ctrl+Alt+8"
+      ]
+    },
+    {
+      "id": "K10",
+      "description": "转移保存失败保留对话框及草稿",
+      "pass": true,
+      "actual": "保存失败：所有已确认绑定保持不变，录制草稿已保留。"
+    },
+    {
+      "id": "K11",
+      "description": "转移失败的两个命令均未改变",
+      "pass": true,
+      "actual": {
+        "openOld": [
+          "Cmd+O"
+        ],
+        "newOld": [
+          "Cmd+N",
+          "Ctrl+Alt+9",
+          "Ctrl+Alt+8"
+        ]
+      }
+    },
+    {
+      "id": "K12",
+      "description": "成功转移仅删源命令冲突项，保留其他绑定",
+      "pass": true,
+      "actual": {
+        "openAfter": [
+          "Cmd+O",
+          "Ctrl+Alt+9"
+        ],
+        "newAfter": [
+          "Cmd+N",
+          "Ctrl+Alt+8"
+        ]
+      }
+    },
+    {
+      "id": "K13",
+      "description": "录制结束Tab遍历重录/追加/取消，不会无意重启",
+      "pass": true,
+      "actual": [
+        "close-sub",
+        "recorded-key",
+        "restart-key",
+        "append-key",
+        "close-sub",
+        "confirm-key"
+      ]
+    },
+    {
+      "id": "S03",
+      "description": "键盘Enter点击设置内按钮不会被当作外点关闭",
+      "pass": true,
+      "actual": [
+        "Cmd+N",
+        "Ctrl+Alt+9"
+      ]
+    },
+    {
+      "id": "K14",
+      "description": "系统保留组合拒绝转移",
+      "pass": true,
+      "actual": "此组合由系统保留，请选择其他按键。"
+    },
+    {
+      "id": "K15",
+      "description": "切平台取消录制，Windows绑定不受Mac已存绑定影响",
+      "pass": true,
+      "actual": [
+        "Ctrl+N"
+      ]
+    },
+    {
+      "id": "K16",
+      "description": "前缀冲突列出所有命令和各自查看入口",
+      "pass": true,
+      "actual": "打开作品\nCtrl+Alt+8 Ctrl+Alt+1\n创建对话\nCtrl+Alt+8 Ctrl+Alt+2"
+    },
+    {
+      "id": "K17",
+      "description": "640窄窗多冲突按钮均可见且不横溢出",
+      "pass": true,
+      "actual": {
+        "bottom": 643.5,
+        "buttons": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "left": 16,
+        "overflow": false,
+        "right": 624,
+        "viewport": [
+          640,
+          700
+        ],
+        "width": 608
+      }
+    },
+    {
+      "id": "K18",
+      "description": "多个前缀冲突一次提交，其他绑定保留",
+      "pass": true,
+      "actual": {
+        "multiNew": [
+          "Ctrl+N",
+          "Ctrl+Alt+8"
+        ],
+        "multiOpen": [
+          "Ctrl+O"
+        ],
+        "multiChat": [
+          "Ctrl+Shift+N"
+        ]
+      }
+    },
+    {
+      "id": "S04",
+      "description": "资料草稿打开时外点关闭整套设置",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "id": "S05",
+      "description": "外点丢弃未保存用户资料",
+      "pass": true,
+      "actual": "本\n本地作者\n本地创作者"
+    },
+    {
+      "id": "S06",
+      "description": "模拟测试期间外点取消测试和未保存模型",
+      "pass": true,
+      "actual": "文本模型1\n 添加模型\n星河写作\n自定义供应商 · author-chosen-model\n已添加"
+    },
+    {
+      "id": "D01",
+      "description": "迁移入口先显示目录选择，不出现进度",
+      "pass": true,
+      "actual": "选择迁移目标目录\nmacOS 系统目录选择器 · 设计示意\n\n当前目录：~/.xuanxiang/ · 48 MB（示例）\n作品不移动；成功后仅清理旧根的应用配置、密钥密文、索引与日志，保留作品、未知文件和引导指针。选择并确认后开始迁移。\n\n 个人目录\n 桌面\n 文稿\n文稿\n~/Documents/玄香印数据/\n~/Documents/创作资料/\n所选目录（审核用示例路径）\n当前为浏览器设计稿，不读取或搬动磁盘文件。\n\n取消\n选择并迁移"
+    },
+    {
+      "id": "D02",
+      "description": "取消迁移选择保留通用页和旧根",
+      "pass": true,
+      "actual": "~/.xuanxiang/"
+    },
+    {
+      "id": "D03",
+      "description": "同目录含尾分隔符规范化拒绝迁移",
+      "pass": true,
+      "actual": "目标不能与当前数据目录相同。"
+    },
+    {
+      "id": "D04",
+      "description": "确认后权限校验失败不启动且保留选择器和旧根",
+      "pass": true,
+      "actual": "目录不可写，请选择有写入权限的目录；当前目录保持不变。"
+    },
+    {
+      "id": "D05",
+      "description": "确认有效目标后才进入进度且自动开始",
+      "pass": true,
+      "actual": "保存草稿\n20%"
+    },
+    {
+      "id": "D06",
+      "description": "迁移过程锁定预览平台防止修改另一系统根目录",
+      "pass": true,
+      "actual": "mac"
+    },
+    {
+      "id": "D07",
+      "description": "迁移模拟完成后新根成为权威目录",
+      "pass": true,
+      "actual": "原数据目录\n~/.xuanxiang/\n当前权威目录\n~/Documents/迁移示例/"
+    },
+    {
+      "id": "S07",
+      "description": "外点取消的测试迟到后不弹出结果",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "id": "D08",
+      "description": "父目录选择取消保持旧值",
+      "pass": true,
+      "actual": "~/Documents/玄香印/"
+    },
+    {
+      "id": "D09",
+      "description": "父目录选择确认才更新值",
+      "pass": true,
+      "actual": "~/Documents/本地作品集/"
+    },
+    {
+      "id": "D10",
+      "description": "空间校验失败显示未开始且没有进度",
+      "pass": true,
+      "actual": "目标校验失败：空间不足，迁移尚未开始。旧根仍为权威位置，草稿已保留；请另选目标或重新校验。"
+    },
+    {
+      "id": "O01",
+      "description": "Mac系统菜单关于为独立面板不打开设置，显示实际未发布状态",
+      "pass": true,
+      "actual": "玄香印\n\n版本 尚未发布\n\n桌面版 · 独立开源\n本地创作，由你的模型驱动\n\nmacOS 原生关于面板 · 设计示意"
+    },
+    {
+      "id": "O02",
+      "description": "关闭Mac关于回到工作台并恢复菜单焦点",
+      "pass": true,
+      "actual": {
+        "focus": "玄香",
+        "subHidden": true,
+        "surfaceHidden": true
+      }
+    },
+    {
+      "id": "O03",
+      "description": "Windows帮助关于为独立标题窗口，带确定按钮",
+      "pass": true,
+      "actual": "关于玄香印\n玄香印\n\n版本 尚未发布\n\n桌面版 · 独立开源\n本地创作，由你的模型驱动\n\nWindows 独立关于窗口 · 设计示意\n\n确定"
+    },
+    {
+      "id": "D11",
+      "description": "Windows窄窗目录选择器预览不溢出且操作可达",
+      "pass": true,
+      "actual": {
+        "bottom": 644.25,
+        "footerBottom": 643.25,
+        "left": 16,
+        "overflow": false,
+        "right": 624,
+        "width": 608
+      }
+    },
+    {
+      "id": "A02",
+      "description": "Windows玄墨窄窗主题为界面首项并保留阴影",
+      "pass": true,
+      "actual": {
+        "shadow": "rgba(0, 0, 0, 0.733) 0px 30px 76px -12px, rgba(0, 0, 0, 0.533) 0px 10px 26px -4px, rgba(255, 248, 240, 0.09) 0px 0px 0px 1px",
+        "themeGroup": "界面主题工作",
+        "width": 608
+      }
+    },
+    {
+      "id": "M01",
+      "description": "首次启动中央没有添加模型入口且可离线创建",
+      "pass": true,
+      "actual": "创建作品"
+    },
+    {
+      "id": "M02",
+      "description": "首次实际发送才提示文本模型缺失",
+      "pass": true,
+      "actual": "尚未配置模型\n\n「文本生成」需要文本模型，你还没有添加此类模型。\n\n输入草稿和作品目录已保留。配置完成后请再次执行，本次不会自动发送。\n\n取消\n去配置模型"
+    },
+    {
+      "id": "M03",
+      "description": "取消模型引导保留创作输入",
+      "pass": true,
+      "actual": "这是一份待保留的创作草稿。"
+    },
+    {
+      "id": "M04",
+      "description": "共同门控覆盖审核任务",
+      "pass": true,
+      "actual": "尚未配置模型\n\n「审核」需要文本模型，你还没有添加此类模型。\n\n输入草稿和作品目录已保留。配置完成后请再次执行，本次不会自动发送。\n\n取消\n去配置模型"
+    },
+    {
+      "id": "M05",
+      "description": "共同门控覆盖文生图任务",
+      "pass": true,
+      "actual": "尚未配置模型\n\n「文生图」需要文生图模型，你还没有添加此类模型。\n\n输入草稿和作品目录已保留。配置完成后请再次执行，本次不会自动发送。\n\n取消\n去配置模型"
+    },
+    {
+      "id": "M06",
+      "description": "文生图引导打开模型页并聚焦正确类别",
+      "pass": true,
+      "actual": "添加文生图模型"
+    },
+    {
+      "id": "M07",
+      "description": "保存模型不会自动重放任务，草稿保持",
+      "pass": true,
+      "actual": "这是一份待保留的创作草稿。"
+    },
+    {
+      "id": "M08",
+      "description": "已添加但未选择准确提示，不称从未配置",
+      "pass": true,
+      "actual": "当前任务没有可用模型\n\n请在对话模型菜单中选择模型，然后再执行。\n\n输入草稿和作品目录已保留。配置完成后请再次执行，本次不会自动发送。\n\n取消\n去配置模型"
+    },
+    {
+      "id": "M09",
+      "description": "已选择有效文本模型时通过门控",
+      "pass": true,
+      "actual": "模型检查通过（示意），本设计稿不发送请求。"
+    },
+    {
+      "id": "M10",
+      "description": "对话模型有效不能代替尚未选择的审核模型",
+      "pass": true,
+      "actual": "当前任务没有可用模型\n\n请在智能体设置中选择默认审核模型，然后再执行。\n\n输入草稿和作品目录已保留。配置完成后请再次执行，本次不会自动发送。\n\n取消\n去配置模型"
+    },
+    {
+      "id": "M11",
+      "description": "明确选择审核默认后通过审核门控",
+      "pass": true,
+      "actual": "模型检查通过（示意），本设计稿不发送请求。"
+    },
+    {
+      "id": "M12",
+      "description": "停用模型提示已有不可用，不能放行或称未配置",
+      "pass": true,
+      "actual": "当前任务没有可用模型\n\n此类模型已添加，但已停用、缺少 API Key 或配置无效，请在模型设置中处理。\n\n输入草稿和作品目录已保留。配置完成后请再次执行，本次不会自动发送。\n\n取消\n去配置模型"
+    },
+    {
+      "id": "M13",
+      "description": "无模型可指定作品目录并手动创建，不触发模型提示",
+      "pass": true,
+      "actual": "本地空作品 · 未调用 AI"
+    },
+    {
+      "id": "K19",
+      "description": "实际录制Shift+Equal识别默认Plus的冲突",
+      "pass": true,
+      "actual": "放大界面\nCmd+Plus"
+    },
+    {
+      "id": "K20",
+      "description": "640×560冲突内容滚动且底部三动作可达",
+      "pass": true,
+      "actual": {
+        "bodyHeight": 165,
+        "bottom": 542.5,
+        "footerBottom": 541.5,
+        "overflow": false,
+        "top": 175.5
+      }
+    },
+    {
+      "id": "S08",
+      "description": "冲突对话框外点也关闭整套设置且不提交绑定",
+      "pass": true,
+      "actual": ""
+    },
+    {
+      "id": "S09",
+      "description": "外点丢弃冲突草稿后原命令绑定保持",
+      "pass": true,
+      "actual": [
+        "Cmd+N"
+      ]
+    },
+    {
+      "id": "D12",
+      "description": "迁移路径提交前取消保留旧根",
+      "pass": true,
+      "actual": "~/.xuanxiang/"
+    },
+    {
+      "id": "V01",
+      "description": "当前DOM ID唯一、资源本地、CSP禁止网络请求",
+      "pass": true,
+      "actual": {
+        "csp": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'",
+        "duplicates": [],
+        "externalResources": []
+      }
+    },
+    {
+      "id": "V02",
+      "description": "浏览器控制台无错误或警告",
+      "pass": true,
+      "actual": []
+    }
+  ]
+}

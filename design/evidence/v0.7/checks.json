@@ -1,0 +1,337 @@
+{
+  "version": "0.7",
+  "scope": "memory-only UI prototype",
+  "checks": [
+    {
+      "id": "P01",
+      "description": "文本供应商12家+自定义",
+      "pass": true,
+      "evidence": [
+        "OpenAI",
+        "Anthropic",
+        "Google",
+        "xAI",
+        "深度求索",
+        "月之暗面",
+        "智谱",
+        "Xiaomi",
+        "阿里巴巴",
+        "MiniMax",
+        "腾讯",
+        "字节跳动",
+        "自定义供应商"
+      ]
+    },
+    {
+      "id": "P02",
+      "description": "智谱新名称且无质谱",
+      "pass": true
+    },
+    {
+      "id": "P03",
+      "description": "文本供应商排除依据为输出能力且自定义保留",
+      "pass": true
+    },
+    {
+      "id": "P04",
+      "description": "智谱 Logo 已加载本地新资产",
+      "pass": true
+    },
+    {
+      "id": "P05",
+      "description": "智谱文本目录只含文本示例",
+      "pass": true
+    },
+    {
+      "id": "P06",
+      "description": "文生图仅8家+自定义",
+      "pass": true,
+      "evidence": [
+        "OpenAI",
+        "Google",
+        "xAI",
+        "智谱",
+        "阿里巴巴",
+        "MiniMax",
+        "腾讯",
+        "字节跳动",
+        "自定义供应商"
+      ]
+    },
+    {
+      "id": "P07",
+      "description": "无文本专属供应商",
+      "pass": true
+    },
+    {
+      "id": "P08",
+      "description": "MiniMax腾讯智谱文生图可选择",
+      "pass": true
+    },
+    {
+      "id": "T01",
+      "description": "无 Key 或型号不能测试",
+      "pass": true
+    },
+    {
+      "id": "T02",
+      "description": "合法草稿可测试",
+      "pass": true
+    },
+    {
+      "id": "T03",
+      "description": "点击直接测试且没有前置弹层",
+      "pass": true
+    },
+    {
+      "id": "T04",
+      "description": "测试中按钮禁用且aria-busy",
+      "pass": true
+    },
+    {
+      "id": "T05",
+      "description": "测试旋转动画和批次进度",
+      "pass": true
+    },
+    {
+      "id": "T06",
+      "description": "测试时保存及字段锁定",
+      "pass": true
+    },
+    {
+      "id": "T07",
+      "description": "取消仍可用",
+      "pass": true
+    },
+    {
+      "id": "T08",
+      "description": "批量文本完成逐个归属",
+      "pass": true,
+      "evidence": [
+        "GLM 推理（示例）demo-zai-text-1 · 智谱https://api.z.ai/api/paas/v4/连接成功（示意）文本 · 简短回复",
+        "GLM 通用（示例）demo-zai-text-2 · 智谱https://api.z.ai/api/paas/v4/连接成功（示意）文本 · 简短回复"
+      ]
+    },
+    {
+      "id": "T09",
+      "description": "结果只弹最高层且原配置inert",
+      "pass": true
+    },
+    {
+      "id": "T10",
+      "description": "完成后忙态清除且不自动保存",
+      "pass": true
+    },
+    {
+      "id": "T11",
+      "description": "结果没有 Key",
+      "pass": true
+    },
+    {
+      "id": "T12",
+      "description": "结果 Tab 返回首控件",
+      "pass": true
+    },
+    {
+      "id": "T13",
+      "description": "结果 Shift Tab 返回末控件",
+      "pass": true
+    },
+    {
+      "id": "T14",
+      "description": "Escape 只关闭结果返回原草稿，Key保持已填写且型号选择不变",
+      "pass": true
+    },
+    {
+      "id": "T15",
+      "description": "完成返焦测试且可再次点击",
+      "pass": true
+    },
+    {
+      "id": "T16",
+      "description": "运行中取消关闭草稿并不保存",
+      "pass": true
+    },
+    {
+      "id": "T17",
+      "description": "重开不继承已取消 Key 与选择",
+      "pass": true
+    },
+    {
+      "id": "T18",
+      "description": "运行中第二次点击被按钮禁用阻止",
+      "pass": true,
+      "evidence": {
+        "busy": "true",
+        "button": "测试中 1/1",
+        "dialogs": 1
+      }
+    },
+    {
+      "id": "T20",
+      "description": "结果 X 返回未保存草稿",
+      "pass": true
+    },
+    {
+      "id": "T19",
+      "description": "X 取消后重开无旧测试或保存",
+      "pass": true
+    },
+    {
+      "id": "T21",
+      "description": "Escape取消后原批次未弹出结果",
+      "pass": true
+    },
+    {
+      "id": "P09",
+      "description": "腾讯文生图目录只展示图像示例",
+      "pass": true
+    },
+    {
+      "id": "P10",
+      "description": "MiniMax文生图目录存在",
+      "pass": true
+    },
+    {
+      "id": "P11",
+      "description": "图像入口保留自定义必要配置",
+      "pass": true
+    },
+    {
+      "id": "T22",
+      "description": "文生图测试说明按已选每项1张",
+      "pass": true
+    },
+    {
+      "id": "T23",
+      "description": "文生图两项测试结果正确归属",
+      "pass": true
+    },
+    {
+      "id": "T24",
+      "description": "返回按钮恢复图像未保存草稿",
+      "pass": true
+    },
+    {
+      "id": "R01",
+      "description": "玄墨1024加载按钮与底栏可达",
+      "pass": true
+    },
+    {
+      "id": "T25",
+      "description": "401 结果逐目标显示且草稿未保存",
+      "pass": true
+    },
+    {
+      "id": "R02",
+      "description": "玄墨1024结果层按钮可达",
+      "pass": true
+    },
+    {
+      "id": "T26",
+      "description": "忙态焦点留在取消按钮",
+      "pass": true
+    },
+    {
+      "id": "R03",
+      "description": "640配置不越界且底栏可见",
+      "pass": true
+    },
+    {
+      "id": "T27",
+      "description": "忙态Tab循环到配置关闭按钮",
+      "pass": true
+    },
+    {
+      "id": "R04",
+      "description": "640结果层和返回可达",
+      "pass": true
+    },
+    {
+      "id": "G01",
+      "description": "只有显式保存后才增加模型",
+      "pass": true
+    },
+    {
+      "id": "G02",
+      "description": "默认模型保留原值且仅已保存文本可选",
+      "pass": true
+    },
+    {
+      "id": "G03",
+      "description": "已添加型号保持禁用且有说明",
+      "pass": true
+    },
+    {
+      "id": "G04",
+      "description": "测试后恢复原来的重复项禁用状态",
+      "pass": true
+    },
+    {
+      "id": "G05",
+      "description": "测试与取消不增加记录",
+      "pass": true
+    },
+    {
+      "id": "R05",
+      "description": "玄墨640文生图加载焦点与说明",
+      "pass": true
+    },
+    {
+      "id": "T28",
+      "description": "文生图401归属正确且无自动保存",
+      "pass": true
+    },
+    {
+      "id": "R06",
+      "description": "玄墨640结果无水平溢出",
+      "pass": true
+    },
+    {
+      "id": "P12",
+      "description": "分类菜单 End 到自定义",
+      "pass": true
+    },
+    {
+      "id": "P13",
+      "description": "分类菜单 Home 到OpenAI",
+      "pass": true
+    },
+    {
+      "id": "P14",
+      "description": "Escape只关供应商并保留配置",
+      "pass": true
+    },
+    {
+      "id": "P15",
+      "description": "换供应商清空Key已选与授权状态",
+      "pass": true
+    },
+    {
+      "id": "R07",
+      "description": "640批量文生图结果两项不溢出且按钮可达",
+      "pass": true
+    },
+    {
+      "id": "D01",
+      "description": "DOM ID 唯一",
+      "pass": true
+    },
+    {
+      "id": "D02",
+      "description": "原型生成网络禁用且资产本地",
+      "pass": true
+    },
+    {
+      "id": "D03",
+      "description": "本次页面控制台无错误",
+      "pass": true
+    }
+  ],
+  "checkedAt": "2026-10-07T04:17:20.534Z",
+  "summary": {
+    "total": 58,
+    "passed": 58,
+    "failed": 0
+  }
+}

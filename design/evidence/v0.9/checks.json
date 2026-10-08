@@ -1,0 +1,470 @@
+{
+  "version": "0.9",
+  "scope": "memory-only UI prototype",
+  "startedAt": "2026-10-07T05:19:09.264Z",
+  "checks": [
+    {
+      "id": "A01",
+      "description": "外观分为界面和正文两个标题",
+      "pass": true
+    },
+    {
+      "id": "A02",
+      "description": "新增字体字号与源码开关存在且默认不换行",
+      "pass": true
+    },
+    {
+      "id": "A03",
+      "description": "界面字体字号立即更新",
+      "pass": true
+    },
+    {
+      "id": "A04",
+      "description": "阅读预览永远不显示行号",
+      "pass": true
+    },
+    {
+      "id": "A05",
+      "description": "编辑源码显示行号并应用换行选项",
+      "pass": true
+    },
+    {
+      "id": "A06",
+      "description": "外观修改不重建编辑输入或丢失草稿",
+      "pass": true
+    },
+    {
+      "id": "A07",
+      "description": "切分屏保留源码草稿及行号",
+      "pass": true
+    },
+    {
+      "id": "O01",
+      "description": "macOS 六项位于 App 外的系统菜单示意栏",
+      "pass": true
+    },
+    {
+      "id": "O02",
+      "description": "Mac 文件菜单包含工作流程和快捷键",
+      "pass": true
+    },
+    {
+      "id": "O03",
+      "description": "菜单 End 跳到末项",
+      "pass": true
+    },
+    {
+      "id": "O04",
+      "description": "Escape 关闭 Mac 菜单并返焦顶部",
+      "pass": true
+    },
+    {
+      "id": "O05",
+      "description": "玄香菜单包含设置和系统角色",
+      "pass": true
+    },
+    {
+      "id": "O06",
+      "description": "菜单设置打开用户设置",
+      "pass": true
+    },
+    {
+      "id": "O07",
+      "description": "Windows 五项根菜单且不显示 Mac 栏",
+      "pass": true
+    },
+    {
+      "id": "O08",
+      "description": "菜单按钮位于窗控左侧同一行",
+      "pass": true
+    },
+    {
+      "id": "O09",
+      "description": "Windows 文件子菜单含设置与关闭窗",
+      "pass": true
+    },
+    {
+      "id": "O10",
+      "description": "子菜单 Escape 只返回根菜单",
+      "pass": true
+    },
+    {
+      "id": "O11",
+      "description": "根菜单 Escape 返焦入口",
+      "pass": true
+    },
+    {
+      "id": "M01",
+      "description": "82 项示例目录固定高度独立滚动",
+      "pass": true,
+      "evidence": {
+        "height": 205.5,
+        "list": 157,
+        "rows": 82,
+        "scroll": 4264
+      }
+    },
+    {
+      "id": "M02",
+      "description": "目录搜索空态",
+      "pass": true,
+      "evidence": "无匹配模型"
+    },
+    {
+      "id": "M03",
+      "description": "按 ID 搜索并跨过滤多选保留",
+      "pass": true,
+      "evidence": "GPT 两条示例"
+    },
+    {
+      "id": "M04",
+      "description": "目录 End 到末项、Escape 只收起列表返焦",
+      "pass": true,
+      "evidence": "对话框仍在"
+    },
+    {
+      "id": "M05",
+      "description": "直接测试时按钮动画与目录禁用",
+      "pass": true,
+      "evidence": "目录、供应商与测试按钮锁定"
+    },
+    {
+      "id": "M06",
+      "description": "测试完成弹结果且不保存模型",
+      "pass": true,
+      "evidence": "2 成功模拟结果，保存前文本仍 1 条"
+    },
+    {
+      "id": "M07",
+      "description": "编辑模型为单选且已添加项禁选",
+      "pass": true,
+      "evidence": "已选 GPT 推理；GPT 通用标记已添加"
+    },
+    {
+      "id": "M08",
+      "description": "Kimi 目录模型用本地黑色圆角家族 Logo",
+      "pass": true,
+      "evidence": "kimi.svg?v=0.9"
+    },
+    {
+      "id": "M09",
+      "description": "自定义移除输出上限且接受 128K",
+      "pass": true,
+      "evidence": "128K 输入有效"
+    },
+    {
+      "id": "M10",
+      "description": "128K 保存规范化整数",
+      "pass": true,
+      "evidence": "128000 token"
+    },
+    {
+      "id": "M11",
+      "description": "上下文非正值禁存",
+      "pass": true,
+      "evidence": "0K 无效"
+    },
+    {
+      "id": "M12",
+      "description": "1M 保存规范化整数",
+      "pass": true,
+      "evidence": "1000000 token"
+    },
+    {
+      "id": "M13",
+      "description": "玄墨 GPT 使用白色单色家族 Logo",
+      "pass": true,
+      "evidence": "openai.svg + invert(1)"
+    },
+    {
+      "id": "M14",
+      "description": "其他模型列表项使用家族 Logo",
+      "pass": true,
+      "evidence": "智能体默认模型列表"
+    },
+    {
+      "id": "M15",
+      "description": "640×560 目录弹层仍在视口内可滚动",
+      "pass": true,
+      "evidence": {
+        "bottom": 317,
+        "height": 119,
+        "left": 34,
+        "list": 70,
+        "right": 591,
+        "top": 198,
+        "viewport": {
+          "h": 560,
+          "w": 640
+        }
+      }
+    },
+    {
+      "id": "O12",
+      "description": "Windows 文件含退出且窄窗两级菜单可达",
+      "pass": true,
+      "evidence": [
+        {
+          "bottom": 311,
+          "id": "app-root-menu",
+          "right": 632,
+          "x": 386,
+          "y": 136.5
+        },
+        {
+          "bottom": 499,
+          "id": "app-submenu",
+          "right": 388,
+          "x": 142,
+          "y": 142.5
+        }
+      ]
+    },
+    {
+      "id": "O13",
+      "description": "Windows ArrowLeft 返回父组同步展开状态",
+      "pass": true,
+      "evidence": "根菜单保留，子菜单收起"
+    },
+    {
+      "id": "O14",
+      "description": "导航收起与内容区切换后 Windows 菜单按钮仍可达",
+      "pass": true,
+      "evidence": "640×560"
+    },
+    {
+      "id": "O15",
+      "description": "未部署的文档菜单不可点击",
+      "pass": true,
+      "evidence": "预留 https://xuanxiang.ink/docs"
+    },
+    {
+      "id": "O16",
+      "description": "macOS 方向键切到编辑菜单",
+      "pass": true,
+      "evidence": "文件 → 编辑"
+    },
+    {
+      "id": "O17",
+      "description": "macOS 方向键返回文件菜单",
+      "pass": true,
+      "evidence": "编辑 → 文件"
+    },
+    {
+      "id": "K01",
+      "description": "快捷键包含五类与 131 稳定命令",
+      "pass": true,
+      "evidence": "macOS 131 项"
+    },
+    {
+      "id": "K02",
+      "description": "别名规范化后作用域冲突拒绝",
+      "pass": true,
+      "evidence": "Command+S 已绑定保存"
+    },
+    {
+      "id": "K03",
+      "description": "连续组合中保留键也拒绝",
+      "pass": true,
+      "evidence": "Ctrl+K Cmd+Q"
+    },
+    {
+      "id": "K04",
+      "description": "单键与连续组合前缀冲突拒绝",
+      "pass": true,
+      "evidence": "Cmd+K 被现有全局动作使用"
+    },
+    {
+      "id": "K05",
+      "description": "重复修饰键拒绝",
+      "pass": true,
+      "evidence": "Ctrl+Control+J"
+    },
+    {
+      "id": "K06",
+      "description": "切换平台取消快捷键草稿",
+      "pass": true,
+      "evidence": "Windows 保留 Ctrl+N"
+    },
+    {
+      "id": "K07",
+      "description": "Windows 自定义绑定即时更新列表",
+      "pass": true,
+      "evidence": "file.new"
+    },
+    {
+      "id": "K08",
+      "description": "菜单同步同一命令的当前快捷键",
+      "pass": true,
+      "evidence": "Windows 文件菜单"
+    },
+    {
+      "id": "K09",
+      "description": "平台绑定分别保留",
+      "pass": true,
+      "evidence": "Mac 默认 Cmd+N"
+    },
+    {
+      "id": "K10",
+      "description": "切换平台取消恢复确认且不清另一平台",
+      "pass": true,
+      "evidence": "Windows 绑定仍在"
+    },
+    {
+      "id": "K11",
+      "description": "确认恢复仅清当前平台",
+      "pass": true,
+      "evidence": "恢复 Windows 默认"
+    },
+    {
+      "id": "K12",
+      "description": "互斥输入场景可以复用同键",
+      "pass": true,
+      "evidence": "正文 md.bold 与 AI ai.send 作用域互斥"
+    },
+    {
+      "id": "K13",
+      "description": "清除绑定即时显示未设置",
+      "pass": true,
+      "evidence": "ai.send"
+    },
+    {
+      "id": "K14",
+      "description": "快捷键更新失败保留录制草稿及已确认值",
+      "pass": true,
+      "evidence": "假失败未改已确认绑定"
+    },
+    {
+      "id": "K15",
+      "description": "所有快捷键类别有可搜索条目",
+      "pass": true,
+      "evidence": {
+        "Markdown 编辑器": 58,
+        "AI 输入框": 19,
+        "普通文本输入框": 29,
+        "应用菜单": 34
+      }
+    },
+    {
+      "id": "K16",
+      "description": "窄窗快捷键搜索和恢复同排可达",
+      "pass": true,
+      "evidence": "640×560"
+    },
+    {
+      "id": "O18",
+      "description": "Windows 内容切换按钮中心未被窗控遮挡",
+      "pass": true,
+      "evidence": "640×560 真实点击命中检查"
+    },
+    {
+      "id": "A08",
+      "description": "窄窗首行软换行后第二行行号按高度对齐",
+      "pass": true,
+      "evidence": {
+        "font": "20px",
+        "heights": [
+          108,
+          36,
+          36
+        ],
+        "lineHeight": "36px",
+        "valueLines": 3,
+        "wrap": "soft"
+      }
+    },
+    {
+      "id": "A09",
+      "description": "字体字号更新重新对齐且不丢源码草稿",
+      "pass": true,
+      "evidence": {
+        "font": "22px",
+        "heights": [
+          118.8046875,
+          39.6015625,
+          39.6015625
+        ],
+        "lines": 3
+      }
+    },
+    {
+      "id": "A10",
+      "description": "扩大正文面板后行号随新宽度重算",
+      "pass": true,
+      "evidence": {
+        "heights": [
+          79.203125,
+          39.6015625,
+          39.6015625
+        ],
+        "width": 928,
+        "oracleCorrection": "1024px 仍3物理行；1280px 确认减少为2行"
+      }
+    },
+    {
+      "id": "O19",
+      "description": "真实点击内容切换后编辑区可用",
+      "pass": true,
+      "evidence": "O18 后进入源码并填写测试草稿"
+    },
+    {
+      "id": "O20",
+      "description": "Windows 无内容模式按钮实际命中且可重新打开",
+      "pass": true,
+      "evidence": "1280×900 no-content；196px 安全区域"
+    },
+    {
+      "id": "M16",
+      "description": "切换平台保留模型配置草稿",
+      "pass": true,
+      "evidence": "与快捷键弹框取消策略区分"
+    },
+    {
+      "id": "D01",
+      "description": "当前页面 DOM ID 无重复",
+      "pass": true,
+      "evidence": {
+        "total": 49,
+        "unique": 49
+      }
+    },
+    {
+      "id": "D02",
+      "description": "CSP 禁 API 联网且可见图像本地加载",
+      "pass": true,
+      "evidence": {
+        "imageCount": 5,
+        "cspConnect": "none"
+      }
+    },
+    {
+      "id": "D03",
+      "description": "最终页面控制台无错误",
+      "pass": true,
+      "evidence": {
+        "errorCount": 0
+      }
+    }
+  ],
+  "automationNotes": [
+    "一次查询误用了 composer.send；实际命令 ID 为 ai.send，改用已读取的注册项后继续验证，未产生应用状态修改。",
+    "长行宽度断言最初假定 1024px 会减少物理行，但该宽度下仍为三行；改以 1280px 验证实际减少，保留此次断言修正记录。",
+    "一次只读 DOM 度量使用了不在沙箱内暴露的 parseFloat；改在 REPL 层转换返回的 CSS 值，不改变页面状态。"
+  ],
+  "resolvedObservations": [
+    {
+      "id": "UI9-07",
+      "detail": "Windows 旧 padding specificity 导致内容按钮被窗控覆盖；CSS已修，O18真实命中和后续实际内容操作通过。"
+    }
+  ],
+  "completedAt": "2026-10-07T05:35:43.021Z",
+  "summary": {
+    "passed": 65,
+    "failed": 0
+  },
+  "boundaries": [
+    "浏览器静态内存原型；未运行 Electron 或 Windows/macOS 原生菜单。",
+    "未调用真实模型、付费 API、剪贴板或磁盘保存。",
+    "静态 131 条为审核目录，真实 Monaco 全量注册、IME 与两平台实际键盘行为留最终 App 验收。"
+  ]
+}

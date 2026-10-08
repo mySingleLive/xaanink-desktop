@@ -1,0 +1,454 @@
+{
+  "version": "0.10",
+  "date": "2026-10-07",
+  "scope": "内存UI原型；不是Electron或真实模型验收",
+  "checks": [
+    {
+      "id": "L01",
+      "description": "外观所有字体/字号/行距配置各占左右一行",
+      "pass": true,
+      "detail": [
+        {
+          "label": "界面字体",
+          "left": 254,
+          "overflow": false,
+          "right": 667,
+          "sameRow": true
+        },
+        {
+          "label": "界面字号（px）",
+          "left": 254,
+          "overflow": false,
+          "right": 667,
+          "sameRow": true
+        },
+        {
+          "label": "界面缩放（%）",
+          "left": 254,
+          "overflow": false,
+          "right": 667,
+          "sameRow": true
+        },
+        {
+          "label": "正文字体",
+          "left": 254,
+          "overflow": false,
+          "right": 667,
+          "sameRow": true
+        },
+        {
+          "label": "正文字号（px）",
+          "left": 254,
+          "overflow": false,
+          "right": 667,
+          "sameRow": true
+        },
+        {
+          "label": "正文行距",
+          "left": 254,
+          "overflow": false,
+          "right": 667,
+          "sameRow": true
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "description": "通用八条配置按三组逐行展示且无横溢出",
+      "pass": true,
+      "detail": {
+        "groups": 3,
+        "overflow": false,
+        "rows": 8
+      }
+    },
+    {
+      "id": "L03",
+      "description": "智能体五行配置及模型菜单按右侧触发器定位",
+      "pass": true
+    },
+    {
+      "id": "L04",
+      "description": "即时设置跨分类保留且无底部保存按钮",
+      "pass": true
+    },
+    {
+      "id": "L05",
+      "description": "用户编辑保留左侧全高头像、右侧笔名邮件逐行与保存取消",
+      "pass": true
+    },
+    {
+      "id": "M01",
+      "description": "添加模型选择即收起返焦，触发器显示单一名称与Logo",
+      "pass": true
+    },
+    {
+      "id": "M02",
+      "description": "再次选择替换原型号，列表仅一个radio选中且无checkbox",
+      "pass": true
+    },
+    {
+      "id": "M03",
+      "description": "再次点击已选项也收起并返焦",
+      "pass": true
+    },
+    {
+      "id": "M04",
+      "description": "已选项Enter再次确认可收起",
+      "pass": true
+    },
+    {
+      "id": "M05",
+      "description": "已选项Space再次确认可收起",
+      "pass": true
+    },
+    {
+      "id": "M06",
+      "description": "搜索隐藏已选型号仍保留单一选择摘要",
+      "pass": true
+    },
+    {
+      "id": "M07",
+      "description": "方向键只移动焦点不改变单选或关闭",
+      "pass": true
+    },
+    {
+      "id": "M08",
+      "description": "测试直接进入忙态并锁定单选和重复测试",
+      "pass": true
+    },
+    {
+      "id": "M09",
+      "description": "测试结果只包含当前一个模型且测试不保存",
+      "pass": true
+    },
+    {
+      "id": "M10",
+      "description": "保存只新增当前一个型号",
+      "pass": true
+    },
+    {
+      "id": "M11",
+      "description": "编辑仍只勾选当前记录",
+      "pass": true
+    },
+    {
+      "id": "M12",
+      "description": "取消模型编辑保留原记录",
+      "pass": true
+    },
+    {
+      "id": "M13",
+      "description": "已添加型号禁选",
+      "pass": true
+    },
+    {
+      "id": "M14",
+      "description": "文生图也单选且仅新增最后选择的模型",
+      "pass": true
+    },
+    {
+      "id": "K01",
+      "description": "添加第二个快捷键保留默认绑定并返焦新键帽",
+      "pass": true
+    },
+    {
+      "id": "K02",
+      "description": "一个命令可保留三个独立绑定",
+      "pass": true
+    },
+    {
+      "id": "K03",
+      "description": "编辑指定绑定仅替换一项",
+      "pass": true
+    },
+    {
+      "id": "K04",
+      "description": "取消编辑保留原值和兄弟绑定",
+      "pass": true
+    },
+    {
+      "id": "K05",
+      "description": "同命令第二绑定的别名重复被拒绝",
+      "pass": true
+    },
+    {
+      "id": "K06",
+      "description": "同命令非首项前缀冲突被拒绝",
+      "pass": true
+    },
+    {
+      "id": "K07",
+      "description": "连续组合的后段系统保留键被拒绝",
+      "pass": true
+    },
+    {
+      "id": "K08",
+      "description": "重复修饰键仍被拒绝",
+      "pass": true
+    },
+    {
+      "id": "K09",
+      "description": "编辑原值跳过自身而非整个命令",
+      "pass": true
+    },
+    {
+      "id": "K10",
+      "description": "其他命令第三绑定也参与冲突校验",
+      "pass": true
+    },
+    {
+      "id": "K11",
+      "description": "可按非首个绑定搜索命令",
+      "pass": true
+    },
+    {
+      "id": "K12",
+      "description": "删除单项不影响其余，过滤结果消失时返焦搜索",
+      "pass": true
+    },
+    {
+      "id": "K13",
+      "description": "删除第二绑定后保留第一与第三绑定",
+      "pass": true
+    },
+    {
+      "id": "K14",
+      "description": "删除首项后焦点移到剩余键帽",
+      "pass": true
+    },
+    {
+      "id": "K15",
+      "description": "菜单同步显示剩余首绑定",
+      "pass": true
+    },
+    {
+      "id": "K16",
+      "description": "删除最后绑定保留显式未设置并返焦添加",
+      "pass": true
+    },
+    {
+      "id": "K17",
+      "description": "空绑定菜单不回默认且无空键帽",
+      "pass": true
+    },
+    {
+      "id": "K18",
+      "description": "关闭重开仍显示显式空集合",
+      "pass": true
+    },
+    {
+      "id": "K19",
+      "description": "添加失败保留草稿与已确认空集合",
+      "pass": true
+    },
+    {
+      "id": "K20",
+      "description": "编辑失败保留待修改值和原绑定",
+      "pass": true
+    },
+    {
+      "id": "K21",
+      "description": "删除失败原绑定不变并可重试",
+      "pass": true
+    },
+    {
+      "id": "K22",
+      "description": "切平台取消添加草稿且Windows保持自己默认集合",
+      "pass": true
+    },
+    {
+      "id": "K23",
+      "description": "切平台取消编辑并恢复Mac原集合",
+      "pass": true
+    },
+    {
+      "id": "K24",
+      "description": "切平台取消恢复确认且不重置另一平台",
+      "pass": true
+    },
+    {
+      "id": "K25",
+      "description": "确认恢复仅当前平台全部绑定",
+      "pass": true
+    },
+    {
+      "id": "K26",
+      "description": "Windows恢复不影响Mac集合",
+      "pass": true
+    },
+    {
+      "id": "K27",
+      "description": "系统保留命令不能添加编辑删除",
+      "pass": true
+    },
+    {
+      "id": "L06",
+      "description": "640窄窗多快捷键长组合不横溢出，搜索与恢复同排",
+      "pass": true,
+      "detail": {
+        "bodyOverflow": false,
+        "rowOverflow": false,
+        "sameSearchRow": true
+      }
+    },
+    {
+      "id": "L07",
+      "description": "640外观保留左右逐行、三主题同排与无横溢出",
+      "pass": true,
+      "detail": {
+        "overflow": false,
+        "rows": [
+          {
+            "c": 387,
+            "l": 174,
+            "label": "界面字体"
+          },
+          {
+            "c": 387,
+            "l": 174,
+            "label": "界面字号（px）"
+          },
+          {
+            "c": 387,
+            "l": 174,
+            "label": "界面缩放（%）"
+          },
+          {
+            "c": 387,
+            "l": 174,
+            "label": "正文字体"
+          },
+          {
+            "c": 387,
+            "l": 174,
+            "label": "正文字号（px）"
+          },
+          {
+            "c": 387,
+            "l": 174,
+            "label": "正文行距"
+          }
+        ],
+        "theme": [
+          {
+            "label": "宣纸",
+            "x": 361,
+            "y": 309.5
+          },
+          {
+            "label": "玄墨",
+            "x": 435,
+            "y": 309.5
+          },
+          {
+            "label": "跟随系统",
+            "x": 509,
+            "y": 309.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "L08",
+      "description": "逐行正文开关即时响应",
+      "pass": true
+    },
+    {
+      "id": "L09",
+      "description": "640通用路径和动作仍同排且无横溢出",
+      "pass": true
+    },
+    {
+      "id": "M15",
+      "description": "640×560长单选目录82项滚动且在内容区上展开",
+      "pass": true,
+      "detail": {
+        "aligned": true,
+        "inside": true,
+        "items": 82,
+        "scroll": true
+      }
+    },
+    {
+      "id": "M16",
+      "description": "640×560向上目录搜索80只保留一项且菜单保持展开",
+      "pass": true,
+      "detail": "已通过搜索控件输入、DOM快照与aria-expanded断言"
+    },
+    {
+      "id": "M17",
+      "description": "End仅滚动目录自身并完整显示末项，祖先不滚动/关闭",
+      "pass": true,
+      "detail": {
+        "hidden": false,
+        "id": "demo-openai-text-scroll-80",
+        "inside": true,
+        "items": 82,
+        "rowVisible": true
+      }
+    },
+    {
+      "id": "L10",
+      "description": "模型分组gap0，首末行圆角9px且前行bottom细线1px",
+      "pass": true,
+      "detail": "已保存两个文本模型后通过相邻矩形及computedStyle断言"
+    },
+    {
+      "id": "L11",
+      "description": "自定义模型逐条横向字段无并排配置或横溢出",
+      "pass": true,
+      "detail": "每field标签x小于控件x且scrollWidth不大于clientWidth"
+    },
+    {
+      "id": "M18",
+      "description": "供应商Home/End只滚动菜单，末项完整可见且不裁切",
+      "pass": true,
+      "detail": {
+        "active": "custom",
+        "inside": true,
+        "visible": true
+      }
+    },
+    {
+      "id": "L12",
+      "description": "智能体模型菜单右侧对齐且End完整显示末项",
+      "pass": true,
+      "detail": "通过触发器/菜单x、body边界、焦点行完整可见断言"
+    },
+    {
+      "id": "L13",
+      "description": "Windows玄墨逐行分组、主题选中与调试工具栏",
+      "pass": true,
+      "detail": "平台win、html ink、主题pressed、4分组、reviewbar可见断言通过"
+    },
+    {
+      "id": "L14",
+      "description": "关于页同步v0.10且预留文档仍禁用",
+      "pass": true,
+      "detail": "关于页文字与按钮disabled断言通过"
+    },
+    {
+      "id": "D01",
+      "description": "当前DOM无重复ID",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "D02",
+      "description": "资源均本地且CSP禁止模型网络请求",
+      "pass": true,
+      "detail": {
+        "csp": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'",
+        "duplicateIds": [],
+        "externalResources": []
+      }
+    },
+    {
+      "id": "D03",
+      "description": "浏览器页面无控制台错误",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

@@ -1,0 +1,1979 @@
+{
+  "version": "1.0",
+  "approvedUiCommit": "6f79382a86f1cb2f81b3b3936492fa6dc66bb8cb",
+  "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
+  "precedence": "latest user instruction, implementation boundaries, current UI contract; earlier superseded variants are not requirements",
+  "requirements": [
+    {
+      "id": "B01",
+      "requirement": "复用原DashboardShell两栏/三栏、分栏比例、动画、显隐与草稿",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/layout/DashboardShell.tsx",
+        "src/lib/desktop/recovery-targets.ts"
+      ],
+      "testIds": [
+        "DESK-B01"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/56-recovery-integration-code-review.md"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      }
+    },
+    {
+      "id": "B02",
+      "requirement": "复用完整SidebarTree作品树、会话树、创建入口和账户菜单",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/layout/SidebarTree.tsx"
+      ],
+      "testIds": [
+        "DESK-B02"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "B03",
+      "requirement": "复用原ChatPanel全部对话卡、AI输入框布局/元素、引用chip和候选占槽",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/layout/ChatPanel.tsx"
+      ],
+      "testIds": [
+        "DESK-B03"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "B04",
+      "requirement": "复用ContentTabs和完整29种业务面板，不以设计原型替换",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/layout/ContentTabs.tsx"
+      ],
+      "testIds": [
+        "DESK-B04"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "B05",
+      "requirement": "复用MarkdownEditor、评论、自动保存、版本与撤销栈",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/editor/MarkdownEditor.tsx",
+        "src/lib/desktop/save-coordinator.ts",
+        "desktop/main/draft-journal.ts"
+      ],
+      "testIds": [
+        "DESK-B05"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/50-save-coordinator-code-review.md",
+          "docs/reviews/51-draft-journal-code-review.md"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      }
+    },
+    {
+      "id": "B06",
+      "requirement": "复用语义令牌、纸纹/墨石纹理、温玉SVG、原UI组件与本地字体",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/app/globals.css"
+      ],
+      "testIds": [
+        "DESK-B06"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "B07",
+      "requirement": "演示作品/对话/模型/大小/成功结果/调试栏不进入安装版；显示真实状态",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/bootstrap.ts"
+      ],
+      "testIds": [
+        "DESK-B07"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W01",
+      "requirement": "无独立标题栏或底部状态栏，三栏分隔线从顶到底",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/WindowChrome.tsx"
+      ],
+      "testIds": [
+        "DESK-W01"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W02",
+      "requirement": "macOS左侧原生交通灯，右侧依次后退/前进/侧栏开关",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/window.ts"
+      ],
+      "testIds": [
+        "DESK-W02"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W03",
+      "requirement": "Windows右上原生最小化/最大化恢复/关闭，左侧菜单图标",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/window.ts"
+      ],
+      "testIds": [
+        "DESK-W03"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W04",
+      "requirement": "原栏顶部空白拖动、交互区不可拖；吸附、全屏与DPI命中",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/window.ts"
+      ],
+      "testIds": [
+        "DESK-W04"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W05",
+      "requirement": "侧栏隐藏/内容隐藏/全屏/窄窗时窗控与导航安全区可达",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/WindowChrome.tsx"
+      ],
+      "testIds": [
+        "DESK-W05"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W06",
+      "requirement": "应用视图历史后退/前进、边界禁用、保留草稿与编辑实例",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/stores/desktop-history.ts"
+      ],
+      "testIds": [
+        "DESK-W06"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W07",
+      "requirement": "macOS原生系统菜单六组：玄印/文件/编辑/视图/窗口/帮助",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/menu.ts"
+      ],
+      "testIds": [
+        "DESK-W07"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W08",
+      "requirement": "Windows入口五组二级菜单、方向键/Enter/Escape及外点关闭",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/WindowsMenu.tsx"
+      ],
+      "testIds": [
+        "DESK-W08"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W09",
+      "requirement": "菜单和快捷键同命令来源，作用于菜单前焦点编辑器",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/commands.ts"
+      ],
+      "testIds": [
+        "DESK-W09"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W10",
+      "requirement": "Mac系统About和Windows独立关于窗口，实际安装版本",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/about.ts"
+      ],
+      "testIds": [
+        "DESK-W10"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "W11",
+      "requirement": "关闭前等待落盘、失败重试/导出/取消、生成确认停止",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/lifecycle.ts",
+        "desktop/main/close-coordinator.ts",
+        "desktop/main/renderer-close-channel.ts"
+      ],
+      "testIds": [
+        "DESK-W11"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/53-desktop-close-code-review.md",
+          "docs/reviews/55-bootstrap-close-handshake-code-review.md",
+          "docs/evidence/implementation-08/native-recovery.json"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      }
+    },
+    {
+      "id": "W12",
+      "requirement": "Mac关闭末窗后Dock重开、Windows末窗关闭退出、重启恢复",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/lifecycle.ts",
+        "desktop/main/index.ts",
+        "src/lib/desktop/draft-session.ts"
+      ],
+      "testIds": [
+        "DESK-W12"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/54-draft-recovery-code-review.md",
+          "docs/reviews/55-bootstrap-close-handshake-code-review.md",
+          "docs/evidence/implementation-08/native-recovery.json",
+          "docs/evidence/implementation-12/native-runtime-migration.json",
+          "docs/reviews/70-root-handoff-code-review.md"
+        ],
+        "note": "实现期限定开发验证。真实 macOS 两次进程重启流程通过；目录选择/确认返回值受控。运行中故障恢复独立审核与全部正式打包/OS选择器/Windows用例尚未完成，不提升正式状态。"
+      }
+    },
+    {
+      "id": "S01",
+      "requirement": "设置纯左右、左导航顶部设置标题19/17px和语义色、右上关闭",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/SettingsDialog.tsx"
+      ],
+      "testIds": [
+        "DESK-S01"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "S02",
+      "requirement": "右侧无分类大标题/顶部栏/底部保存取消，分组和辅助反馈保留",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/SettingsDialog.tsx"
+      ],
+      "testIds": [
+        "DESK-S02"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "S03",
+      "requirement": "七分类通用/用户/智能体/模型/外观/快捷键/关于我们，模型立方体图标",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/SettingsDialog.tsx"
+      ],
+      "testIds": [
+        "DESK-S03"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "S04",
+      "requirement": "每配置独占一行；短字段左右；目录/主题上标题下全宽",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/SettingRow.tsx"
+      ],
+      "testIds": [
+        "DESK-S04"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "S05",
+      "requirement": "右侧独立滚动不遮挡关闭/状态；窄窗、两主题、外阴影",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/SettingsDialog.tsx"
+      ],
+      "testIds": [
+        "DESK-S05"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "S06",
+      "requirement": "点击外部立刻关闭设置及子草稿，不穿透，不回滚已确认值",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/SettingsDialog.tsx",
+        "src/components/desktop/ConfigurationTransfer.tsx"
+      ],
+      "testIds": [
+        "DESK-S06"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/61-configuration-files-code-review.md",
+          "docs/reviews/62-configuration-ui-catalog-code-review.md"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      }
+    },
+    {
+      "id": "S07",
+      "requirement": "模态焦点、Tab循环/Escape最高层/关闭返焦与异步失效",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/SettingsDialog.tsx",
+        "src/components/desktop/DesktopCommandController.tsx",
+        "src/components/desktop/ConfigurationTransfer.tsx"
+      ],
+      "testIds": [
+        "DESK-S07"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/60-image-transport-modal-code-review.md",
+          "docs/reviews/62-configuration-ui-catalog-code-review.md"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      }
+    },
+    {
+      "id": "S08",
+      "requirement": "普通有效配置即时响应并原子持久化；非法值/失败保留并重试",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/settings.ts"
+      ],
+      "testIds": [
+        "DESK-S08"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "S09",
+      "requirement": "用户名触发原账号菜单并新增设置，移除旁侧齿轮",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/layout/SidebarTree.tsx"
+      ],
+      "testIds": [
+        "DESK-S09"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "G01",
+      "requirement": "应用数据目录显示实际路径/大小；迁移先原生目录选择",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/directories.ts",
+        "desktop/core/data-root.ts",
+        "desktop/main/owned-root-files.ts",
+        "desktop/shared/root-startup.ts",
+        "desktop/service/root-startup.ts"
+      ],
+      "testIds": [
+        "DESK-G01"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/evidence/implementation-11/native-root-startup.json",
+          "docs/evidence/implementation-12/native-runtime-migration.json",
+          "docs/reviews/70-root-handoff-code-review.md"
+        ],
+        "note": "实现期限定开发验证。真实 macOS 两次进程重启流程通过；目录选择/确认返回值受控。运行中故障恢复独立审核与全部正式打包/OS选择器/Windows用例尚未完成，不提升正式状态。"
+      }
+    },
+    {
+      "id": "G02",
+      "requirement": "默认作品父目录选择使用系统目录选择器，取消保持原值",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/directories.ts"
+      ],
+      "testIds": [
+        "DESK-G02"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "G03",
+      "requirement": "启动恢复/备份间隔/保留数量/立即备份/配置导入导出全部接入",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/GeneralSettings.tsx",
+        "desktop/core/configuration-transfer.ts",
+        "desktop/main/configuration-files.ts",
+        "src/components/desktop/ConfigurationTransfer.tsx"
+      ],
+      "testIds": [
+        "DESK-G03"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/58-configuration-transfer-code-review.md",
+          "docs/reviews/61-configuration-files-code-review.md",
+          "docs/reviews/62-configuration-ui-catalog-code-review.md",
+          "docs/evidence/implementation-09/native-configuration.json"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      },
+      "acceptanceScope": {
+        "retirementId": "USER-2026-10-08-CANCEL-BACKUPS",
+        "disposition": "mixed",
+        "active": true,
+        "activeRequirement": "启动时恢复工作台、配置导入导出和旧备份字段精确兼容；取消备份间隔/份数/立即备份/自动调度/保留清理"
+      }
+    },
+    {
+      "id": "U01",
+      "requirement": "用户卡片柔和背景、头像/笔名/邮箱、纯编辑图标与长值适配",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/UserSettings.tsx"
+      ],
+      "testIds": [
+        "DESK-U01"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "U02",
+      "requirement": "编辑用户左全高头像可点击系统选图，右笔名/邮箱",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ProfileEditor.tsx"
+      ],
+      "testIds": [
+        "DESK-U02"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "U03",
+      "requirement": "编辑用户保存/取消；仅保存提交，失败保稿、取消丢弃",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/profile.ts"
+      ],
+      "testIds": [
+        "DESK-U03"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "U04",
+      "requirement": "头像格式/大小/解码校验，读取取消/关闭后不写回旧会话",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/profile.ts"
+      ],
+      "testIds": [
+        "DESK-U04"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "A01",
+      "requirement": "智能体默认文本、标准/计划模式、思考、审核、文生图五项",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/AgentSettings.tsx"
+      ],
+      "testIds": [
+        "DESK-A01"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "A02",
+      "requirement": "默认仅取已保存启用对应类别模型，能力约束思考档",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/models.ts"
+      ],
+      "testIds": [
+        "DESK-A02"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "A03",
+      "requirement": "默认只初始化新任务；已有会话未选/失效不fallback；删除清引用、停用保留ID失效、显式启用恢复；换模型支持原思考档则保留",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/models.ts"
+      ],
+      "testIds": [
+        "DESK-A03"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M01",
+      "requirement": "文本和文生图两组已保存列表、增高卡片、无选中高亮",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ModelSettings.tsx"
+      ],
+      "testIds": [
+        "DESK-M01"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M02",
+      "requirement": "配置模型先供应商，全部字段上下全宽，可长表单滚动",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ModelEditor.tsx"
+      ],
+      "testIds": [
+        "DESK-M02"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M03",
+      "requirement": "供应商Logo与正确名称含智谱/深度求索/月之暗面/阿里巴巴/腾讯/字节跳动",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "resources/providers.json"
+      ],
+      "testIds": [
+        "DESK-M03"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M04",
+      "requirement": "预设供应商按文本/图像输出能力过滤，自定义两类可见",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/providers.ts"
+      ],
+      "testIds": [
+        "DESK-M04"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M05",
+      "requirement": "预设只显示供应商/Key/可用模型，自定义显示必要协议属性",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ModelEditor.tsx"
+      ],
+      "testIds": [
+        "DESK-M05"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M06",
+      "requirement": "可用模型搜索下拉只单选，键盘选择/固定高度/上下定位/已添加禁选",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ModelPicker.tsx"
+      ],
+      "testIds": [
+        "DESK-M06"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M07",
+      "requirement": "完整授权模型目录/分页/刷新、失败保留、权限未知明确，不把示例当完整目录",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/service/providers/catalog.ts"
+      ],
+      "testIds": [
+        "DESK-M07"
+      ],
+      "verificationKind": "PROVIDER",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M08",
+      "requirement": "所有模型选择器带家族Logo；GPT黑白/Kimi黑圆角/Z.ai黑底圆角",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/chat/ModelPicker.tsx"
+      ],
+      "testIds": [
+        "DESK-M08"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M09",
+      "requirement": "移除默认用途/模型分类/输出上限；上下文接受整数K/M并校验",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/models.ts"
+      ],
+      "testIds": [
+        "DESK-M09"
+      ],
+      "verificationKind": "UNIT",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M10",
+      "requirement": "模型底部保存模型/测试连接/取消右对齐，仅保存提交单个模型",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ModelEditor.tsx"
+      ],
+      "testIds": [
+        "DESK-M10"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M11",
+      "requirement": "测试连接直接执行、spinner禁重复/锁表单，结果弹层返回草稿",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/service/providers/test.ts"
+      ],
+      "testIds": [
+        "DESK-M11"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M12",
+      "requirement": "取消/外点/切页取消测试，迟到结果失效；测试不保存",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/service/providers/test.ts"
+      ],
+      "testIds": [
+        "DESK-M12"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M13",
+      "requirement": "Key系统加密、编辑掩码、同授权留空保留、换授权清除与版本撤销",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/secrets.ts"
+      ],
+      "testIds": [
+        "DESK-M13"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M14",
+      "requirement": "停用/删除/撤销取消在途请求和重试，保留已生成候选",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/service/models.ts"
+      ],
+      "testIds": [
+        "DESK-M14"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M15",
+      "requirement": "所有AI分支每次实际HTTP发送核验授权版本/类别/启用/端点，包含SDK重试/子任务/恢复/目录/图像；无平台后备，撤销旧请求",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/lib/ai/provider.ts"
+      ],
+      "testIds": [
+        "DESK-M15"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "M16",
+      "requirement": "首次不显示中央添加模型；实际任务缺所需模型才引导，保留输入不自动续发",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ModelRequiredDialog.tsx"
+      ],
+      "testIds": [
+        "DESK-M16"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "T01",
+      "requirement": "外观分类，主题位于界面第一项，上下结构三张同排单选",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/AppearanceSettings.tsx"
+      ],
+      "testIds": [
+        "DESK-T01"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "T02",
+      "requirement": "主题只有宣纸/玄墨/跟随系统，无额外系统开关；系统改变实际响应",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/appearance.ts"
+      ],
+      "testIds": [
+        "DESK-T02"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "T03",
+      "requirement": "主题图无示例文字、采用占位图；系统图无棕色圆形装饰",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ThemePreview.tsx"
+      ],
+      "testIds": [
+        "DESK-T03"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "T04",
+      "requirement": "界面字体/字号/缩放，实际本地字体与缺字回退，无在线下载",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/appearance.ts"
+      ],
+      "testIds": [
+        "DESK-T04"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "T05",
+      "requirement": "正文独立字体/字号/行距，阅读和编辑同步，保留草稿/撤销/选区",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/editor/MarkdownEditor.tsx"
+      ],
+      "testIds": [
+        "DESK-T05"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "T06",
+      "requirement": "行号仅编辑/分屏显示；自动换行默认关闭，仅源码生效",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/editor/MarkdownEditor.tsx"
+      ],
+      "testIds": [
+        "DESK-T06"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K01",
+      "requirement": "搜索框上方同行右侧恢复默认，下方命令列表，无底部编辑器说明",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ShortcutSettings.tsx"
+      ],
+      "testIds": [
+        "DESK-K01"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K02",
+      "requirement": "全部菜单/Monaco动态动作/Markdown/AI输入/普通输入命令完整收录",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/commands.ts",
+        "scripts/generate-command-catalogs.mjs",
+        "scripts/verify-command-catalogs.mjs",
+        "desktop/shared/command-catalogs.generated.json"
+      ],
+      "testIds": [
+        "DESK-K02"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/48-monaco-markdown-code-review.md",
+          "docs/reviews/62-configuration-ui-catalog-code-review.md"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      }
+    },
+    {
+      "id": "K03",
+      "requirement": "每命令有序多绑定，可独立添加/编辑/删除；删除到空不恢复默认",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/shortcuts.ts"
+      ],
+      "testIds": [
+        "DESK-K03"
+      ],
+      "verificationKind": "UNIT",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K04",
+      "requirement": "真实键盘捕获完整组合/连续chord、只读框，不允许手输/粘贴字母",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ShortcutRecorder.tsx"
+      ],
+      "testIds": [
+        "DESK-K04"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K05",
+      "requirement": "修饰键/Tab/Escape/repeat/IME/Dead/非美式键盘/小键盘正确处理",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/shortcuts.ts"
+      ],
+      "testIds": [
+        "DESK-K05"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K06",
+      "requirement": "全绑定及作用域检测重复/别名/前缀，互斥输入域可复用",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/shortcuts.ts"
+      ],
+      "testIds": [
+        "DESK-K06"
+      ],
+      "verificationKind": "UNIT",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K07",
+      "requirement": "冲突显示全部命令、取消/删除冲突绑定再保存/跳转到命令",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/ShortcutConflict.tsx"
+      ],
+      "testIds": [
+        "DESK-K07"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K08",
+      "requirement": "冲突转移一次原子提交；失败两边不变，同命令重复/系统保留拒绝",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/shortcuts.ts"
+      ],
+      "testIds": [
+        "DESK-K08"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K09",
+      "requirement": "多绑定都执行、菜单主键同步、搜索所有绑定与默认值",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/commands.ts"
+      ],
+      "testIds": [
+        "DESK-K09"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K10",
+      "requirement": "macOS/Windows绑定独立，恢复默认确认且仅当前平台",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/shortcuts.ts"
+      ],
+      "testIds": [
+        "DESK-K10"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "K11",
+      "requirement": "录制不执行原命令，IME不发送，菜单Escape不再停止AI",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/commands.ts"
+      ],
+      "testIds": [
+        "DESK-K11"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "O01",
+      "requirement": "关于页实际版本，点击填写反馈打开指定GitHubissue页面",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/AboutSettings.tsx"
+      ],
+      "testIds": [
+        "DESK-O01"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "O02",
+      "requirement": "查看文档保留xuanxiang.ink/docs但未部署时禁用，不自动探测",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/components/desktop/AboutSettings.tsx"
+      ],
+      "testIds": [
+        "DESK-O02"
+      ],
+      "verificationKind": "UNIT",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "D01",
+      "requirement": "两系统默认家目录.xuanxiang，所有应用数据本地且可配置迁移",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/bootstrap.ts",
+        "desktop/main/index.ts",
+        "desktop/service/root-startup.ts",
+        "desktop/main/session-directory.ts"
+      ],
+      "testIds": [
+        "DESK-D01"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/evidence/implementation-11/native-root-startup.json",
+          "docs/evidence/implementation-12/native-runtime-migration.json",
+          "docs/reviews/70-root-handoff-code-review.md"
+        ],
+        "note": "实现期限定开发验证。真实 macOS 两次进程重启流程通过；目录选择/确认返回值受控。运行中故障恢复独立审核与全部正式打包/OS选择器/Windows用例尚未完成，不提升正式状态。"
+      }
+    },
+    {
+      "id": "D02",
+      "requirement": "每作品用户显式独立目录；离线人工创建和原向导草稿两条路径",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/service/workspaces.ts"
+      ],
+      "testIds": [
+        "DESK-D02"
+      ],
+      "verificationKind": "NATIVE",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "D03",
+      "requirement": "AI建书也需目录授权、取消无落盘、中文空格Unicode路径",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/service/workspaces.ts"
+      ],
+      "testIds": [
+        "DESK-D03"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "D04",
+      "requirement": "非空/重复/失联/只读目录校验，移动后重关联保留全文与附件",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/service/workspaces.ts"
+      ],
+      "testIds": [
+        "DESK-D04"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "D05",
+      "requirement": "根迁移先选择后校验/过程；作品不移动、旧根仅清本应用文件",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/migration.ts",
+        "desktop/core/data-root.ts",
+        "desktop/core/root-ownership.ts",
+        "desktop/main/owned-root-files.ts"
+      ],
+      "testIds": [
+        "DESK-D05"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/59-data-root-code-review.md",
+          "docs/evidence/implementation-11/native-root-startup.json",
+          "docs/evidence/implementation-12/native-runtime-migration.json",
+          "docs/reviews/70-root-handoff-code-review.md"
+        ],
+        "note": "实现期限定开发验证。真实 macOS 两次进程重启流程通过；目录选择/确认返回值受控。运行中故障恢复独立审核与全部正式打包/OS选择器/Windows用例尚未完成，不提升正式状态。"
+      }
+    },
+    {
+      "id": "D06",
+      "requirement": "迁移嵌套/不足空间/失败/取消/崩溃恢复/清理待完成逐阶段正确",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/migration.ts",
+        "desktop/core/data-root.ts",
+        "desktop/main/root-migration-request.ts"
+      ],
+      "testIds": [
+        "DESK-D06"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/59-data-root-code-review.md",
+          "docs/reviews/64-root-migration-request-implementation.md",
+          "docs/evidence/implementation-12/native-runtime-migration.json",
+          "docs/reviews/70-root-handoff-code-review.md"
+        ],
+        "note": "实现期限定开发验证。真实 macOS 两次进程重启流程通过；目录选择/确认返回值受控。运行中故障恢复独立审核与全部正式打包/OS选择器/Windows用例尚未完成，不提升正式状态。"
+      }
+    },
+    {
+      "id": "D07",
+      "requirement": "原子配置/草稿/事务、关闭重启持久化、崩溃恢复不丢稿",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/storage.ts",
+        "desktop/main/draft-journal.ts",
+        "desktop/main/close-coordinator.ts",
+        "src/lib/desktop/draft-session.ts"
+      ],
+      "testIds": [
+        "DESK-D07"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/50-save-coordinator-code-review.md",
+          "docs/reviews/51-draft-journal-code-review.md",
+          "docs/reviews/53-desktop-close-code-review.md",
+          "docs/reviews/54-draft-recovery-code-review.md",
+          "docs/reviews/55-bootstrap-close-handshake-code-review.md",
+          "docs/evidence/implementation-08/native-recovery.json",
+          "docs/evidence/implementation-12/native-runtime-migration.json",
+          "docs/reviews/70-root-handoff-code-review.md"
+        ],
+        "note": "实现期限定开发验证。真实 macOS 两次进程重启流程通过；目录选择/确认返回值受控。运行中故障恢复独立审核与全部正式打包/OS选择器/Windows用例尚未完成，不提升正式状态。"
+      }
+    },
+    {
+      "id": "D08",
+      "requirement": "一致性备份/完整校验/保留策略/恢复前快照/不可坏备份覆盖",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/backups.ts"
+      ],
+      "testIds": [
+        "DESK-D08"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "acceptanceScope": {
+        "retirementId": "USER-2026-10-08-CANCEL-BACKUPS",
+        "disposition": "retired",
+        "active": false,
+        "activeRequirement": null
+      }
+    },
+    {
+      "id": "D09",
+      "requirement": "作品数据库原CAS/幂等/快照/候选批准/定稿/评论保护全部保留",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "src/lib/services/content-commit.ts"
+      ],
+      "testIds": [
+        "DESK-D09"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "D10",
+      "requirement": "跨作品/会话并发上下文隔离、原请求流生命周期与取消写保护",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/service/context.ts"
+      ],
+      "testIds": [
+        "DESK-D10"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "D11",
+      "requirement": "配置和作品导出无Key；日志无Key/正文/请求体；资料不进入repo",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/core/export.ts",
+        "desktop/core/configuration-transfer.ts",
+        "desktop/main/configuration-files.ts"
+      ],
+      "testIds": [
+        "DESK-D11"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/58-configuration-transfer-code-review.md",
+          "docs/reviews/61-configuration-files-code-review.md"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      }
+    },
+    {
+      "id": "E01",
+      "requirement": "真实Electron进程，无远端Web服务/本地HTTP服务/在线登录/平台余额",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/index.ts"
+      ],
+      "testIds": [
+        "DESK-E01"
+      ],
+      "verificationKind": "INSTALL",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "E02",
+      "requirement": "IPC来源/schema/大小校验，协议路径与资源授权，阻止任意导航",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/ipc.ts",
+        "desktop/shared/local-images.ts",
+        "desktop/shared/request-limits.ts",
+        "desktop/service/workspace-assets.ts",
+        "src/lib/desktop/transport.ts"
+      ],
+      "testIds": [
+        "DESK-E02"
+      ],
+      "verificationKind": "INTEGRATION",
+      "status": "planned",
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/57-workspace-assets-code-review.md",
+          "docs/reviews/60-image-transport-modal-code-review.md",
+          "docs/evidence/implementation-10/native-work-images.json"
+        ],
+        "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+      }
+    },
+    {
+      "id": "E03",
+      "requirement": "本地资源打包、离线启动，无CDN/遥测/自动更新/内置Key",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "desktop/main/network-policy.ts"
+      ],
+      "testIds": [
+        "DESK-E03"
+      ],
+      "verificationKind": "INSTALL",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "E04",
+      "requirement": "独立源码锁文件/构建、MIT与来源许可，不依赖父仓库",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "package.json"
+      ],
+      "testIds": [
+        "DESK-E04"
+      ],
+      "verificationKind": "INSTALL",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "E05",
+      "requirement": "macOSarm64/x64及Windowsx64实际安装/启动验收，真实系统证据",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "electron-builder.yml"
+      ],
+      "testIds": [
+        "DESK-E05"
+      ],
+      "verificationKind": "INSTALL",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "E06",
+      "requirement": "代码TDD及独立review，逐条实际用户测试，未执行/模拟不冒充通过",
+      "source": [
+        "implementation-boundaries.md",
+        "02-product-design.md",
+        "03-ui-design.md",
+        "desktop-menu-shortcut-contract.md"
+      ],
+      "implementation": [
+        "docs/verification-results.json"
+      ],
+      "testIds": [
+        "DESK-E06"
+      ],
+      "verificationKind": "PROCESS",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "B08",
+      "requirement": "文件菜单模板与提示词入口复用PromptsClient/shared，原向导消费离线模板并支持本地修改/导入导出",
+      "source": [
+        "implementation-boundaries.md",
+        "product-capability-matrix.md#X11",
+        "04-technical-design.md#2"
+      ],
+      "implementation": [
+        "src/components/admin/PromptsClient.tsx",
+        "src/components/admin/shared.tsx",
+        "src/components/layout/CreateNovelDialog.tsx"
+      ],
+      "testIds": [
+        "DESK-B08"
+      ],
+      "verificationKind": "UI",
+      "status": "planned",
+      "evidence": []
+    }
+  ],
+  "developmentRecordUpdated": "2026-10-08",
+  "acceptanceNote": "正式桌面与业务531项仍not-run；development与正式验收status/evidence分开，不能由单元、浏览器、模拟OS、受控picker或部分native脚本推断整条通过。",
+  "acceptanceScope": {
+    "retirementId": "USER-2026-10-08-CANCEL-BACKUPS",
+    "updatedAt": "2026-10-08",
+    "retirementManifest": "docs/backup-scope-retirement.json",
+    "activeManifest": "docs/acceptance-active-scope.json",
+    "policy": "retired是范围生命周期，不是passed/skipped；原status/results/executionMatrix均不变。activeDefinition只覆盖title/steps/expected，其余前置/平台/证据继承原条目。",
+    "historicalRequirementCount": 91,
+    "activeRequirementCount": 90,
+    "retiredRequirementIds": [
+      "D08"
+    ],
+    "mixedRequirementIds": [
+      "G03"
+    ],
+    "note": "D05/D06目录迁移、D07保存草稿、D09领域事务、E06实际TDD/review/验收等全部保留。"
+  },
+  "brandRename": {
+    "updatedAt": "2026-10-08",
+    "names": {
+      "full": "玄印写作",
+      "short": "玄印",
+      "english": "XaanInk"
+    },
+    "compatibility": "旧目录、作品、锁和控制文件按原家族继续读取；新建应用/作品和导出使用新名称；不重写旧数据。",
+    "status": "verified-macos-arm64",
+    "scope": "本次品牌改名、完整活动核心1618项、打包14项及真实macOS安装包升级；不代替既有正式业务或Windows验收。",
+    "implementation": [
+      "desktop/shared/brand-names.ts",
+      "desktop/core/brand-names.ts",
+      "desktop/main/brand-startup-paths.ts",
+      "desktop/main/index.ts",
+      "src/lib/chat-session.ts",
+      "electron-builder.config.cjs",
+      "public/brand/"
+    ],
+    "tests": [
+      "tests/unit/brand-product-identity.test.ts",
+      "tests/unit/brand-names.test.ts",
+      "tests/unit/brand-chat-session.test.ts",
+      "tests/unit/brand-startup-paths.test.ts",
+      "tests/integration/brand-data-compatibility.test.ts",
+      "scripts/smoke-brand.mjs"
+    ],
+    "evidence": [
+      "docs/reviews/130-brand-rename-verification.md",
+      "docs/reviews/128-brand-product-code-review.md",
+      "docs/reviews/129-brand-compatibility-code-review.md",
+      "docs/reviews/131-brand-verification-harness-review.md",
+      "docs/evidence/brand-rename/verification.json",
+      "docs/evidence/brand-rename/native-brand.json"
+    ]
+  }
+}

@@ -1,0 +1,1007 @@
+{
+  "schemaVersion": 1,
+  "id": "USER-2026-10-08-CANCEL-BACKUPS",
+  "recordedAt": "2026-10-08",
+  "authority": "Latest human user canceled all backup features; parent authorized only documents and active/retirement scope manifests; no production/tests/00 changes",
+  "disposition": "retired-by-user; not-passed; original-status-preserved",
+  "counts": {
+    "historicalCases": 531,
+    "activeCases": 530,
+    "retiredWholeCases": 1,
+    "mixedActiveCases": 5,
+    "clarifiedActiveCases": 1,
+    "desktop": {
+      "historical": 107,
+      "active": 106,
+      "retired": 1,
+      "mixed": 5
+    },
+    "business": {
+      "historical": 424,
+      "active": 424,
+      "retired": 0
+    },
+    "requirements": {
+      "historical": 91,
+      "active": 90,
+      "retired": 1
+    },
+    "activeExecutionStatuses": {
+      "not-run": 530,
+      "passed": 0,
+      "running": 0,
+      "failed": 0,
+      "blocked": 0
+    }
+  },
+  "retiredFeatures": [
+    {
+      "featureId": "BACKUP-AUTO",
+      "scope": "应用/作品定时备份、计时计划/配置/重开调度"
+    },
+    {
+      "featureId": "BACKUP-MANUAL",
+      "scope": "应用/作品立即备份、一致性包生成/成功失败交互"
+    },
+    {
+      "featureId": "BACKUP-LIST-RETENTION",
+      "scope": "备份列表/包导入/保留数量/清理/坏包恢复校验入口"
+    },
+    {
+      "featureId": "APPLICATION-BACKUP-RESTORE",
+      "scope": "应用从备份恢复、选包/选空目录/候选/启用/重启、专用worker/preload/UI、新建两checkpoint保护"
+    },
+    {
+      "featureId": "WORK-BACKUP-RESTORE",
+      "scope": "作品备份候选/启用/恢复前健康或闭源备份/专属交接及新建barrier"
+    },
+    {
+      "featureId": "UPGRADE-BACKUP",
+      "scope": "升级前dumpDataDir/归档及从raw datadir包恢复或转换"
+    },
+    {
+      "featureId": "MIGRATION-BACKUP-SNAPSHOT",
+      "scope": "迁移前额外数据备份快照/备份保留策略；不含迁移journal/指针/源保留/故障续行"
+    }
+  ],
+  "preservedCapabilities": [
+    "正常保存/正文会话配置durable回执",
+    "版本CAS/幂等/ContentMutation事务快照/批准/定稿/评论锚点",
+    "异常/不匹配/较新输入草稿的保留、查看、复制、导出",
+    "目录授权/迁移journal/pointer/source保留/清理守卫/重新定位",
+    "work storage实际身份与权威指针/writer lease/异常锁修复",
+    "未知/损坏/未完成旧控制文件在engine/session打开前安全拒绝",
+    "合法完成历史只读校验，不复活备份",
+    "旧用户备份/升级归档/未知文件不删除"
+  ],
+  "retiredWholeCases": [
+    {
+      "id": "DESK-D08",
+      "original": {
+        "id": "DESK-D08",
+        "requirements": [
+          "D08"
+        ],
+        "title": "一致性备份/完整校验/保留策略/恢复前快照/不可坏备份覆盖",
+        "preconditions": [
+          "使用独立测试根和固定的虚构作品A/B；与真实作者数据隔离",
+          "GUI/原生步骤在打包的真实Electron应用中执行；mock仅用于明确的协议/故障注入，真实供应商另验",
+          "需要模型时使用测试Key和本机mock模型；需要已有正文/评论/候选时由公开fixture创建"
+        ],
+        "steps": [
+          "活跃作品做一致性备份",
+          "篡改散列/UUID/schema/引擎版本/附件后尝试恢复",
+          "新备份失败不清旧备份",
+          "恢复有效包到隔离候选并保留恢复前快照",
+          "恢复有效包但先不启用，继续编辑当前作品；再取消恢复",
+          "实际启用候选恢复库，读取每章文本/版本、设定、manifest及每个附件散列；注入启用指针切换失败后重启"
+        ],
+        "expected": [
+          "坏校验/UUID/schema/引擎版本的包在隔离候选阶段拒绝，不影响当前作品",
+          "未启用/取消/恢复失败，原库始终权威；当前新增编辑保留",
+          "成功启用后数据与备份一致，恢复前库/快照保留，历史及附件完整；用量引用无Key",
+          "指针切换失败时原库可重开，不得出现半次恢复；新备份失败不能删旧有效快照"
+        ],
+        "layer": "integration",
+        "platforms": [
+          "macos-arm64",
+          "macos-x64",
+          "windows-x64"
+        ],
+        "evidence": [
+          "实际执行平台/架构与安装包或源码commit",
+          "步骤断言记录及相关真实窗口截图/脱敏回执；文件操作附前后散列",
+          "失败发现及修复后重新执行记录；不得以旧原型证据代替"
+        ],
+        "status": "not-run",
+        "results": []
+      },
+      "originalCaseSha256": "b064dd79d8f4b912b62b2f44a88f64dfafbc56fe206de1f995a8504bd3e5578d"
+    }
+  ],
+  "mixedCases": [
+    {
+      "id": "DESK-B07",
+      "original": {
+        "id": "DESK-B07",
+        "requirements": [
+          "B07"
+        ],
+        "title": "演示作品/对话/模型/大小/成功结果/调试栏不进入安装版；显示真实状态",
+        "preconditions": [
+          "使用独立测试根和固定的虚构作品A/B；与真实作者数据隔离",
+          "GUI/原生步骤在打包的真实Electron应用中执行；mock仅用于明确的协议/故障注入，真实供应商另验",
+          "需要模型时使用测试Key和本机mock模型；需要已有正文/评论/候选时由公开fixture创建"
+        ],
+        "steps": [
+          "以全新隔离目录离线启动安装包",
+          "浏览工作台、设置、模型、关于、备份",
+          "搜索打包资源中的设计fixture标记",
+          "触发一次真实失败"
+        ],
+        "expected": [
+          "演示作品/对话/模型/大小/成功结果/调试栏不进入安装版；显示真实状态",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准"
+        ],
+        "layer": "ui",
+        "platforms": [
+          "macos-arm64",
+          "macos-x64",
+          "windows-x64"
+        ],
+        "evidence": [
+          "实际执行平台/架构与安装包或源码commit",
+          "步骤断言记录及相关真实窗口截图/脱敏回执；文件操作附前后散列",
+          "失败发现及修复后重新执行记录；不得以旧原型证据代替"
+        ],
+        "status": "not-run",
+        "results": []
+      },
+      "originalCaseSha256": "479ee759240e8409ea348413c4da673bfe599a29c8582ab68123bc5bdfb4f33d",
+      "disposition": "mixed",
+      "retiredFragments": [
+        {
+          "field": "steps",
+          "index": 1,
+          "text": "备份"
+        }
+      ],
+      "retained": "真实状态/非备份页面/原型fixture/失败巡检保持，新增检查备份功能不可达。",
+      "activeDefinition": {
+        "title": "演示作品/对话/模型/大小/成功结果/调试栏不进入安装版；显示真实状态",
+        "steps": [
+          "以全新隔离目录离线启动安装包",
+          "浏览工作台、设置、模型、关于和草稿恢复；确认无备份、备份列表及从备份恢复入口",
+          "搜索打包资源中的设计fixture标记",
+          "触发一次真实失败",
+          "核对公开preload/IPC/RPC和安装资源无可执行备份/恢复备份入口；普通启动/设置更新/macOS重开/关闭取消不启动备份调度，原用户备份不删除"
+        ],
+        "expected": [
+          "演示作品/对话/模型/大小/成功结果/调试栏不进入安装版；显示真实状态",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准",
+          "自动/手动备份、备份列表、应用和作品从备份恢复完全移除；不是只隐藏按钮；原工作台、正常保存、草稿恢复保持"
+        ]
+      }
+    },
+    {
+      "id": "DESK-S08",
+      "original": {
+        "id": "DESK-S08",
+        "requirements": [
+          "S08"
+        ],
+        "title": "普通有效配置即时响应并原子持久化；非法值/失败保留并重试",
+        "preconditions": [
+          "使用独立测试根和固定的虚构作品A/B；与真实作者数据隔离",
+          "GUI/原生步骤在打包的真实Electron应用中执行；mock仅用于明确的协议/故障注入，真实供应商另验",
+          "需要模型时使用测试Key和本机mock模型；需要已有正文/评论/候选时由公开fixture创建"
+        ],
+        "steps": [
+          "修改合法字号并重启",
+          "填入非法备份间隔",
+          "注入磁盘写失败修改设置后切组/关闭重开",
+          "恢复可写并点重试",
+          "故意乱序返回旧回执"
+        ],
+        "expected": [
+          "普通有效配置即时响应并原子持久化；非法值/失败保留并重试",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准"
+        ],
+        "layer": "integration",
+        "platforms": [
+          "macos-arm64",
+          "macos-x64",
+          "windows-x64"
+        ],
+        "evidence": [
+          "实际执行平台/架构与安装包或源码commit",
+          "步骤断言记录及相关真实窗口截图/脱敏回执；文件操作附前后散列",
+          "失败发现及修复后重新执行记录；不得以旧原型证据代替"
+        ],
+        "status": "not-run",
+        "results": []
+      },
+      "originalCaseSha256": "fbeb2a8bd8f7412372a6dd736c15c2fc863397ebb4aaba8605fd369b1e23b45c",
+      "disposition": "mixed",
+      "retiredFragments": [
+        {
+          "field": "steps",
+          "index": 1,
+          "text": "填入非法备份间隔"
+        }
+      ],
+      "retained": "普通设置合法值/非法值/持久化失败/重试/乱序回执保持，只更换退役字段fixture。",
+      "activeDefinition": {
+        "title": "普通有效配置即时响应并原子持久化；非法值/失败保留并重试",
+        "steps": [
+          "修改合法字号并重启",
+          "将仍有效的界面字号改为超出当前schema范围的值；验证不应用、不替换上一有效值",
+          "注入磁盘写失败修改设置后切组/关闭重开",
+          "恢复可写并点重试",
+          "故意乱序返回旧回执"
+        ],
+        "expected": [
+          "普通有效配置即时响应并原子持久化；非法值/失败保留并重试",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准"
+        ]
+      }
+    },
+    {
+      "id": "DESK-G03",
+      "original": {
+        "id": "DESK-G03",
+        "requirements": [
+          "G03"
+        ],
+        "title": "启动恢复/备份间隔/保留数量/立即备份/配置导入导出全部接入",
+        "preconditions": [
+          "使用独立测试根和固定的虚构作品A/B；与真实作者数据隔离",
+          "GUI/原生步骤在打包的真实Electron应用中执行；mock仅用于明确的协议/故障注入，真实供应商另验",
+          "需要模型时使用测试Key和本机mock模型；需要已有正文/评论/候选时由公开fixture创建"
+        ],
+        "steps": [
+          "逐项改启动恢复/备份间隔/保留数量",
+          "立即备份",
+          "导出配置",
+          "更改后导入",
+          "重启检查全部设置实际生效及导出无Key",
+          "关闭启动恢复后退出重启，确认不自动重开旧Tab；开启后重启恢复原Tab/草稿",
+          "用隔离service可控时钟推进至备份间隔之前和边界之后；真实App另在实际间隔内观察至少一次自动备份",
+          "设置保留2份，建立3次有效备份；第4次备份在校验前失败；核对文件清单和时间顺序",
+          "导入坏JSON、错误schema、未来版本、冲突值及含Key/新根路径的配置；分别取消/确认可用项"
+        ],
+        "expected": [
+          "恢复开关对应真实启动行为，当前会话不因切开关丢失",
+          "间隔未到不备份，到时产生一次校验有效快照，下一周期正确；GUI设置与service配置一致",
+          "只有新备份写完且校验通过后才删最旧受管备份；失败不能减少已有有效备份",
+          "非法导入不写盘；冲突明确列项；无Key导出/导入，导入路径不触发目录迁移或获得新授权"
+        ],
+        "layer": "integration",
+        "platforms": [
+          "macos-arm64",
+          "macos-x64",
+          "windows-x64"
+        ],
+        "evidence": [
+          "实际执行平台/架构与安装包或源码commit",
+          "步骤断言记录及相关真实窗口截图/脱敏回执；文件操作附前后散列",
+          "失败发现及修复后重新执行记录；不得以旧原型证据代替"
+        ],
+        "status": "not-run",
+        "results": []
+      },
+      "originalCaseSha256": "c158a132e48b5f5b073ec7be5cb14568f6e1521236bc0fa21d43df7636a23630",
+      "disposition": "mixed",
+      "retiredFragments": [
+        {
+          "field": "title",
+          "text": "备份间隔/保留数量/立即备份/"
+        },
+        {
+          "field": "steps",
+          "index": 0,
+          "text": "/备份间隔/保留数量"
+        },
+        {
+          "field": "steps",
+          "index": 1,
+          "text": "立即备份"
+        },
+        {
+          "field": "steps",
+          "index": 6,
+          "text": "用隔离service可控时钟推进至备份间隔之前和边界之后；真实App另在实际间隔内观察至少一次自动备份"
+        },
+        {
+          "field": "steps",
+          "index": 7,
+          "text": "设置保留2份，建立3次有效备份；第4次备份在校验前失败；核对文件清单和时间顺序"
+        },
+        {
+          "field": "expected",
+          "index": 1,
+          "text": "间隔未到不备份，到时产生一次校验有效快照，下一周期正确；GUI设置与service配置一致"
+        },
+        {
+          "field": "expected",
+          "index": 2,
+          "text": "只有新备份写完且校验通过后才删最旧受管备份；失败不能减少已有有效备份"
+        }
+      ],
+      "retained": "原步骤3–6、9/expected1、4保持；原步骤1保启动恢复，备份调度/手动/保留清理部分退役。",
+      "activeDefinition": {
+        "title": "启动恢复与配置导入导出接入；旧备份字段精确兼容",
+        "steps": [
+          "修改启动时恢复上次工作台开关",
+          "导出配置",
+          "更改后导入",
+          "重启检查全部仍有效设置实际生效及导出无Key",
+          "关闭启动恢复后退出重启，确认不自动重开旧Tab；开启后重启恢复原Tab/草稿",
+          "导入坏JSON、错误schema、未来版本、冲突值及含Key/新根路径的配置；分别取消/确认可用项",
+          "使用含backupIntervalMinutes/backupRetention的隔离旧state.json及配置文件正常打开/导入；其余设置保留，旧字段不重新导出、不触发备份；任意未知字段仍按schema拒绝"
+        ],
+        "expected": [
+          "恢复开关对应真实启动行为，当前会话不因切开关丢失",
+          "非法导入不写盘；冲突明确列项；无Key导出/导入，导入路径不触发目录迁移或获得新授权",
+          "精确旧格式兼容不能复活备份字段、调度或生成；正常设置即时响应、持久化/失败重试和授权边界保持"
+        ]
+      }
+    },
+    {
+      "id": "DESK-D05",
+      "original": {
+        "id": "DESK-D05",
+        "requirements": [
+          "D05"
+        ],
+        "title": "根迁移先选择后校验/过程；作品不移动、旧根仅清本应用文件",
+        "preconditions": [
+          "使用独立测试根和固定的虚构作品A/B；与真实作者数据隔离",
+          "GUI/原生步骤在打包的真实Electron应用中执行；mock仅用于明确的协议/故障注入，真实供应商另验",
+          "需要模型时使用测试Key和本机mock模型；需要已有正文/评论/候选时由公开fixture创建"
+        ],
+        "steps": [
+          "先取消迁移原生选择",
+          "选择有效新根确认迁移",
+          "核对阶段顺序、新根快照、作品原位置、未知旧文件保留、引导指针权威"
+        ],
+        "expected": [
+          "根迁移先选择后校验/过程；作品不移动、旧根仅清本应用文件",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准"
+        ],
+        "layer": "integration",
+        "platforms": [
+          "macos-arm64",
+          "macos-x64",
+          "windows-x64"
+        ],
+        "evidence": [
+          "实际执行平台/架构与安装包或源码commit",
+          "步骤断言记录及相关真实窗口截图/脱敏回执；文件操作附前后散列",
+          "失败发现及修复后重新执行记录；不得以旧原型证据代替"
+        ],
+        "status": "not-run",
+        "results": []
+      },
+      "originalCaseSha256": "6227c90f4eb747709b0eba3af0b372f4d6a843c3f2909fe2c8fe12b77a0b9857",
+      "disposition": "mixed",
+      "retiredFragments": [
+        {
+          "field": "steps",
+          "index": 2,
+          "text": "新根快照"
+        }
+      ],
+      "retained": "仅退役迁移前额外数据备份快照；journal不是备份，选择/复制校验/提交清理/指针/作品与未知文件保护保持。",
+      "activeDefinition": {
+        "title": "根迁移先选择后校验/过程；作品不移动、旧根仅清本应用文件",
+        "steps": [
+          "先取消迁移原生选择",
+          "选择有效新根确认迁移",
+          "核对阶段顺序、持久迁移journal/实际权威指针、作品原位置、未知旧文件保留；不要求额外迁移前数据备份快照，既有用户备份文件不因功能取消而删除"
+        ],
+        "expected": [
+          "根迁移先选择后校验/过程；作品不移动、旧根仅清本应用文件",
+          "无未捕获错误或跨作品副作用；持久化和取消结果以本条具体操作边界为准"
+        ]
+      }
+    },
+    {
+      "id": "ADAPTER-08",
+      "original": {
+        "id": "ADAPTER-08",
+        "requirements": [
+          "E06"
+        ],
+        "title": "升级与引擎备份版本",
+        "preconditions": [
+          "隔离测试根、真实本地数据库/打包Electron；网络mock或作者明确授权的真实端点"
+        ],
+        "steps": [
+          "升级前制作快照，注入schema迁移失败",
+          "尝试跨PG主版本raw datadir恢复"
+        ],
+        "expected": [
+          "保留原库和可用旧引擎；失败不更新版本；跨主版本必须受支持逻辑迁移"
+        ],
+        "layer": "integration",
+        "platforms": [
+          "macos-arm64",
+          "macos-x64",
+          "windows-x64"
+        ],
+        "evidence": [
+          "测试操作/断言日志、commit、OS/架构及脱敏回执；原生项附真实窗口图"
+        ],
+        "status": "not-run",
+        "results": []
+      },
+      "originalCaseSha256": "febbef245913e8a56a0392b110ffa39fb8ce50202f0971369fb18adec448ae0f",
+      "disposition": "mixed",
+      "retiredFragments": [
+        {
+          "field": "title",
+          "text": "引擎备份版本"
+        },
+        {
+          "field": "steps",
+          "index": 0,
+          "text": "升级前制作快照，"
+        },
+        {
+          "field": "steps",
+          "index": 1,
+          "text": "尝试跨PG主版本raw datadir恢复"
+        },
+        {
+          "field": "expected",
+          "index": 0,
+          "text": "跨主版本必须受支持逻辑迁移"
+        }
+      ],
+      "retained": "schema升级失败/版本检查/原库保护保持；升级备份和从datadir包恢复/转换的要求退役。",
+      "activeDefinition": {
+        "title": "schema升级失败与不兼容引擎安全拒绝；不生成升级备份",
+        "steps": [
+          "在已有隔离原schema数据库执行正常随包迁移，注入schema迁移失败",
+          "普通打开不兼容的数据库/引擎主版本；核对安全拒绝，不初始化空库、不覆盖原目录",
+          "检查全局及作品schema升级不再生成dumpDataDir/before-upgrade归档；既有历史归档原文件保留"
+        ],
+        "expected": [
+          "成功升级按随包ID/校验和完成；失败不记为已升级、不伪造成功，保持原数据及受支持旧版本可读",
+          "不兼容引擎安全拒绝，不回退空库、不自动进行从备份恢复或跨主版本转换",
+          "正常事务/错误回执不依赖升级前备份；既有归档不删除"
+        ]
+      }
+    }
+  ],
+  "clarifiedCases": [
+    {
+      "id": "DESK-D06",
+      "original": {
+        "id": "DESK-D06",
+        "requirements": [
+          "D06"
+        ],
+        "title": "迁移嵌套/不足空间/失败/取消/崩溃恢复/清理待完成逐阶段正确",
+        "preconditions": [
+          "使用独立测试根和固定的虚构作品A/B；与真实作者数据隔离",
+          "GUI/原生步骤在打包的真实Electron应用中执行；mock仅用于明确的协议/故障注入，真实供应商另验",
+          "需要模型时使用测试Key和本机mock模型；需要已有正文/评论/候选时由公开fixture创建"
+        ],
+        "steps": [
+          "在校验/暂停/复制/验证/提交/清理各阶段注入错误或kill",
+          "重启",
+          "分别测试同根/嵌套/空间不足/取消/旧根清理失败",
+          "只允许一个权威根",
+          "为每个kill点记录 durable journal.phase、bootstrap指针、新旧根存在及managed/unknown文件散列",
+          "提交后只让旧根清理失败，重启后重试cleanup；新根临时不可达时只允许定位/恢复，不重建空库"
+        ],
+        "expected": [
+          "picking/validating/quiescing/copying/verifying及提交指针前失败：旧根仍权威，指针不变，旧数据完整，临时新副本不能被启用",
+          "原子指针已提交后kill或cleanup失败：新根权威，重启继续cleanup；UI显示清理待完成并列残留，不能回到旧根",
+          "未知文件/目录本身/所有作品目录始终不清理；重复恢复不重放迁移或双写",
+          "提交前取消回到旧根，提交后禁止回滚按钮；同根/嵌套/不足空间在复制/清理前拒绝"
+        ],
+        "layer": "integration",
+        "platforms": [
+          "macos-arm64",
+          "macos-x64",
+          "windows-x64"
+        ],
+        "evidence": [
+          "实际执行平台/架构与安装包或源码commit",
+          "步骤断言记录及相关真实窗口截图/脱敏回执；文件操作附前后散列",
+          "失败发现及修复后重新执行记录；不得以旧原型证据代替"
+        ],
+        "status": "not-run",
+        "results": []
+      },
+      "disposition": "active-clarified",
+      "retiredFragments": [],
+      "retained": "不是退役用例；仅澄清迁移故障续行/目录重新定位与备份恢复不同，补充遗留控制文件安全分支。",
+      "activeDefinition": {
+        "title": "迁移嵌套/不足空间/失败/取消/崩溃恢复/清理待完成逐阶段正确",
+        "steps": [
+          "在校验/暂停/复制/验证/提交/清理各阶段注入错误或kill",
+          "重启",
+          "分别测试同根/嵌套/空间不足/取消/旧根清理失败",
+          "只允许一个权威根",
+          "为每个kill点记录 durable journal.phase、bootstrap指针、新旧根存在及managed/unknown文件散列",
+          "提交后只让旧根清理失败，重启后重试cleanup；新根临时不可达时只允许定位/恢复，不重建空库",
+          "分别在隔离bootstrap/root/work置入未知、损坏、未完成旧备份恢复request/phase/layout/barrier/storage pointer控制文件；普通启动不可忽略/删除/自动消费或初始化新库",
+          "对合法完成的旧存储指针/authority历史验证实际身份和checksum；只读兼容既有权威根，不重新启用备份恢复入口"
+        ],
+        "expected": [
+          "picking/validating/quiescing/copying/verifying及提交指针前失败：旧根仍权威，指针不变，旧数据完整，临时新副本不能被启用",
+          "原子指针已提交后kill或cleanup失败：新根权威，重启继续cleanup；UI显示清理待完成并列残留，不能回到旧根",
+          "未知文件/目录本身/所有作品目录始终不清理；重复恢复不重放迁移或双写",
+          "提交前取消回到旧根，提交后禁止回滚按钮；同根/嵌套/不足空间在复制/清理前拒绝",
+          "失联/坏库不跳转选择备份；未知/损坏/未完成旧控制状态在engine/session打开前安全拒绝并保留原文件",
+          "这里的恢复仅为迁移journal续行及显式目录重新定位；writer lease/普通保存保持"
+        ]
+      }
+    }
+  ],
+  "requirementChanges": [
+    {
+      "id": "G03",
+      "original": {
+        "id": "G03",
+        "requirement": "启动恢复/备份间隔/保留数量/立即备份/配置导入导出全部接入",
+        "source": [
+          "implementation-boundaries.md",
+          "02-product-design.md",
+          "03-ui-design.md",
+          "desktop-menu-shortcut-contract.md"
+        ],
+        "implementation": [
+          "src/components/desktop/GeneralSettings.tsx",
+          "desktop/core/configuration-transfer.ts",
+          "desktop/main/configuration-files.ts",
+          "src/components/desktop/ConfigurationTransfer.tsx"
+        ],
+        "testIds": [
+          "DESK-G03"
+        ],
+        "verificationKind": "INTEGRATION",
+        "status": "planned",
+        "evidence": [],
+        "development": {
+          "status": "in-progress",
+          "evidence": [
+            "docs/reviews/58-configuration-transfer-code-review.md",
+            "docs/reviews/61-configuration-files-code-review.md",
+            "docs/reviews/62-configuration-ui-catalog-code-review.md",
+            "docs/evidence/implementation-09/native-configuration.json"
+          ],
+          "note": "实现期有限范围证据；原生脚本的受控前置和平台限制见各记录。未代替本要求关联的正式用例。"
+        }
+      },
+      "disposition": "mixed",
+      "activeRequirement": "启动时恢复工作台、配置导入导出和旧备份字段精确兼容；取消备份间隔/份数/立即备份/自动调度/保留清理"
+    },
+    {
+      "id": "D08",
+      "original": {
+        "id": "D08",
+        "requirement": "一致性备份/完整校验/保留策略/恢复前快照/不可坏备份覆盖",
+        "source": [
+          "implementation-boundaries.md",
+          "02-product-design.md",
+          "03-ui-design.md",
+          "desktop-menu-shortcut-contract.md"
+        ],
+        "implementation": [
+          "desktop/core/backups.ts"
+        ],
+        "testIds": [
+          "DESK-D08"
+        ],
+        "verificationKind": "INTEGRATION",
+        "status": "planned",
+        "evidence": []
+      },
+      "disposition": "retired",
+      "activeRequirement": null
+    }
+  ],
+  "documentOccurrences": [
+    {
+      "path": "docs/02-product-design.md",
+      "originalLine": 75,
+      "originalText": "支持打开本地 manifest 目录、重新关联已移动目录、从作品阁移除索引、整部作品备份/恢复及导出。外置盘失联的作品显示「目录不可用」，保留索引和未保存草稿，不自动新建同名空作品。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "产品不再提供手动/自动备份、备份列表/保留策略、应用/作品从备份恢复、schema升级和迁移前额外数据备份快照。作品打开/重关联/导出、迁移journal/故障续行、启动恢复/配置导入导出、正常保存和崩溃草稿恢复保持。下方旧段落和表格全文保留；其中备份特有要求仅作历史，确切原文在退役manifest。"
+    },
+    {
+      "path": "docs/02-product-design.md",
+      "originalLine": 90,
+      "originalText": "迁移步骤（按第17节新版）：通用页持续显示当前根、预计数据大小、作品目录不移动与旧根清理范围 → 点击迁移打开系统目录选择器 → 用户选择目标并以「选择并迁移」确认本次操作 → 检查可写/容量/目标冲突（失败不启动） → 展示进度并开始迁移 → 暂停任务并落草稿 → 一致性复制和验证 → 在新根保留迁移前恢复快照 → 提交新根并恢复 → 清理旧根中本应用管理的配置/密钥密文/数据库/日志 → 显示成功。不再另设进度页的执行确认；用户在选择器确认前可见该清理范围，作品目录与未知文件不在范围内。进行中可停止在提交之前，失败保留旧根且可重试。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "产品不再提供手动/自动备份、备份列表/保留策略、应用/作品从备份恢复、schema升级和迁移前额外数据备份快照。作品打开/重关联/导出、迁移journal/故障续行、启动恢复/配置导入导出、正常保存和崩溃草稿恢复保持。下方旧段落和表格全文保留；其中备份特有要求仅作历史，确切原文在退役manifest。"
+    },
+    {
+      "path": "docs/02-product-design.md",
+      "originalLine": 92,
+      "originalText": "迁移成功时，旧目录本身保留但本应用数据不留副本；默认根目录只保留发现新根位置的引导指针与最小迁移恢复记录。恢复快照位于新根，由备份保留策略管理且密钥始终为密文。旧根清理失败时显示「新目录已启用，旧副本清理待完成」及残留范围，可重试；此时不能宣告完整迁移通过。系统凭据保护与安装信息依操作系统规则存放。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "产品不再提供手动/自动备份、备份列表/保留策略、应用/作品从备份恢复、schema升级和迁移前额外数据备份快照。作品打开/重关联/导出、迁移journal/故障续行、启动恢复/配置导入导出、正常保存和崩溃草稿恢复保持。下方旧段落和表格全文保留；其中备份特有要求仅作历史，确切原文在退役manifest。"
+    },
+    {
+      "path": "docs/02-product-design.md",
+      "originalLine": 122,
+      "originalText": "| 通用 | 应用数据目录、默认作品父目录、启动恢复、备份、配置导入导出 | 合法变更自动保存；迁移/恢复另行确认执行 |",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "产品不再提供手动/自动备份、备份列表/保留策略、应用/作品从备份恢复、schema升级和迁移前额外数据备份快照。作品打开/重关联/导出、迁移journal/故障续行、启动恢复/配置导入导出、正常保存和崩溃草稿恢复保持。下方旧段落和表格全文保留；其中备份特有要求仅作历史，确切原文在退役manifest。"
+    },
+    {
+      "path": "docs/02-product-design.md",
+      "originalLine": 152,
+      "originalText": "后台备份不阻塞输入；备份含作品数据库与附件，一致性校验后才宣告成功。备份失败提示且不删除旧备份。崩溃重启提供草稿恢复；正常关闭落盘。全局与作品 schema 升级先备份，失败保留原数据并进入恢复界面。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "产品不再提供手动/自动备份、备份列表/保留策略、应用/作品从备份恢复、schema升级和迁移前额外数据备份快照。作品打开/重关联/导出、迁移journal/故障续行、启动恢复/配置导入导出、正常保存和崩溃草稿恢复保持。下方旧段落和表格全文保留；其中备份特有要求仅作历史，确切原文在退役manifest。"
+    },
+    {
+      "path": "docs/02-product-design.md",
+      "originalLine": 154,
+      "originalText": "运行时不连接玄印写作平台、遥测、CDN、在线字体、自动更新或登录服务。文档链接/开源仓库仅用户主动打开系统浏览器时访问。导入 Markdown/图片/备份不能获得任意文件访问或代码执行能力；日志不含正文、请求体或 Key。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "产品不再提供手动/自动备份、备份列表/保留策略、应用/作品从备份恢复、schema升级和迁移前额外数据备份快照。作品打开/重关联/导出、迁移journal/故障续行、启动恢复/配置导入导出、正常保存和崩溃草稿恢复保持。下方旧段落和表格全文保留；其中备份特有要求仅作历史，确切原文在退役manifest。"
+    },
+    {
+      "path": "docs/02-product-design.md",
+      "originalLine": 160,
+      "originalText": "每个 Rxx 映射到后续测试用例及证据；真实桌面用户场景至少覆盖：无模型首次启动、指定作品目录、人工离线创作、用户 Key AI 对话/候选/评审、批准后落稿、图像与附件、窗口拖拽/按钮/输入法、主题/布局/设置保持、数据迁移、异常关闭恢复、备份恢复与独立安装。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "产品不再提供手动/自动备份、备份列表/保留策略、应用/作品从备份恢复、schema升级和迁移前额外数据备份快照。作品打开/重关联/导出、迁移journal/故障续行、启动恢复/配置导入导出、正常保存和崩溃草稿恢复保持。下方旧段落和表格全文保留；其中备份特有要求仅作历史，确切原文在退役manifest。"
+    },
+    {
+      "path": "docs/03-ui-design.md",
+      "originalLine": 41,
+      "originalText": "| 通用 | 数据根（只读路径＋迁移）、默认作品父目录（选择）、启动恢复、备份间隔/保留数、备份恢复和配置导入导出。作者资料移到用户页。父目录不构成建书授权。 |",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "通用页的备份间隔/份数/立即备份/查看备份退役；恢复对话框保留草稿列表/预览/复制/导出。备份恢复选包/启用页面退役；目录选择/迁移进度/失联重定位、保存失败重试/导出/取消关闭保持。下方旧UI备份项是历史，不能进安装版；其它Web复用/窗控/菜单/设置契约不变。"
+    },
+    {
+      "path": "docs/03-ui-design.md",
+      "originalLine": 75,
+      "originalText": "迁移显示源、当前权威根、显式目标与清理范围。提交前可取消，提交后所有关闭/切换路径守卫，Windows 路径同步更新；快照在新根，作品与未知文件不清理，旧副本待清理不能算完整成功。根失联不悄悄退回旧根；快照校验后选恢复目录，损坏备份不可恢复。草稿恢复先比较，进入可编辑且未提交的恢复稿。关闭前保存失败提供重试、导出、取消关闭，X/Escape 按取消关闭处理。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "通用页的备份间隔/份数/立即备份/查看备份退役；恢复对话框保留草稿列表/预览/复制/导出。备份恢复选包/启用页面退役；目录选择/迁移进度/失联重定位、保存失败重试/导出/取消关闭保持。下方旧UI备份项是历史，不能进安装版；其它Web复用/窗控/菜单/设置契约不变。"
+    },
+    {
+      "path": "docs/03-ui-design.md",
+      "originalLine": 132,
+      "originalText": "- 设置采用圆角分组、细分隔线，一条配置占一行；名称与说明在左，控件在右。通用路径、备份/导入导出、智能体默认项、主题/界面/正文配置均遵循同一布局。主题仍在同一行提供三张图示；模型列表、资料卡、关于条目保持各自一行。用户编辑保留左侧头像占满表单高度，右侧笔名和邮件各一行；模型子对话框也以逐行配置展示。窄窗保持左右关系，说明可换行、长路径省略、模型名在菜单内换行，内容区滚动。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "通用页的备份间隔/份数/立即备份/查看备份退役；恢复对话框保留草稿列表/预览/复制/导出。备份恢复选包/启用页面退役；目录选择/迁移进度/失联重定位、保存失败重试/导出/取消关闭保持。下方旧UI备份项是历史，不能进安装版；其它Web复用/窗控/菜单/设置契约不变。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 66,
+      "originalText": "默认根 `path.join(os.homedir(), '.xuanxiang')`（两平台）；引导指针仅记录权威根和迁移恢复状态。根内为 settings/versioned JSON、catalog、encrypted secrets、global library/inbox database、草稿恢复、日志、备份及 Electron sessionData（缓存也迁入根）。系统凭据保护信息仍按 OS 存放。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 68,
+      "originalText": "每个用户明确选择的作品目录包含 `xuanxiang-work.json`（UUID/schema版本）、`database/`（PGlite）、`assets/`、`snapshots/`、`backups/`。不因改名换路径；打开/重新关联验证 UUID、版本及目录可写。创建仅接收未过期目录 grant；空目录才能创建，原作品必须走打开。不同目录相同 UUID 提示重关联，不静默复制成另一作品。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 80,
+      "originalText": "所有原 CAS、operationId 幂等、ContentMutation 快照、候选/批准/定稿、评论锚点、chat lease/write fence 继续在事务内执行。数据库迁移按随包版本和 checksum 执行，升级前快照；失败不标已升级、不打开空库。不要在用户库执行上游含管理员账号/平台 Key 的 seed；内置模板单独提取并按默认 hash 保护用户修改。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 82,
+      "originalText": "## 5. 应用根迁移、备份与退出",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 92,
+      "originalText": "备份使用引擎一致性导出/暂停落盘后快照，加资源清单/校验和/schema/作品 UUID；不直接复制活跃数据库目录。保留数量清理只能在新备份完整且校验成功之后。恢复先校验，再导入隔离候选库，保留当前库和恢复前快照；经作者选择启用，原始正文候选/版本规则不绕过。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 94,
+      "originalText": "作品备份封装为作品`backups/`下独立UUID命名的`.xxbackup`文件：有界JSON清单、gzip引擎导出、不可变附件、每段SHA256及覆盖清单/载荷的整体SHA256。密钥库和设置文件不进入作品封包；损坏或陌生文件不参与自动保留清理。当前单包上限512MiB、附件合计256MiB/4096个，超限明确失败且保持旧有效备份。恢复先有界解压并验证普通tar条目、路径和PostgreSQL主版本，再导入作品`.xuanxiang-restores/`内新UUID候选目录，核对迁移ID/校验和、作品归属及附件引用，关闭候选引擎后保存完整文件/目录身份与散列。候选的读取验证不打开引擎；启用前任何变化都需重新准备候选。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 96,
+      "originalText": "作品的权威存储指针独立于原Web作品manifest；另写存储保护标记。保护标记存在而指针丢失时不得自动回退原库。启用恢复必须持有原作品writer lease、停止该作品新请求，并保留启用前最后状态。没有活跃引擎时不尝试打开坏库：将闭库database/assets按实际字节、目录、缺失项清单复制并校验到`.xuanxiang-preserved/UUID`，指针previous.kind明确记为closed-source；它不冒充可直接导入的健康数据库备份。未知作品文件不删除。lease只删除自己创建的owner文件与确认空的锁目录，部分解锁失败可由同一持有者显式重试。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 98,
+      "originalText": "恢复启用使用完整应用交接：原生确认后复用关闭流程停止任务、确认草稿落盘、排空业务与自动备份并关闭worker；独立afterClose阶段写入`restore-draft-barrier.json`，启用候选、持久保存结果、再次闭库后冷重启。该阶段失败不得恢复旧编辑器，重试只继续交接，不再次flush旧缓存。新bootstrap绑定当前窗口/token，强制把旧草稿与缓存作为惰性副本保留，经两次checkpoint和精确DraftJournal回执才清保护标志；unknown pending不得重做activate，也不提示成功。保护标志随应用根迁移。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 100,
+      "originalText": "PGlite的[官方导入导出API](https://pglite.dev/docs/api#dumpdatadir)只承诺供兼容PGlite加载的datadir包。实现结合锁定安装版本源码：0.5.8的`dumpDataDir`本身不获取查询/事务互斥锁，故按附件变更锁→事务锁→查询锁顺序导出，等待实际已开始事务结束；不在该锁内再借用默认数据库查询，防止自锁。备份版本来自项目锁定引擎版本及实际`SHOW server_version`，恢复不自动跨PostgreSQL主版本。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalLine": 122,
+      "originalText": "通用全部行：应用数据根/迁移、默认父目录/选择、启动恢复、备份间隔与保留数量、立即备份、配置导入、配置导出。配置导出排除密钥，导入有 schema/版本/冲突检查，不能隐式迁移或请求新端点。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "备份scheduler/control/session/生成包、应用/作品备份恢复worker/preload/IPC/UI、升级dumpDataDir归档及迁移前额外数据备份快照退役。第5节下方备份导出/封包/候选启用协议仅作历史；schema迁移版本/事务、writer lease、关闭drain、草稿durability和目录迁移保持。旧authority/pointer/未知控制文件只能只读校验或安全拒绝，不能删除或当idle初始化空库；历史backups/snapshots目录不自动清理。"
+    },
+    {
+      "path": "docs/05-test-cases.md",
+      "originalLine": 27,
+      "originalText": "5. **独立安装/离线与恢复**：干净机器无Node/数据库服务启动；所有字体/图标/Monaco本地可用；不监听HTTP/DB端口，不访问平台。kill/重启、迁移各阶段失败、备份篡改、丢失根和损坏候选均验证。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史531条原文/状态保留；当前530条有效（桌面106+业务424），全部not-run。DESK-D08整条退役；B07/S08/G03/D05/ADAPTER-08五条混合用例只退役备份片段，D06澄清迁移恢复和旧控制安全拒绝。执行器按active scope选择case并应用activeDefinition；退役不计passed/skip，活动用例的全部平台/分支仍须验收。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 93,
+      "originalText": "2. 浏览工作台、设置、模型、关于、备份",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 341,
+      "originalText": "2. 填入非法备份间隔",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 387,
+      "originalText": "## DESK-G03 · 启动恢复/备份间隔/保留数量/立即备份/配置导入导出全部接入",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 392,
+      "originalText": "1. 逐项改启动恢复/备份间隔/保留数量",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 393,
+      "originalText": "2. 立即备份",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 398,
+      "originalText": "7. 用隔离service可控时钟推进至备份间隔之前和边界之后；真实App另在实际间隔内观察至少一次自动备份",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 399,
+      "originalText": "8. 设置保留2份，建立3次有效备份；第4次备份在校验前失败；核对文件清单和时间顺序",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 402,
+      "originalText": "预期：恢复开关对应真实启动行为，当前会话不因切开关丢失；间隔未到不备份，到时产生一次校验有效快照，下一周期正确；GUI设置与service配置一致；只有新备份写完且校验通过后才删最旧受管备份；失败不能减少已有有效备份；非法导入不写盘；冲突明确列项；无Key导出/导入，导入路径不触发目录迁移或获得新授权。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 998,
+      "originalText": "3. 核对阶段顺序、新根快照、作品原位置、未知旧文件保留、引导指针权威",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 1031,
+      "originalText": "## DESK-D08 · 一致性备份/完整校验/保留策略/恢复前快照/不可坏备份覆盖",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 1036,
+      "originalText": "1. 活跃作品做一致性备份",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 1038,
+      "originalText": "3. 新备份失败不清旧备份",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 1039,
+      "originalText": "4. 恢复有效包到隔离候选并保留恢复前快照",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 1043,
+      "originalText": "预期：坏校验/UUID/schema/引擎版本的包在隔离候选阶段拒绝，不影响当前作品；未启用/取消/恢复失败，原库始终权威；当前新增编辑保留；成功启用后数据与备份一致，恢复前库/快照保留，历史及附件完整；用量引用无Key；指针切换失败时原库可重开，不得出现半次恢复；新备份失败不能删旧有效快照。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalLine": 1253,
+      "originalText": "## ADAPTER-08 · 升级与引擎备份版本",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "历史107条原文/未执行状态保留；当前106条有效，含五条混合缩范围和D06活动澄清，纯备份DESK-D08退役。以下受影响case前的当前覆盖优先；其它case保持原要求。全部106有效case仍not-run。"
+    },
+    {
+      "path": "docs/implementation-boundaries.md",
+      "originalLine": 14,
+      "originalText": "| 桌面专属交互 | 已批准 UI v0.13、产品 v0.12、补充契约 v0.5 和本次用户说明 | 原生菜单/窗控/两平台布局、设置全部配置、目录/备份/恢复、模型与用户编辑、快捷键逐项实现 |",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "最新用户scope覆盖下面“目录/备份/恢复”：仅备份/从备份恢复撤销；正常迁移/重定位、异常草稿恢复/导出、writer lease及其它已批准UI保持。原边界全文保留，旧备份字样不能复活功能。"
+    },
+    {
+      "path": "docs/product-capability-matrix.md",
+      "originalLine": 59,
+      "originalText": "| D06 | 备份/恢复/崩溃 | 一致性备份、恢复校验、强制结束后草稿和作品数据恢复 |",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "本矩阵D06“备份/恢复/崩溃”是混合历史行：一致性备份/从备份恢复退役，强制结束后durable草稿及实际数据事务保护保留。D02迁移前额外数据备份快照取消，但journal/指针故障续行保留；X05事务快照、X08原ID回收恢复等创作能力不退役。矩阵Dxx编号不能和requirements-traceability.json桌面Dxx误合并。"
+    },
+    {
+      "path": "docs/desktop-menu-shortcut-contract.md",
+      "originalLine": 37,
+      "originalText": "设置各页采用系统设置式分组行：每行只放一条配置，左侧名称/简短说明，右侧控件或动作，分组面板使用原宣纸/玄墨语义令牌、细分割线与圆角。取消并排的两项表单；主题作为一个配置行，右侧仍有三张图形缩略选项。目录显示完整路径提示并保留选择/迁移动作；备份、配置导入/导出各占一行。用户卡片、模型清单、关于信息也按横向行呈现。独立模型配置采用相同字段行；用户编辑保留此前明确要求的左头像/右属性布局，右侧笔名和邮件各占一行。窄窗仍保持标签在左、控件在右；说明可折行，长值截断可查看完整值，选项/菜单独立滚动。",
+      "retiredScope": "Only backup-specific behavior in this original text is retired; all non-backup safety remains",
+      "activeNote": "设置分组行中的“备份”项退役，配置导入/导出仍各占一行；两平台菜单/窗控/快捷键、外观、模型/用户编辑契约不变。备份控件/命令不得在安装版重新出现，下面旧原文保留历史。"
+    }
+  ],
+  "originalPreservation": [
+    {
+      "path": "docs/02-product-design.md",
+      "originalSha256": "4e0122310ec012fd2d6ce2ee48f6c8ebaa0dd00b6a07974c267f124f2c846777",
+      "updatedSha256": "c204a56395bcd8e2ab7bc5364361d17f5e838730992528c98a48c22b9a938b3a",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 1
+    },
+    {
+      "path": "docs/03-ui-design.md",
+      "originalSha256": "0f748a9616141737a17f00131ede15f2904364aac5d2fff1254c5722c6cd890d",
+      "updatedSha256": "7b3e39b485e8dfdae489547892e024b9cab6a41483b8bd2e4cf93345343bf0af",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 1
+    },
+    {
+      "path": "docs/04-technical-design.md",
+      "originalSha256": "7f82e6248058f05cc1fe672a7d4112e677fc7cef3ed48908245ae2bc21b53275",
+      "updatedSha256": "c6f1e0330a4bf50a7b7a5b9578535feab47f6aa74f75fd645314b7ea0268b786",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 1
+    },
+    {
+      "path": "docs/05-test-cases.md",
+      "originalSha256": "a5e9d263754bebadc5b74fbb490af6a04970b7246512f6fd5820dc748a363952",
+      "updatedSha256": "37d7fe27e0cb71115eb76c457b4f4bd22edb0cecea3c11d3a7526a3019afca78",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 1
+    },
+    {
+      "path": "docs/05-desktop-test-cases.md",
+      "originalSha256": "27d1642760516210ce0cb92cbd8cbec0fed711129c96a5dce9302acb7e450444",
+      "updatedSha256": "ed5aab620ff242e972b3569ca26836add3bdc0d8cedfa6a08052c5e9e0baf41b",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 8
+    },
+    {
+      "path": "docs/05-business-test-cases.md",
+      "originalSha256": "12d492756e1c067732e695cd1901ac9e49414d2ac05a4d7571c2a0c8f0bbf9f8",
+      "updatedSha256": "3a4d5b7e8b3a7dd772eff17b20d8c0bf96eecdaa82705e3a2979cf86e961363d",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 1
+    },
+    {
+      "path": "docs/implementation-boundaries.md",
+      "originalSha256": "85f2cc4ad6b37fb2e7a47f0467d383ce7f48ef4d6ba92f184b9508334a9c2036",
+      "updatedSha256": "835dc918fecd4c42da277c3db4f772d26a033979b9bde12713f9e567d0a00372",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 1
+    },
+    {
+      "path": "docs/product-capability-matrix.md",
+      "originalSha256": "0679ed2335fb2132a3436a7fc95ce52f7ff5028c6b3d6ebdb85c7137ccb4919b",
+      "updatedSha256": "f266ad3e7d4c372413ae21510dd544043c3da8c3e83a6d1d15071d7f152c2cea",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 1
+    },
+    {
+      "path": "docs/desktop-menu-shortcut-contract.md",
+      "originalSha256": "896646c529d50e6ca5fb352ebed12e54f92c80237d7c4f249162fab5d4c54b50",
+      "updatedSha256": "20fecd17cc108f192371408faab320ff26b495f51b22550f5fd5636cae15fd85",
+      "allOriginalBodyBytesPreserved": true,
+      "scopeBlocksAdded": 1
+    },
+    {
+      "path": "docs/test-cases-desktop.json",
+      "originalSha256": "3cf3a8facd2cde96957e7fdc771fea055cb66cd79ad585c0922c8652b95688bf",
+      "updatedSha256": "5515a249dacfde7239d9b0705faf9610aaa275a63d1633b584ea7c7e2db2510c",
+      "allOriginalFieldsAndExecutionStatusesPreserved": true
+    },
+    {
+      "path": "docs/test-cases-business.json",
+      "originalSha256": "ab31b11b116b11b77f71d3dc6aad28929c3ecfab54dfaaef6a2e863281187b83",
+      "updatedSha256": "86201ad809caca758b4ac5339fa20d9158dd88ee9decf40be31c5d5c41cda7f5",
+      "allOriginalFieldsAndExecutionStatusesPreserved": true
+    },
+    {
+      "path": "docs/requirements-traceability.json",
+      "originalSha256": "f6542310df6914f00bbfc93ba40e2b40979e13664d222ced191aeea9bf0754a3",
+      "updatedSha256": "f421d278005e2d7f65ba0aaabe7a851659fc202521c674ebc2c1c0ed64f224e3",
+      "allOriginalFieldsAndExecutionStatusesPreserved": true
+    }
+  ],
+  "history": {
+    "originalStatusesAndEvidence": "preserved without promotion; 531 original rows stay not-run; business executionMatrix remains not-run",
+    "business424": "all original cases unchanged and active",
+    "migrationMap": "not modified",
+    "historicalReviewsAndEvidence": "not modified; scoped prior reviews never converted to formal acceptance",
+    "native108": "canceled-incomplete; original01/02 retained;03 not launched; no native PASS",
+    "review109": "backup-related proposed scope canceled; no further backup acceptance"
+  },
+  "activeManifest": "docs/acceptance-active-scope.json",
+  "remainingAcceptance": {
+    "historicalCases": 531,
+    "activeCases": 530,
+    "retiredWholeCases": 1,
+    "mixedActiveCases": 5,
+    "clarifiedActiveCases": 1,
+    "desktop": {
+      "historical": 107,
+      "active": 106,
+      "retired": 1,
+      "mixed": 5
+    },
+    "business": {
+      "historical": 424,
+      "active": 424,
+      "retired": 0
+    },
+    "requirements": {
+      "historical": 91,
+      "active": 90,
+      "retired": 1
+    },
+    "activeExecutionStatuses": {
+      "not-run": 530,
+      "passed": 0,
+      "running": 0,
+      "failed": 0,
+      "blocked": 0
+    }
+  },
+  "limitations": "Scope bookkeeping, not production removal review or actual acceptance. No production/test code/00 edits; no PG/native/supplier execution."
+}

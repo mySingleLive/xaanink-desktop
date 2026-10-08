@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict'
+import {test} from 'node:test'
+import {readFileSync} from 'node:fs'
+import {mkdtemp,realpath,mkdir,writeFile,readFile,rm,lstat} from 'node:fs/promises'
+import {join} from 'node:path'
+import {tmpdir,hostname} from 'node:os'
+import {randomUUID} from 'node:crypto'
+import {spawn} from 'node:child_process'
+import {once} from 'node:events'
+import ts from 'typescript'
+import {transformSync} from 'esbuild'
+import {WorkLeaseHandoff} from '../../desktop/main/work-lease-handoff'
+import {workLeaseRequestSchema} from '../../desktop/shared/work-lease'
+import {directoryIdentity} from '../../desktop/core/root-ownership'
+import {workNames} from '../../desktop/core/brand-names'
+import {BusinessGate} from '../../desktop/main/business-gate'
+import {ApplicationMetadataGate} from '../../desktop/main/application-metadata-gate'
+import {CloseCoordinator} from '../../desktop/main/close-coordinator'
+const source=ts.createSourceFile('main.ts',readFileSync('desktop/main/index.ts','utf8'),ts.ScriptTarget.Latest,true)
+function declaration(name:string){const node=source.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name?.text===name);assert.ok(node);return node.getText(source)}
+let callback='',services='';const scan=(n:ts.Node)=>{if(ts.isCallExpression(n)&&n.expression.getText(source)==='ipcMain.handle'&&n.arguments[0]?.getText(source)==='"desktop:work-lease"')callback=n.arguments[1].getText(source);if(ts.isNewExpression(n)&&n.expression.getText(source)==='CloseCoordinator')services=n.arguments![0].getText(source);ts.forEachChild(n,scan)};scan(source)
+const deadPid=(async()=>{const p=spawn(process.execPath,['-e','process.exit(0)'],{stdio:'ignore'});await once(p,'exit');assert.ok(p.pid);assert.throws(()=>process.kill(p.pid!,0),{code:'ESRCH'});return p.pid!})()
+async function fixture(){
+ assert.ok(callback,'lease IPC must exist')
+ const root=await realpath(await mkdtemp(join(tmpdir(),'xx-lease-main-'))),gate=new BusinessGate(),events:string[]=[],workId=randomUUID(),session={owner:12,id:randomUUID(),ready:true},window={webContents:{id:12},isDestroyed:()=>false}
+ // Independent historical manifest authorizes the real legacy names reader.
+ await writeFile(join(root,'xuanxiang-work.json'),JSON.stringify({schemaVersion:1,id:workId,phase:'ready',novelId:'legacy-main-lease-novel',title:'保留的旧作品',requestId:randomUUID(),requestHash:'a'.repeat(64),createdAt:new Date().toISOString()}))
+ await mkdir(join(root,'.xuanxiang-lock'));const ownerBytes=JSON.stringify({token:randomUUID(),pid:await deadPid,host:hostname()});await writeFile(join(root,'.xuanxiang-lock/owner.json'),ownerBytes);await writeFile(join(root,'manuscript.txt'),'retained work')
+ const target=await directoryIdentity(root),event={sender:window.webContents};let declined=false,confirmationFails=false,flushFails=false,replace:()=>void=()=>{},replaceDuringConfirm=false
+ const deps={applicationMetadata:new ApplicationMetadataGate(),draftJournal:{read:async()=>null},conversationDirectories:{revokeAll(){},flush:async()=>{}},window,draftSession:session,migrationHandoff:null,WorkLeaseHandoff,workLeaseRequestSchema,CloseCoordinator,businessGate:gate,trusted:(e:unknown)=>{if(e!==event)throw Error('foreign')},modelService:{activeCount:0,close:async()=>{},resume:()=>events.push('resume')},modelConfiguration:{activeCount:0,cancelOwner(){}},avatarAssets:{cancelOwner(){}},recoveryExports:{cancelWindow(){},flush:async()=>{}},fileExports:{cancelWindow(){},flush:async()=>{}},configurationFiles:{cancelWindow(){},flush:async()=>{}},repository:{read:async()=>{}},responseOwners:new Map(),closeChannel:{cancel(){}},flushDraftForClose:async()=>{events.push('flush');if(flushFails)throw Error('failed flush')},service:{call:async(method:string,id?:string)=>{events.push(method);if(method==='task-status')return{active:0};if(method==='closed-work-lease-target'){assert.equal(id,workId);assert.equal(gate.closed,true);return target}return true}},dialog:{showMessageBox:async(_window:unknown,options:{title:string;detail?:string;signal?:AbortSignal})=>{
+   events.push('dialog:'+options.title)
+   if(options.title==='修复异常退出锁'){assert.ok(events.includes('close'));assert.match(options.detail??'',new RegExp(String(await deadPid)));assert.ok(options.detail?.includes(root));assert.ok(options.signal);if(confirmationFails)throw Error('dialog failed');if(replaceDuringConfirm)replace();return{response:declined?0:1}}
+   if(options.title==='作品锁修复交接尚未完成')return{response:1}
+   if(options.title==='尚不能关闭')return{response:2}
+   return{response:0}
+ }},app:{hasSingleInstanceLock:()=>true,relaunch:()=>events.push('relaunch'),quit:()=>events.push('quit')},worker:{terminate:async()=>{}},send:(e:{type:string})=>events.push('event:'+e.type)}
+ const code=`let workLease=null,businessClosed=false,closingFlow=null,closeCommitted=false,quitting=false;const closePermits=new WeakSet();${declaration('restoreBusiness')}\n${declaration('beginClose')}\nconst closeCoordinator=new CloseCoordinator(${services});const run=${callback};return{run:(input,origin=event)=>run(origin,input),replace:()=>{draftSession={...draftSession,id:randomUUID()}},state:()=>({closed:businessClosed,pending:workLease?.requiresRestart??false})}`
+ const all={...deps,event,randomUUID,workNames},api=new Function(...Object.keys(all),transformSync(code,{loader:'ts'}).code)(...Object.values(all)) as {run(input:unknown,origin?:unknown):Promise<string>;replace():void;state():{closed:boolean;pending:boolean}};replace=api.replace
+ return{...api,root,gate,events,ownerBytes,action:{type:'start',workId},decline:()=>declined=true,failConfirmation:(value:boolean)=>confirmationFails=value,failFlush:()=>flushFails=true,replaceOnConfirm:()=>replaceDuringConfirm=true,cleanup:()=>rm(root,{recursive:true,force:true})}
+}
+test('actual main closes once before native lease confirmation, recovers real dead-child lock, then cold restarts',{timeout:5000},async()=>{const r=await fixture();try{
+ assert.equal(await r.run(r.action),'restarting');assert.ok(r.events.indexOf('flush')<r.events.indexOf('close'));assert.ok(r.events.indexOf('close')<r.events.indexOf('closed-work-lease-target'));assert.ok(r.events.indexOf('dialog:修复异常退出锁')<r.events.indexOf('relaunch'));assert.ok(r.events.indexOf('relaunch')<r.events.indexOf('quit'));assert.equal(r.events.includes('resume'),false);await assert.rejects(lstat(join(r.root,'.xuanxiang-lock')),{code:'ENOENT'});assert.equal(await readFile(join(r.root,'manuscript.txt'),'utf8'),'retained work')
+}finally{await r.cleanup()}})
+test('actual main confirmation cancellation cold restarts without deletion; preclose cancellation leaves business usable',{timeout:5000},async()=>{for(const which of ['confirm','flush']){const r=await fixture();try{
+ if(which==='confirm')r.decline();else r.failFlush();assert.equal(await r.run(r.action),which==='confirm'?'restarting':'cancelled');assert.equal(await readFile(join(r.root,'.xuanxiang-lock/owner.json'),'utf8'),r.ownerBytes);assert.equal(r.gate.closed,which==='confirm');assert.equal(r.events.includes('relaunch'),which==='confirm');if(which==='flush')assert.equal(r.events.includes('closed-work-lease-target'),false)
+}finally{await r.cleanup()}}})
+test('actual main failed native confirmation stays pending and retries only afterClose without a second draft flush',{timeout:5000},async()=>{const r=await fixture();try{
+ r.failConfirmation(true);assert.equal(await r.run(r.action),'pending');assert.equal(r.state().pending,true);assert.equal(r.gate.closed,true);assert.ok(r.events.includes('event:work-lease-pending'));assert.equal(r.events.includes('resume'),false);r.failConfirmation(false);assert.equal(await r.run({type:'retry'}),'restarting');for(const name of ['flush','close','relaunch'])assert.equal(r.events.filter(e=>e===name).length,1)
+}finally{await r.cleanup()}})
+test('actual main rejects renderer paths and old window answers, preserving the exact owner file',{timeout:5000},async()=>{const r=await fixture();try{
+ await assert.rejects(r.run(r.action,{}),/foreign/);await assert.rejects(r.run({...r.action,path:r.root}));await assert.rejects(r.run({type:'recover',workId:r.action.workId}));assert.equal(r.events.length,0);r.replaceOnConfirm();assert.equal(await r.run(r.action),'pending');assert.equal(await readFile(join(r.root,'.xuanxiang-lock/owner.json'),'utf8'),r.ownerBytes);assert.equal(r.events.includes('relaunch'),false);assert.equal(r.gate.closed,true)
+}finally{await r.cleanup()}})

@@ -1,0 +1,90 @@
+{
+  "version": "0.9",
+  "result": "pass",
+  "svgAssets": [
+    {
+      "path": "design/assets/providers/openai.svg",
+      "sha256": "fb2874f4ac6c55843ddad637f03ceedff0314d0af436c274fa369eebf3022d92"
+    },
+    {
+      "path": "design/assets/providers/anthropic.svg",
+      "sha256": "f86ae71dcde62c2f610fbe5a5d177d4bab59360e432ca10afdb9351fba4623ea"
+    },
+    {
+      "path": "design/assets/providers/google.svg",
+      "sha256": "4e6aa8892ef15a6b431f40f2c9045979bf7e2357524e7bbb89b353cf4f32a5ac"
+    },
+    {
+      "path": "design/assets/providers/xai.svg",
+      "sha256": "07237bc34c417492cd85bd42b51adac2d72e1671ed051058339719ef7cee8727"
+    },
+    {
+      "path": "design/assets/providers/deepseek.svg",
+      "sha256": "deba5f98a5c1796e20fcac3149bcd7eb8a32f0bdd04d048819400b1f28bd1439"
+    },
+    {
+      "path": "design/assets/providers/kimi.svg",
+      "sha256": "7e2af8bfa8e0b08a45f00d3ae9802daceffcc90f893aa6a5d71c227bcc7de565"
+    },
+    {
+      "path": "design/assets/providers/zai.svg",
+      "sha256": "eb435d18666db2076777efd1b6a46bd8eecc46740d69c136bf092c3c41778d33"
+    },
+    {
+      "path": "design/assets/providers/xiaomi.svg",
+      "sha256": "01638cd21b61bf805ee5a9e657895712a4624122800b179f7ea5f2192a71ba27"
+    },
+    {
+      "path": "design/assets/providers/qwen.svg",
+      "sha256": "48ee796c5b1da5f5f11dbd70c5c64a3f7efcb9eeb9022ae687d81fc813e942ee"
+    },
+    {
+      "path": "design/assets/providers/minimax.svg",
+      "sha256": "7f7187fa6d9b341ac5f22f6c5a970523afb439dc45566d64eb4f4b9b604d6b01"
+    },
+    {
+      "path": "design/assets/providers/tencent.svg",
+      "sha256": "7c370ad4b75e3f30d0fa7da71f90466a0ee95a887189479aa9df414079b50eb6"
+    },
+    {
+      "path": "design/assets/providers/bytedance.svg",
+      "sha256": "3d37647be262c79b044e293bb1a4993202537e9f9ffdbd2bbe7e9fc5378d1005"
+    },
+    {
+      "path": "design/assets/models/anthropic.svg",
+      "sha256": "a3101f3047a119aa11825ad9369510f0c472428c8c52d420e31bc62db44a8364"
+    },
+    {
+      "path": "design/assets/models/google.svg",
+      "sha256": "8ab0a9bafec11f7e69bcb9fc4ffd8f1bc927d1ddcbbb6ff36dee5ae8b5a9d602"
+    },
+    {
+      "path": "design/assets/models/xai.svg",
+      "sha256": "f597ff5bc53c5be65f1e1c221e3328a7df57e2bd30a9a68b8514ad5a54f087ac"
+    },
+    {
+      "path": "design/assets/models/qwen.svg",
+      "sha256": "77f5768c66d08ce1d3d14e73373975c1bc0454be88c81523ddd0ffd7e2974029"
+    },
+    {
+      "path": "design/assets/models/tencent.svg",
+      "sha256": "510e7bb438506b5aadfaf8b9551d1606efd5b4171161a64a64204c72a453658a"
+    },
+    {
+      "path": "design/assets/models/bytedance.svg",
+      "sha256": "3cd31ba03ae44b8c29561597a3b863809efecb13fcdfd08407a086df86a69b55"
+    },
+    {
+      "path": "design/assets/models/openai.svg",
+      "sha256": "76f621128c2f9b530c8315eb11b9b6c44cbc75446fb260a2c35483f40bd0f780"
+    },
+    {
+      "path": "design/assets/models/kimi.svg",
+      "sha256": "1d0cbe13a173cba10833b80838b637684edd0ea50fd1a658dd9d23bb9fa956ad"
+    }
+  ],
+  "checks": [
+    "20 logo fingerprints match provenance",
+    "XML parses, no active or external references"
+  ]
+}
