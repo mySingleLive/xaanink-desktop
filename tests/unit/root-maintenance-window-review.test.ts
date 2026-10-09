@@ -31,9 +31,11 @@ async function fixture(persistentPartition=false){
  let options!:RootMaintenanceRunnerOptions,blockedCancel=false,lock=true,network:((details:{url:string},cb:(v:{cancel:boolean})=>void)=>void)|undefined,permissionRequest:any,permissionCheck:any,staticHandler:((request:Request)=>Promise<Response>)|undefined
  const isolated={storagePath:persistentPartition?join(base,'persistent-partition'):null,setPermissionRequestHandler:(value:any)=>{permissionRequest=value},setPermissionCheckHandler:(value:any)=>{permissionCheck=value},webRequest:{onBeforeRequest:(value:any)=>{network=value}},protocol:{handle:(name:string,handler:(request:Request)=>Promise<Response>)=>{assert.equal(name,'xaanink');staticHandler=handler}}}
  const app=Object.assign(new EventEmitter(),{setPath:(key:string,value:string)=>{paths.set(key,value);trace.push(`path:${key}`)},getPath:(key:string)=>paths.get(key),hasSingleInstanceLock:()=>lock,whenReady:()=>{trace.push('whenReady');return ready.promise},getAppPath:()=>base,getVersion:()=> '0.1.0',setAboutPanelOptions(){},showAboutPanel(){},relaunch:()=>trace.push('relaunch'),quit:()=>trace.push('quit')})
+ let nativeSource:'light'|'dark'|'system'='system'
+ const nativeTheme={get themeSource(){return nativeSource},set themeSource(value:'light'|'dark'|'system'){nativeSource=value},get shouldUseDarkColors(){return nativeSource!=='light'}}
  class Window extends EventEmitter{
   static getAllWindows(){return instances}
-  destroyed=false;preferences:any;webContents:any
+  destroyed=false;preferences:any;webContents:any;nativeSourceAtConstruction=nativeTheme.themeSource
   constructor(value:any){super();this.preferences=value;this.webContents=Object.assign(new EventEmitter(),{mainFrame:{url:'xaanink://app/'},session:value.webPreferences.session,send:(..._args:unknown[])=>trace.push('send'),setWindowOpenHandler:(cb:()=>unknown)=>{this.webContents.openHandler=cb}});instances.push(this);trace.push('window')}
   isDestroyed(){return this.destroyed}setMenu(){}show(){trace.push('show')}focus(){trace.push('focus')}async loadURL(url:string){assert.equal(url,'xaanink://app/');trace.push('load')}
  }
@@ -46,7 +48,7 @@ async function fixture(persistentPartition=false){
   async continue(){await options.onContinue()}
   async quit(){trace.push('runner-quit');await options.onQuit()}
  }
- const electron={app,BrowserWindow:Window,ipcMain:{handle:(id:string,callback:(...args:any[])=>any)=>handlers.set(id,callback)},Menu:{buildFromTemplate:(value:unknown)=>value,setApplicationMenu(){}},nativeTheme:{shouldUseDarkColors:true},session:{fromPartition:(name:string,configuration:unknown)=>{assert.equal(name,'xaanink-maintenance');assert.deepEqual(configuration,{cache:false});trace.push('partition');return isolated},get defaultSession(){throw Error('maintenance must not touch source defaultSession')}}}
+ const electron={app,BrowserWindow:Window,ipcMain:{handle:(id:string,callback:(...args:any[])=>any)=>handlers.set(id,callback)},Menu:{buildFromTemplate:(value:unknown)=>value,setApplicationMenu(){}},nativeTheme,session:{fromPartition:(name:string,configuration:unknown)=>{assert.equal(name,'xaanink-maintenance');assert.deepEqual(configuration,{cache:false});trace.push('partition');return isolated},get defaultSession(){throw Error('maintenance must not touch source defaultSession')}}}
  const module={exports:{} as {launchRootMaintenance(bootstrap:string,root:string):Promise<void>}}
  new Function('module','exports','require','__dirname',await windowBundle)(module,module.exports,(id:string)=>id==='electron'?electron:id==='review:runner'?{RootMaintenanceRunner:Runner}:require(id),join(base,'bundle/main'))
  const launched=module.exports.launchRootMaintenance(bootstrap,source);void launched.catch(()=>{})
@@ -57,13 +59,17 @@ async function fixture(persistentPartition=false){
  }
 }
 
+test('WCO-F03 maintenance uses its saved paper snapshot for the native source before construction on a dark OS',async()=>{
+ const r=await fixture();try{r.ready.resolve();await r.launched;assert.equal(r.options.theme,'paper');assert.equal(r.instances[0].nativeSourceAtConstruction,'light');assert.equal(r.instances[0].preferences.backgroundColor,'#f4edda');assert.deepEqual(await readFile(join(r.source,'state.json')),r.before)}finally{await r.close()}
+})
+
 test('W71-01: actual maintenance launch synchronously selects bootstrap profile and creates only a memory session, without opening source session',async()=>{
  const r=await fixture()
  try{
   assert.equal(r.paths.get('sessionData'),join(r.bootstrap,'session'));assert.deepEqual(r.trace,['path:sessionData','whenReady']);assert.equal(r.instances.length,0)
   assert.deepEqual(await readdir(r.source),['state.json','xuanxiang-app.json']);r.ready.resolve();await r.launched
-  const owned=r.instances[0];assert.equal(owned.preferences.webPreferences.session.storagePath,null);assert.equal(owned.preferences.webPreferences.nodeIntegration,false);assert.equal(owned.preferences.webPreferences.contextIsolation,true);assert.equal(owned.preferences.webPreferences.sandbox,true);assert.equal(owned.preferences.webPreferences.webSecurity,true);assert.match(owned.preferences.webPreferences.preload,/preload\/maintenance\.cjs$/)
-  assert.equal(owned.preferences.backgroundColor,'#faf5e8','actual saved theme wins over system dark');assert.deepEqual(await readdir(r.source),['state.json','xuanxiang-app.json']);assert.deepEqual(await readFile(join(r.source,'state.json')),r.before)
+  const owned=r.instances[0];assert.equal(owned.preferences.webPreferences.session.storagePath,null);assert.equal(owned.preferences.webPreferences.nodeIntegration,false);assert.equal(owned.preferences.webPreferences.contextIsolation,true);assert.equal(owned.preferences.webPreferences.sandbox,true);assert.equal(owned.preferences.webPreferences.webSecurity,true);assert.match(owned.preferences.webPreferences.preload,/preload[\\/]maintenance\.cjs$/)
+  assert.equal(owned.preferences.backgroundColor,'#f4edda','actual saved theme wins over system dark');assert.deepEqual(await readdir(r.source),['state.json','xuanxiang-app.json']);assert.deepEqual(await readFile(join(r.source,'state.json')),r.before)
   r.options.host.assertMaintenanceClosed();r.instances.push({webContents:{session:{storagePath:null}}});assert.throws(()=>r.options.host.assertMaintenanceClosed(),/SOURCE_NOT_CLOSED/);r.instances.pop();owned.webContents.session={storagePath:'/source/session'};assert.throws(()=>r.options.host.assertMaintenanceClosed(),/SOURCE_NOT_CLOSED/)
  }finally{await r.close()}
 })

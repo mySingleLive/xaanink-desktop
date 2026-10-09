@@ -203,14 +203,31 @@
         "desktop-menu-shortcut-contract.md"
       ],
       "implementation": [
-        "desktop/main/window.ts"
+        "desktop/main/index.ts",
+        "desktop/main/window-appearance.ts",
+        "src/components/desktop/WindowControls.tsx",
+        "src/app/desktop.css",
+        "src/components/layout/ChatPanel.tsx",
+        "src/components/layout/ContentTabs.tsx"
       ],
       "testIds": [
         "DESK-W03"
       ],
       "verificationKind": "NATIVE",
       "status": "planned",
-      "evidence": []
+      "evidence": [],
+      "development": {
+        "status": "in-progress",
+        "evidence": [
+          "docs/reviews/2026-10-09-window-controls-theme-code-review.md",
+          "docs/reviews/2026-10-09-window-controls-theme-verification.md",
+          "docs/reviews/2026-10-10-window-controls-followup-code-review.md",
+          "docs/reviews/2026-10-10-window-controls-populated-tabs-review.md",
+          "docs/reviews/2026-10-10-window-controls-populated-tabs-code-review.md",
+          "docs/reviews/2026-10-10-window-controls-followup-verification.md"
+        ],
+        "note": "2026-10-10 Windows 窗控修复：真实 ChatPanel/ContentTabs 及菜单按 zoom/env 留安全区，Electron 原生主题 source 同步。相关18/18、类型、生产构建和Windows包资源314检查通过；实际包宣纸hover、主题切换、窄窗75/100/200%有限几何、隐藏恢复、内容全屏、原生最大化恢复/最小化/正常关闭重启通过。窄窗外框实测761px，100%客户区760px；极窄受控pane容量不足仅证明右缘安全。core全量1728/1595pass/122fail/9cancelled/2skip，最终browser200/175pass/25fail。未运行NSIS安装、完整业务、多屏/DPI/拖动吸附正式验收，正式status保持planned；范围与证据见验证记录。"
+      }
     },
     {
       "id": "W04",
@@ -264,6 +281,16 @@
             "docs/evidence/implementation-45/packaged-offline-startup.json"
           ],
           "note": "用户后续要求重新编译打包：当前macOS arm64 DMG/ZIP已生成，14/14 package测试、静态验包、DMG完整性及实际包在renderer CDP离线条件下的隔离启动冒烟通过；不是系统完全断网、全业务、三区物理交互或Windows验收。"
+        },
+        "windowsCaptionFollowup": {
+          "status": "limited-windows-package-verification",
+          "evidence": [
+            "docs/reviews/2026-10-10-window-controls-followup-code-review.md",
+            "docs/reviews/2026-10-10-window-controls-populated-tabs-review.md",
+            "docs/reviews/2026-10-10-window-controls-populated-tabs-code-review.md",
+            "docs/reviews/2026-10-10-window-controls-followup-verification.md"
+          ],
+          "note": "2026-10-10 Windows 窗控修复：真实 ChatPanel/ContentTabs 及菜单按 zoom/env 留安全区，Electron 原生主题 source 同步。相关18/18、类型、生产构建和Windows包资源314检查通过；实际包宣纸hover、主题切换、窄窗75/100/200%有限几何、隐藏恢复、内容全屏、原生最大化恢复/最小化/正常关闭重启通过。窄窗外框实测761px，100%客户区760px；极窄受控pane容量不足仅证明右缘安全。core全量1728/1595pass/122fail/9cancelled/2skip，最终browser200/175pass/25fail。未运行NSIS安装、完整业务、多屏/DPI/拖动吸附正式验收，正式status保持planned；范围与证据见验证记录。"
         }
       }
     },
@@ -374,6 +401,16 @@
             "docs/evidence/implementation-48/empty-content-hide-native.json"
           ],
           "note": "仅新空右区收起图标默认14改16px，与真实左导航一致。浏览器193、聚焦22及实际macOS22条检查通过；core完整运行1623通过/1迁移超时取消，受影响完整14项文件重跑通过，唯一1624项均已验证，重跑不重复计数。类型/UI/desktop构建通过。Windows为浏览器合同，Windows原生/DPI及安装包未执行；W05和业务总状态保留。"
+        },
+        "windowsCaptionFollowup": {
+          "status": "limited-windows-package-verification",
+          "evidence": [
+            "docs/reviews/2026-10-10-window-controls-followup-code-review.md",
+            "docs/reviews/2026-10-10-window-controls-populated-tabs-review.md",
+            "docs/reviews/2026-10-10-window-controls-populated-tabs-code-review.md",
+            "docs/reviews/2026-10-10-window-controls-followup-verification.md"
+          ],
+          "note": "2026-10-10 Windows 窗控修复：真实 ChatPanel/ContentTabs 及菜单按 zoom/env 留安全区，Electron 原生主题 source 同步。相关18/18、类型、生产构建和Windows包资源314检查通过；实际包宣纸hover、主题切换、窄窗75/100/200%有限几何、隐藏恢复、内容全屏、原生最大化恢复/最小化/正常关闭重启通过。窄窗外框实测761px，100%客户区760px；极窄受控pane容量不足仅证明右缘安全。core全量1728/1595pass/122fail/9cancelled/2skip，最终browser200/175pass/25fail。未运行NSIS安装、完整业务、多屏/DPI/拖动吸附正式验收，正式status保持planned；范围与证据见验证记录。"
         }
       }
     },

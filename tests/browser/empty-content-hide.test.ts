@@ -150,3 +150,56 @@ test("EMPTY-05 populated rail retains existing controls; closing last tab expose
   assert.equal(await page.getByRole("tab").count(), 0)
   assert.deepEqual(await page.evaluate(() => (window as any).fixture.calls), ["fullscreen", "hide"])
 }))
+
+async function railSafe(page: Page, zoom: number, caption = 0) {
+  const g = await page.getByRole("tablist").evaluate(el => {
+    const header = el as HTMLElement, h = header.getBoundingClientRect(), p = header.closest(".content-tabs")!.getBoundingClientRect(), s = getComputedStyle(header)
+    const controls = [...header.querySelectorAll<HTMLButtonElement>('button[aria-label="进入全屏"],button[aria-label="显示 / 隐藏内容面板"]')].map(button => {
+      const b = button.getBoundingClientRect(), style = getComputedStyle(button)
+      return { x: b.x, right: b.right, y: b.y, bottom: b.bottom, width: b.width, margin: parseFloat(style.marginLeft) + parseFloat(style.marginRight) }
+    })
+    const menu = document.querySelector("[data-desktop-menu-button]")!.getBoundingClientRect()
+    return { controls, width: h.width, left: p.left, right: p.right, padding: parseFloat(s.paddingLeft) + parseFloat(s.paddingRight), menu: { x: menu.x, right: menu.right }, viewport: innerWidth }
+  })
+  assert.equal(g.controls.length, 2)
+  const nativeLeft = g.viewport - Math.max(caption, 138 / zoom)
+  assert(g.menu.right <= nativeLeft - 5.9)
+  for (const b of g.controls) assert(b.right <= g.menu.x - 5.9, `Populated rail enters menu/caption: ${JSON.stringify({ g, zoom, caption })}`)
+  // Fixed native reservation can exceed this isolated CSS pane's capacity.
+  // Only sufficient-capacity cases assert both controls inside the pane.
+  if (g.width >= g.padding + g.controls.reduce((sum, b) => sum + b.width + b.margin, 0))
+    for (const b of g.controls) assert(b.x >= g.left - .1 && b.right <= g.right + .1)
+}
+
+test("WCO-S04 populated Windows rail clears caption/menu with many tabs, zoom, fonts and supplied env", async () => {
+  for (const width of [280, 360, 440]) for (const count of [1, 20]) await scenario("win32", width, count, async page => {
+    const menuRule = desktopStyles.match(/^\.desktop-windows-menu\s*\{[^}]+\}/m)![0]
+    await page.addStyleTag({ content: menuRule.replace("env(titlebar-area-width,", "var(--fixture-titlebar-width,") })
+    for (const zoom of [.75, 1, 2]) for (const font of [11, 14, 24]) for (const caption of [0, 106, 138, 184, 216]) {
+      await page.evaluate(({ zoom, font, caption }) => {
+        (window as any).fixture.appearance(zoom, font)
+        if (caption) document.documentElement.style.setProperty("--fixture-titlebar-width", `${innerWidth - caption}px`)
+        else document.documentElement.style.removeProperty("--fixture-titlebar-width")
+        const rail = document.querySelector<HTMLElement>('[role="tablist"]')!
+        rail.style.paddingRight = rail.style.paddingRight.replace("env(titlebar-area-width,", "var(--fixture-titlebar-width,")
+      }, { zoom, font, caption })
+      await railSafe(page, zoom, caption)
+    }
+  })
+})
+
+test("WCO-S05 Windows populated rail preserves fullscreen/hide/restore and last-tab close", () => scenario("win32", 440, 1, async page => {
+  await railSafe(page, 1)
+  await page.getByRole("button", { name: "进入全屏", exact: true }).click()
+  await page.getByRole("button", { name: "进入全屏", exact: true }).press("Space")
+  await page.getByRole("button", { name: "显示 / 隐藏内容面板", exact: true }).click()
+  assert.equal(await page.locator("#content").count(), 0)
+  await page.locator("#fixture-restore").click(); await railSafe(page, 1)
+  assert.equal(await page.getByRole("tab").count(), 1)
+  await page.getByRole("button", { name: "显示 / 隐藏内容面板", exact: true }).press("Enter")
+  assert.equal(await page.locator("#content").count(), 0)
+  await page.locator("#fixture-restore").click(); await railSafe(page, 1)
+  await page.getByRole("button", { name: "关闭 隔离面板 0", exact: true }).click()
+  await contained(page)
+  assert.deepEqual(await page.evaluate(() => (window as any).fixture.calls), ["fullscreen", "fullscreen", "hide", "hide"])
+}))

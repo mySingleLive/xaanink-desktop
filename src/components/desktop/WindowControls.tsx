@@ -1,7 +1,7 @@
 "use client"
 import { ArrowLeft, ArrowRight, Menu, PanelLeft } from "lucide-react"
 import { useDesktopStore } from "@/stores/desktop"
-import { useSyncExternalStore } from "react"
+import { useSyncExternalStore, type CSSProperties } from "react"
 import { subscribeDesktopNavigation, desktopNavigationSnapshot, desktopNavigationServerSnapshot } from "@/lib/desktop/navigation-runtime"
 export function SidebarWindowControls({ onToggleSidebar }: { onToggleSidebar?: () => void }) {
   const platform = useDesktopStore(state => state.bootstrap?.platform)
@@ -15,6 +15,7 @@ export function SidebarWindowControls({ onToggleSidebar }: { onToggleSidebar?: (
 }
 export function WindowsMenuControl({platform:platformOverride}: {platform?: "darwin" | "win32"} = {}) {
   const bootstrapPlatform = useDesktopStore(state => state.bootstrap?.platform)
+  const zoom = useDesktopStore(state => state.bootstrap?.settings?.appearance?.zoom ?? 1)
   const platform = platformOverride ?? bootstrapPlatform
-  return platform === "win32" ? <button data-desktop-menu-button className="desktop-control desktop-windows-menu" aria-label="应用程序菜单" onPointerDown={event=>event.preventDefault()} onClick={() => { void window.desktop?.command("app.menu") }}><Menu className="size-4" /></button> : null
+  return platform === "win32" ? <button data-desktop-menu-button className="desktop-control desktop-windows-menu" style={{ "--desktop-caption-zoom": zoom } as CSSProperties} aria-label="应用程序菜单" onPointerDown={event=>event.preventDefault()} onClick={() => { void window.desktop?.command("app.menu") }}><Menu className="size-4" /></button> : null
 }

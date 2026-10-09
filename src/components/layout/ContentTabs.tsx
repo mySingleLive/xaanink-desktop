@@ -92,6 +92,10 @@ export function ContentTabs({
         <div
           role="tablist"
           className="desktop-drag flex shrink-0 items-end border-b border-sidebar-border bg-sidebar px-2 pt-1.5"
+          style={desktopBootstrap?.platform === "win32" ? {
+            paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + 40px)`,
+            justifyContent: "flex-end",
+          } : undefined}
         >
           {/* top-px 挂在滚动容器上而不是每个 tab 上：tab 的相对位移会制造 1px 纵向滚动溢出，
               overflow-x-auto 会让 overflow-y 计算为 auto，从而在容器右缘冒出一条纵向滚动条 */}

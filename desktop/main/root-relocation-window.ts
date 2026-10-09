@@ -7,6 +7,7 @@ import {rootRelocationPreflight,type RootRelocationPreflight} from './root-reloc
 import {prepareSessionDirectory} from './session-directory'
 import {staticUiResponse} from './static-ui'
 import type {RootRelocationCommand} from '../shared/root-relocation'
+import {nativeWindowAppearance,syncNativeThemeSource} from './window-appearance'
 
 /** Separate first-turn entry: never imports/constructs the service worker, model
  * vault or workbench bridge. Caller already holds the stable instance lock. */
@@ -38,9 +39,11 @@ export async function launchRootRelocation(bootstrap:string,_initial:RootRelocat
   callback({cancel:!allowed})
  })
  isolated.protocol.handle('xaanink',request=>staticUiResponse(request,join(app.getAppPath(),'out')))
- const theme=nativeTheme.shouldUseDarkColors?'ink':'paper',backgroundColor=theme==='ink'?'#171312':'#faf5e8'
+ const theme=nativeTheme.shouldUseDarkColors?'ink':'paper'
+ syncNativeThemeSource(nativeTheme,theme)
+ const nativeAppearance=nativeWindowAppearance(theme,nativeTheme.shouldUseDarkColors)
  const platform=process.platform==='win32'?'win32':process.platform==='darwin'?'darwin':'linux'
- current=new BrowserWindow({width:680,height:540,minWidth:360,minHeight:440,show:false,title:'定位原数据目录 · 玄印写作',backgroundColor,titleBarStyle:'hidden',trafficLightPosition:{x:14,y:14},...(process.platform==='win32'?{titleBarOverlay:{color:backgroundColor,symbolColor:theme==='ink'?'#ece7e1':'#2b251b',height:44}}:{}),webPreferences:{session:isolated,preload:join(__dirname,'../preload/root-relocation.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true}})
+ current=new BrowserWindow({width:680,height:540,minWidth:360,minHeight:440,show:false,title:'定位原数据目录 · 玄印写作',backgroundColor:nativeAppearance.backgroundColor,titleBarStyle:'hidden',trafficLightPosition:{x:14,y:14},...(process.platform==='win32'?{titleBarOverlay:nativeAppearance.titleBarOverlay}:{}),webPreferences:{session:isolated,preload:join(__dirname,'../preload/root-relocation.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true}})
  const owned=current,owner=randomUUID(),contentsId=owned.webContents.id
  const assertOwner=(nonce:string)=>{assertCold();if(nonce!==owner||!ownerAlive||current!==owned||owned.isDestroyed()||owned.webContents.id!==contentsId)throw Error('OWNER_EXPIRED')}
  const controller=new RootRelocationController({bootstrap:identity,mode:initial.mode,theme,sourcePath:initial.pointer?.root.path??null,notice:'pointer-invalid',assertStableLock:assertLock,assertCold,assertOwner,

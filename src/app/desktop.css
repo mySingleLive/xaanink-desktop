@@ -7,7 +7,7 @@ button, input, select, textarea, a, [role="button"], [role="tab"], [contentedita
 .desktop-control { display:flex; width:28px; height:28px; align-items:center; justify-content:center; flex-shrink:0; border-radius:6px; color:var(--muted-foreground); }
 .desktop-control:hover:not(:disabled) { background:var(--hover-wash); color:var(--foreground); }
 .desktop-control:disabled { opacity:.35; }
-.desktop-windows-menu { position:fixed; z-index:30; top:7px; right:calc(100vw - env(titlebar-area-width, calc(100vw - 138px)) + 6px); }
+.desktop-windows-menu { position:fixed; z-index:30; top:7px; right:calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), calc(138px / var(--desktop-caption-zoom, 1))) + 6px); }
 .desktop-settings { display:flex!important; gap:0!important; padding:0!important; width:min(880px,calc(100vw - 48px))!important; max-width:none!important; height:min(680px,calc(100dvh - 64px)); overflow:hidden; border:1px solid var(--border); border-radius:16px!important; box-shadow:0 30px 100px #0004,0 4px 20px #0002; }
 .desktop-settings-nav { flex:0 0 174px; padding:24px 12px; background:var(--sidebar); border-right:1px solid var(--border); }
 .desktop-settings-title { padding:0 12px 23px; font-size:1.1875rem!important; color:var(--foreground); font-weight:600; }

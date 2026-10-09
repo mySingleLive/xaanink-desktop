@@ -7,6 +7,7 @@ import {RootMigrationRequests} from './root-migration-request'
 import {RootMaintenanceRunner} from './root-maintenance-runner'
 import {prepareSessionDirectory} from './session-directory'
 import {staticUiResponse} from './static-ui'
+import {nativeWindowAppearance,syncNativeThemeSource} from './window-appearance'
 /** Separate process entry. Never constructs the workspaces worker or model vault. */
 export async function launchRootMaintenance(bootstrap:string,defaultRoot:string){
  // Must run in the first synchronous turn, before Chromium's ready event.
@@ -38,8 +39,9 @@ export async function launchRootMaintenance(bootstrap:string,defaultRoot:string)
   if(closeFlight)return
   closeFlight=(async()=>{const snapshot=runner.state();if(snapshot.canCancel)await runner.cancel();await runner.quit()})().catch(()=>{}).finally(()=>{closeFlight=null})
  }
- const backgroundColor=theme==='ink'?'#171312':'#faf5e8'
- current=new BrowserWindow({width:680,height:510,minWidth:560,minHeight:440,show:false,title:'迁移应用数据 · 玄印写作',backgroundColor,titleBarStyle:'hidden',trafficLightPosition:{x:14,y:14},...(process.platform==='win32'?{titleBarOverlay:{color:backgroundColor,symbolColor:theme==='ink'?'#ece7e1':'#2b251b',height:44}}:{}),webPreferences:{session:isolated,preload:join(__dirname,'../preload/maintenance.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true}})
+ syncNativeThemeSource(nativeTheme,theme)
+ const nativeAppearance=nativeWindowAppearance(theme,nativeTheme.shouldUseDarkColors)
+ current=new BrowserWindow({width:680,height:510,minWidth:560,minHeight:440,show:false,title:'迁移应用数据 · 玄印写作',backgroundColor:nativeAppearance.backgroundColor,titleBarStyle:'hidden',trafficLightPosition:{x:14,y:14},...(process.platform==='win32'?{titleBarOverlay:nativeAppearance.titleBarOverlay}:{}),webPreferences:{session:isolated,preload:join(__dirname,'../preload/maintenance.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true}})
  const owned=current
  owned.webContents.setWindowOpenHandler(()=>({action:'deny'}))
  owned.webContents.on('will-navigate',event=>event.preventDefault())

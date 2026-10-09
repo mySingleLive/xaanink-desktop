@@ -13,7 +13,8 @@ import { ModelService } from "./model-service"
 import { ModelConfigurationService } from "./model-configuration"
 import { AvatarAssetService } from "./avatar-assets"
 import { modelFailureNotice } from "./model-guidance"
-import { settingsSchema } from "../core/settings"
+import { settingsSchema, type Settings } from "../core/settings"
+import { nativeWindowAppearance, applyWindowAppearance, syncNativeThemeSource } from "./window-appearance"
 import { RevisionConflict,atomicWrite } from "../core/versioned-store"
 import { ModelRepository } from "./model-repository"
 import { ModelGateway } from "../core/model-authorization"
@@ -98,6 +99,7 @@ let closeCoordinator:CloseCoordinator
 const closeChannel=new RendererCloseChannel(event=>send(event))
 const closePermits=new WeakSet<BrowserWindow>()
 let menuRevision = -1
+let windowTheme: Settings["appearance"]["theme"] = "system"
 let menuShortcuts: Record<string,string[]> = {}
 const authority = new DirectoryAuthority()
 const conversationDirectories=new ConversationDirectoryAuthorizations({choose:chooseConversationDirectory,revoke:owner=>authority.revokeOwner(owner)})
@@ -297,6 +299,11 @@ async function launch() {
       catch(error){void businessGate.close();send({type:"migration-cancel-pending"});throw error}
     }},
   })
+  // Subscribe before loadURL so a system change during first paint is retained.
+  nativeTheme.on("updated", () => {
+    applyMainWindowAppearance()
+    send({ type: "theme", dark: nativeTheme.shouldUseDarkColors })
+  })
   await createWindow()
   app.on("second-instance", () => { window?.show(); window?.focus() })
   app.on("activate", () => { if(closingFlow||migrationHandoff?.pending||workLease?.pending)return;if (!window) void createWindow(); else window.show() })
@@ -306,7 +313,6 @@ async function launch() {
     event.preventDefault()
     beginClose("quit")
   })
-  nativeTheme.on("updated", () => send({ type: "theme", dark: nativeTheme.shouldUseDarkColors }))
 }
 async function restoreBusiness(){if(workLease?.requiresRestart)throw Error("作品锁修复交接必须完成后重新启动");if(businessGate.closed)await businessGate.close();businessGate.reopen();businessClosed=false;modelService.resume();send({type:"close-cancelled"})}
 async function retryMigrationCancellation(){
@@ -589,9 +595,15 @@ function menuTemplate(): MenuItemConstructorOptions[] {
     }),
   }))
 }
+function applyMainWindowAppearance() {
+  syncNativeThemeSource(nativeTheme, windowTheme)
+  applyWindowAppearance(window, process.platform, windowTheme, nativeTheme.shouldUseDarkColors)
+}
 function refreshMenus(state: Awaited<ReturnType<ModelRepository["read"]>>) {
   if (state.revision < menuRevision) return
   menuRevision=state.revision
+  windowTheme=state.settings.appearance.theme
+  applyMainWindowAppearance()
   menuShortcuts=structuredClone(state.settings.shortcuts[process.platform === "darwin" ? "darwin" : "win32"])
   if (process.platform === "darwin" && app.isReady()) Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate()))
 }
@@ -649,8 +661,10 @@ async function createWindow() {
     await restoreBusiness()
   }
   modelService.resume()
-  const state = await repository.read(); const dark = state.settings.appearance.theme === "ink" || state.settings.appearance.theme === "system" && nativeTheme.shouldUseDarkColors
-  window = new BrowserWindow({ width: 1440, height: 940, minWidth: 760, minHeight: 580, show: false, title: "玄印写作", backgroundColor: dark ? "#171312" : "#faf5e8", titleBarStyle: "hidden", trafficLightPosition: { x: 14, y: 14 }, ...(process.platform === "win32" ? { titleBarOverlay: { color: dark ? "#171312" : "#faf5e8", symbolColor: dark ? "#ece7e1" : "#2b251b", height: 44 } } : {}), webPreferences: { preload: join(__dirname, "../preload/index.cjs"), contextIsolation: true, sandbox: true, nodeIntegration: false, webSecurity: true } })
+  const state = await repository.read()
+  refreshMenus(state)
+  const nativeAppearance = nativeWindowAppearance(state.settings.appearance.theme, nativeTheme.shouldUseDarkColors)
+  window = new BrowserWindow({ width: 1440, height: 940, minWidth: 760, minHeight: 580, show: false, title: "玄印写作", backgroundColor: nativeAppearance.backgroundColor, titleBarStyle: "hidden", trafficLightPosition: { x: 14, y: 14 }, ...(process.platform === "win32" ? { titleBarOverlay: nativeAppearance.titleBarOverlay } : {}), webPreferences: { preload: join(__dirname, "../preload/index.cjs"), contextIsolation: true, sandbox: true, nodeIntegration: false, webSecurity: true } })
   const current = window
   current.webContents.setZoomFactor(state.settings.appearance.zoom)
   // Keyboard bindings are resolved once in the renderer, including secondary

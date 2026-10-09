@@ -9,6 +9,7 @@ import {localImageRequest} from '../../desktop/shared/local-images'
 import {CloseCoordinator,type CloseServices} from '../../desktop/main/close-coordinator'
 import {ApplicationMetadataGate} from '../../desktop/main/application-metadata-gate'
 import {ConversationDirectoryAuthorizations} from '../../desktop/main/conversation-directory-authorizations'
+import {nativeWindowAppearance} from '../../desktop/main/window-appearance'
 
 // Execute actual main callbacks. Native IO and worker responses are controlled;
 // no string assertions substitute for the side effects of the current source.
@@ -144,7 +145,7 @@ async function reopenRig(overrides:Record<string,unknown>={}){
  const run=evaluate<()=>Promise<{closed:boolean;businessClosed:boolean}>>(`let window=null,businessClosed=true;
  ${declaration('restoreBusiness')}\n${declaration('createWindow')}
  return async()=>{await createWindow();return{closed:businessGate.closed,businessClosed}}
- `,{workLease:null,workRestore:null,workBackups:undefined,resumeWorkBackups:async()=>{},businessGate:gate,modelService:{resume(){}},repository:{read:async()=>({settings:{appearance:{theme:'paper',zoom:1}}})},nativeTheme:{shouldUseDarkColors:false},BrowserWindow:Window,join:(...args:string[])=>args.join('/'),__dirname:'/bundle/main',refreshMenus(){},send(){},
+ `,{workLease:null,workRestore:null,workBackups:undefined,resumeWorkBackups:async()=>{},businessGate:gate,modelService:{resume(){}},repository:{read:async()=>({settings:{appearance:{theme:'paper',zoom:1}}})},nativeTheme:{shouldUseDarkColors:false},nativeWindowAppearance,BrowserWindow:Window,join:(...args:string[])=>args.join('/'),__dirname:'/bundle/main',refreshMenus(){},send(){},
   closeChannel:{cancel(){}},recoveryExports:{cancelWindow(){},flush:async()=>{}},fileExports:{cancelWindow(){},flush:async()=>{}},configurationFiles:{cancelWindow(){}},authority:{revokeOwner(){}},modelConfiguration:{cancelOwner(){}},avatarAssets:{cancelOwner(){}},responseOwners:new Map(),draftSession:null,closePermits:new WeakSet(),quitting:false,closingFlow:null,migrationHandoff:null,beginClose(){},draftJournal:{activate:()=>()=>{}},randomUUID,...overrides,
  })
  return{run,gate,counts:()=>({created,loads})}
