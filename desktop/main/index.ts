@@ -49,6 +49,8 @@ import {ConversationDirectoryAuthorizations} from "./conversation-directory-auth
 import type {ConversationRequestOrigin} from "../shared/conversation-task"
 import {workNames} from "../core/brand-names"
 import {selectBrandStartupPaths,BrandStartupPathError,legacyEncryptionName,type BrandStartupPaths} from "./brand-startup-paths"
+import { InputContextMenus } from "./input-context-menu"
+import { inputContextStateSchema } from "../shared/input-context-menu"
 
 app.enableSandbox()
 protocol.registerSchemesAsPrivileged([{ scheme: "xaanink", privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, codeCache: true } }])
@@ -79,6 +81,7 @@ let service: RpcPeer
 let worker: Worker
 let dataRoot = ""
 const businessGate=new BusinessGate()
+const inputContextMenus=new InputContextMenus(template=>Menu.buildFromTemplate(template))
 const applicationMetadata=new ApplicationMetadataGate()
 const metadataWrites={withWrite:<T>(run:()=>Promise<T>)=>applicationMetadata.write(run)}
 let businessClosed=false
@@ -176,6 +179,7 @@ function createOrdinaryServiceWorker(){
       try { return await modelService.resolve(value) }
       catch (error) { const notice = modelFailureNotice(error,value); if (notice) send(notice); throw error }
     }
+    if (method === "model.assert") return modelService.assertAuthorization(value)
     if (method === "model.start") return modelService.start(value)
     if (method === "model.image.start") return modelService.startImage(value)
     if (method === "model.read") return modelService.read(value)
@@ -432,6 +436,14 @@ function registerIpc() {
     if(!window?.isFocused())throw new Error("应用窗口未聚焦")
     const text=z.string().max(1024*1024).parse(input)
     await clipboard.writeText(text)
+  })
+  ipcMain.handle("desktop:input-context-menu", async (event, input) => {
+    trusted(event)
+    const state=inputContextStateSchema.parse(input),current=window
+    if(!current?.isFocused()||closingFlow||businessGate.closed)return null
+    const command=await inputContextMenus.open(current,state)
+    trusted(event)
+    return window===current&&current.isFocused()&&!closingFlow&&!businessGate.closed ? command : null
   })
   ipcMain.handle("desktop:clipboard-read", async event => {
     trusted(event)

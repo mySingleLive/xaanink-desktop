@@ -13,6 +13,7 @@
  */
 
 import type { SharedV4ProviderOptions } from "@ai-sdk/provider"
+import { officialModel } from "@desktop/shared/provider-capabilities"
 import { providerFamily } from "./provider-family"
 
 export interface ThinkingEffortOption {
@@ -72,17 +73,6 @@ const ANTHROPIC_EFFORTS: ThinkingEffortOption[] = [
   { value: "high", label: "高", description: "扩展思考 · 预算 16K tokens" },
 ]
 
-const OPENAI_REASONING_EFFORTS: ThinkingEffortOption[] = [
-  { value: "low", label: "低" },
-  { value: "medium", label: "中" },
-  { value: "high", label: "高" },
-]
-
-/** OpenAI 推理模型（reasoning_effort 仅这些系列接受，盲传给 gpt-4o 等会 400） */
-function isOpenAIReasoningModel(modelId: string): boolean {
-  return /^(o\d|gpt-5)/i.test(modelId)
-}
-
 /** 某模型在模型选择器里展示的思考强度档位（provider+modelId 共同决定） */
 export function thinkingEffortOptionsFor(
   provider: string,
@@ -99,7 +89,9 @@ export function thinkingEffortOptionsFor(
     case "anthropic":
       return ANTHROPIC_EFFORTS
     case "openai":
-      return isOpenAIReasoningModel(modelId) ? OPENAI_REASONING_EFFORTS : NO_EFFORTS
+      return (officialModel("openai", modelId)?.thinkingLevels ?? []).map(value => ({ value, label: ({ low:"低", medium:"中", high:"高", xhigh:"更高", max:"最高" } as Record<string,string>)[value] ?? value }))
+    case "minimax":
+      return (officialModel("minimax", modelId)?.thinkingLevels ?? []).map(value => ({ value, label: ({ low:"低", medium:"中", high:"高", xhigh:"更高", max:"最高" } as Record<string,string>)[value] ?? value }))
     default:
       return NO_EFFORTS
   }
@@ -177,11 +169,17 @@ export function buildThinkingProviderOptions(
       }
     }
     case "anthropic": {
+      if (["claude-fable-5-1", "claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5"].includes(modelId ?? "") && ["low", "medium", "high", "xhigh", "max"].includes(level)) return { anthropic: { thinking: { type: "adaptive" }, effort: level } }
       const budget = ANTHROPIC_BUDGETS[level]
       return budget ? { anthropic: { thinking: { type: "enabled", budgetTokens: budget } } } : undefined
     }
     case "openai": {
-      return level === "low" || level === "medium" || level === "high"
+      return ["low", "medium", "high", "xhigh", "max", "minimal", "none"].includes(level)
+        ? { openai: { reasoningEffort: level } }
+        : undefined
+    }
+    case "minimax": {
+      return modelId && officialModel("minimax", modelId)?.thinkingLevels?.includes(level)
         ? { openai: { reasoningEffort: level } }
         : undefined
     }

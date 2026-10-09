@@ -32,8 +32,10 @@ export interface CatalogEntry {
   defaultThinking?: string
   permission: "listed-unverified" | "unknown"
   source: string
+  available?: boolean
+  notes?: string[]
 }
-export type ConfigurationErrorCode = "INVALID_DRAFT" | "KEY_REQUIRED" | "SAVED_SCOPE_MISMATCH" | "AUTHORIZATION_REVOKED" | "OPERATION_DUPLICATE" | "OPERATION_LIMIT" | "CANCELLED" | "TIMEOUT" | "NETWORK_ERROR" | "AUTHENTICATION_FAILED" | "PERMISSION_DENIED" | "HTTP_ERROR" | "UNSUPPORTED_DISCOVERY" | "UNSUPPORTED_TEST" | "CATALOG_INCOMPLETE" | "INVALID_RESPONSE" | "RESPONSE_TOO_LARGE" | "CHARGE_AUTHORIZATION_REQUIRED"
+export type ConfigurationErrorCode = "INVALID_DRAFT" | "KEY_REQUIRED" | "SAVED_SCOPE_MISMATCH" | "AUTHORIZATION_REVOKED" | "OPERATION_DUPLICATE" | "OPERATION_LIMIT" | "CANCELLED" | "TIMEOUT" | "NETWORK_ERROR" | "AUTHENTICATION_FAILED" | "PERMISSION_DENIED" | "QUOTA_EXCEEDED" | "RATE_LIMITED" | "MODEL_UNAVAILABLE" | "OUTPUT_TRUNCATED" | "HTTP_ERROR" | "UNSUPPORTED_DISCOVERY" | "UNSUPPORTED_TEST" | "CATALOG_INCOMPLETE" | "INVALID_RESPONSE" | "RESPONSE_TOO_LARGE" | "CHARGE_AUTHORIZATION_REQUIRED"
 export interface ConfigurationFailure {
   ok: false
   code: ConfigurationErrorCode
@@ -70,10 +72,10 @@ export const PROVIDER_PRESETS: readonly ProviderPreset[] = [
   { id: "xai", name: "xAI", protocol: "openai", textEndpoint: "https://api.x.ai/v1", imageEndpoint: "https://api.x.ai/v1", sources: ["https://docs.x.ai/developers/rest-api-reference/inference/models"] },
   { id: "deepseek", name: "深度求索", protocol: "openai", textEndpoint: "https://api.deepseek.com", sources: ["https://api-docs.deepseek.com/api/list-models/"] },
   { id: "moonshot", name: "月之暗面", protocol: "openai", textEndpoint: "https://api.moonshot.cn/v1", sources: ["https://moonshotai.github.io/kimi-cli/zh/configuration/providers.html", "https://platform.kimi.com/docs/openapi.json"] },
-  { id: "zai", name: "智谱", protocol: "openai", textEndpoint: "https://api.z.ai/api/paas/v4", imageEndpoint: "https://api.z.ai/api/paas/v4", sources: ["https://docs.z.ai/guides/overview/quick-start", "https://docs.z.ai/api-reference/image/generate-image"] },
+  { id: "zai", name: "智谱", protocol: "openai", textEndpoint: "https://open.bigmodel.cn/api/paas/v4", imageEndpoint: "https://open.bigmodel.cn/api/paas/v4", sources: ["https://docs.bigmodel.cn/cn/guide/start/model-overview", "https://docs.bigmodel.cn/cn/guide/models/image-generation/glm-image"] },
   { id: "xiaomi", name: "Xiaomi", protocol: "openai", textEndpoint: "https://api.xiaomimimo.com/v1", sources: ["https://mimo.mi.com/docs/en-US/api/model/list-models", "https://platform.xiaomimimo.com/docs/en-US/usage-guide/passing-back-reasoning_content"] },
   { id: "alibaba", name: "阿里巴巴", protocol: "openai", textEndpoint: "https://dashscope.aliyuncs.com/compatible-mode/v1", imageEndpoint: "https://dashscope.aliyuncs.com/api/v1", sources: ["https://help.aliyun.com/en/model-studio/base-url", "https://help.aliyun.com/zh/model-studio/text-to-image"] },
-  { id: "minimax", name: "MiniMax", protocol: "openai", textEndpoint: "https://api.minimax.io/v1", imageEndpoint: "https://api.minimax.io/v1", sources: ["https://platform.minimax.io/docs/api-reference/text-openai-api", "https://platform.minimax.io/docs/api-reference/image-generation-t2i"] },
+  { id: "minimax", name: "MiniMax", protocol: "openai", textEndpoint: "https://api.minimax.cn/v1", imageEndpoint: "https://api.minimax.cn/v1", sources: ["https://platform.minimax.cn/docs/api-reference/text-openai-api", "https://platform.minimax.cn/docs/api-reference/image-generation-t2i"] },
   { id: "tencent", name: "腾讯", protocol: "openai", textEndpoint: "https://tokenhub.tencentmaas.com/v1", imageEndpoint: "https://tokenhub-intl.tencentcloudmaas.com/v1", sources: ["https://cloud.tencent.com/document/product/1729/131925", "https://intl.cloud.tencent.com/zh/document/product/1300/83708"] },
   { id: "bytedance", name: "字节跳动", protocol: "openai", textEndpoint: "https://ark.cn-beijing.volces.com/api/v3", imageEndpoint: "https://ark.cn-beijing.volces.com/api/v3", sources: ["https://docs.volcengine.com/docs/ark/model-list?lang=zh", "https://docs.volcengine.com/docs/ark/image-generation-api?lang=zh"] },
   { id: "custom", name: "自定义供应商", sources: [] },

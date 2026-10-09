@@ -46,7 +46,7 @@ function fixture(overrides: Record<string, string[]> = {}) {
     "@/stores/tabs": { useTabsStore: { getState: () => ({ activeTabId: null }) } },
     "@desktop/core/shortcut-dispatch": { ShortcutDispatcher },
     "@desktop/core/shortcuts": shortcutKeys,
-    "@/lib/desktop/input-commands": { installInputCommands: () => () => {} },
+    "@/lib/desktop/input-commands": { installInputCommands: () => () => {}, installInputContextMenu: () => () => {}, isAPIKeyControl: () => false },
     "@/lib/desktop/native-text-edits": { nativeTextEdits: () => ({ run() {}, dispose() {} }) },
     "@/lib/desktop/composer-text-commands": { installComposerTextCommands: () => () => {} },
     "@/lib/desktop/command-scope": { commandScope },

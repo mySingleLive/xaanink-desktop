@@ -1,3 +1,4 @@
+import { tencentTextSource, tencentImageSource, tencentViduSource, tencentWandSource, tencentSeedreamSource, tencentVisionSource, tencentText, tencentVision, tencentSeedream, tencentWand, tencentImage, byteSource, byteTextIds, byteSingleOnly, byteSequential } from "../shared/provider-model-ids"
 import type { CatalogEntry, CatalogResult, ConfigurationDraft, ConfigurationErrorCode, ConnectionTestResult } from "../shared/model-catalog"
 
 export class ProviderAdapterError extends Error { constructor(readonly code: ConfigurationErrorCode) { super(code) } }
@@ -18,19 +19,8 @@ const aliImageSource = "https://help.aliyun.com/zh/model-studio/image-model"
 // IMAGE means text-to-image in the approved product. These exact IDs are
 // explicitly marked T2I unsupported in the official table; no prefix rule.
 const aliEditOnly = new Set(["qwen-image-edit-max", "qwen-image-edit-max-2026-01-16", "qwen-image-edit-plus", "qwen-image-edit-plus-2025-12-15", "qwen-image-edit-plus-2025-10-30", "qwen-image-edit", "wan2.5-i2i-preview", "wanx2.1-imageedit"])
-const tencentTextSource = "https://cloud.tencent.com/document/product/1823/130078"
-const tencentImageSource = "https://intl.cloud.tencent.com/zh/document/product/1300/83708"
-const tencentViduSource = "https://intl.cloud.tencent.com/zh/document/product/1300/83709"
-const tencentWandSource = "https://intl.cloud.tencent.com/zh/document/product/1300/83859"
-const tencentSeedreamSource = "https://intl.cloud.tencent.com/zh/document/product/1300/83710"
-const tencentVisionSource = "https://cloud.tencent.com/document/product/1823/130051"
 // Exact categories from the published tables, checked 2026-10-07. Unknown
 // future IDs stay unclassified; strings are never matched by family/prefix.
-const tencentText = new Set(["hy4-preview", "hy3", "hy-mt2-pro", "hy-mt2-plus", "hy-mt2-lite", "hunyuan-role-latest", "hy-role", "deepseek/deepseek-flash", "deepseek-v4-flash-202605", "deepseek/deepseek-v4-flash-0731", "deepseek/deepseek-v4-flash", "deepseek-v4-pro-202606", "deepseek/deepseek-v4-pro-0813", "deepseek/deepseek-v4-pro", "deepseek/deepseek-v4-flash-vision-exp", "deepseek-v4-flash-0731", "deepseek-v4-pro-0813", "deepseek-v4-flash", "deepseek-v4-pro", "glm-5.3", "glm-5.3-flash", "glm-5.3-flashx", "glm-5.2", "glm-5.1", "glm-5v-turbo", "glm-5-turbo", "glm-5", "kimi-k3", "kimi-k2.8-preview", "kimi-k2.7-code-highspeed", "kimi-k2.7-code", "kimi-k2.6", "kimi-k2.5", "minimax-m3", "minimax-m2.7", "minimax-m2.5", "qwen3.5-flash", "qwen3.5-plus", "mimo-v2.6-pro", "mimo-v2.6-flash", "mimo-v2.5-pro"])
-const tencentVision = new Set(["youtu-vita", "hy-vision-2.0-instruct", "hunyuan-t1-vision-20250916", "hunyuan-turbos-vision-video-20250728"])
-const tencentSeedream = new Set(["seedream-image-v5.0-pro", "seedream-image-v5.0-lite"])
-const tencentWand = new Set(["wand-vega-image-lite", "wand-vega-image-flash", "wand-vega-image-pro"])
-const tencentImage = new Set(["hy-image-v3", "hy-image-v3.5-preview", "vidu-image-q2", ...tencentWand, ...tencentSeedream])
 const tencentOther = new Set(["hy-video-v1.5", "pixverse-video-v6.0", "kling-video-v3", "minimax-video-h3", "hy-3d-3.0", "hy-3d-3.1", "hy-3d-express", "kinfra-text-embedding-0.6b", "kinfra-text-embedding-4b", "kinfra-vl-embedding-2b", "kinfra-vl-embedding-8b"])
 function finish(ctx: ProviderAdapterContext, models: Map<string, CatalogEntry>, unknown: Set<string>, sources: string[]): CatalogResult {
   return { ok: true, provider: ctx.draft.provider, kind: ctx.draft.kind, models: [...models.values()], complete: unknown.size === 0, unknownCapabilityIds: [...unknown], permission: "listed-unverified", sources, checkedAt: new Date().toISOString(), warnings: unknown.size ? ["授权目录含输出能力待确认型号；未按名称猜测，分类目录尚不完整"] : [] }
@@ -117,17 +107,45 @@ export async function testGoogleImage(ctx: ProviderAdapterContext): Promise<Conn
   return parseUsage(response.usage, { input: "total_input_tokens", output: "total_output_tokens", total: "total_tokens" }, 1)
 }
 
-const byteSource = "https://docs.volcengine.com/docs/ark/model-list?lang=zh"
 // Full TEXT section of the official public document (LibraryID 82379,
 // DocumentID 1330310), updated 2026-09-28T03:59:13Z, checked 2026-10-07.
 // Retiring versions remain listed until the publisher actually removes them.
-const byteTextIds = ["doubao-seed-evolving", "doubao-seed-2-1-pro-260915", "doubao-seed-2-1-lite-260915", "doubao-seed-2-1-turbo-260628", "doubao-seed-2-1-pro-260628", "doubao-seed-2-0-lite-260428", "doubao-seed-2-0-mini-260428", "doubao-seed-2-0-pro-260215", "doubao-seed-2-0-lite-260215", "doubao-seed-2-0-mini-260215", "doubao-seed-2-0-code-preview-260215", "doubao-seed-character-260628", "doubao-seed-character-251128", "doubao-seed-translation-250915", "glm-5-3-flash-260828", "glm-5-2-260617", "deepseek-v4-1-flash-260910", "deepseek-v4-pro-ga-260813", "deepseek-v4-flash-ga-260731", "deepseek-v4-pro-260425"]
-const byteSingleOnly = new Set(["doubao-seedream-5-0-pro-260628", "doubao-seedream-5-0-flash-260915"])
-const byteSequential = new Set(["doubao-seedream-5-0-260128", "doubao-seedream-5-0-lite-260128", "doubao-seedream-4-5-251128", "doubao-seedream-4-0-250828"])
-export function discoverByteDanceSnapshot(ctx: ProviderAdapterContext): CatalogResult {
+export async function discoverByteDance(ctx: ProviderAdapterContext): Promise<CatalogResult> {
+  const response = await ctx.request("/models"); checkBusiness(response)
+  if (!Array.isArray(response.data)) throw new ProviderAdapterError("INVALID_RESPONSE")
+  if (response.data.length > ctx.maxModels || response.has_more === true || response.next_cursor) throw new ProviderAdapterError("CATALOG_INCOMPLETE")
   const ids = ctx.draft.kind === "TEXT" ? byteTextIds : [...byteSingleOnly, ...byteSequential]
-  if (ids.length > ctx.maxModels) throw new ProviderAdapterError("CATALOG_INCOMPLETE")
-  return { ok: true, provider: "bytedance", kind: ctx.draft.kind, models: ids.map(id => ctx.entry({}, id, byteSource, "unknown")), complete: false, unknownCapabilityIds: [], permission: "unknown", sources: [byteSource, "https://www.volcengine.com/api/doc/getDocDetail?LibraryID=82379&DocumentID=1330310", "https://raw.githubusercontent.com/volcengine/ark-cli/main/skills/arkcli-models/references/arkcli-models-search.md"], checkedAt: new Date().toISOString(), warnings: ["官方公开型号表完整快照（文档更新2026-09-28，核验2026-10-07）；不是此 Key 完整授权目录。包含仍在公开表中的即将下线版本，可调用性须逐型号测试", "账户接入点与完整模态元数据使用官方管理面 AK/SK/SSO；推理 API Key 未验证能枚举账户接入点或全部自定义型号，当前快照不保证账户目录完整"] }
+  const current = new Set([...byteTextIds, ...byteSingleOnly, ...byteSequential])
+  const models = new Map<string, CatalogEntry>(), unknown = new Set<string>(), excluded = new Set<string>()
+  const signatures = new Map<string, string>()
+  for (const raw of response.data) {
+    const row = object(raw), id = ctx.checkText(row.id)
+    if (!current.has(id)) { unknown.add(id); continue }
+    const modalities = row.modalities == null ? {} : object(row.modalities)
+    const outputs = modalities.output_modalities
+    const tasks = row.task_type
+    for (const values of [outputs, tasks]) if (values != null && (!Array.isArray(values) || values.length > 32 || !values.every(v => typeof v === "string"))) throw new ProviderAdapterError("INVALID_RESPONSE")
+    const limits = row.token_limits == null ? {} : object(row.token_limits)
+    for (const value of [limits.context_window, limits.max_output_token_length]) if (value != null && (!Number.isSafeInteger(value) || Number(value) < 0 || Number(value) > 1_000_000_000)) throw new ProviderAdapterError("INVALID_RESPONSE")
+    const signature = JSON.stringify({ outputs: Array.isArray(outputs) ? [...new Set(outputs)].sort() : null, tasks: Array.isArray(tasks) ? [...new Set(tasks)].sort() : null, context: limits.context_window ?? null, output: limits.max_output_token_length ?? null })
+    const prior = signatures.get(id)
+    if (prior && prior !== signature) throw new ProviderAdapterError("INVALID_RESPONSE")
+    if (prior) continue
+    signatures.set(id, signature)
+    if (!ids.includes(id)) continue
+    if (Array.isArray(outputs) && !outputs.includes(ctx.draft.kind === "TEXT" ? "text" : "image")) { excluded.add(id); continue }
+    if (ctx.draft.kind === "IMAGE" && Array.isArray(row.task_type) && !row.task_type.includes("TextToImage")) { excluded.add(id); continue }
+    insert(models, ctx.entry({ context_window: limits.context_window, max_output_tokens: limits.max_output_token_length }, id, byteSource, "listed-unverified"))
+  }
+  for (const id of ids) {
+    if (models.has(id) || excluded.has(id)) continue
+    if (models.size >= ctx.maxModels) throw new ProviderAdapterError("CATALOG_INCOMPLETE")
+    models.set(id, ctx.entry({}, id, byteSource, "unknown"))
+  }
+  const result = finish(ctx, models, unknown, [byteSource, "https://docs.volcengine.com/docs/ark/model-deprecation-notice?lang=zh"])
+  result.complete = result.complete && !result.models.some(m => m.permission === "unknown")
+  result.warnings.push("当前官方型号表（2026-09-28）与推理 Key 目录合并；历史/未确认型号不作为新配置推荐，列出不等于有调用权限")
+  return result
 }
 function checkBusiness(response: Json) { if (response.error || response.code || response.success === false) throw new ProviderAdapterError("HTTP_ERROR") }
 function oneImage(images: unknown): void {

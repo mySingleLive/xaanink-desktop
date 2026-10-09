@@ -98,15 +98,15 @@ test("cursor loops/page and entry bounds are explicit failures, never complete t
     try { failure(await f.service.discover("a", randomUUID(), draft("anthropic")), "CATALOG_INCOMPLETE") } finally { await f.close() }
   }
 })
-test("unsupported catalog adapters and static official catalogs never fall back to GET/models", async () => {
-  let calls = 0; const f = await fixture(async () => { calls++; throw Error("must not fetch") })
+test("official candidates require authenticated discovery instead of static success", async () => {
+  let calls = 0; const f = await fixture(async () => { calls++; return json({ data: [] }) })
   try {
-    for (const [provider, kind] of [["bytedance", "TEXT"], ["bytedance", "IMAGE"]] as const) { const result = await f.service.discover("a", randomUUID(), draft(provider, kind)); assert.equal(result.ok, true); if (result.ok) { assert.equal(result.complete, false); assert.equal(result.permission, "unknown") } }
+    for (const [provider, kind] of [["bytedance", "TEXT"], ["bytedance", "IMAGE"]] as const) { const result = await f.service.discover("a", randomUUID(), draft(provider, kind)); assert.equal(result.ok, true); if (result.ok) { assert.equal(result.complete, false); assert.equal(result.permission, "listed-unverified") } }
     for (const [provider, kind] of [["zai", "IMAGE"], ["minimax", "TEXT"], ["minimax", "IMAGE"]] as const) {
       const result = await f.service.discover("a", randomUUID(), draft(provider, kind)); assert.equal(result.ok, true)
-      if (result.ok) { assert.ok(result.models.length); assert.equal(result.complete, false); assert.equal(result.permission, "unknown"); assert.ok(result.warnings.length) }
+      if (result.ok) { assert.ok(result.models.length); assert.equal(result.complete, false); assert.equal(result.permission, "listed-unverified"); assert.ok(result.warnings.length) }
     }
-    assert.equal(calls, 0)
+    assert.equal(calls, 5)
   } finally { await f.close() }
 })
 test("OpenAI catalog capabilities come from exact official IDs, unknown names are never classified by prefix", async () => {
@@ -114,7 +114,8 @@ test("OpenAI catalog capabilities come from exact official IDs, unknown names ar
   try {
     const result = await f.service.discover("a", randomUUID(), draft("openai", "IMAGE")); assert.equal(result.ok, true)
     if (!result.ok) return
-    assert.deepEqual(result.models.map(m => m.id), ["gpt-image-2.5-sunburst"])
+    assert.deepEqual(result.models.filter(m => m.permission === "listed-unverified").map(m => m.id), ["gpt-image-2.5-sunburst"])
+    assert.ok(result.models.some(m => m.id === "gpt-image-2.5-flare-2026-09-08" && m.permission === "unknown"))
     assert.deepEqual(result.unknownCapabilityIds, ["gpt-image-future", "gpt-6-private"]); assert.equal(result.complete, false)
   } finally { await f.close() }
 })
@@ -153,12 +154,12 @@ test("HTTP-200 business error, empty text/image or asynchronous task id never co
     const f = await fixture(async () => json(body)); try { failure(await f.service.test("a", randomUUID(), draft("xai", "IMAGE"), { authorizeCharge: true }), "INVALID_RESPONSE") } finally { await f.close() }
   }
   const f = await fixture(async () => json({ base_resp: { status_code: 1004, status_msg: secret }, data: { image_urls: ["url"] } }))
-  try { failure(await f.service.test("a", randomUUID(), { ...draft("minimax", "IMAGE"), modelId: "image-01" }, { authorizeCharge: true }), "HTTP_ERROR") } finally { await f.close() }
+  try { failure(await f.service.test("a", randomUUID(), { ...draft("minimax", "IMAGE"), modelId: "image-01" }, { authorizeCharge: true }), "AUTHENTICATION_FAILED") } finally { await f.close() }
 })
 test("errors never echo vendor body, status text, thrown error or credential", async () => {
   for (const status of [401, 403, 429, 500]) {
     const f = await fixture(async () => new Response(secret, { status, statusText: secret }))
-    try { const result = await f.service.discover("a", randomUUID(), draft()); failure(result, status === 401 ? "AUTHENTICATION_FAILED" : status === 403 ? "PERMISSION_DENIED" : "HTTP_ERROR"); assert.equal(JSON.stringify(result).includes(secret), false) } finally { await f.close() }
+    try { const result = await f.service.discover("a", randomUUID(), draft()); failure(result, status === 401 ? "AUTHENTICATION_FAILED" : status === 403 ? "PERMISSION_DENIED" : status === 429 ? "RATE_LIMITED" : "HTTP_ERROR"); assert.equal(JSON.stringify(result).includes(secret), false) } finally { await f.close() }
   }
   const f = await fixture(async () => { throw Error(secret) }); try { const result = await f.service.discover("a", randomUUID(), draft()); failure(result, "NETWORK_ERROR"); assert.equal(JSON.stringify(result).includes(secret), false) } finally { await f.close() }
 })
@@ -275,7 +276,7 @@ test("Anthropic/custom /v1 and Google compatibility text tests use correct proto
       assert.equal((await f.service.test("a", randomUUID(), input, { authorizeCharge: true })).ok, true)
       assert.equal(new URL(url).pathname, input.protocol === "anthropic" ? "/v1/messages" : "/v1beta/openai/chat/completions")
       assert.equal(headers.get(input.protocol === "anthropic" ? "x-api-key" : "authorization"), input.protocol === "anthropic" ? secret : "Bearer " + secret)
-      assert.equal(body.max_tokens, 256); assert.equal(body.thinking, undefined); assert.equal(body.reasoning_effort, undefined)
+      assert.equal(body.max_tokens, input.provider === "custom" ? 1024 : 2048); assert.equal(body.thinking, undefined); assert.equal(body.reasoning_effort, undefined)
     } finally { await f.close() }
   }
 })
@@ -301,12 +302,12 @@ test("Moonshot and Xiaomi enumerate documented live endpoints, with exact offici
     } finally { await f.close() }
   }
 })
-test("Z.AI text directory is explicitly partial official documentation, with no assumed models API", async () => {
-  let calls = 0; const f = await fixture(async () => { calls++; throw Error("must not fetch") })
+test("Zai authenticates live discovery before merging official candidates", async () => {
+  let calls = 0; const f = await fixture(async () => { calls++; return json({data: []}) })
   try {
     const result = await f.service.discover("a", randomUUID(), draft("zai")); assert.equal(result.ok, true)
-    if (result.ok) { assert.ok(result.models.some(m => m.id === "glm-5.3")); assert.equal(result.complete, false); assert.equal(result.permission, "unknown") }
-    assert.equal(calls, 0)
+    if (result.ok) { assert.ok(result.models.some(m => m.id === "glm-5.3")); assert.equal(result.complete, false); assert.equal(result.permission, "listed-unverified") }
+    assert.equal(calls, 1)
   } finally { await f.close() }
 })
 test("cancelled vendor requests never exhaust live operation slots, even if all upstream Promises remain pending", async () => {
@@ -325,7 +326,7 @@ test("Moonshot/Xiaomi short text probes use their current documented completion 
     let body: Record<string, unknown> = {}; const f = await fixture(async (_url, init) => { body = JSON.parse(String(init?.body)); return json({ choices: [{ message: { content: "OK" } }] }) })
     try {
       assert.equal((await f.service.test("a", randomUUID(), draft(provider), { authorizeCharge: true })).ok, true)
-      assert.equal(body.max_completion_tokens, 256); assert.equal(body.max_tokens, undefined)
+      assert.equal(body.max_completion_tokens, 2048); assert.equal(body.max_tokens, undefined)
     } finally { await f.close() }
   }
 })

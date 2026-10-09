@@ -1,7 +1,8 @@
 "use client"
 import type { CommandTarget } from "./command-targets"
-import { registerDesktopCommandTarget } from "./command-runtime"
+import { registerDesktopCommandTarget, desktopCommandTargets } from "./command-runtime"
 import catalog from "@desktop/shared/commands.json"
+import { inputContextCommands, type InputContextCommand, type InputContextState } from "@desktop/shared/input-context-menu"
 export type InputControl = HTMLInputElement | HTMLTextAreaElement
 export type NativeInputEdit = "text.copy" | "text.cut" | "text.paste" | "text.pastePlain" | "text.undo" | "text.redo"
 export interface InputActions { confirm?(): void | Promise<void>; cancel?(): void | Promise<void> }
@@ -20,6 +21,49 @@ const inputTypes = new Set(["text", "search", "tel", "url", "password"])
 const mutation = new Set(["text.undo", "text.redo", "text.cut", "text.paste", "text.pastePlain", "input.deletePrevious", "input.deleteNext", "input.deleteWordLeft", "input.deleteWordRight", "input.confirm", "input.cancel"])
 const nativeEdits: Record<NativeInputEdit, string | null> = { "text.undo": "undo", "text.redo": "redo", "text.copy": "copy", "text.cut": "cut", "text.paste": "paste", "text.pastePlain": null }
 const navigation = new Set(["input.left", "input.right", "input.up", "input.down", "input.wordLeft", "input.wordRight", "input.home", "input.end", "input.documentStart", "input.documentEnd", "input.selectLeft", "input.selectRight", "input.selectWordLeft", "input.selectWordRight", "input.selectHome", "input.selectEnd"])
+
+export function isAPIKeyControl(target: HTMLElement | null): target is HTMLInputElement {
+  return target?.tagName === "INPUT" && (target as HTMLInputElement).type === "password" && target.getAttribute?.("data-desktop-clipboard") === "api-key"
+}
+
+/** Native menus carry only command capabilities. A late choice must never
+ * act on a new focus target, even if focus later returns to the same field. */
+export function installInputContextMenu(options: {
+  document: Document
+  show(state: InputContextState): Promise<InputContextCommand | null>
+  commands?: Pick<typeof desktopCommandTargets,"enabled"|"execute">
+  onError?(): void
+}) {
+  const document = options.document, commands = options.commands ?? desktopCommandTargets
+  let alive = true, epoch = 0, operation = 0
+  const changed = () => { epoch++ }
+  const events = ["focusin", "pointerdown", "keydown", "input", "compositionstart"]
+  for (const event of events) document.addEventListener(event,changed,true)
+  document.defaultView?.addEventListener("blur",changed)
+  const show = async (event: Event, control: HTMLInputElement) => {
+    if (!alive || control.disabled || control.matches(":disabled") || !control.isConnected || control.ownerDocument !== document) return
+    event.preventDefault()
+    control.focus()
+    const state = Object.fromEntries(inputContextCommands.map(({id})=>[id,commands.enabled(id,control)])) as InputContextState
+    const ticket = ++operation, revision = epoch
+    const snapshot = JSON.stringify([control.value,control.selectionStart,control.selectionEnd,control.selectionDirection])
+    try {
+      const id = await options.show(state)
+      if (!id || !alive || ticket !== operation || revision !== epoch || !isAPIKeyControl(control) || !control.isConnected || document.hasFocus?.() === false || document.activeElement !== control || control.disabled || control.matches(":disabled") || snapshot !== JSON.stringify([control.value,control.selectionStart,control.selectionEnd,control.selectionDirection])) return
+      if (!inputContextCommands.some(command=>command.id===id) || !state[id] || !commands.enabled(id,control)) return
+      await commands.execute(id,control)
+    } catch { if(alive && ticket === operation)options.onError?.() }
+  }
+  const context = (event: Event) => { const target=event.target as HTMLElement|null;if(isAPIKeyControl(target))void show(event,target) }
+  const key = (event: KeyboardEvent) => {
+    if (event.defaultPrevented || event.isComposing || event.keyCode===229) return
+    if (event.key !== "ContextMenu" && !(event.key === "F10" && event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey)) return
+    context(event)
+  }
+  document.addEventListener("contextmenu",context)
+  document.addEventListener("keydown",key,true)
+  return () => { alive=false;operation++;epoch++;for(const event of events)document.removeEventListener(event,changed,true);document.defaultView?.removeEventListener("blur",changed);document.removeEventListener("contextmenu",context);document.removeEventListener("keydown",key,true) }
+}
 
 function isControl(target: HTMLElement | null, document: Document): target is InputControl {
   if (!target || target.ownerDocument !== document || !target.isConnected || target.closest(excluded)) return false
@@ -76,7 +120,7 @@ export function installInputCommands(options: InputCommandOptions): () => void {
     const control = accepted
     if (!control || !eligible(control) || compositionActive()) return false
     if (mutation.has(id) && control.readOnly) return false
-    if ((id === "text.copy" || id === "text.cut") && ((control.tagName === "INPUT" && control.type === "password") || control.selectionStart === control.selectionEnd)) return false
+    if ((id === "text.copy" || id === "text.cut") && ((control.tagName === "INPUT" && control.type === "password" && !isAPIKeyControl(control)) || control.selectionStart === control.selectionEnd)) return false
     if (id === "input.confirm" || id === "input.cancel") return !!options.actions?.(control)?.[id === "input.confirm" ? "confirm" : "cancel"]
     if (id in nativeEdits) return !!options.nativeEdit || !!nativeEdits[id as NativeInputEdit] && document.queryCommandSupported?.(nativeEdits[id as NativeInputEdit]!) === true
     if (navigation.has(id) || id.startsWith("input.delete")) {

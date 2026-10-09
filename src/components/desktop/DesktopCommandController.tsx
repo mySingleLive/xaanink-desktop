@@ -7,7 +7,7 @@ import {ShortcutDispatcher} from "@desktop/core/shortcut-dispatch"
 import {bindingsFor,canonicalKey,capturedKey} from "@desktop/core/shortcuts"
 import {desktopCommandCatalog,desktopCommandTargets,desktopCommandTarget,desktopEditorTarget,rememberDesktopCommandTarget} from "@/lib/desktop/command-runtime"
 import {useDesktopCommands} from "@/lib/desktop/use-command-target"
-import {installInputCommands} from "@/lib/desktop/input-commands"
+import {installInputCommands,installInputContextMenu,isAPIKeyControl} from "@/lib/desktop/input-commands"
 import {nativeTextEdits} from "@/lib/desktop/native-text-edits"
 import {installComposerTextCommands} from "@/lib/desktop/composer-text-commands"
 import {commandScope as scope} from "@/lib/desktop/command-scope"
@@ -30,6 +30,7 @@ export function DesktopCommandController(){
  useEffect(()=>{
   const textEdits=nativeTextEdits(document,()=>{if(!window.desktop)throw new Error("本地剪贴板尚未就绪");return window.desktop.readClipboardText()})
   const disposeInputs=installInputCommands({document,nativeEdit:textEdits.run})
+  const disposeInputMenu=installInputContextMenu({document,show:state=>{if(!window.desktop)throw Error("本地菜单尚未就绪");return window.desktop.showInputContextMenu(state)},onError:()=>toast.error("输入菜单操作未完成，请重试")})
   const disposeComposer=installComposerTextCommands(document,textEdits.run)
   const dispatcher=new ShortcutDispatcher()
   const nativeFirst=new WeakSet<KeyboardEvent>()
@@ -71,10 +72,11 @@ export function DesktopCommandController(){
    })
    const composerMatch=currentScope==="composer"&&active.some(command=>command.scope==="composer"&&desktopCommandTargets.enabled(command.id,target)&&bindingsFor(command,overrides).some(matchesStroke))
    const previewMatch=currentScope==="preview"&&active.some(command=>command.scope==="text"&&desktopCommandTargets.enabled(command.id,target)&&bindingsFor(command,overrides).some(matchesStroke))
+   const keyClipboardMatch=isAPIKeyControl(target)&&active.some(command=>["text.copy","text.cut","text.paste","text.pastePlain"].includes(command.id)&&bindingsFor(command,overrides).some(matchesStroke))
    const markdownMatch=(currentScope==="markdown"||currentScope==="preview")&&active.some(command=>command.scope==="markdown"&&command.id.startsWith("md.")&&!(command as {monacoBindings?:unknown[]}).monacoBindings?.length&&desktopCommandTargets.enabled(command.id,target)&&bindingsFor(command,overrides).some(matchesStroke))
    // Chromium/Monaco retain native movement, IME, when-expressions and undo
    // for untouched local bindings. Only custom/removed keys need interception.
-   if(currentScope!=="none"&&!globalMatch&&!customized&&!composerMatch&&!markdownMatch&&!previewMatch){dispatcher.reset();return}
+   if(currentScope!=="none"&&!globalMatch&&!customized&&!composerMatch&&!markdownMatch&&!previewMatch&&!keyClipboardMatch){dispatcher.reset();return}
    // Monaco resolves its own untouched chords/when clauses first. A global
    // fallback may run at bubble time only if the editor did not consume it.
    if(currentScope==="markdown"&&globalMatch&&!customized&&!markdownMatch&&!pending&&!afterNative){dispatcher.reset();nativeFirst.add(event);return}
@@ -91,7 +93,7 @@ export function DesktopCommandController(){
   document.addEventListener("focusin",focus,true);document.addEventListener("pointerdown",focus,true)
   window.addEventListener("keydown",keydown,true);window.addEventListener("keydown",bubble);window.addEventListener("blur",clear)
   window.addEventListener("desktop:command",command)
-  return()=>{disposeInputs();disposeComposer();textEdits.dispose();document.removeEventListener("focusin",focus,true);document.removeEventListener("pointerdown",focus,true);window.removeEventListener("keydown",keydown,true);window.removeEventListener("keydown",bubble);window.removeEventListener("blur",clear);window.removeEventListener("desktop:command",command)}
+  return()=>{disposeInputMenu();disposeInputs();disposeComposer();textEdits.dispose();document.removeEventListener("focusin",focus,true);document.removeEventListener("pointerdown",focus,true);window.removeEventListener("keydown",keydown,true);window.removeEventListener("keydown",bubble);window.removeEventListener("blur",clear);window.removeEventListener("desktop:command",command)}
  },[])
  return null
 }

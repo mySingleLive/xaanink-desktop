@@ -65,7 +65,7 @@ function controller(overrides:Record<string,string[]>={},mention:object|null=nul
   react:{useEffect(effect:()=>()=>void){cleanup.push(effect())}},sonner:{toast:{info(){},error(){}}},
   "@/stores/desktop":{useDesktopStore:store,updateDesktopSettings:async()=>{}},"@/stores/tabs":{useTabsStore:{getState:()=>({activeTabId:null})}},
   "@desktop/core/shortcut-dispatch":{ShortcutDispatcher},"@desktop/core/shortcuts":shortcutKeys,
-  "@/lib/desktop/input-commands":{installInputCommands:()=>()=>{}},"@/lib/desktop/native-text-edits":{nativeTextEdits:()=>({run(){},dispose(){}})},
+  "@/lib/desktop/input-commands":{installInputCommands:()=>()=>{},installInputContextMenu:()=>()=>{},isAPIKeyControl:()=>false},"@/lib/desktop/native-text-edits":{nativeTextEdits:()=>({run(){},dispose(){}})},
   "@/lib/desktop/composer-text-commands":{installComposerTextCommands:()=>()=>{}},
   "@/lib/desktop/command-scope":{commandScope},
   "@/lib/desktop/command-runtime":{desktopCommandCatalog:()=>platformCommands("darwin"),desktopCommandTargets:bus,desktopCommandTarget:()=>remembered,desktopEditorTarget:()=>editor,rememberDesktopCommandTarget:(next:ElementFixture)=>{remembered=next}},

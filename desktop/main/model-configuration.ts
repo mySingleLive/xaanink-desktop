@@ -3,7 +3,8 @@ import { setTimeout as delay } from "node:timers/promises"
 import type { ModelRepository } from "./model-repository"
 import { ModelGateway, ModelAuthorizationError, validateModelEndpoint, type ModelLease } from "../core/model-authorization"
 import { PROVIDER_PRESETS, type CatalogEntry, type CatalogResult, type ConfigurationDraft, type ConfigurationFailure, type ConfigurationErrorCode, type ConnectionTestResult } from "../shared/model-catalog"
-import { discoverAlibaba, discoverTencent, discoverByteDanceSnapshot, testGoogleImage, testAlibabaImage, testTencentImage, testByteDanceImage, ProviderAdapterError, type ProviderAdapterContext } from "./model-provider-adapters"
+import { discoverAlibaba, discoverTencent, discoverByteDance, testGoogleImage, testAlibabaImage, testTencentImage, testByteDanceImage, parseUsage, ProviderAdapterError, type ProviderAdapterContext } from "./model-provider-adapters"
+import { officialModel, officialModels, LEGACY_OFFICIAL_ENDPOINTS, OPENAI_LIFECYCLE_SOURCE, testOutputBudget, openaiUsesCompletionLimit } from "../shared/provider-capabilities"
 export interface ModelConfigurationOptions {
   repository: Pick<ModelRepository, "read" | "keyFor">
   gateway: ModelGateway
@@ -23,6 +24,7 @@ const messages: Record<ConfigurationErrorCode, string> = {
   OPERATION_DUPLICATE: "此操作仍在执行或取消中", OPERATION_LIMIT: "正在执行的配置操作过多，请稍后再试",
   CANCELLED: "操作已取消", TIMEOUT: "供应商响应超时，请稍后再试", NETWORK_ERROR: "供应商连接失败或重定向不被允许",
   AUTHENTICATION_FAILED: "供应商拒绝了此 API Key", PERMISSION_DENIED: "此 Key 无权访问所选资源", HTTP_ERROR: "供应商未能完成请求",
+  QUOTA_EXCEEDED: "供应商余额或可用额度不足，请检查账户", RATE_LIMITED: "供应商限制了请求速率，请稍后再试", MODEL_UNAVAILABLE: "所选型号不存在、已下线或当前账户不支持", OUTPUT_TRUNCATED: "测试输出预算已耗尽，尚未验证完整回复",
   UNSUPPORTED_DISCOVERY: "此供应商完整目录适配尚未完成，不能把部分示例当成全部可用模型",
   UNSUPPORTED_TEST: "此模型的单次最小调用适配尚未完成，未发送付费请求", CATALOG_INCOMPLETE: "目录分页或数量超过边界，未返回截断目录",
   INVALID_RESPONSE: "供应商未返回有效的目录或模型输出", RESPONSE_TOO_LARGE: "供应商响应超过大小上限",
@@ -30,6 +32,22 @@ const messages: Record<ConfigurationErrorCode, string> = {
 }
 function fail(code: ConfigurationErrorCode, status?: number): ConfigurationFailure { return { ok: false, code, message: messages[code], ...(status === undefined ? {} : { status }) } }
 type Json = Record<string, unknown>
+
+/** Classify bounded provider diagnostics, returning only fixed public codes. */
+function providerFailure(value: Json, status: number): ConfigurationErrorCode | undefined {
+  const error = value.error && typeof value.error === "object" ? value.error as Json : {}
+  const base = value.base_resp && typeof value.base_resp === "object" ? value.base_resp as Json : {}
+  const code = String(error.code ?? value.code ?? base.status_code ?? "")
+  const text = String(error.message ?? value.message ?? base.status_msg ?? "")
+  if (status === 401 || code === "1004") return "AUTHENTICATION_FAILED"
+  if (status === 403 || code === "ModelNotOpen") return "PERMISSION_DENIED"
+  if (status === 402 || ["insufficient_quota", "credit_balance_exhausted", "1008", "1113"].includes(code) || /balance|余额|quota exceeded|额度不足/i.test(text)) return "QUOTA_EXCEEDED"
+  if (status === 429 || code === "1002") return "RATE_LIMITED"
+  if (status === 404 || code === "model_not_found" || /(?:model|模型).*(?:not exist|not found|unknown|unsupported|not support|not available|not activated|不存在|不支持|下线)/i.test(text)) return "MODEL_UNAVAILABLE"
+  if (status >= 400 || value.error || value.code || value.success === false || base.status_code != null && base.status_code !== 0) return "HTTP_ERROR"
+  return undefined
+}
+
 function object(value: unknown): Json { if (!value || typeof value !== "object" || Array.isArray(value)) throw new ConfigurationError("INVALID_RESPONSE"); return value as Json }
 function positive(value: unknown): number | undefined { return Number.isSafeInteger(value) && Number(value) > 0 && Number(value) <= 100_000_000 ? Number(value) : undefined }
 function stringList(value: unknown): string[] | undefined {
@@ -43,20 +61,18 @@ const sources = {
   anthropic: "https://platform.claude.com/docs/en/api/http/models/list", google: "https://ai.google.dev/api/models", googleCapabilities: "https://ai.google.dev/gemini-api/docs/models", googleImage: "https://ai.google.dev/gemini-api/docs/image-generation",
   xai: "https://docs.x.ai/developers/rest-api-reference/inference/models", deepseek: "https://api-docs.deepseek.com/api/list-models/",
   moonshot: "https://platform.kimi.com/docs/openapi.json", xiaomi: "https://mimo.mi.com/docs/en-US/api/model/list-models", xiaomiCapabilities: "https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/structured-output",
-  minimaxText: "https://platform.minimax.io/docs/api-reference/text-openai-api", minimaxImage: "https://platform.minimax.io/docs/api-reference/image-generation-t2i", zaiImage: "https://docs.z.ai/api-reference/image/generate-image",
-  zaiText: "https://docs.z.ai/api-reference/llm/chat-completion",
+  minimaxText: "https://platform.minimax.cn/docs/api-reference/text-openai-api", minimaxImage: "https://platform.minimax.cn/docs/api-reference/image-generation-t2i", zaiImage: "https://docs.bigmodel.cn/cn/guide/models/image-generation/glm-image",
+  zaiText: "https://docs.bigmodel.cn/cn/guide/start/model-overview",
 }
 // Exact official capability annotations, checked 2026-10-07. This snapshot
 // never replaces the Key's live catalog. No prefix/date/fine-tune guessing.
-const openaiTextIds = new Set(["gpt-6-astra", "gpt-6.1-sol", "gpt-6-luna", "gpt-6-sol", "gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna", "gpt-5.5", "gpt-5.5-pro", "gpt-5.4", "gpt-5.4-pro", "gpt-5.4-mini", "gpt-5.2", "gpt-5.2-pro", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-5-pro", "o3-pro", "o3", "gpt-4.1", "gpt-4.1-mini", "gpt-4o", "gpt-4o-mini"])
-const openaiImageIds = new Set(["gpt-image-2.5-sunburst", "gpt-image-2.5-sunburst-2026-09-08", "gpt-image-2.5-flare", "gpt-image-2", "gpt-image-1.5", "chatgpt-image-latest", "gpt-image-1-mini", "gpt-image-1"])
 const googleTextIds = new Set(["gemini-3.8-flash", "gemini-3.7-flash", "gemini-3.6-flash", "gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-3.1-pro-preview", "gemini-3-flash-preview", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-pro"])
 const googleImageIds = new Set(["gemini-nano-banana-2.1", "gemini-3.1-flash-lite-image", "gemini-3.1-flash-image", "gemini-3-pro-image", "gemini-2.5-flash-image"])
 const moonshotTextIds = new Set(["kimi-k3", "kimi-k2.6", "kimi-k2.7-code", "kimi-k2.7-code-highspeed"])
 const xiaomiTextIds = new Set(["mimo-v2.6-flash", "mimo-v2.6-pro", "mimo-v2.6-pro-ultraspeed", "mimo-v2.5-pro", "mimo-v2.5"])
 interface Operation {
   owner: string; id: string; token: string; draft: ConfigurationDraft; controller: AbortController; reason?: ConfigurationErrorCode
-  key: string; secrets: Set<string>; gateway?: ModelGateway; lease?: ModelLease; savedLease?: ModelLease
+  subscription?: boolean; key: string; secrets: Set<string>; gateway?: ModelGateway; lease?: ModelLease; savedLease?: ModelLease
   base: string; protocol: "openai" | "anthropic" | "google"; removeListeners: (() => void)[]; timer?: ReturnType<typeof setTimeout>
 }
 /** Main-process-only operations. No method writes the repository. */
@@ -71,7 +87,7 @@ export class ModelConfigurationService {
   private readonly maxResponseBytes: number; private readonly maxOperations: number
   private readonly pollIntervalMs: number; private readonly maxPolls: number
   constructor(private readonly options: ModelConfigurationOptions) {
-    this.timeoutMs = bounded(options.timeoutMs, 120_000, 1, 300_000); this.maxPages = bounded(options.maxPages, 20, 1, 100)
+    this.timeoutMs = bounded(options.timeoutMs, 300_000, 1, 300_000); this.maxPages = bounded(options.maxPages, 20, 1, 100)
     this.maxModels = bounded(options.maxModels, 4096, 1, 10000); this.maxResponseBytes = bounded(options.maxResponseBytes, 16 * 1024 * 1024, 256, 64 * 1024 * 1024)
     this.maxOperations = bounded(options.maxOperations, 16, 1, 64)
     this.pollIntervalMs = bounded(options.pollIntervalMs, 3000, 1, 30_000); this.maxPolls = bounded(options.maxPolls, 100, 1, 200)
@@ -169,12 +185,12 @@ export class ModelConfigurationService {
       if (op.savedLease.authRevision !== prior.authRevision) throw new ConfigurationError("AUTHORIZATION_REVOKED")
       const revoked = () => this.abort(op, "AUTHORIZATION_REVOKED")
       op.savedLease.signal.addEventListener("abort", revoked, { once: true }); op.removeListeners.push(() => op.savedLease!.signal.removeEventListener("abort", revoked)); if (op.savedLease.signal.aborted) revoked()
-    } else op.key = draft.apiKey
+    } else { op.key = draft.apiKey; op.subscription = /^sk-cp-/.test(draft.apiKey) }
     if (draft.provider !== "custom") {
       const preset = PROVIDER_PRESETS.find(p => p.id === draft.provider)!
       const expected = draft.kind === "TEXT" ? preset.textEndpoint : preset.imageEndpoint
       // Other addresses use explicit custom credentials. No old record changes.
-      if (!expected || preset.protocol !== draft.protocol || draft.endpoint.replace(/\/+$/, "") !== expected.replace(/\/+$/, "")) throw new ConfigurationError("INVALID_DRAFT")
+      if (!expected || preset.protocol !== draft.protocol || ![expected, ...(LEGACY_OFFICIAL_ENDPOINTS[draft.provider] ?? [])].includes(draft.endpoint.replace(/\/+$/, ""))) throw new ConfigurationError("INVALID_DRAFT")
     }
     // Explicit native Google Models mapping outside the TEXT compatibility
     // prefix, on the same documented vendor origin and Key family.
@@ -182,18 +198,20 @@ export class ModelConfigurationService {
     if (draft.provider === "alibaba") op.base = "https://dashscope.aliyuncs.com/api/v1"
     this.useGateway(op, op.base, op.protocol)
   }
+  private async authorizedKey(op: Operation): Promise<string> {
+    this.assertCurrent(op)
+    if (!op.savedLease) return op.key
+    op.savedLease.signal.throwIfAborted()
+    let key: string
+    try { key = await this.options.repository.keyFor(op.savedLease.modelId, op.savedLease.authRevision) } catch { throw new ConfigurationError("AUTHORIZATION_REVOKED") }
+    this.assertCurrent(op); op.savedLease.signal.throwIfAborted()
+    op.secrets.add(key); op.subscription = /^sk-cp-/.test(key)
+    return key
+  }
   private useGateway(op: Operation, base: string, protocol: Operation["protocol"]) {
     this.assertCurrent(op); if (op.gateway && op.lease) op.gateway.finish(op.lease)
     op.gateway = new ModelGateway({
-      keyFor: async () => {
-        this.assertCurrent(op)
-        if (op.savedLease) {
-          op.savedLease.signal.throwIfAborted(); let key: string
-          try { key = await this.options.repository.keyFor(op.savedLease.modelId, op.savedLease.authRevision) } catch { throw new ConfigurationError("AUTHORIZATION_REVOKED") }
-          this.assertCurrent(op); op.savedLease.signal.throwIfAborted(); op.secrets.add(key); return key
-        }
-        return op.key
-      },
+      keyFor: () => this.authorizedKey(op),
       fetch: (url, init) => {
         // Synchronous saved authority check at every actual HTTP, including
         // redirect hops. An async Key read cannot reopen a revocation race.
@@ -207,47 +225,48 @@ export class ModelConfigurationService {
     this.assertCurrent(op)
     const response = await op.gateway!.fetch(op.lease!, op.base.replace(/\/+$/, "") + path, { signal: op.controller.signal, method: body ? "POST" : "GET", headers: { accept: "application/json", ...(body ? { "content-type": "application/json" } : {}), ...headers }, ...(body ? { body: JSON.stringify(body) } : {}) })
     this.assertCurrent(op)
-    if (!response.ok) { void response.body?.cancel().catch(() => undefined); throw new ConfigurationError(response.status === 401 ? "AUTHENTICATION_FAILED" : response.status === 403 ? "PERMISSION_DENIED" : "HTTP_ERROR", response.status) }
     const length = response.headers.get("content-length")
     if (length && Number(length) > this.maxResponseBytes) { void response.body?.cancel().catch(() => undefined); throw new ConfigurationError("RESPONSE_TOO_LARGE") }
     if (!response.body) throw new ConfigurationError("INVALID_RESPONSE")
     const reader = response.body.getReader(); const chunks: Uint8Array[] = []; let bytes = 0
     try {
       for (;;) { this.assertCurrent(op); const chunk = await reader.read(); this.assertCurrent(op); if (chunk.done) break; bytes += chunk.value.byteLength; if (bytes > this.maxResponseBytes) throw new ConfigurationError("RESPONSE_TOO_LARGE"); chunks.push(chunk.value) }
-      try { return object(JSON.parse(Buffer.concat(chunks, bytes).toString("utf8"))) } catch { throw new ConfigurationError("INVALID_RESPONSE") }
+      let result: Json
+      try { result = object(JSON.parse(Buffer.concat(chunks, bytes).toString("utf8"))) } catch {
+        if (!response.ok) throw new ConfigurationError(providerFailure({}, response.status)!, response.status)
+        throw new ConfigurationError("INVALID_RESPONSE")
+      }
+      const error = providerFailure(result, response.status)
+      if (error) throw new ConfigurationError(error, response.status)
+      return result
     } finally { void reader.cancel().catch(() => undefined); reader.releaseLock() }
   }
   private entry(op: Operation, row: Json, id: string, source: string, permission: CatalogEntry["permission"]): CatalogEntry {
+    const metadata = officialModel(op.draft.provider, id)
     const name = this.checkText(op, row.display_name ?? row.displayName ?? row.name ?? id, 200)
-    const contextWindow = positive(row.context_window ?? row.context_length ?? row.inputTokenLimit ?? row.max_input_tokens); const maxOutputTokens = positive(row.max_output_tokens ?? row.outputTokenLimit ?? row.max_tokens)
+    const contextWindow = positive(row.context_window ?? row.context_length ?? row.inputTokenLimit ?? row.max_input_tokens) ?? metadata?.contextWindow; const maxOutputTokens = positive(row.max_output_tokens ?? row.outputTokenLimit ?? row.max_tokens) ?? metadata?.maxOutputTokens
     const effort = row.effort && typeof row.effort === "object" ? object(row.effort) : undefined
     const capabilities = row.capabilities && typeof row.capabilities === "object" ? object(row.capabilities) : undefined
     const anthropicEffort = capabilities?.effort && typeof capabilities.effort === "object" ? object(capabilities.effort) : undefined
-    const thinkingLevels = stringList(effort?.supported_levels ?? capabilities?.reasoning_effort) ?? (anthropicEffort?.supported === true ? ["low", "medium", "high", "xhigh", "max"].filter(level => (anthropicEffort[level] as Json | undefined)?.supported === true) : undefined)
-    const suppliedDefault = effort?.default_level ?? capabilities?.default_reasoning_effort; const defaultThinking = typeof suppliedDefault === "string" && thinkingLevels?.includes(suppliedDefault) ? suppliedDefault : undefined
-    const entry: CatalogEntry = { id, name, kind: op.draft.kind, permission, source, ...(contextWindow ? { contextWindow } : {}), ...(maxOutputTokens ? { maxOutputTokens } : {}), ...(thinkingLevels?.length ? { thinkingLevels } : {}), ...(defaultThinking ? { defaultThinking } : {}) }
+    const thinkingLevels = stringList(effort?.supported_levels ?? capabilities?.reasoning_effort) ?? (anthropicEffort?.supported === true ? ["low", "medium", "high", "xhigh", "max"].filter(level => (anthropicEffort[level] as Json | undefined)?.supported === true) : metadata?.thinkingLevels)
+    const suppliedDefault = effort?.default_level ?? capabilities?.default_reasoning_effort ?? metadata?.defaultThinking; const defaultThinking = typeof suppliedDefault === "string" && (thinkingLevels?.includes(suppliedDefault) || suppliedDefault === "default") ? suppliedDefault : undefined
+    const entry: CatalogEntry = { id, name, kind: op.draft.kind, permission, source, ...(metadata?.notes ? { notes: [...metadata.notes] } : {}), ...(contextWindow ? { contextWindow } : {}), ...(maxOutputTokens ? { maxOutputTokens } : {}), ...(thinkingLevels?.length ? { thinkingLevels } : {}), ...(defaultThinking ? { defaultThinking } : {}) }
     if (op.draft.provider === "moonshot" && id === "kimi-k3") { entry.thinkingLevels = ["low", "high", "max"]; entry.defaultThinking = "max" }
     if (op.draft.provider === "zai" && id === "glm-5.3") { entry.thinkingLevels = ["low", "high", "max"]; entry.defaultThinking = "max" }
     return entry
   }
-  private staticCatalog(op: Operation): CatalogResult | undefined {
-    const { provider, kind } = op.draft; let ids: string[]; let source: string
-    if (provider === "zai" && kind === "IMAGE") { ids = ["glm-image", "cogview-4-250304"]; source = sources.zaiImage }
-    else if (provider === "zai" && kind === "TEXT") { ids = ["glm-5.3", "glm-5.2", "glm-5.1", "glm-5", "glm-4.7", "glm-4.7-flash", "glm-4.7-flashx", "glm-4.6", "glm-4.5", "glm-4.5-air", "glm-4.5-x", "glm-4.5-airx", "glm-4.5-flash", "glm-4-32b-0414-128k"]; source = sources.zaiText }
-    else if (provider === "minimax") { ids = kind === "IMAGE" ? ["image-01"] : ["MiniMax-M3", "MiniMax-M2.7", "MiniMax-M2.7-highspeed", "MiniMax-M2.5", "MiniMax-M2.5-highspeed", "MiniMax-M2.1", "MiniMax-M2.1-highspeed", "MiniMax-M2"]; source = kind === "IMAGE" ? sources.minimaxImage : sources.minimaxText }
-    else return undefined
-    if (ids.length > this.maxModels) throw new ConfigurationError("CATALOG_INCOMPLETE")
-    return { ok: true, provider, kind, models: ids.map(id => this.entry(op, {}, id, source, "unknown")), complete: false, unknownCapabilityIds: [], permission: "unknown", sources: [source], checkedAt: new Date().toISOString(), warnings: ["官方接口文档型号快照（2026-10-07），非此 Key 的完整授权目录；计划与权限须逐模型验证"] }
-  }
   private classify(op: Operation, row: Json, id: string): { kinds?: string[]; source: string } {
+    const known = officialModel(op.draft.provider, id)
+    if (known) return { kinds: known.kind === "OTHER" ? [] : op.draft.provider === "google" && known.kind === "IMAGE" ? ["image", "text"] : [known.kind.toLowerCase()], source: known.source }
     switch (op.draft.provider) {
       case "anthropic": return { kinds: ["text"], source: sources.anthropic }
-      case "openai": return { kinds: openaiTextIds.has(id) ? ["text"] : openaiImageIds.has(id) ? ["image"] : undefined, source: sources.openaiCapabilities }
+      case "openai": return { source: sources.openaiCapabilities }
       case "google": return { kinds: googleTextIds.has(id) ? ["text"] : googleImageIds.has(id) ? ["image", "text"] : undefined, source: googleImageIds.has(id) ? sources.googleImage : sources.googleCapabilities }
       case "xai": return { kinds: stringList(row.output_modalities) ?? (op.draft.kind === "IMAGE" ? ["image"] : ["text"]), source: sources.xai }
       case "deepseek": return { kinds: stringList(row.output_modalities), source: sources.deepseek }
       case "moonshot": return { kinds: moonshotTextIds.has(id) ? ["text"] : undefined, source: sources.moonshot }
       case "xiaomi": return { kinds: xiaomiTextIds.has(id) ? ["text"] : undefined, source: sources.xiaomiCapabilities }
+      case "zai": case "minimax": return { kinds: stringList(row.output_modalities), source: op.draft.provider === "zai" ? sources.zaiText : sources.minimaxText }
       case "custom": return { kinds: op.draft.protocol === "anthropic" ? ["text"] : stringList(row.output_modalities), source: "用户授权的自定义目录接口" }
       default: throw new ConfigurationError("UNSUPPORTED_DISCOVERY")
     }
@@ -255,13 +274,12 @@ export class ModelConfigurationService {
   private async discoverCatalog(op: Operation): Promise<CatalogResult> {
     if (op.draft.provider === "alibaba") return discoverAlibaba(this.adapterContext(op))
     if (op.draft.provider === "tencent") return discoverTencent(this.adapterContext(op))
-    if (op.draft.provider === "bytedance") return discoverByteDanceSnapshot(this.adapterContext(op))
-    const snapshot = this.staticCatalog(op); if (snapshot) return snapshot
+    if (op.draft.provider === "bytedance") return discoverByteDance(this.adapterContext(op))
     const { provider, protocol, kind } = op.draft
-    if (!["anthropic", "openai", "google", "xai", "deepseek", "moonshot", "xiaomi", "custom"].includes(provider) || (protocol === "anthropic" && kind === "IMAGE")) throw new ConfigurationError("UNSUPPORTED_DISCOVERY")
+    if (!["anthropic", "openai", "google", "xai", "deepseek", "moonshot", "xiaomi", "zai", "minimax", "custom"].includes(provider) || (protocol === "anthropic" && kind === "IMAGE")) throw new ConfigurationError("UNSUPPORTED_DISCOVERY")
     const anthropic = provider === "anthropic" || (provider === "custom" && protocol === "anthropic"); const google = provider === "google"
     const path = google ? "/models" : anthropic ? (new URL(op.base).pathname.replace(/\/+$/, "").endsWith("/v1") ? "/models" : "/v1/models") : provider === "xai" ? (kind === "IMAGE" ? "/image-generation-models" : "/language-models") : "/models"
-    const models = new Map<string, CatalogEntry>(); const unknown = new Set<string>(); const evidence = new Set<string>(); const cursors = new Set<string>(); let cursor = ""; let count = 0
+    const retired = new Set<string>(); const warnings: string[] = []; const models = new Map<string, CatalogEntry>(); const unknown = new Set<string>(); const evidence = new Set<string>(); const cursors = new Set<string>(); let cursor = ""; let count = 0
     for (let page = 0; ; page++) {
       if (page >= this.maxPages) throw new ConfigurationError("CATALOG_INCOMPLETE")
       const query = new URLSearchParams(); if (google) { query.set("pageSize", "1000"); if (cursor) query.set("pageToken", cursor) }; if (anthropic) { query.set("limit", "1000"); if (cursor) query.set("after_id", cursor) }
@@ -270,6 +288,16 @@ export class ModelConfigurationService {
       count += rows.length; if (count > this.maxModels) throw new ConfigurationError("CATALOG_INCOMPLETE")
       for (const raw of rows) {
         const row = object(raw); const id = this.checkText(op, google ? this.checkText(op, row.name).replace(/^models\//, "") : row.id)
+        if (provider === "openai") {
+          const publishedDate = officialModel("openai", id)?.shutdownDate
+          if (publishedDate && Date.parse(publishedDate) <= Date.now()) { retired.add(id); continue }
+        }
+        if (row.shutdown_date != null) {
+          const date = typeof row.shutdown_date === "number" ? row.shutdown_date * 1000 : Date.parse(this.checkText(op, row.shutdown_date, 100))
+          if (!Number.isFinite(date)) throw new ConfigurationError("INVALID_RESPONSE")
+          if (date <= Date.now()) { retired.add(id); continue }
+          warnings.push(`型号 ${id} 已公布下线时间，请留意供应商公告`)
+        }
         const capability = this.classify(op, row, id); evidence.add(capability.source); if (!capability.kinds) { unknown.add(id); continue }; if (!capability.kinds.includes(kind.toLowerCase())) continue
         const entry = this.entry(op, google ? { ...row, name: undefined } : row, id, capability.source, "listed-unverified"); const prior = models.get(id)
         if (prior && JSON.stringify(prior) !== JSON.stringify(entry)) throw new ConfigurationError("INVALID_RESPONSE")
@@ -292,11 +320,28 @@ export class ModelConfigurationService {
       if (cursors.has(next)) throw new ConfigurationError("CATALOG_INCOMPLETE")
       cursors.add(next); cursor = next
     }
-    evidence.add(provider === "custom" ? "用户授权的自定义目录接口" : sources[provider as "openai" | "anthropic" | "google" | "xai" | "deepseek" | "moonshot" | "xiaomi"])
-    return { ok: true, provider, kind, models: [...models.values()], complete: unknown.size === 0, unknownCapabilityIds: [...unknown], permission: "listed-unverified", sources: [...evidence], checkedAt: new Date().toISOString(), warnings: unknown.size ? ["目录含尚未确认输出能力的型号，未按名称猜测分类；当前分类目录不完整"] : [] }
+    if (["openai", "zai", "minimax"].includes(provider)) {
+      for (const candidate of officialModels(provider)) {
+        if (candidate.kind !== kind || retired.has(candidate.id) || models.has(candidate.id) || candidate.deprecated) continue
+        if (models.size >= this.maxModels) throw new ConfigurationError("CATALOG_INCOMPLETE")
+        const entry = this.entry(op, {}, candidate.id, candidate.source, "unknown")
+        if (candidate.subscriptionOnly && !op.subscription) entry.available = false
+        models.set(entry.id, entry); evidence.add(candidate.source)
+      }
+    }
+    for (const model of models.values()) if (model.notes) warnings.push(...model.notes)
+    if (provider === "openai") evidence.add(OPENAI_LIFECYCLE_SOURCE)
+    const hasCandidates = [...models.values()].some(m => m.permission === "unknown")
+    if (hasCandidates) warnings.push("包含官网候选，但此 Key 未列出；请逐型号测试调用权限")
+    evidence.add(provider === "custom" ? "用户授权的自定义目录接口" : provider === "zai" ? kind === "TEXT" ? sources.zaiText : sources.zaiImage : provider === "minimax" ? kind === "TEXT" ? sources.minimaxText : sources.minimaxImage : sources[provider as "openai" | "anthropic" | "google" | "xai" | "deepseek" | "moonshot" | "xiaomi"])
+    return { ok: true, provider, kind, models: [...models.values()], complete: unknown.size === 0 && !hasCandidates, unknownCapabilityIds: [...unknown], permission: "listed-unverified", sources: [...evidence], checkedAt: new Date().toISOString(), warnings: [...new Set([...warnings, ...(unknown.size ? ["目录含尚未确认输出能力的型号，未按名称猜测分类；当前分类目录不完整"] : [])])] }
   }
   private async testConnection(op: Operation): Promise<ConnectionTestResult> {
     const started = performance.now(); const { provider, kind, modelId, protocol, endpoint } = op.draft; let path: string; let body: Json
+    if (officialModel(provider, modelId!)?.subscriptionOnly) {
+      await this.authorizedKey(op)
+      if (!op.subscription) throw new ConfigurationError("MODEL_UNAVAILABLE")
+    }
     if (["google", "alibaba", "tencent", "bytedance"].includes(provider) && kind === "IMAGE") {
       if (provider === "google" && !googleImageIds.has(modelId!)) throw new ConfigurationError("UNSUPPORTED_TEST")
       const adapter = provider === "google" ? testGoogleImage : provider === "alibaba" ? testAlibabaImage : provider === "tencent" ? testTencentImage : testByteDanceImage
@@ -306,22 +351,25 @@ export class ModelConfigurationService {
     if (kind === "TEXT") {
       // No invented thinking mode/tool/capacity metadata for unknown models.
       this.useGateway(op, endpoint, protocol)
-      path = protocol === "anthropic" ? (new URL(endpoint).pathname.replace(/\/+$/, "").endsWith("/v1") ? "/messages" : "/v1/messages") : "/chat/completions"
-      // Ark max_tokens ordinarily bounds only the final answer, excluding
-      // reasoning. max_completion_tokens bounds the whole short test; the
-      // official translation model explicitly does not support that field.
-      const totalOutputLimit = ["openai", "moonshot", "xiaomi", "alibaba"].includes(provider) || (provider === "bytedance" && modelId !== "doubao-seed-translation-250915")
-      body = { model: modelId, messages: [{ role: "user", content: "Reply only with OK." }], stream: false, ...(totalOutputLimit ? { max_completion_tokens: 256 } : { max_tokens: 256 }) }
+      const capability = officialModel(provider === "custom" && protocol === "openai" ? "openai" : provider, modelId!)
+      const responses = ["openai", "custom"].includes(provider) && protocol === "openai" && capability?.wire === "responses"
+      const budget = testOutputBudget(provider, modelId!)
+      path = responses ? "/responses" : protocol === "anthropic" ? (new URL(endpoint).pathname.replace(/\/+$/, "").endsWith("/v1") ? "/messages" : "/v1/messages") : "/chat/completions"
+      const totalOutputLimit = provider === "openai" ? openaiUsesCompletionLimit(modelId!) : ["moonshot", "xiaomi", "alibaba", "minimax"].includes(provider) || (provider === "bytedance" && modelId !== "doubao-seed-translation-250915")
+      body = responses ? { model: modelId, input: "Reply only with OK.", max_output_tokens: budget, store: false, background: false, ...(capability?.testEffort ? { reasoning: { effort: capability.testEffort } } : {}), ...(capability?.accessProgram ? { access_programs: { cyber: capability.accessProgram } } : {}) }
+        : { model: modelId, messages: [{ role: "user", content: "Reply only with OK." }], stream: false, ...(totalOutputLimit ? { max_completion_tokens: budget } : { max_tokens: budget }), ...(capability?.testEffort ? { reasoning_effort: capability.testEffort } : {}) }
     } else {
       if (protocol !== "openai" || !["openai", "xai", "zai", "minimax", "custom"].includes(provider)) throw new ConfigurationError("UNSUPPORTED_TEST")
-      if ((provider === "minimax" && modelId !== "image-01") || (provider === "zai" && !["glm-image", "cogview-4-250304"].includes(modelId!))) throw new ConfigurationError("UNSUPPORTED_TEST")
+      if ((provider === "minimax" && modelId !== "image-01") || (provider === "zai" && !["glm-image", "cogview-4-250304", "cogview-3-flash"].includes(modelId!))) throw new ConfigurationError("UNSUPPORTED_TEST")
       path = provider === "minimax" ? "/image_generation" : "/images/generations"
-      body = { model: modelId, prompt: "A single black dot on a plain white background.", ...(provider === "zai" ? { size: modelId === "glm-image" ? "1280x1280" : "1024x1024", quality: "standard" } : { n: 1 }), ...(provider === "minimax" ? { response_format: "url", aspect_ratio: "1:1", prompt_optimizer: false } : {}) }
+      body = { model: modelId, prompt: "A single black dot on a plain white background.", ...(provider === "zai" ? { size: modelId === "glm-image" ? "1280x1280" : "1024x1024", quality: "standard" } : { n: 1 }), ...(provider === "openai" ? { quality: "low" } : {}), ...(provider === "minimax" ? { response_format: "url", aspect_ratio: "1:1", prompt_optimizer: false } : {}) }
     }
     const response = await this.request(op, path, body)
-    if (response.error || response.code || (response.base_resp && object(response.base_resp).status_code !== 0)) throw new ConfigurationError("HTTP_ERROR")
     if (kind === "TEXT") {
-      const content = protocol === "anthropic" ? response.content : Array.isArray(response.choices) ? (object(response.choices[0] ?? {}).message as Json | undefined)?.content : undefined
+      const choice = Array.isArray(response.choices) ? object(response.choices[0] ?? {}) : undefined
+      if (choice?.finish_reason === "length" || response.stop_reason === "max_tokens" || response.status === "incomplete" && (response.incomplete_details as Json | undefined)?.reason === "max_output_tokens") throw new ConfigurationError("OUTPUT_TRUNCATED")
+      if (path === "/responses" && response.status !== "completed") throw new ConfigurationError("INVALID_RESPONSE")
+      const content = path === "/responses" && Array.isArray(response.output) ? response.output.flatMap(raw => { const item = object(raw); return Array.isArray(item.content) ? item.content.filter(raw => object(raw).type === "output_text").map(raw => ({ type: "text", text: object(raw).text })) : [] }) : protocol === "anthropic" ? response.content : Array.isArray(response.choices) ? (object(response.choices[0] ?? {}).message as Json | undefined)?.content : undefined
       const text = typeof content === "string" ? content : Array.isArray(content) ? content.filter(v => v && typeof v === "object" && (v as Json).type === "text").map(v => (v as Json).text).filter(v => typeof v === "string").join("") : ""
       if (!text.trim()) throw new ConfigurationError("INVALID_RESPONSE")
     } else {
@@ -332,7 +380,7 @@ export class ModelConfigurationService {
       const validBase64 = typeof image.b64_json === "string" && image.b64_json.length >= 4 && /^[A-Za-z0-9+/]+={0,2}$/.test(image.b64_json)
       if (!validUrl && !validBase64) throw new ConfigurationError("INVALID_RESPONSE")
     }
-    return { ok: true, modelId: modelId!, kind, verifiedAt: new Date().toISOString(), durationMs: Math.round(performance.now() - started), scope: "single-model" }
+    return { ok: true, modelId: modelId!, kind, verifiedAt: new Date().toISOString(), durationMs: Math.round(performance.now() - started), scope: "single-model", ...(response.usage ? { usage: parseUsage(response.usage, path === "/responses" || protocol === "anthropic" ? { input: "input_tokens", output: "output_tokens", total: "total_tokens" } : { input: "prompt_tokens", output: "completion_tokens", total: "total_tokens" }, kind === "IMAGE" ? 1 : undefined) } : {}) }
   }
   private adapterContext(op: Operation): ProviderAdapterContext {
     return { draft: op.draft, maxPages: this.maxPages, maxModels: this.maxModels, maxPolls: this.maxPolls, delay: async () => { this.assertCurrent(op); await delay(this.pollIntervalMs, undefined, { signal: op.controller.signal }); this.assertCurrent(op) }, request: (path, body, headers) => this.request(op, path, body, headers), checkText: (value, limit) => this.checkText(op, value, limit), entry: (row, id, source, permission) => this.entry(op, row, id, source, permission) }

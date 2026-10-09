@@ -88,7 +88,7 @@ export async function generateProviderImage(ctx: Context): Promise<GeneratedImag
     return dataImage(ctx, json, json.data)
   }
   if (provider === 'zai') {
-    if (!['glm-image', 'cogview-4-250304'].includes(model)) return fail('IMAGE_GENERATION_UNSUPPORTED')
+    if (!['glm-image', 'cogview-4-250304', 'cogview-3-flash'].includes(model)) return fail('IMAGE_GENERATION_UNSUPPORTED')
     const minimum = model === 'glm-image' ? 1024 : 512, multiple = model === 'glm-image' ? 32 : 16, maximum = model === 'glm-image' ? 2 ** 22 : 2 ** 21
     const size = sized(ctx.sizes, (w, h) => w >= minimum && h >= minimum && w <= 2048 && h <= 2048 && w % multiple === 0 && h % multiple === 0 && w * h <= maximum)
     const json = await ctx.request('/images/generations', { model, prompt: ctx.prompt, ...(size ? { size } : {}) })

@@ -10,6 +10,8 @@ class Control extends EventTarget {
   tagName = "INPUT"; type = "text"; value = ""; selectionStart: number | null = 0; selectionEnd: number | null = 0
   selectionDirection: "forward" | "backward" | "none" = "none"; isConnected = true; disabled = false; readOnly = false; excluded = false
   monaco = false; markdown = false; nativeSurface = false; nativeEditContext = false; imeSurface = false; composer = false
+  clipboard = ""
+  getAttribute(name:string){return name==="data-desktop-clipboard"?this.clipboard:null}
   constructor(readonly ownerDocument: DocumentFixture, value = "") { super(); this.value = value }
   closest(selector: string) {
     if (this.excluded && selector.includes("[data-desktop-recording]")) return this
@@ -118,6 +120,20 @@ test("password never exports copy/cut but keeps protected navigation and paste",
     assert.equal(await f.execute("text.pastePlain"), true); assert.deepEqual(native, ["text.pastePlain"])
     assert.equal(await f.execute("input.home"), true)
   } finally { f.dispose() }
+})
+
+test("K01/K04: explicitly marked API Key permits selected copy/cut while remaining masked",async()=>{
+  const native:NativeInputEdit[]=[],f=fixture("public-clipboard-fixture",{nativeEdit:id=>{native.push(id)}})
+  f.control.type="password";f.control.clipboard="api-key";f.control.setSelectionRange(0,6)
+  try{
+    assert.equal(f.enabled("text.copy"),true);assert.equal(f.enabled("text.cut"),true)
+    await f.execute("text.copy");await f.execute("text.cut");assert.deepEqual(native,["text.copy","text.cut"])
+    assert.equal(f.control.type,"password")
+    f.control.readOnly=true;assert.equal(f.enabled("text.copy"),true);assert.equal(f.enabled("text.selectAll"),true)
+    for(const id of ["text.cut","text.paste","text.undo","text.redo"])assert.equal(f.enabled(id),false)
+    f.control.readOnly=false;f.control.setSelectionRange(2,2);assert.equal(f.enabled("text.copy"),false)
+    f.control.disabled=true;assert.equal(f.enabled("text.paste"),false)
+  }finally{f.dispose()}
 })
 test("disabled/excluded/email/number/nonselection/detached controls are not accepted", async () => {
   for (const alter of [(c: Control) => { c.disabled = true }, (c: Control) => { c.excluded = true }, (c: Control) => { c.type = "email" }, (c: Control) => { c.type = "number" }, (c: Control) => { c.selectionStart = null }, (c: Control) => { c.isConnected = false }]) {

@@ -4,6 +4,7 @@ import { test } from "node:test"
 import { transformSync } from "esbuild"
 import { defaultState, parseContextWindow, type PublicModel } from "../../desktop/core/settings"
 import * as catalog from "../../desktop/shared/model-catalog"
+import * as builtinCatalog from "../../desktop/shared/builtin-model-catalog"
 import { thinkingEffortOptionsFor } from "../../src/lib/ai/thinking-effort"
 import { saveDesktopModel, removeDesktopModel, updateDesktopSettings, useDesktopStore } from "../../src/stores/desktop"
 import type { Bootstrap, SettingsAction, StateSnapshot } from "../../desktop/shared/ipc"
@@ -42,6 +43,7 @@ function component(file: string, exported: string, initial: Props, dependencies:
     if(name==="@/components/ui/input")return primitives(["Input"])
     if(name==="@/components/ui/button")return primitives(["Button"])
     if(name==="@desktop/shared/model-catalog")return catalog
+    if(name==="@desktop/shared/builtin-model-catalog")return builtinCatalog
     if(name==="@desktop/core/settings")return {parseContextWindow}
     if(name==="./ModelChoiceSelect")return primitives(["ModelChoiceSelect"])
     if(name==="@/lib/ai/thinking-effort")return {thinkingEffortOptionsFor}
@@ -100,6 +102,79 @@ function configuration(options:{model?:PublicModel;kind?:"TEXT"|"IMAGE";models?:
   const ui=component("ModelConfigurationDialog","ModelConfigurationDialog",{kind:options.kind??"TEXT",model:options.model,onClose:()=>{closed++;ui.finish()}},{"@/stores/desktop":{useDesktopStore:(select:(state:unknown)=>unknown)=>select({bootstrap:{models}}),saveDesktopModel:async(draft:unknown)=>{writes.push(structuredClone(draft));return await options.write?.(draft)}}})
   return {...ui,writes,tested,discovered,canceled,closed:()=>closed,finish(){ui.finish();if(savedWindow)Object.defineProperty(globalThis,"window",savedWindow);else Reflect.deleteProperty(globalThis,"window")}}
 }
+
+for(const kind of ["TEXT","IMAGE"] as const)for(const preset of catalog.presetsFor(kind).filter(p=>p.id!=="custom"))test(`D01/D02: ${preset.id} ${kind} shows selectable builtin models without a Key or network`,async()=>{
+  const ui=configuration({kind})
+  try{
+    ui.choose("供应商",preset.id)
+    const select=ui.find("可用模型"),options=select.element.props.options as Array<{id:string;disabled?:boolean}>
+    assert.equal(select.disabled,false)
+    assert.ok(options.length>0,`${preset.id} has a public ${kind} catalog`)
+    const choice=options.find(option=>!option.disabled)!;assert.ok(choice)
+    ui.open("可用模型");await ui.settle();ui.choose("可用模型",choice.id)
+    assert.equal(ui.find("可用模型").element.props.value,choice.id)
+    assert.equal(ui.discovered.length,0);assert.equal(ui.writes.length,0)
+    assert.equal(ui.find("API Key").element.props.value,"")
+    ui.fill("API Key","public-candidate-fixture")
+    assert.equal(ui.find("可用模型").element.props.value,choice.id)
+    ui.click("保存模型");await ui.settle()
+    assert.equal((ui.writes[0] as {modelId:string}).modelId,choice.id)
+  }finally{ui.finish()}
+})
+
+test("D04: provider/Key edits cancel and discard late authenticated catalogs",async()=>{
+  const gate=deferred<catalog.CatalogResult>(),ui=configuration({discover:()=>gate.promise})
+  try{
+    ui.fill("API Key","public-before-fixture");ui.open("可用模型")
+    ui.choose("供应商","deepseek");assert.equal(ui.canceled.length,1)
+    gate.resolve({ok:true,provider:"openai",kind:"TEXT",models:[{id:"late-only",name:"late",kind:"TEXT",permission:"listed-unverified",source:"fixture"}],complete:true,unknownCapabilityIds:[],permission:"listed-unverified",sources:[],checkedAt:new Date().toISOString(),warnings:[]})
+    await ui.settle()
+    const options=ui.find("可用模型").element.props.options as Array<{id:string}>
+    assert.ok(options.some(row=>row.id==="deepseek-flash"));assert.ok(!options.some(row=>row.id==="late-only"))
+    assert.equal(ui.find("API Key").element.props.value,"");assert.equal(ui.find("可用模型").element.props.value,"")
+  }finally{ui.finish()}
+})
+test("D04/D05: choosing B while A's catalog refresh is pending never assigns A's metadata to B",async()=>{
+  const gate=deferred<catalog.CatalogResult>(),ui=configuration({discover:()=>gate.promise})
+  try{
+    ui.choose("供应商","deepseek");ui.choose("可用模型","deepseek-flash");ui.fill("API Key","public-refresh-fixture");ui.open("可用模型")
+    ui.choose("可用模型","deepseek-v4-pro")
+    gate.resolve({ok:true,provider:"deepseek",kind:"TEXT",models:[{id:"deepseek-flash",name:"A",kind:"TEXT",contextWindow:11111,thinkingLevels:["low"],defaultThinking:"low",permission:"listed-unverified",source:"fixture"},{id:"deepseek-v4-pro",name:"B",kind:"TEXT",contextWindow:22222,thinkingLevels:["high"],defaultThinking:"high",permission:"listed-unverified",source:"fixture"}],complete:true,unknownCapabilityIds:[],permission:"listed-unverified",sources:[],checkedAt:new Date().toISOString(),warnings:[]})
+    await ui.settle();ui.click("保存模型");await ui.settle()
+    const saved=ui.writes[0] as {modelId:string;contextWindow:number;thinkingLevels:string[]}
+    assert.equal(saved.modelId,"deepseek-v4-pro");assert.equal(saved.contextWindow,22222);assert.deepEqual(saved.thinkingLevels,["high"])
+  }finally{ui.finish()}
+})
+for(const code of ["AUTHENTICATION_FAILED","NETWORK_ERROR"] as const)test(`D06: ${code} leaves sourced builtin choices visible and can refresh`,async()=>{
+  let attempts=0
+  const ui=configuration({discover:async()=>{attempts++;return attempts===1?{ok:false,code,message:"目录读取失败"}:{ok:true,provider:"deepseek",kind:"TEXT",models:[{id:"deepseek-flash",name:"live",kind:"TEXT",contextWindow:77777,thinkingLevels:["high"],defaultThinking:"high",permission:"listed-unverified",source:"fixture"}],complete:true,unknownCapabilityIds:[],permission:"listed-unverified",sources:[],checkedAt:new Date().toISOString(),warnings:[]}}})
+  try{
+    ui.choose("供应商","deepseek");ui.choose("可用模型","deepseek-flash");ui.fill("API Key","public-network-fixture");ui.open("可用模型");await ui.settle()
+    assert.ok(ui.all().some(row=>row.element.props.role==="status"&&row.name==="目录读取失败"))
+    assert.equal((ui.find("可用模型").element.props.options as unknown[]).length,2)
+    ui.click("刷新模型列表");await ui.settle();ui.click("保存模型");await ui.settle()
+    assert.equal(attempts,2);assert.equal((ui.writes[0] as {contextWindow:number}).contextWindow,77777)
+    assert.deepEqual((ui.writes[0] as {thinkingLevels:string[]}).thinkingLevels,["high"])
+  }finally{ui.finish()}
+})
+test("D07: authenticated subscription enablement is revoked on Key change and cannot be saved by a retained selection",async()=>{
+  const ui=configuration({discover:async()=>({ok:true,provider:"minimax",kind:"TEXT",models:[{id:"MiniMax-M3.1-Flash-Preview",name:"Preview",kind:"TEXT",available:true,permission:"listed-unverified",source:"fixture"}],complete:true,unknownCapabilityIds:[],permission:"listed-unverified",sources:[],checkedAt:new Date().toISOString(),warnings:[]})})
+  try{
+    ui.choose("供应商","minimax");ui.fill("API Key","public-subscribed-fixture");ui.open("可用模型");await ui.settle()
+    ui.choose("可用模型","MiniMax-M3.1-Flash-Preview")
+    ui.fill("API Key","public-ordinary-fixture")
+    assert.equal((ui.find("可用模型").element.props.options as Array<{id:string;disabled:boolean}>).find(row=>row.id==="MiniMax-M3.1-Flash-Preview")?.disabled,true)
+    ui.click("保存模型");await ui.settle();assert.equal(ui.writes.length,0);assert.equal(ui.closed(),0)
+  }finally{ui.finish()}
+})
+test("D07: saved retired selection stays visible and disabled while blank-Key metadata edits retain the existing configuration",async()=>{
+  const ui=configuration({model:sample({modelId:"chatgpt-4o-latest"})})
+  try{
+    assert.equal(ui.find("可用模型").element.props.value,"chatgpt-4o-latest")
+    assert.equal((ui.find("可用模型").element.props.options as Array<{id:string;disabled:boolean}>).find(row=>row.id==="chatgpt-4o-latest")?.disabled,true)
+    ui.click("保存模型");await ui.settle();assert.equal((ui.writes[0] as {apiKey:string}).apiKey,"")
+  }finally{ui.finish()}
+})
 
 test("model configuration: failed save cancels discovery and restores a usable refresh control",async()=>{
   const discovery=deferred<catalog.CatalogResult>(),save=deferred<void>(),ui=configuration({model:sample(),discover:()=>discovery.promise,write:()=>save.promise})
@@ -210,6 +285,20 @@ test("model configuration: catalog choices replace one draft, disable duplicates
     const ids=(image.find("供应商").element.props.options as Array<{id:string}>).map(option=>option.id)
     assert.ok(ids.includes("custom")&&ids.includes("openai"));assert.ok(!ids.includes("anthropic")&&!ids.includes("deepseek")&&!ids.includes("moonshot"))
   }finally{image.finish()}
+})
+
+test("B01/B21: builtin defaults hide protocol/address and show permission warnings without enabling subscription-only choices",async()=>{
+  const ui=configuration({discover:async()=>({ok:true,provider:"minimax",kind:"TEXT",models:[{id:"MiniMax-M3.1-Flash-Preview",name:"Preview",kind:"TEXT",permission:"unknown",source:"official",available:false,notes:["仅订阅可用"]}],complete:false,unknownCapabilityIds:[],permission:"listed-unverified",sources:["official"],checkedAt:new Date().toISOString(),warnings:["仅订阅可用"]})})
+  try {
+    ui.choose("供应商","minimax"); assert.equal(ui.query("协议"),undefined); assert.equal(ui.query("Base URL"),undefined)
+    ui.fill("API Key","public-fixture");ui.open("可用模型");await ui.settle()
+    const options=ui.find("可用模型").element.props.options as Array<{id:string;disabled:boolean;hint:string}>
+    const restricted=options.find(option=>option.id==="MiniMax-M3.1-Flash-Preview")!
+    assert.equal(restricted.disabled,true);assert.ok(restricted.hint.includes("仅订阅"))
+    ui.choose("可用模型",restricted.id);assert.equal(ui.find("可用模型").element.props.value,"")
+    assert.ok(ui.all().some(s=>s.element.props.role==="status"&&s.name==="仅订阅可用"))
+    assert.equal(ui.writes.length,0)
+  } finally {ui.finish()}
 })
 
 test("desktop state: model/settings/removal share a latest-revision queue and model drafts are copied before dispatch",async()=>{

@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 import { isTentativeNovelTitle } from "@/lib/novel-title"
 import { TentativeBadge } from "@/components/ui/tentative-badge"
 import { getTabIcon, useTabsStore } from "@/stores/tabs"
+import { useDesktopStore } from "@/stores/desktop"
 
 /** 右栏：Chrome 式 tab 条 + 内容区 */
 export function ContentTabs({
@@ -29,6 +30,7 @@ export function ContentTabs({
   const activeTabId = useTabsStore((s) => s.activeTabId)
   const activateTab = useTabsStore((s) => s.activateTab)
   const closeTab = useTabsStore((s) => s.closeTab)
+  const desktopBootstrap = useDesktopStore((s) => s.bootstrap)
 
   // 小说 tab 的图标跟随封面：复用侧栏的 ["novels"] 缓存（契约=数组），封面变更失效后自动刷新
   const { data: novels } = useQuery<{ id: string; coverUrl: string | null }[]>({
@@ -66,7 +68,26 @@ export function ContentTabs({
   return (
     <div className="content-tabs flex h-full flex-col bg-editor">
       <StagedInterceptionBootstrap />
-      {tabs.length === 0 && <div className="desktop-drag h-11 shrink-0" aria-hidden="true" />}
+      {tabs.length === 0 && (
+        <div
+          className="desktop-drag flex h-11 shrink-0 items-center justify-end px-2"
+          // Keep the Windows caption and fixed app menu clear, including at
+          // reduced Electron zoom when titlebar env values are unavailable.
+          style={desktopBootstrap?.platform === "win32" ? {
+            paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + 40px)`,
+          } : undefined}
+        >
+          <button
+            type="button"
+            aria-label="隐藏内容面板"
+            title="隐藏内容面板"
+            onClick={onToggleContent}
+            className="flex size-6 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-hover-wash hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            <PanelRight className="size-4" />
+          </button>
+        </div>
+      )}
       {tabs.length > 0 && (
         <div
           role="tablist"

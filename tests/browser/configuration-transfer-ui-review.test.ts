@@ -88,7 +88,7 @@ test('CFG62-U06: externally closed apply cannot publish a late owner response in
 
 test('CFG62-U07: narrow real popup keeps scrolling differences and footer reachable, while combobox Escape returns to the mapping trigger',async()=>scenario(async page=>{
  await preview(page);const dialog=page.getByRole('dialog').filter({has:page.getByRole('heading',{name:'导入配置',exact:true})});const rect=await dialog.boundingBox();assert.ok(rect&&rect.x>=0&&rect.y>=0&&rect.x+rect.width<=641&&rect.y+rect.height<=561)
- await page.getByRole('checkbox',{name:'导入 默认模型',exact:true}).check();await page.getByRole('combobox',{name:'映射默认模型',exact:true}).click();await page.getByLabel('搜索映射默认模型',{exact:true}).fill('本机');await page.keyboard.press('ArrowDown');await page.keyboard.press('Escape');assert.equal(await page.getByRole('listbox',{name:'映射默认模型'}).count(),0);assert.equal(await page.getByRole('combobox',{name:'映射默认模型',exact:true}).evaluate(element=>element===document.activeElement),true)
+ await page.getByRole('checkbox',{name:'导入 默认模型',exact:true}).check();await page.getByRole('combobox',{name:'映射默认模型',exact:true}).click();await page.getByLabel('搜索映射默认模型',{exact:true}).fill('本机');await page.keyboard.press('ArrowDown');await page.keyboard.press('Escape');await page.getByRole('listbox',{name:'映射默认模型'}).waitFor({state:'hidden',timeout:2000});assert.equal(await page.getByRole('listbox',{name:'映射默认模型'}).count(),0);assert.equal(await page.getByRole('combobox',{name:'映射默认模型',exact:true}).evaluate(element=>element===document.activeElement),true)
  for(const name of ['重新选择文件','取消','应用所选配置']){const button=page.getByRole('button',{name,exact:true});const box=await button.boundingBox();assert.ok(box&&box.y>=0&&box.y+box.height<=561,name+' footer reachable')}
 },640,560))
 

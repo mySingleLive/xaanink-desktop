@@ -24,6 +24,7 @@ const bridge: DesktopBridge = {
   command: id => ipcRenderer.invoke("desktop:command", id),
   readClipboardText: () => ipcRenderer.invoke("desktop:clipboard-read"),
   writeClipboardText: text => ipcRenderer.invoke("desktop:clipboard-write", text),
+  showInputContextMenu: state => ipcRenderer.invoke("desktop:input-context-menu", state),
   subscribe(listener) {
     const receive = (_event: unknown, event: DesktopEvent) => listener(event)
     ipcRenderer.on("desktop:event", receive)

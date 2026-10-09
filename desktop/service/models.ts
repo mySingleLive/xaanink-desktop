@@ -57,6 +57,9 @@ export function bindModelFetch(model: PublicModel, fetcher: typeof fetch): typeo
   const snapshot = structuredClone(model)
   return (input, init) => authorization.run(snapshot, () => fetcher(input, init))
 }
+export async function assertModelAuthorization(model: PublicModel) {
+  await call("model.assert", { modelId: model.id, authRevision: model.authRevision, kind: model.kind })
+}
 /** The worker's global fetch is this fail-closed entry. SDK adapters establish the scope. */
 export const localModelFetch: typeof fetch = async (input, init) => {
   const model = authorization.getStore()

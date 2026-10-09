@@ -8,7 +8,7 @@ import * as keys from "../../desktop/core/shortcuts"
 import catalog from "../../desktop/shared/commands.json"
 import { platformCommands } from "../../desktop/shared/command-registry"
 import { CommandTargets } from "../../src/lib/desktop/command-targets"
-import { installInputCommands } from "../../src/lib/desktop/input-commands"
+import { installInputCommands, installInputContextMenu, isAPIKeyControl } from "../../src/lib/desktop/input-commands"
 import { nativeTextEdits } from "../../src/lib/desktop/native-text-edits"
 import { commandScope } from "../../src/lib/desktop/command-scope"
 
@@ -57,7 +57,7 @@ test("INPUT46-01: a paste captured for input A never mutates later-focused input
     "@/stores/desktop": { useDesktopStore: { getState: () => ({ bootstrap }) }, updateDesktopSettings: async () => {} },
     "@/stores/tabs": { useTabsStore: { getState: () => ({ activeTabId: null }) } },
     "@desktop/core/shortcut-dispatch": { ShortcutDispatcher }, "@desktop/core/shortcuts": keys,
-    "@/lib/desktop/input-commands": { installInputCommands: (options: Parameters<typeof installInputCommands>[0]) => installInputCommands({ ...options, registerTarget: target => bus.register(target) }) },
+    "@/lib/desktop/input-commands": { installInputContextMenu, isAPIKeyControl, installInputCommands: (options: Parameters<typeof installInputCommands>[0]) => installInputCommands({ ...options, registerTarget: target => bus.register(target) }) },
     "@/lib/desktop/native-text-edits": { nativeTextEdits },
     "@/lib/desktop/composer-text-commands": { installComposerTextCommands: () => () => {} },
     "@/lib/desktop/command-scope": { commandScope },

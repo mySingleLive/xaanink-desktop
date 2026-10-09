@@ -58,5 +58,6 @@ export interface DesktopBridge extends FileExportBridge {
   command(id: string): Promise<void>
   readClipboardText(): Promise<string>
   writeClipboardText(text: string): Promise<void>
+  showInputContextMenu(state: import("./input-context-menu").InputContextState): Promise<import("./input-context-menu").InputContextCommand | null>
   subscribe(listener: (event: DesktopEvent) => void): () => void
 }

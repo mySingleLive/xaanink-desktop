@@ -108,14 +108,14 @@ test("Google cancellation during response body clears operation and never retrie
   } finally { await f.service.close() }
 })
 
-test("ByteDance official snapshot is dated and permission unknown without pretending authenticated discovery", async () => {
-  let calls = 0; const f = fixture(async () => { calls++; throw Error("no guessed API") })
+test("ByteDance authenticates the real inference catalog before supplementing dated official candidates", async () => {
+  let calls = 0; const f = fixture(async () => { calls++; return json({ data: [] }) })
   try {
     for (const kind of ["TEXT", "IMAGE"] as const) {
       const result = await f.service.discover("w", randomUUID(), draft("bytedance", kind)); assert.equal(result.ok, true)
-      if (result.ok) { assert.equal(result.complete, false); assert.equal(result.permission, "unknown"); assert.ok(result.sources.some(s => s.includes("docs.volcengine.com"))); assert.ok(result.warnings.join(" ").includes("2026-10-07")); assert.ok(result.models.some(m => m.id === (kind === "TEXT" ? "doubao-seed-2-1-pro-260915" : "doubao-seedream-5-0-flash-260915"))) }
+      if (result.ok) { assert.equal(result.complete, false); assert.equal(result.permission, "listed-unverified"); assert.ok(result.sources.some(s => s.includes("docs.volcengine.com"))); assert.ok(result.warnings.join(" ").includes("2026-09-28")); assert.ok(result.models.some(m => m.id === (kind === "TEXT" ? "doubao-seed-2-1-pro-260915" : "doubao-seedream-5-0-flash-260915"))) }
     }
-    assert.equal(calls, 0)
+    assert.equal(calls, 2)
   } finally { await f.service.close() }
 })
 test("Alibaba Qwen one-image test uses native synchronous messages and legal model-specific sizes", async () => {
@@ -183,13 +183,13 @@ test("ByteDance Seedream generation respects latest single-only vs older sequent
 })
 
 test("ByteDance public catalog includes all 20 text and 6 image IDs from the 2026-09-28 official table, still without Key permission claims", async () => {
-  const f = fixture(async () => { throw Error("public snapshot must not guess management API") })
+  const f = fixture(async url => { assert.equal(String(url), "https://ark.cn-beijing.volces.com/api/v3/models"); return json({ data: [] }) })
   try {
     const text = await f.service.discover("w", randomUUID(), draft("bytedance"))
     assert.equal(text.ok, true); if (!text.ok) return
     assert.equal(text.models.length, 20)
     for (const id of ["doubao-seed-2-0-code-preview-260215", "doubao-seed-character-251128", "doubao-seed-translation-250915", "glm-5-3-flash-260828", "deepseek-v4-pro-260425"]) assert.ok(text.models.some(m => m.id === id), id)
-    assert.equal(text.complete, false); assert.equal(text.permission, "unknown")
+    assert.equal(text.complete, false); assert.equal(text.permission, "listed-unverified")
     assert.ok(text.warnings.join(" ").includes("2026-09-28"))
     const image = await f.service.discover("w", randomUUID(), draft("bytedance", "IMAGE"))
     assert.equal(image.ok, true); if (image.ok) assert.equal(image.models.length, 6)
@@ -289,7 +289,7 @@ test("ByteDance short text test bounds reasoning plus answer by max_completion_t
   const bodies: Record<string, unknown>[] = []; const f = fixture(async (url, init) => { assert.equal(String(url), "https://ark.cn-beijing.volces.com/api/v3/chat/completions"); bodies.push(JSON.parse(String(init?.body))); return json({ choices: [{ message: { content: "OK" } }] }) })
   try {
     for (const model of ["doubao-seed-2-1-pro-260915", "deepseek-v4-1-flash-260910", "doubao-seed-character-251128", "doubao-seed-translation-250915"]) assert.equal((await f.service.test("w", randomUUID(), draft("bytedance", "TEXT", model), { authorizeCharge: true })).ok, true)
-    assert.deepEqual(bodies.map(b => b.max_completion_tokens), [256, 256, 256, undefined]); assert.deepEqual(bodies.map(b => b.max_tokens), [undefined, undefined, undefined, 256])
+    assert.deepEqual(bodies.map(b => b.max_completion_tokens), [2048, 2048, 2048, undefined]); assert.deepEqual(bodies.map(b => b.max_tokens), [undefined, undefined, undefined, 2048])
   } finally { await f.service.close() }
 })
 

@@ -4570,5 +4570,247 @@
     ],
     "note": "仅本轮macOS侧栏收起后AI标题恢复按钮安全位置修复。完整core1624/browser185通过，类型及两侧构建通过，真实macOS CUA恢复点击、实际zoom/font位置及默认外观折叠重开通过；CUA共享指示图标替代彩色窗控，截图未逐色量测绿灯右缘。未重新打包、Windows或其它布局正式验收，W05总status保留原值。",
     "source": "docs/reviews/143-sidebar-restore-safe-area-plan.md"
+  },
+  "emptyContentHide": {
+    "status": "macos-development-and-windows-layout-contract-verified",
+    "implementation": [
+      "src/components/layout/ContentTabs.tsx"
+    ],
+    "tests": [
+      "tests/browser/empty-content-hide.test.ts",
+      "tests/browser/pane-window-drag.test.ts",
+      "tests/browser/sidebar-restore-safe-area.test.ts",
+      "scripts/smoke-empty-content-hide.mjs"
+    ],
+    "evidence": [
+      "docs/reviews/150-empty-content-hide-plan.md",
+      "docs/reviews/151-empty-content-hide-plan-review.md",
+      "docs/reviews/152-empty-content-hide-test-cases.md",
+      "docs/reviews/153-empty-content-hide-test-review.md",
+      "docs/reviews/154-empty-content-hide-code-review.md",
+      "docs/reviews/155-empty-content-hide-verification.md",
+      "docs/reviews/156-empty-content-hide-verification-review.md",
+      "docs/evidence/implementation-47/verification.json",
+      "docs/evidence/implementation-47/empty-content-hide-native.json"
+    ],
+    "note": "仅零Tab右区顶部收起按钮及Windows窗控/菜单避让修复。完整core1624/browser193、类型/UI/desktop构建通过；实际macOS CUA点击、键盘、10组zoom/font、重开后AI恢复和最后Tab自动收起后恢复空面板通过。Windows env/fallback为浏览器合同，Windows原生、DPI及当前安装包未执行；W05总status和业务迁移状态保留。",
+    "source": "docs/reviews/150-empty-content-hide-plan.md"
+  },
+  "emptyContentHideIconSize": {
+    "status": "macos-development-icon-size-and-windows-layout-contract-verified",
+    "implementation": [
+      "src/components/layout/ContentTabs.tsx"
+    ],
+    "tests": [
+      "tests/browser/empty-content-hide.test.ts",
+      "scripts/smoke-empty-content-hide.mjs"
+    ],
+    "evidence": [
+      "docs/reviews/157-empty-content-icon-size-plan.md",
+      "docs/reviews/158-empty-content-icon-size-plan-review.md",
+      "docs/reviews/159-empty-content-icon-size-test-cases.md",
+      "docs/reviews/160-empty-content-icon-size-test-review.md",
+      "docs/reviews/161-empty-content-icon-size-code-review.md",
+      "docs/reviews/162-empty-content-icon-size-verification.md",
+      "docs/reviews/163-empty-content-icon-size-verification-review.md",
+      "docs/evidence/implementation-48/verification.json",
+      "docs/evidence/implementation-48/empty-content-hide-native.json"
+    ],
+    "note": "仅新空右区收起图标默认14改16px，与真实左导航一致。浏览器193、聚焦22及实际macOS22条检查通过；core完整运行1623通过/1迁移超时取消，受影响完整14项文件重跑通过，唯一1624项均已验证，重跑不重复计数。类型/UI/desktop构建通过。Windows为浏览器合同，Windows原生/DPI及安装包未执行；W05和业务总状态保留。",
+    "source": "docs/reviews/157-empty-content-icon-size-plan.md"
+  },
+  "byokEnhancement": {
+    "updatedAt": "2026-10-09",
+    "status": "verified-with-explicit-user-scope-waivers",
+    "scope": "12 official catalogs; 6 live providers followed by custom; HTTP429 and Cyber waived; Ark only activated models, 23 unavailable waived",
+    "testCaseDocument": "docs/reviews/168-byok-test-cases.md",
+    "testIds": [
+      "BYOK-B01",
+      "BYOK-B02",
+      "BYOK-B03",
+      "BYOK-B04",
+      "BYOK-B05",
+      "BYOK-B06",
+      "BYOK-B07",
+      "BYOK-B08",
+      "BYOK-B09",
+      "BYOK-B10",
+      "BYOK-B11",
+      "BYOK-B12",
+      "BYOK-B13",
+      "BYOK-B14",
+      "BYOK-B15",
+      "BYOK-B16",
+      "BYOK-B17",
+      "BYOK-B18",
+      "BYOK-B19",
+      "BYOK-B20",
+      "BYOK-B21",
+      "BYOK-B22",
+      "BYOK-B23",
+      "BYOK-B24",
+      "BYOK-B25",
+      "BYOK-B26",
+      "BYOK-B27",
+      "BYOK-B28",
+      "BYOK-B29"
+    ],
+    "implementation": [
+      "desktop/shared/provider-capabilities.ts",
+      "desktop/shared/openai-capabilities.json",
+      "desktop/shared/openai-lifecycle.json",
+      "desktop/shared/model-catalog.ts",
+      "desktop/main/model-configuration.ts",
+      "desktop/main/model-provider-adapters.ts",
+      "desktop/main/image-provider-protocols.ts",
+      "desktop/main/model-service.ts",
+      "desktop/main/index.ts",
+      "desktop/service/models.ts",
+      "src/lib/ai/provider.ts",
+      "src/lib/ai/thinking-effort.ts",
+      "src/lib/ai/nonstreaming-model.ts",
+      "src/components/desktop/ModelConfigurationDialog.tsx"
+    ],
+    "tests": [
+      "tests/unit/byok-catalog.test.ts",
+      "tests/integration/byok-sdk.test.ts",
+      "tests/integration/byok-runner.test.ts",
+      "tests/unit/model-settings.test.ts",
+      "scripts/smoke-byok.mjs",
+      "scripts/smoke-models.mjs",
+      "scripts/smoke-electron.mjs",
+      "scripts/verify-byok.ts"
+    ],
+    "evidence": [
+      "docs/reviews/164-byok-research.md",
+      "docs/reviews/165-byok-research-review.md",
+      "docs/reviews/166-byok-plan.md",
+      "docs/reviews/167-byok-plan-review.md",
+      "docs/reviews/168-byok-test-cases.md",
+      "docs/reviews/169-byok-test-review.md",
+      "docs/reviews/170-byok-code-review.md",
+      "docs/reviews/171-byok-verification.md",
+      "docs/evidence/byok/coverage.json",
+      "docs/evidence/byok/full-tests.txt",
+      "docs/evidence/byok/native.json",
+      "docs/evidence/byok/native-models.json",
+      "docs/evidence/byok/native-baseline.json",
+      "docs/reviews/172-byok-verification-review.md",
+      "docs/evidence/byok/verification.json",
+      "docs/evidence/byok/secret-scan.json"
+    ],
+    "verification": {
+      "core": {
+        "total": 1647,
+        "passed": 1647,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "typecheck": "passed",
+      "build": "passed",
+      "nativeChecks": 29,
+      "allAcceptancePassedWithinAdjustedScope": true,
+      "allModelsUsable": false,
+      "realProviderCredentialsPersisted": false,
+      "verificationReview": "passed",
+      "secretScan": {
+        "scannedFiles": 1367,
+        "matched": 0,
+        "passed": true
+      }
+    },
+    "note": "所有B01—B29执行映射见171；官方目录/受控SDK/实际供应商证据分开。用户最终明确只测已开通Ark型号，23个不可用候选保留失败并本轮跳过；无安装包或Windows本轮通过声明。原有业务/UI验收状态不改写。"
+  },
+  "modelDialogRepair": {
+    "date": "2026-10-09",
+    "scope": [
+      "Builtin provider candidates visible with empty API Key",
+      "Masked API Key copy/paste and native input menu"
+    ],
+    "cases": [
+      "D01",
+      "D02",
+      "D03",
+      "D04",
+      "D05",
+      "D06",
+      "D07",
+      "D08",
+      "K01",
+      "K02",
+      "K03",
+      "K04",
+      "K05",
+      "K06",
+      "K07",
+      "K08",
+      "R01",
+      "R02"
+    ],
+    "implementation": [
+      "desktop/shared/builtin-model-catalog.ts",
+      "desktop/shared/provider-model-ids.ts",
+      "desktop/shared/input-context-menu.ts",
+      "desktop/main/input-context-menu.ts",
+      "desktop/main/model-provider-adapters.ts",
+      "desktop/main/index.ts",
+      "desktop/preload/index.ts",
+      "desktop/shared/ipc.ts",
+      "src/components/desktop/ModelConfigurationDialog.tsx",
+      "src/components/desktop/DesktopCommandController.tsx",
+      "src/lib/desktop/input-commands.ts",
+      "src/lib/desktop/native-text-edits.ts"
+    ],
+    "evidence": [
+      "docs/173-model-dialog-repair-plan.md",
+      "docs/174-model-dialog-plan-review.md",
+      "docs/175-model-dialog-repair-cases.md",
+      "docs/176-model-dialog-cases-review.md",
+      "docs/177-model-dialog-code-review.md",
+      "docs/178-model-dialog-verification.md",
+      "docs/179-model-dialog-verification-review.md",
+      "docs/evidence/model-dialog-repair/coverage.json",
+      "docs/evidence/model-dialog-repair/verification.json",
+      "docs/evidence/model-dialog-repair/core-tests.txt",
+      "docs/evidence/model-dialog-repair/browser-tests.txt",
+      "docs/evidence/model-dialog-repair/typecheck.txt",
+      "docs/evidence/model-dialog-repair/build.txt",
+      "docs/evidence/model-dialog-repair/native.json",
+      "docs/evidence/model-dialog-repair/native-models.json",
+      "docs/evidence/model-dialog-repair/native-baseline.json",
+      "docs/evidence/model-dialog-repair/secret-scan.json",
+      "docs/evidence/model-dialog-repair/native-gui-interactions.md"
+    ],
+    "verification": {
+      "core": {
+        "tests": 1709,
+        "pass": 1709,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "browser": {
+        "tests": 199,
+        "pass": 199,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "nativeChecks": 49,
+      "typecheck": "passed",
+      "build": "passed",
+      "testsPassed": true,
+      "allAcceptancePassed": true,
+      "verificationReview": "passed",
+      "realProviderCredentialsPersisted": false,
+      "realProviderCalls": false,
+      "secretScan": {
+        "scannedFiles": 1571,
+        "matched": 0,
+        "passed": true
+      }
+    },
+    "note": "18项回归用例覆盖见178；公开目录不代表当前Key已获调用权限，前轮BYOK权限结论保留。实际开发构建macOS验证；无新安装包、Windows或物理IME本轮通过声明。"
   }
 }

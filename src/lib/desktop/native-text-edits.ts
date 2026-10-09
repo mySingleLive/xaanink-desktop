@@ -1,4 +1,4 @@
-import type { InputControl, NativeInputEdit } from "./input-commands"
+import { isAPIKeyControl, type InputControl, type NativeInputEdit } from "./input-commands"
 import { selectedEditorText, deleteDraftSelection } from "@/components/chat/composer-editor"
 
 export type TextEditControl = InputControl | HTMLElement
@@ -42,7 +42,7 @@ export function nativeTextEdits(document: Document, readText: () => Promise<stri
   const events = ["focusin", "pointerdown", "keydown", "input", "compositionstart"]
   for (const event of events) document.addEventListener(event, changed, true)
   document.defaultView?.addEventListener("blur", changed)
-  const available = (control: TextEditControl, id: NativeInputEdit) => alive && document.hasFocus?.() !== false && control.ownerDocument === document && control.isConnected && document.activeElement === control && (isInput(control) ? !control.disabled && !control.matches(":disabled") && (id === "text.copy" || !control.readOnly) : control.isContentEditable)
+  const available = (control: TextEditControl, id: NativeInputEdit) => alive && document.hasFocus?.() !== false && control.ownerDocument === document && control.isConnected && document.activeElement === control && (isInput(control) ? !control.disabled && !control.matches(":disabled") && (id === "text.copy" || !control.readOnly) && (!(["text.copy","text.cut"].includes(id) && control.tagName === "INPUT" && control.type === "password") || isAPIKeyControl(control)) : control.isContentEditable)
   const snapshot = (control: TextEditControl) => {
     if (isInput(control)) {
       const before = JSON.stringify([control.value, control.selectionStart, control.selectionEnd, control.selectionDirection])
@@ -71,20 +71,23 @@ export function nativeTextEdits(document: Document, readText: () => Promise<stri
       if (!available(control, id)) throw new Error("输入目标已变化，请重新执行")
       const ticket = ++operation
       for (const stop of monitors) stop()
-      if (id === "text.paste" || id === "text.pastePlain" || isComposer(control) && (id === "text.copy" || id === "text.cut")) {
+      if (id === "text.paste" || id === "text.pastePlain" || (isComposer(control) || isAPIKeyControl(control)) && (id === "text.copy" || id === "text.cut")) {
         const before = monitor(control), revision = epoch
         const assertCurrent = () => {
           if (!available(control, id) || ticket !== operation || epoch !== revision || !before.matches()) throw new Error("输入目标已变化，未应用迟到剪贴板内容")
         }
         try {
           if (id === "text.copy" || id === "text.cut") {
-            const text = selectedEditorText(control)
-            if (!text || text.length > 1024 * 1024) throw new Error("消息选区不可复制或内容过长")
+            const text = isInput(control) ? control.value.slice(control.selectionStart!,control.selectionEnd!) : selectedEditorText(control)
+            if (!text || text.length > 1024 * 1024) throw new Error("选区不可复制或内容过长")
             const bridge = document.defaultView?.desktop
             if (!bridge) throw new Error("本地剪贴板尚未就绪")
             try { await bridge.writeClipboardText(text) } catch { throw new Error("无法写入本地剪贴板，请重试") }
             assertCurrent()
-            if (id === "text.cut") deleteDraftSelection(control)
+            if (id === "text.cut") {
+              if (isInput(control)) { if (!document.execCommand("delete",false)) throw new Error("当前输入框无法剪切") }
+              else deleteDraftSelection(control)
+            }
           } else {
             let text: string
             try { text = await readText() } catch { throw new Error("无法读取本地剪贴板，请重试") }

@@ -162,7 +162,7 @@ test("Alibaba text probes cap combined reasoning and reply rather than only fina
   for (const model of ["qwen3.8-max", "deepseek-r1"]) {
     let posts = 0; const f = fixture(async (url, init) => {
       posts++; assert.equal(String(url), "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions")
-      const body = JSON.parse(String(init?.body)); assert.equal(body.max_completion_tokens, 256); assert.equal(body.max_tokens, undefined)
+      const body = JSON.parse(String(init?.body)); assert.equal(body.max_completion_tokens, 2048); assert.equal(body.max_tokens, undefined)
       assert.equal(body.model, model); assert.equal(body.stream, false); assert.equal(body.enable_thinking, undefined)
       return json({ choices: [{ message: { content: "OK" } }] })
     })

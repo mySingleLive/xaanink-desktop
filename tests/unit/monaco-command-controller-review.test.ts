@@ -28,7 +28,7 @@ function fixture(overrides: Record<string, string[]> = {}, options: { now?: () =
     "@desktop/core/shortcut-dispatch": { ShortcutDispatcher: class extends ShortcutDispatcher { constructor() { super(options.now) } } }, "@desktop/core/shortcuts": keys,
     "@/lib/desktop/command-runtime": { desktopCommandCatalog: () => commands, desktopCommandTargets: bus, desktopCommandTarget: () => target, desktopEditorTarget: () => target, rememberDesktopCommandTarget() {} },
     "@/lib/desktop/use-command-target": { useDesktopCommands() {} },
-    "@/lib/desktop/input-commands": { installInputCommands: () => () => {} },
+    "@/lib/desktop/input-commands": { installInputCommands: () => () => {}, installInputContextMenu: () => () => {}, isAPIKeyControl: () => false },
     "@/lib/desktop/native-text-edits": { nativeTextEdits: () => ({ run() {}, dispose() {} }) },
     "@/lib/desktop/composer-text-commands": { installComposerTextCommands: () => () => {} },
     "@/lib/desktop/command-scope": { commandScope },

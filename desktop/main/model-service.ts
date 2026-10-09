@@ -14,6 +14,14 @@ export class ModelService {
   private closing = false
   constructor(private readonly repository: ModelRepository, private readonly gateway: ModelGateway) {}
   get activeCount() { return this.transfers.size }
+  assertAuthorization(value: unknown) {
+    const input = z.object({ modelId: z.uuid(), authRevision: z.number().int().positive(), kind: z.enum(["TEXT", "IMAGE"]) }).strict().parse(value)
+    if (this.closing) throw new ModelAuthorizationError("AUTHORIZATION_REVOKED")
+    const lease = this.gateway.begin(input.modelId, input.kind)
+    try { if (lease.authRevision !== input.authRevision) throw new ModelAuthorizationError("AUTHORIZATION_REVOKED") }
+    finally { this.gateway.finish(lease) }
+    return true
+  }
   resume() { this.closing = false }
   async defaults() {
     const state = await this.repository.read()
