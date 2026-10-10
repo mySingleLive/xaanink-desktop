@@ -61,7 +61,7 @@ export class ConfigurationFiles {
     const selected=await Promise.race([this.options.chooseImport(owner),operation.stopped.promise]);this.active(operation)
     if(!selected){this.cancel(owner);return null}
     const json=await readSelected(selected,()=>this.active(operation)),current=await this.options.repository.read();this.active(operation)
-    operation.plan=prepareConfigurationImport(json,current,this.options.catalogs)
+    operation.plan=prepareConfigurationImport(json,{revision:current.revision,settings:current.settings,models:current.models},this.options.catalogs)
     return{token:operation.token,plan:structuredClone(operation.plan)}
    }catch(error){if(this.operations.get(owner)===operation)this.cancel(owner);throw error}
   })())
@@ -75,7 +75,7 @@ export class ConfigurationFiles {
    try{
     const current=await this.options.repository.read();this.active(operation)
     let settings
-    try{settings=resolveConfigurationImport(operation.plan!,current,choices,this.options.catalogs)}catch(error){keepPreview=error instanceof ConfigurationTransferError&&error.code!=="INVALID_PLAN";throw error}
+    try{settings=resolveConfigurationImport(operation.plan!,{revision:current.revision,settings:current.settings,models:current.models},choices,this.options.catalogs)}catch(error){keepPreview=error instanceof ConfigurationTransferError&&error.code!=="INVALID_PLAN";throw error}
     if(!choices.selectedPaths.length)return current
     return await this.options.repository.updateSettings(operation.plan!.baseRevision,settings,()=>this.active(operation))
    }finally{operation.applying=false;if(!keepPreview&&this.operations.get(owner)===operation)this.cancel(owner)}
@@ -97,7 +97,7 @@ export class ConfigurationFiles {
     }
     await protectedPath();this.active(operation)
     const guard=await exportGuard(selected),current=await this.options.repository.read();this.active(operation)
-    await atomicWrite(selected,exportConfiguration(current),{beforeRename:async()=>{await protectedPath();await guard();this.active(operation)}})
+    await atomicWrite(selected,exportConfiguration({revision:current.revision,settings:current.settings,models:current.models}),{beforeRename:async()=>{await protectedPath();await guard();this.active(operation)}})
     return true
    }finally{if(this.operations.get(owner)===operation)this.cancel(owner)}
   })())

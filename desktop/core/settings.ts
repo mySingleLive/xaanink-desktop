@@ -25,7 +25,14 @@ export const settingsSchema = z.object({
   appearance: appearanceSchema,
   shortcuts: z.object({ darwin: z.record(z.string(), z.array(z.string()).max(12)), win32: z.record(z.string(), z.array(z.string()).max(12)) }).strict(),
 }).strict()
-export const stateSchema = z.object({ settings: settingsSchema, models: z.array(modelSchema).max(1000) }).strict()
+export const onboardingProgressSchema = z.object({
+  version: z.literal(1), completed: z.boolean(),
+  step: z.enum(["theme", "profile", "text", "image-choice", "image", "welcome"]),
+  textModelId: z.uuid().nullable(), imageModelId: z.uuid().nullable(),
+  receipt: z.object({ id: z.uuid(), type: z.enum(["theme", "next-theme", "profile", "start-models", "model", "image-choice", "back"]), modelId: z.uuid().optional() }).strict().nullable(),
+}).strict().refine(value => value.completed ? !["theme", "profile"].includes(value.step) : value.step !== "welcome", "引导完成标记与步骤不一致")
+export type OnboardingProgress = z.infer<typeof onboardingProgressSchema>
+export const stateSchema = z.object({ settings: settingsSchema, models: z.array(modelSchema).max(1000), onboarding: onboardingProgressSchema.nullable().optional() }).strict()
 export type Settings = z.infer<typeof settingsSchema>
 export type StoredModel = z.infer<typeof modelSchema>
 export type PublicModel = Omit<StoredModel, "encryptedKey">
@@ -39,9 +46,10 @@ export const defaultState: AppState = {
     shortcuts: { darwin: {}, win32: {} },
   },
   models: [],
+  onboarding: null,
 }
 export function publicModel(model: StoredModel): PublicModel { const { encryptedKey: _key, ...safe } = model; return { ...safe, keyMask: "••••••••" } }
-export function publicState(state: AppState) { return { settings: structuredClone(state.settings), models: state.models.map(publicModel) } }
+export function publicState(state: AppState):{settings:Settings;models:PublicModel[];onboarding?:OnboardingProgress|null} { return { settings: structuredClone(state.settings), models: state.models.map(publicModel), onboarding: structuredClone(state.onboarding ?? null) } }
 export function parseContextWindow(value: string): number {
   const match = /^\s*(\d+(?:\.\d+)?)\s*([kKmM])?\s*$/.exec(value)
   if (!match) throw new Error("上下文请输入如128K、1M或整数")

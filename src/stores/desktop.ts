@@ -3,6 +3,7 @@ import { create } from "zustand"
 import type { Bootstrap, StateSnapshot, SettingsAction } from "@desktop/shared/ipc"
 import type { Settings } from "@desktop/core/settings"
 import type { ModelDraft } from "@desktop/main/model-repository"
+import type {OnboardingAction,OnboardingPayload} from "@desktop/shared/onboarding"
 export const useDesktopStore = create<{ bootstrap: Bootstrap | null; saving: number; error: string | null }>(() => ({ bootstrap: null, saving: 0, error: null }))
 export function receiveDesktopState(state: StateSnapshot) {
   useDesktopStore.setState(current => current.bootstrap && state.revision >= current.bootstrap.revision ? { bootstrap: { ...current.bootstrap, ...state } } : {})
@@ -26,13 +27,22 @@ export function saveDesktopProfile(sessionId: string, draft: Settings["user"], a
   const user = structuredClone(draft)
   return mutateDesktopState(before => ({ type: "save-profile", revision: before.revision, sessionId, user, avatarDraftId }))
 }
-function mutateDesktopState(action: (before: Bootstrap) => SettingsAction): Promise<StateSnapshot> {
+/** Freeze the CAS/session envelope at the first queued attempt, including retries. */
+export function createDesktopOnboardingCommit(payload:OnboardingPayload):()=>Promise<StateSnapshot>{
+  const captured=structuredClone(payload)
+  let envelope:OnboardingAction|undefined
+  return()=>mutateDesktopState(before=>{
+    envelope??={...captured,revision:before.revision,sessionId:before.draftSessionId} as OnboardingAction
+    return envelope
+  },true)
+}
+function mutateDesktopState(action: (before: Bootstrap) => SettingsAction|OnboardingAction,onboarding=false): Promise<StateSnapshot> {
   useDesktopStore.setState(current => ({ saving: current.saving + 1, error: null }))
   const pending = writes.then(async () => {
     const before = useDesktopStore.getState().bootstrap
     try {
       if (!before || typeof window==="undefined" || !window.desktop) throw new Error("本地设置尚未就绪")
-      const next = await window.desktop.settings(action(before))
+      const next = onboarding ? await window.desktop.onboarding(action(before) as OnboardingAction) : await window.desktop.settings(action(before) as SettingsAction)
       receiveDesktopState(next); useDesktopStore.setState({ error: null }); return next
     } catch (error) {
       useDesktopStore.setState({ error: error instanceof Error ? error.message : "设置保存失败" })

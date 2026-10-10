@@ -26,7 +26,7 @@ const messages: Record<string, string> = {
 }
 export class AvatarAssetError extends Error { constructor(readonly code: string) { super(messages[code] ?? "头像处理失败"); this.name = "AvatarAssetError" } }
 interface Draft { id: string; bytes: Buffer; width: number; height: number; sequence: number; assetId?: string; writing?: Promise<PersistedAvatar> }
-interface Session { owner: string; id: string; controller: AbortController; sequence: number; selection?: AbortController; selectionStaged?: boolean; draft?: Draft }
+interface Session { owner: string; id: string; controller: AbortController; sequence: number; selection?: AbortController; selectionStaged?: boolean; draft?: Draft; acceptedDraft?: Draft }
 function error(code: string): never { throw new AvatarAssetError(code) }
 function supportedSignature(bytes: Buffer) {
   return bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])) ||
@@ -34,10 +34,16 @@ function supportedSignature(bytes: Buffer) {
     (bytes.subarray(0, 4).toString("ascii") === "RIFF" && bytes.subarray(8, 12).toString("ascii") === "WEBP")
 }
 async function limitedRead(path: string, signal: AbortSignal, limit: number): Promise<Buffer> {
+  // O_NOFOLLOW is not enforced by Windows. Compare the selected directory entry
+  // with the opened handle as well, so a symlink or late replacement cannot
+  // redirect an avatar read to another file on the target system.
+  const expected = await lstat(path, { bigint: true })
+  if (!expected.isFile() || expected.isSymbolicLink()) error("INVALID_SELECTION")
   const file = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW)
   try {
-    const info = await file.stat(); if (!info.isFile()) error("INVALID_SELECTION")
-    if (info.size > limit) error("INPUT_TOO_LARGE")
+    const info = await file.stat({ bigint: true })
+    if (!info.isFile() || info.dev !== expected.dev || info.ino !== expected.ino) error("INVALID_SELECTION")
+    if (info.size > BigInt(limit)) error("INPUT_TOO_LARGE")
     const chunks: Buffer[] = []; let total = 0
     for (;;) {
       signal.throwIfAborted()
@@ -47,6 +53,9 @@ async function limitedRead(path: string, signal: AbortSignal, limit: number): Pr
       total += bytesRead; if (total > limit) error("INPUT_TOO_LARGE")
       chunks.push(block.subarray(0, bytesRead))
     }
+    const after = await lstat(path, { bigint: true })
+    if (!after.isFile() || after.isSymbolicLink() || after.dev !== info.dev || after.ino !== info.ino || after.size !== info.size ||
+      after.mtimeNs !== info.mtimeNs || after.ctimeNs !== info.ctimeNs || BigInt(total) !== info.size) error("INVALID_SELECTION")
     return Buffer.concat(chunks, total)
   } finally { await file.close() }
 }
@@ -89,15 +98,42 @@ export class AvatarAssetService {
     if (this.session(session.owner, session.id) !== session) error("CANCELLED")
     if (session.sequence !== sequence) error("STALE_SELECTION")
   }
+  assertSelectionActive(owner: string, sessionId: string, sequence: number): void {
+    this.assertSelection(this.session(owner, sessionId), sequence)
+  }
   /** Allocate before awaiting the native picker, so click order remains
    * authoritative even when its async callbacks arrive in reverse order. */
-  beginSelection(owner: string, sessionId: string): number {
+  private acceptedDraft(session: Session, draftId?: string | null): Draft | undefined {
+    // Older standalone editors did not supply an acknowledgement. Preserve
+    // their current draft; explicit null represents no renderer-accepted draft.
+    if (draftId === undefined) return session.draft
+    if (draftId === null) return undefined
+    if (typeof draftId !== "string" || !UUID.test(draftId)) error("DRAFT_UNAVAILABLE")
+    const draft = session.draft?.id === draftId ? session.draft : session.acceptedDraft?.id === draftId ? session.acceptedDraft : undefined
+    if (!draft) error("DRAFT_UNAVAILABLE")
+    return draft
+  }
+  beginSelection(owner: string, sessionId: string, acceptedDraftId?: string | null): number {
     const session = this.session(owner, sessionId)
+    const accepted = this.acceptedDraft(session, acceptedDraftId)
     session.selection?.abort(new AvatarAssetError("STALE_SELECTION"))
     session.selection = new AbortController(); session.selectionStaged = false
-    // A cancelled picker will never stage a file. Keep the last valid draft,
-    // but invalidate all older reads at the moment the new picker is opened.
+    // Keep at most the UI-accepted draft and the new candidate. A prepared
+    // response that the renderer has not accepted must not replace that draft.
+    session.acceptedDraft = accepted; session.draft = accepted
     return ++session.sequence
+  }
+  /** Temporary hiding cancels the picker/read epoch, while the editor's last
+   * normalized draft and a pending profile commit retain their authority. */
+  cancelSelection(owner: string, sessionId: string, draftId?: string | null): void {
+    const session = this.sessions.get(this.key(owner, sessionId))
+    if (!session) return
+    session.selection?.abort(new AvatarAssetError("STALE_SELECTION"))
+    session.selection = undefined
+    session.selectionStaged = false
+    session.sequence++
+    const accepted = draftId === undefined ? session.acceptedDraft ?? session.draft : this.acceptedDraft(session, draftId)
+    session.draft = accepted; session.acceptedDraft = accepted
   }
   private async cancellable<T>(signal: AbortSignal, run: () => Promise<T>): Promise<T> {
     let aborted!: () => void
@@ -202,7 +238,7 @@ export class AvatarAssetService {
       if (this.retired.size + this.sessions.size < 8192) this.retired.add(key)
       else this.admissionBlocked = true
     }
-    if (session) { session.draft = undefined; session.controller.abort(new AvatarAssetError("CANCELLED")) }
+    if (session) { session.draft = undefined; session.acceptedDraft = undefined; session.controller.abort(new AvatarAssetError("CANCELLED")) }
   }
   cancelOwner(owner: string): void { for (const session of this.sessions.values()) if (session.owner === owner) this.cancel(owner, session.id) }
   close(): void { this.closed = true; for (const session of this.sessions.values()) this.cancel(session.owner, session.id); this.retired.clear() }

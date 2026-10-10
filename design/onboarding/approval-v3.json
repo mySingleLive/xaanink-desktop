@@ -1,0 +1,24 @@
+{
+  "approvedOn": "2026-10-11",
+  "uiVersion": "v3",
+  "authorization": "UI 设计稿审核通过，可以继续",
+  "latestRefinement": "移除文生图示意图悬停动画的移动光带",
+  "files": [
+    {
+      "path": "design/onboarding/flow.html",
+      "sha256": "b66ee47212c30e013f56ede63a3263df08be194115b0ea5b87a92aee0e87f085"
+    },
+    {
+      "path": "design/onboarding/flow.js",
+      "sha256": "9b22a769b95005b887daa1b2cd0e6b377c386f19d2d15a8d036aca1b32ca5749"
+    },
+    {
+      "path": "design/onboarding/preview.css",
+      "sha256": "98cff616461a24db5cdd7ff35c176605841c3924f5cc9a05ea4c383aa60f5a57"
+    },
+    {
+      "path": "design/onboarding/assets/xianxia-character-scene-v2.png",
+      "sha256": "a088be199b0d4ed6c69ab04a4f344ee0a701f037770bf89d5cb3afd96cdc6a02"
+    }
+  ]
+}

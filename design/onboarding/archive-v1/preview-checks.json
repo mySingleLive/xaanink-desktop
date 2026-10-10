@@ -1,0 +1,283 @@
+{
+  "date": "2026-10-11",
+  "scope": "HTML design viewer only, not product tests",
+  "command": "node design/onboarding/capture-preview.mjs",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Theme radio arrow key and immediate appearance",
+      "passed": true
+    },
+    {
+      "name": "Profile required name, optional email and confirm transition",
+      "passed": true
+    },
+    {
+      "name": "Model draft kept on simulated save failure",
+      "passed": true
+    },
+    {
+      "name": "Changing provider after prior confirmation requires a fresh Key",
+      "passed": true
+    },
+    {
+      "name": "Full path order and skip at image question",
+      "passed": true
+    },
+    {
+      "name": "Skip from image editor discards unsaved configuration",
+      "passed": true
+    },
+    {
+      "name": "Image confirmation produces preview default summary",
+      "passed": true
+    },
+    {
+      "name": "Short flow excludes theme/profile and can select an existing model",
+      "passed": true
+    },
+    {
+      "name": "Escape exits and resume clears unsubmitted Key",
+      "passed": true
+    },
+    {
+      "name": "Catalog failure keeps design candidates selectable",
+      "passed": true
+    },
+    {
+      "name": "Short custom form scrolls, footer stays visible and Tab wraps in native dialog",
+      "passed": true
+    },
+    {
+      "name": "Review jump during theme save cancels late page callbacks",
+      "passed": true
+    },
+    {
+      "name": "System theme follows media changes while retaining system selection",
+      "passed": true
+    },
+    {
+      "name": "360px viewer has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "No script errors, failed assets or HTTP requests",
+      "passed": true
+    }
+  ],
+  "captures": [
+    {
+      "name": "preview-theme-paper",
+      "geometry": {
+        "width": 660,
+        "height": 438.78125,
+        "left": 200,
+        "top": 144.609375,
+        "right": 860,
+        "bottom": 583.390625,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 582.390625,
+        "titleTop": 209.609375,
+        "bodyScrollHeight": 254,
+        "bodyHeight": 254,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    },
+    {
+      "name": "preview-theme-ink",
+      "geometry": {
+        "width": 660,
+        "height": 466.375,
+        "left": 200,
+        "top": 130.8125,
+        "right": 860,
+        "bottom": 597.1875,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 596.1875,
+        "titleTop": 195.8125,
+        "bodyScrollHeight": 282,
+        "bodyHeight": 282,
+        "horizontalOverflow": false,
+        "look": "ink"
+      }
+    },
+    {
+      "name": "preview-profile",
+      "geometry": {
+        "width": 560,
+        "height": 416.390625,
+        "left": 250,
+        "top": 155.796875,
+        "right": 810,
+        "bottom": 572.1875,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 571.1875,
+        "titleTop": 220.796875,
+        "bodyScrollHeight": 232,
+        "bodyHeight": 232,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    },
+    {
+      "name": "preview-text-save-failure",
+      "geometry": {
+        "width": 560,
+        "height": 647.921875,
+        "left": 250,
+        "top": 40.03125,
+        "right": 810,
+        "bottom": 687.953125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 686.953125,
+        "titleTop": 105.03125,
+        "bodyScrollHeight": 464,
+        "bodyHeight": 464,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    },
+    {
+      "name": "preview-image-choice",
+      "geometry": {
+        "width": 520,
+        "height": 404.5625,
+        "left": 270,
+        "top": 161.71875,
+        "right": 790,
+        "bottom": 566.28125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 565.28125,
+        "titleTop": 226.71875,
+        "bodyScrollHeight": 220,
+        "bodyHeight": 220,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    },
+    {
+      "name": "preview-done-skip",
+      "geometry": {
+        "width": 520,
+        "height": 600.921875,
+        "left": 270,
+        "top": 63.53125,
+        "right": 790,
+        "bottom": 664.453125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 663.453125,
+        "titleTop": 128.53125,
+        "bodyScrollHeight": 417,
+        "bodyHeight": 417,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    },
+    {
+      "name": "preview-image",
+      "geometry": {
+        "width": 560,
+        "height": 596.328125,
+        "left": 250,
+        "top": 65.828125,
+        "right": 810,
+        "bottom": 662.15625,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 661.15625,
+        "titleTop": 130.828125,
+        "bodyScrollHeight": 412,
+        "bodyHeight": 412,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    },
+    {
+      "name": "preview-model-entry",
+      "geometry": {
+        "width": 520,
+        "height": 316.65625,
+        "left": 270,
+        "top": 205.671875,
+        "right": 790,
+        "bottom": 522.328125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 521.328125,
+        "titleTop": 231.671875,
+        "bodyScrollHeight": 171,
+        "bodyHeight": 171,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    },
+    {
+      "name": "preview-short-custom",
+      "geometry": {
+        "width": 560,
+        "height": 450,
+        "left": 250,
+        "top": 14,
+        "right": 810,
+        "bottom": 464,
+        "viewport": {
+          "width": 1060,
+          "height": 478
+        },
+        "footerBottom": 463,
+        "titleTop": 62,
+        "bodyScrollHeight": 734,
+        "bodyHeight": 290,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    },
+    {
+      "name": "preview-mobile-theme",
+      "geometry": {
+        "width": 283,
+        "height": 422.03125,
+        "left": 20,
+        "top": 152.984375,
+        "right": 303,
+        "bottom": 575.015625,
+        "viewport": {
+          "width": 323,
+          "height": 728
+        },
+        "footerBottom": 574.015625,
+        "titleTop": 207.375,
+        "bodyScrollHeight": 235,
+        "bodyHeight": 235,
+        "horizontalOverflow": false,
+        "look": "paper"
+      }
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "externalRequests": []
+}

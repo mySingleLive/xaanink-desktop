@@ -215,20 +215,28 @@ test("saved authorization revoked during key read cannot send HTTP, even if decr
   } finally { gate.resolve(); await service.close(); await f.close() }
 })
 test("Key rotation invalidates pending saved body reads, fresh draft cancellation preserves saved Key and bytes", async () => {
-  let controller!: ReadableStreamDefaultController<Uint8Array>; let sent = false; let cancelled = false
-  const f = await fixture(async () => { sent = true; return new Response(new ReadableStream({ start(c) { controller = c; c.enqueue(new TextEncoder().encode('{"data":')); }, cancel() { cancelled = true } })) })
+  let controller!: ReadableStreamDefaultController<Uint8Array>; let cancelled = false; let entered = Promise.withResolvers<void>()
+  const waitForFetch = async () => {
+    let timer: ReturnType<typeof setTimeout> | undefined
+    try {
+      await Promise.race([entered.promise, new Promise<never>((_, reject) => { timer = setTimeout(() => reject(Error("configuration request did not enter fetch within 5 seconds")), 5_000) })])
+    } finally { clearTimeout(timer) }
+  }
+  const f = await fixture(async () => {
+    const response = new Response(new ReadableStream({ start(c) { controller = c; c.enqueue(new TextEncoder().encode('{"data":')); }, cancel() { cancelled = true } }))
+    entered.resolve(); return response
+  })
   try {
     const state = await save(f, draft()); const model = state.models[0]; const input = { ...draft(), id: model.id, apiKey: "" }
     const pending = f.service.discover("a", randomUUID(), input)
-    for (let i = 0; i < 30 && !sent; i++) await tick()
-    assert.equal(sent, true)
+    await waitForFetch()
     const next = await f.repository.saveModel(state.revision, { ...draft(), id: model.id, apiKey: "rotated-key", name: model.name, modelId: model.modelId, contextWindow: 0, enabled: true, thinkingLevels: [], defaultThinking: "default" })
     failure(await pending, "AUTHORIZATION_REVOKED"); await tick(); assert.equal(cancelled, true)
     assert.equal(next.models[0].authRevision, model.authRevision + 1)
     assert.throws(() => controller.enqueue(new TextEncoder().encode("late")))
-    const before = await readFile(f.path, "utf8"); sent = false; const id = randomUUID()
+    const before = await readFile(f.path, "utf8"); entered = Promise.withResolvers<void>(); const id = randomUUID()
     const independent = f.service.discover("a", id, { ...input, apiKey: "fresh-draft-key" })
-    for (let i = 0; i < 30 && !sent; i++) await tick()
+    await waitForFetch()
     f.service.cancel("a", id); failure(await independent, "CANCELLED")
     assert.equal(await readFile(f.path, "utf8"), before)
     assert.equal(await f.repository.keyFor(model.id, next.models[0].authRevision), "rotated-key")

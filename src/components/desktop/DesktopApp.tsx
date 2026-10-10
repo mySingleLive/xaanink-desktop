@@ -32,6 +32,8 @@ import {useTabsStore} from "@/stores/tabs"
 import {Button} from "@/components/ui/button"
 import {TemplateManagementDialog} from "./TemplateManagementDialog"
 import {WorkLeasePendingDialog} from "./WorkLeasePendingDialog"
+import {OnboardingController} from "./OnboardingController"
+import {modelOnboardingNeeded,onboardingCanShow} from "@/lib/desktop/onboarding-flow"
 export default function DesktopApp() {
   const bootstrap = useDesktopStore(state => state.bootstrap)
   const [error, setError] = useState<string | null>(null)
@@ -43,6 +45,22 @@ export default function DesktopApp() {
   const [migrationPending,setMigrationPending]=useState(false),[retryingMigration,setRetryingMigration]=useState(false)
   const [leasePending,setLeasePending]=useState(false)
   const leasePendingRef=useRef(false)
+  const [guideRequest,setGuideRequest]=useState<{id:string;mode:'auto'|'full'|'models'}|null>({id:'startup',mode:'auto'})
+  const guideRef=useRef(true),recoveryRef=useRef(false),migrationRef=useRef(false)
+  const guideFocus=useRef<HTMLElement|null>(null)
+  const guideFinalFocus=()=>{
+    const visible=(element:HTMLElement|null)=>!!element?.isConnected&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden'
+    if(visible(guideFocus.current))return guideFocus.current
+    return ['[aria-label="账号菜单"]','nav[aria-label="创作工作区"] button','textarea[aria-label="消息输入框"]'].map(selector=>document.querySelector<HTMLElement>(selector)).find(visible)??null
+  }
+  const exitGuide=()=>{guideRef.current=false;setGuideRequest(null)}
+  const startGuide=(mode:'full'|'models')=>{
+    if(closingRef.current||guideRef.current||recoveryRef.current||migrationRef.current)return
+    const progress=useDesktopStore.getState().bootstrap?.onboarding
+    guideFocus.current=document.activeElement instanceof HTMLElement&&document.activeElement.matches('button,input,select,textarea,a[href],[tabindex]')?document.activeElement:null
+    guideRef.current=true;setSettingsOpen(false);setTemplatesOpen(false);setModelRequired(null)
+    setGuideRequest({id:crypto.randomUUID(),mode:progress?.completed?mode:'full'})
+  }
   const drafts=useRef<DesktopDraftSession|null>(null)
   const closingRef=useRef(false)
   const { setTheme } = useTheme()
@@ -78,7 +96,7 @@ export default function DesktopApp() {
       session=new DesktopDraftSession(bridge,desktopSaveCoordinator,{
         restore:async(snapshot,signal)=>{
           const result=await restoreDesktopDraft(snapshot,{restoreSession:state.settings.general.restoreSession,accountId:"local-author",storage,signal,verifyTarget:createRecoveryVerifier(window.fetch,signal)})
-          if(alive&&result.retained)toast.info(`已保留 ${result.retained} 项待核对草稿`,{action:{label:"查看草稿",onClick:()=>setRecoveryOpen(true)}})
+          if(alive&&result.retained)toast.info(`已保留 ${result.retained} 项待核对草稿`,{action:{label:"查看草稿",onClick:()=>{recoveryRef.current=true;setSettingsOpen(false);setTemplatesOpen(false);setModelRequired(null);setRecoveryOpen(true)}}})
           return result.requiresCheckpoint?result.afterCheckpoint:undefined
         },
         installSources:()=>{
@@ -97,8 +115,8 @@ export default function DesktopApp() {
     const unsubscribe = bridge.subscribe(event => {
       if(!alive)return
       if(event.type==="work-lease-pending"){leasePendingRef.current=true;closingRef.current=true;setClosing(true);setLeasePending(true);return}
-      if(event.type==="migration-cancel-pending"){setMigrationPending(true);return}
-      if(event.type==="close-cancelled"){setMigrationPending(false)}
+      if(event.type==="migration-cancel-pending"){migrationRef.current=true;setMigrationPending(true);return}
+      if(event.type==="close-cancelled"){migrationRef.current=false;setMigrationPending(false)}
       if(event.type==="prepare-close"||event.type==="close-cancelled"){
         if(session){void session.handle(event);return}
         if(event.type==="prepare-close"){
@@ -112,9 +130,9 @@ export default function DesktopApp() {
         receiveDesktopState(event.state)
       }
       else if (event.type === "theme") useDesktopStore.setState(current => current.bootstrap ? { bootstrap: { ...current.bootstrap, systemDark: event.dark } } : {})
-      else if (event.type === "model-required") setModelRequired(current => current ?? event)
+      else if (event.type === "model-required") {if(!guideRef.current&&!closingRef.current&&!recoveryRef.current&&!migrationRef.current)setModelRequired(current => current ?? event)}
       else if (event.type === "command") {
-        if(closingRef.current)return
+        if(closingRef.current||guideRef.current||recoveryRef.current||migrationRef.current)return
         if (event.id === "app.settings") { setSettingsSection(undefined); setSettingsOpen(true) }
         else if(event.id === "file.templates")setTemplatesOpen(true)
         else if (event.id === "file.chat") useChatStore.getState().requestNewConversation()
@@ -122,11 +140,13 @@ export default function DesktopApp() {
         else window.dispatchEvent(new CustomEvent("desktop:command", { detail: event.id }))
       }
     })
-    const settings = (event: Event) => { if(closingRef.current)return;setSettingsSection((event as CustomEvent<string>).detail); setSettingsOpen(true) }
-    const recovery=()=>{if(!closingRef.current){setSettingsOpen(false);setRecoveryOpen(true)}}
+    const settings = (event: Event) => { if(closingRef.current||guideRef.current||recoveryRef.current||migrationRef.current)return;setSettingsSection((event as CustomEvent<string>).detail); setSettingsOpen(true) }
+    const recovery=()=>{if(!closingRef.current){recoveryRef.current=true;setSettingsOpen(false);setTemplatesOpen(false);setModelRequired(null);setRecoveryOpen(true)}}
+    const onboarding=(event:Event)=>startGuide((event as CustomEvent<'full'|'models'>).detail==='models'?'models':'full')
     window.addEventListener("desktop:settings",settings)
     window.addEventListener("desktop:recovery",recovery)
-    return () => { alive = false; session?.dispose();if(drafts.current===session)drafts.current=null;unsubscribe(); window.removeEventListener("desktop:settings",settings);window.removeEventListener("desktop:recovery",recovery) }
+    window.addEventListener("desktop:onboarding",onboarding)
+    return () => { alive = false; session?.dispose();if(drafts.current===session)drafts.current=null;unsubscribe(); window.removeEventListener("desktop:settings",settings);window.removeEventListener("desktop:recovery",recovery);window.removeEventListener("desktop:onboarding",onboarding) }
   }, [queryClient])
   // State may arrive through an IPC event or the return value of our own save.
   // Watch committed content, including changed default IDs, for both paths.
@@ -155,10 +175,13 @@ export default function DesktopApp() {
   if (error) return <>{leaseDialog}<main className="flex h-dvh flex-col items-center justify-center gap-4 p-8"><p role="alert" className="text-destructive">{error}</p><Button variant="outline" disabled={closing} onClick={()=>window.location.reload()}>重新打开工作台</Button></main></>
   if (!bootstrap) return <>{leaseDialog}<main className="flex h-dvh flex-col items-center justify-center gap-4 text-muted-foreground" role="status">正在打开本地工作台…</main></>
   const profile = bootstrap.settings.user
+  const onboardingVisible=onboardingCanShow({ready:true,closing,migration:migrationPending,lease:leasePending,recovery:recoveryOpen})
+  const normalDialogs=onboardingVisible&&!guideRequest
   return <>{leaseDialog}<DesktopCommandController /><DesktopNavigation />
    <div inert={leasePending} className="contents"><DashboardShell user={{ id: "local-author", name: profile.penName, email: profile.email, avatarUrl: profile.avatarAssetId ? `xaanink://asset/global/${profile.avatarAssetId}` : undefined }} /></div>
-   <WindowsMenuControl /><TemplateManagementDialog open={templatesOpen} onOpenChange={setTemplatesOpen}/><SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} initialSection={settingsSection} />
-   <ModelRequiredDialog notice={modelRequired} onClose={() => setModelRequired(null)} onConfigure={() => { setModelRequired(null); setSettingsSection(modelRequired?.code === "MODEL_NOT_SELECTED" ? "agent" : "models"); setSettingsOpen(true) }} /><RecoveryDialog open={recoveryOpen} onOpenChange={setRecoveryOpen}/>
+   <WindowsMenuControl /><TemplateManagementDialog open={normalDialogs&&templatesOpen} onOpenChange={setTemplatesOpen}/><SettingsDialog open={normalDialogs&&settingsOpen} onOpenChange={setSettingsOpen} initialSection={settingsSection} />
+   {guideRequest&&<OnboardingController key={guideRequest.id} request={guideRequest.mode} suspended={!onboardingVisible} finalFocus={guideFinalFocus} onExit={exitGuide}/>}
+   <ModelRequiredDialog notice={normalDialogs?modelRequired:null} onClose={() => setModelRequired(null)} onConfigure={() => {if(modelRequired&&modelOnboardingNeeded(bootstrap,modelRequired)){startGuide('models');return}setModelRequired(null);setSettingsSection(modelRequired?.code === "MODEL_NOT_SELECTED" ? "agent" : "models");setSettingsOpen(true)}} /><RecoveryDialog open={recoveryOpen&&!closing&&!migrationPending&&!leasePending} onOpenChange={value=>{recoveryRef.current=value;setRecoveryOpen(value)}}/>
    <Dialog open={!leasePending&&(closing||migrationPending)} onOpenChange={()=>{}}><DialogContent showCloseButton={false}>
     <DialogTitle>{migrationPending?"迁移取消尚未保存":"正在保存并关闭"}</DialogTitle>
     <DialogDescription>{migrationPending?"原数据和草稿已保留。请检查目录权限后重试取消；取消成功前，工作台暂不接受修改。":"正在等待本地写入确认，请保留窗口。"}</DialogDescription>

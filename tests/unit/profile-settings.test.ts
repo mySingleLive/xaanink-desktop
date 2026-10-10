@@ -20,7 +20,7 @@ function profile(options:{choose?:(session:string)=>Promise<Avatar|null>;save?:(
   state.settings.user={penName:"原作者",email:"before@example.test",avatarAssetId:null}
   const oldWindow=Object.getOwnPropertyDescriptor(globalThis,"window")
   Object.defineProperty(globalThis,"window",{configurable:true,writable:true,value:{desktop:{async chooseAvatar(session:string){choices.push(session);return await options.choose?.(session)??null},async cancelAvatar(session:string){canceled.push(session)}}}})
-  const hooks:Hook[]=[],effects:Array<()=>void>=[];let cursor=0,changed=false,mounted=true,surfaces:Surface[]=[]
+  const contexts=new Map<string,Hook[]>(),effects:Array<()=>void>=[];let hooks:Hook[]=[],cursor=0,changed=false,mounted=true,surfaces:Surface[]=[]
   const react={
     useState(initial:unknown){const n=cursor++,hook=hooks[n]??(hooks[n]={value:typeof initial==="function"?initial():initial});return [hook.value,(next:unknown)=>{const value=typeof next==="function"?next(hook.value):next;if(!Object.is(value,hook.value)){hook.value=value;changed=true}}]},
     useRef(initial:unknown){const n=cursor++;return (hooks[n]??(hooks[n]={value:{current:initial}})).value},
@@ -46,16 +46,17 @@ function profile(options:{choose?:(session:string)=>Promise<Avatar|null>;save?:(
   function render(){
     if(!mounted){surfaces=[];return}
     for(let n=0;n<12;n++){
-      changed=false;cursor=0;surfaces=[]
-      function visit(value:unknown,disabled=false){if(Array.isArray(value)){value.forEach(child=>visit(child,disabled));return}if(!value||typeof value!=="object"||!("props"in value))return;const element=value as Element;if(typeof element.type==="function"){visit(element.type(element.props),disabled);return}if(element.type==="Dialog"&&!element.props.open)return;const ownDisabled=disabled||!!element.props.disabled,surface:Surface={element,name:String(element.props["aria-label"]??content(element.props.children)),disabled:ownDisabled,focus(){}};surfaces.push(surface);const ref=element.props.ref as {current?:unknown}|((surface:Surface)=>void)|undefined;if(typeof ref==="function")ref(surface);else if(ref)ref.current=surface;visit(element.props.children,ownDisabled)}
-      visit(module.exports.ProfileSettings());while(effects.length)effects.shift()!();if(!changed)return
+      changed=false;cursor=0;surfaces=[];const visited=new Set<string>()
+      function component(fn:(props:Props)=>unknown,props:Props,path:string,disabled=false){const before=hooks,previous=cursor;hooks=contexts.get(path)??[];contexts.set(path,hooks);visited.add(path);cursor=0;const value=fn(props);hooks=before;cursor=previous;visit(value,disabled,path)}
+      function visit(value:unknown,disabled=false,path="root"){if(Array.isArray(value)){value.forEach((child,index)=>visit(child,disabled,`${path}/${index}`));return}if(!value||typeof value!=="object"||!("props"in value))return;const element=value as Element;if(typeof element.type==="function"){component(element.type,element.props,`${path}/${element.type.name}`,disabled);return}if(element.type==="Dialog"&&!element.props.open)return;const ownDisabled=disabled||!!element.props.disabled,surface:Surface={element,name:String(element.props["aria-label"]??content(element.props.children)),disabled:ownDisabled,focus(){}};surfaces.push(surface);const ref=element.props.ref as {current?:unknown}|((surface:Surface)=>void)|undefined;if(typeof ref==="function")ref(surface);else if(ref)ref.current=surface;visit(element.props.children,ownDisabled,path)}
+      component(module.exports.ProfileSettings,{},"root");for(const [path,instance]of contexts)if(!visited.has(path)){for(const hook of instance)hook.cleanup?.();contexts.delete(path)}while(effects.length)effects.shift()!();if(!changed)return
     }
     throw new Error("Profile component did not settle")
   }
   function controls(){render();return surfaces.filter(surface=>["Button","button","Input"].includes(String(surface.element.type)))}
   function find(name:string){const control=controls().find(surface=>surface.name===name);assert.ok(control,`Visible profile control: ${name}`);return control}
   function call(surface:Surface,handler:string,event?:unknown){if(surface.disabled)return;const action=surface.element.props[handler] as ((event:unknown)=>unknown)|undefined;assert.ok(action,`${surface.name} supports ${handler}`);void action(event);render()}
-  function unmount(){mounted=false;for(const hook of hooks)hook.cleanup?.();surfaces=[]}
+  function unmount(){mounted=false;for(const instance of contexts.values())for(const hook of instance)hook.cleanup?.();surfaces=[]}
   render()
   return {state,writes,legacyWrites,choices,canceled,find,all:()=>{render();return surfaces},click:(name:string)=>call(find(name),"onClick"),fill:(name:string,value:string)=>call(find(name),"onChange",{target:{value}}),avatar(){const control=controls().find(surface=>/选择头像|更换头像|编辑头像/.test(surface.name));assert.ok(control,"The profile avatar opens the system file picker through an accessible button");call(control,"onClick")},dismiss(){render();const dialog=surfaces.find(surface=>surface.element.type==="Dialog"&&surface.element.props.open);assert.ok(dialog);call(dialog,"onOpenChange",false)},async settle(){for(let n=0;n<8;n++)await Promise.resolve();render()},unmount,finish(){unmount();if(oldWindow)Object.defineProperty(globalThis,"window",oldWindow);else Reflect.deleteProperty(globalThis,"window")}}
 }

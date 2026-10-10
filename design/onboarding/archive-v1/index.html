@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>玄印写作 · 新手引导设计 v1</title>
+  <style>
+    @font-face{font-family:ReviewSans;src:url('../../assets/NotoSansSC-Regular.ttf') format('truetype');font-display:swap}
+    *{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:#f2f2ef;color:#30312d;font:13px/1.65 ReviewSans,'Microsoft YaHei',sans-serif}
+    button,select{font:inherit;color:inherit}button{cursor:default}button:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid #6c7762;outline-offset:3px}
+    .review-head{max-width:1400px;margin:auto;padding:24px 32px 18px;display:flex;align-items:start;justify-content:space-between;gap:20px}
+    .eyebrow{font-size:10px;letter-spacing:2px;color:#73786b}h1{font-size:22px;font-weight:500;letter-spacing:1px;margin:3px 0 5px}.intro{margin:0;color:#777b72;font-size:12px}.badge{font-size:11px;white-space:nowrap;border:1px solid #d3d8cc;border-radius:20px;padding:5px 13px;background:#f8f9f5;color:#5b6552}
+    .review-tools{border-top:1px solid #dedfd9;border-bottom:1px solid #dedfd9;background:#fafbf7}
+    .tools-inner{max-width:1400px;margin:auto;display:flex;align-items:center;flex-wrap:wrap;gap:12px 26px;padding:14px 32px}.tool-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.tool-label{color:#777b72;font-size:11px;margin-right:3px}
+    .tool{border:1px solid #d9dcd1;border-radius:6px;padding:5px 10px;background:#fff;min-height:31px}.tool[aria-pressed=true]{background:#e7eade;border-color:#859078;color:#424c39}.tool:hover{border-color:#859078}.tools-inner select{border:1px solid #d9dcd1;border-radius:6px;padding:5px 7px;background:white;min-height:31px;max-width:210px}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:24px;max-width:1400px;margin:auto;padding:24px 32px}.preview-label{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:9px;color:#7c8077;font-size:10px;letter-spacing:1px}.frame-wrap{width:100%;margin:auto;transition:max-width .15s}.frame-wrap.narrow{max-width:640px}.frame-wrap.short iframe{height:480px}
+    iframe{display:block;width:100%;height:730px;border:1px solid #cecec5;border-radius:10px;background:#f5eedc;box-shadow:0 8px 30px #2f352408}.notice{margin:10px 0 0;font-size:11px;color:#7b8074;line-height:1.7}
+    .sidebar{padding-top:26px}.side-card{border:1px solid #daddd2;border-radius:8px;background:#fafbf7;padding:18px;margin-bottom:14px}.side-title{margin:0 0 10px;font-size:12px;font-weight:500}.side-copy{margin:0;color:#747b6b;font-size:11px}.flow-list{padding:0;margin:0;list-style:none}.flow-list li{display:flex;align-items:center;gap:10px;color:#7a8072;font-size:12px;padding:9px 0}.flow-list li span{display:grid;place-items:center;width:23px;height:23px;border:1px solid #d4d9cc;border-radius:50%;font-size:10px;flex-shrink:0}.flow-list li.active{color:#37422d}.flow-list li.active span{background:#66725a;color:#fff;border-color:#66725a}.flow-list li.done span{color:#53644c;background:#e9eddf}.side-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:11px}.side-links a{color:#626d54;text-underline-offset:3px}.review-status{color:#747b6b;font-size:11px;min-height:36px;margin-top:12px}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    @media(max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding-top:0}.side-card{margin-bottom:0}.review-status{grid-column:1/-1}}
+    @media(max-width:600px){.review-head{padding:18px 14px;gap:8px}.review-head .badge{padding:4px 8px;font-size:10px}h1{font-size:18px}.intro{font-size:11px}.tools-inner{padding:12px 14px;gap:10px}.tool-group{gap:6px}.tool-label{width:44px}.tools-inner select{max-width:220px}.layout{padding:16px 10px;gap:16px}.sidebar{grid-template-columns:1fr}.preview-label{letter-spacing:0}iframe{height:730px}.notice{padding:0 3px}}
+  </style>
+</head>
+<body>
+  <header class="review-head">
+    <div><div class="eyebrow">XAANINK / DESKTOP</div><h1>新手引导设计</h1><p class="intro">一步一件事。先选择外观，再准备自己的创作助手。</p></div>
+    <span class="badge">v1 · 待审核</span>
+  </header>
+  <nav class="review-tools" aria-label="设计审核工具，非产品界面">
+    <div class="tools-inner">
+      <div class="tool-group"><span class="tool-label">流程</span><button class="tool" data-mode="full" aria-pressed="true">首次完整引导</button><button class="tool" data-mode="models" aria-pressed="false">仅模型引导</button><button class="tool" id="entry">无文本模型入口</button></div>
+      <div class="tool-group"><label class="tool-label" for="jump">查看</label><select id="jump"><option value="theme">01 · 选择主题</option><option value="profile">02 · 用户信息</option><option value="text">03 · 文本模型</option><option value="image-choice">04 · 询问文生图</option><option value="image">04 · 文生图配置</option><option value="done">05 · 引导完成</option></select></div>
+      <div class="tool-group"><span class="tool-label">外观</span><button class="tool" data-look="paper" aria-pressed="true">宣纸</button><button class="tool" data-look="ink" aria-pressed="false">玄墨</button></div>
+      <div class="tool-group"><span class="tool-label">尺寸</span><button class="tool" data-size="normal" aria-pressed="true">常规</button><button class="tool" data-size="narrow" aria-pressed="false">窄窗</button><button class="tool" data-size="short" aria-pressed="false">短窗</button></div>
+      <div class="tool-group"><label class="tool-label" for="scenario">状态</label><select id="scenario"><option value="normal">正常填写</option><option value="save-failure">下次确认保存失败</option><option value="catalog-failure">目录读取失败</option><option value="existing">已有模型可选</option></select><button class="tool" id="reset">重置预览</button></div>
+    </div>
+  </nav>
+  <main class="layout">
+    <div>
+      <div class="preview-label"><span>应用内对话框 · 设计示意</span><span id="preview-caption">首次启动 / 选择主题</span></div>
+      <div class="frame-wrap" id="frame-wrap"><iframe id="preview" src="flow.html" title="玄印写作新手引导交互设计" allow="" referrerpolicy="no-referrer"></iframe></div>
+      <p class="notice">上方控件仅用于审核。表单使用设计占位，请勿输入真实资料或 Key；本预览不连接供应商、不保存配置。背景只示意弹窗位置，不作为正式工作台。</p>
+    </div>
+    <aside class="sidebar" aria-label="设计说明">
+      <section class="side-card"><h2 class="side-title">完整流程</h2><ol class="flow-list" id="flow-list"><li data-step="theme" class="active"><span>1</span>选择界面主题</li><li data-step="profile"><span>2</span>填写用户信息</li><li data-step="text"><span>3</span>配置文本模型</li><li data-step="image-choice"><span>4</span>文生图 · 可跳过</li><li data-step="done"><span>5</span>引导完成</li></ol></section>
+      <section class="side-card"><h2 class="side-title" id="explain-title">新的独立主题对话框</h2><p class="side-copy" id="explain">选择即时生效，继续进入用户资料。三种主题与现有设置保持一致。</p><div class="side-links"><a href="../../../docs/reviews/2026-10-11-onboarding-research.md">调研文档</a><a href="../../../docs/reviews/2026-10-11-onboarding-product-design.md">产品设计</a></div></section>
+      <p class="review-status" id="review-status" role="status" aria-live="polite">可在弹窗中逐步操作，也可用上方“查看”切换设计页面。</p>
+    </aside>
+  </main>
+  <script src="viewer.js"></script>
+</body>
+</html>

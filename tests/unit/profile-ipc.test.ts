@@ -87,18 +87,57 @@ test("profile IPC: profile CAS failure keeps the normalized avatar draft retryab
 })
 
 test("profile IPC: a late older picker cannot replace the newer selection's valid draft",async()=>{
-  const old=deferred<{canceled:boolean;filePaths:string[]}>(),newer=deferred<{canceled:boolean;filePaths:string[]}>();let calls=0
-  const f=await fixture({pick:()=>calls++===0?old.promise:newer.promise}),id=randomUUID()
+  const old=deferred<{canceled:boolean;filePaths:string[]}>(),newer=deferred<{canceled:boolean;filePaths:string[]}>(),firstEntered=deferred<void>();let calls=0
+  const f=await fixture({pick:()=>{if(calls++===0){firstEntered.resolve();return old.promise}return newer.promise}}),id=randomUUID()
   try{
     const oldPath=join(f.root,"old.png"),newPath=join(f.root,"new.png")
     await writeFile(oldPath,await sharp({create:{width:8,height:16,channels:4,background:"red"}}).png().toBuffer())
     await writeFile(newPath,await sharp({create:{width:16,height:8,channels:4,background:"blue"}}).png().toBuffer())
-    const first=f.invoke("desktop:avatar-choose",id),second=f.invoke("desktop:avatar-choose",id)
+    const first=f.invoke("desktop:avatar-choose",id)
     const olderOutcome=first.then(value=>({value}),error=>({error}))
+    await firstEntered.promise
+    const second=f.invoke("desktop:avatar-choose",id)
     newer.resolve({canceled:false,filePaths:[newPath]});const latest=await second as {draftId:string;width:number;height:number}
     assert.equal(latest.width,16);assert.equal(latest.height,8)
     old.resolve({canceled:false,filePaths:[oldPath]});await olderOutcome
     const saved=await f.assets.persistDraft(String(f.event.sender.id),id,latest.draftId)
     assert.ok(await f.assets.readAsset(saved.assetId),"The draft shown by the latest renderer selection must remain saveable")
   }finally{old.resolve({canceled:true,filePaths:[]});newer.resolve({canceled:true,filePaths:[]});await f.close()}
+})
+test("profile IPC: selection cleanup cancels queued picker B while preserving accepted draft A",async()=>{
+ const picker=deferred<{canceled:boolean;filePaths:string[]}>(),f=await fixture({pick:()=>picker.promise}),id=randomUUID()
+ try{
+  f.assets.begin(String(f.event.sender.id),id)
+  const sourceA=join(f.root,"draft-a.png"),sourceB=join(f.root,"draft-b.png")
+  await writeFile(sourceA,await sharp({create:{width:8,height:16,channels:4,background:"red"}}).png().toBuffer())
+  await writeFile(sourceB,await sharp({create:{width:16,height:8,channels:4,background:"blue"}}).png().toBuffer())
+  const draftA=await f.assets.stageSelected(String(f.event.sender.id),id,sourceA)
+  const pending=f.invoke("desktop:avatar-choose",id,draftA.draftId),rejected=assert.rejects(pending)
+  await f.invoke("desktop:avatar-selection-cancel",{sessionId:id,draftId:draftA.draftId})
+  picker.resolve({canceled:false,filePaths:[sourceB]});await rejected
+  f.assets.assertActive(String(f.event.sender.id),id,draftA.draftId)
+  await f.invoke("desktop:settings",f.profile(id,draftA.draftId))
+  const bytes=(await f.assets.readAsset(f.state.settings.user.avatarAssetId!))!,metadata=await sharp(bytes).metadata()
+  assert.equal(metadata.width,8);assert.equal(metadata.height,16)
+ }finally{picker.resolve({canceled:true,filePaths:[]});await f.close()}
+})
+
+test("profile IPC: selection cleanup restores A after B is fully staged but still unaccepted by UI",async()=>{
+ const picker=deferred<{canceled:boolean;filePaths:string[]}>(),f=await fixture({pick:()=>picker.promise}),id=randomUUID()
+ try{
+  const owner=String(f.event.sender.id),sourceA=join(f.root,"accepted-a.png"),sourceB=join(f.root,"unaccepted-b.png")
+  f.assets.begin(owner,id)
+  await writeFile(sourceA,await sharp({create:{width:8,height:16,channels:4,background:"red"}}).png().toBuffer())
+  await writeFile(sourceB,await sharp({create:{width:16,height:8,channels:4,background:"blue"}}).png().toBuffer())
+  const draftA=await f.assets.stageSelected(owner,id,sourceA)
+  const pending=f.invoke("desktop:avatar-choose",id,draftA.draftId)
+  picker.resolve({canceled:false,filePaths:[sourceB]})
+  const preparedB=await pending as {draftId:string}
+  f.assets.assertActive(owner,id,preparedB.draftId)
+  // Completion of main handling precedes UI acceptance; suspension keeps A.
+  await f.invoke("desktop:avatar-selection-cancel",{sessionId:id,draftId:draftA.draftId})
+  await f.invoke("desktop:settings",f.profile(id,draftA.draftId))
+  const bytes=(await f.assets.readAsset(f.state.settings.user.avatarAssetId!))!,metadata=await sharp(bytes).metadata()
+  assert.equal(metadata.width,8);assert.equal(metadata.height,16)
+ }finally{picker.resolve({canceled:true,filePaths:[]});await f.close()}
 })

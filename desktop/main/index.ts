@@ -53,6 +53,8 @@ import {workNames} from "../core/brand-names"
 import {selectBrandStartupPaths,BrandStartupPathError,legacyEncryptionName,type BrandStartupPaths} from "./brand-startup-paths"
 import { InputContextMenus } from "./input-context-menu"
 import { inputContextStateSchema } from "../shared/input-context-menu"
+import { OnboardingService } from "./onboarding-service"
+import { OnboardingError, onboardingActionSchema } from "../shared/onboarding"
 
 app.enableSandbox()
 protocol.registerSchemesAsPrivileged([{ scheme: "xaanink", privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, codeCache: true } }])
@@ -75,6 +77,7 @@ let window: BrowserWindow | null = null
 let modelService: ModelService
 let modelConfiguration: ModelConfigurationService
 let avatarAssets: AvatarAssetService
+let onboardingService: OnboardingService
 let repository: ModelRepository
 let configurationFiles:ConfigurationFiles
 let fileExports:FileExports
@@ -222,6 +225,7 @@ async function launch() {
   modelService = new ModelService(repository, gateway)
   modelConfiguration = new ModelConfigurationService({ repository, gateway, fetch: globalThis.fetch })
   avatarAssets = new AvatarAssetService({ root: dataRoot,...metadataWrites })
+  onboardingService = new OnboardingService({ repository, avatarAssets })
   configurationFiles=new ConfigurationFiles({repository,catalogs:trustedCommandCatalogs,protectedRoots:async()=>[dataRoot,bootstrapPath,...await service.call<string[]>("protected-directories")],assertOwner:owner=>{
     if(!window||window.isDestroyed()||!draftSession||closingFlow||!owner.startsWith(`${window.webContents.id}:${draftSession.id}:`))throw Error("配置所属窗口已变化")
   },chooseImport:async()=>{const selected=await dialog.showOpenDialog(window!,{title:"导入配置",properties:["openFile"],filters:[{name:"玄印写作配置",extensions:["json"]}]});return selected.canceled?null:selected.filePaths[0]??null},
@@ -473,16 +477,31 @@ function registerIpc() {
   businessHandle("desktop:model-discover", async (event, id, draft) => { trusted(event); return modelConfiguration.discover(String(event.sender.id), z.uuid().parse(id), draft) })
   businessHandle("desktop:model-test", async (event, id, draft) => { trusted(event); return modelConfiguration.test(String(event.sender.id), z.uuid().parse(id), draft, { authorizeCharge: true }) })
   ipcMain.handle("desktop:model-cancel", async (event, id) => { trusted(event); modelConfiguration.cancel(String(event.sender.id), z.uuid().parse(id)) })
-  businessHandle("desktop:avatar-choose", async (event, id) => {
-    trusted(event); const sessionId = z.uuid().parse(id), owner = String(event.sender.id)
+  ipcMain.handle("desktop:avatar-choose", async (event, id, acceptedDraftId) => {
+    trusted(event)
+    const parsed=z.object({sessionId:z.uuid(),acceptedDraftId:z.uuid().nullable().optional()}).strict().safeParse({sessionId:id,acceptedDraftId})
+    if(!parsed.success)throw new Error("头像编辑会话无效")
+    const {sessionId}=parsed.data,owner=String(event.sender.id)
+    if(businessGate.closed)throw new Error("BUSINESS_CLOSED")
+    // Allocate the picker epoch when IPC is received, before the business work
+    // microtask. A subsequent hide can then cancel even this queued picker.
     avatarAssets.begin(owner,sessionId)
-    const selection = avatarAssets.beginSelection(owner,sessionId)
-    const selected = await dialog.showOpenDialog(window!, { title: "选择头像", properties: ["openFile"], filters: [{ name: "头像图片", extensions: ["png","jpg","jpeg","webp"] }] })
-    avatarAssets.assertActive(owner,sessionId)
-    if (selected.canceled || !selected.filePaths[0]) return null
-    return avatarAssets.stageSelected(owner,sessionId,selected.filePaths[0],selection)
+    const selection = avatarAssets.beginSelection(owner,sessionId,parsed.data.acceptedDraftId)
+    return businessGate.run(async()=>{
+      avatarAssets.assertSelectionActive(owner,sessionId,selection)
+      const selected = await dialog.showOpenDialog(window!, { title: "选择头像", properties: ["openFile"], filters: [{ name: "头像图片", extensions: ["png","jpg","jpeg","webp"] }] })
+      trusted(event);avatarAssets.assertSelectionActive(owner,sessionId,selection)
+      if (selected.canceled || !selected.filePaths[0]) return null
+      return avatarAssets.stageSelected(owner,sessionId,selected.filePaths[0],selection)
+    })
   })
   ipcMain.handle("desktop:avatar-cancel", async (event, id) => { trusted(event); avatarAssets.cancel(String(event.sender.id),z.uuid().parse(id)) })
+  ipcMain.handle("desktop:avatar-selection-cancel", async (event, input) => {
+    trusted(event)
+    const parsed=z.object({sessionId:z.uuid(),draftId:z.uuid().nullable()}).strict().safeParse(input)
+    if(!parsed.success)throw new Error("头像编辑会话无效")
+    avatarAssets.cancelSelection(String(event.sender.id),parsed.data.sessionId,parsed.data.draftId)
+  })
   businessHandle("desktop:settings", async (event, input: SettingsAction) => {
     trusted(event)
     const envelope = z.object({ type: z.enum(["update", "save-profile", "save-model", "remove-model"]), revision: z.number().int().nonnegative() }).passthrough().parse(input)
@@ -508,6 +527,21 @@ function registerIpc() {
     else state = await repository.removeModel(envelope.revision,z.uuid().parse((input as Extract<SettingsAction,{type:"remove-model"}>).id))
     window?.webContents.setZoomFactor(state.settings.appearance.zoom)
     send({ type: "state", state }); return state
+  })
+  businessHandle("desktop:onboarding", async (event, input: unknown) => {
+    const parsed=onboardingActionSchema.safeParse(input)
+    if(!parsed.success)throw new OnboardingError("INVALID_ACTION")
+    const action=parsed.data,currentWindow=window,currentSession=draftSession
+    const active=()=>{
+      try{trusted(event)}catch{throw new OnboardingError("OWNER_UNAVAILABLE")}
+      if(!currentWindow||currentWindow.isDestroyed()||window!==currentWindow||!currentSession?.ready||draftSession!==currentSession||
+        currentSession.owner!==event.sender.id||currentSession.id!==action.sessionId||closingFlow||quitting||businessGate.closed||migrationHandoff?.pending||workLease?.pending)
+        throw new OnboardingError("OWNER_UNAVAILABLE")
+    }
+    active()
+    const state=await onboardingService.commit(String(event.sender.id),action,active)
+    active();currentWindow!.webContents.setZoomFactor(state.settings.appearance.zoom)
+    send({type:"state",state});return state
   })
   ipcMain.handle("desktop:command", async (event, id) => { trusted(event); await executeCommand(z.string().max(100).parse(id),true) })
   ipcMain.handle("desktop:cancel", async (event, id) => { trusted(event); z.uuid().parse(id); const active = responseOwners.get(id); if (active?.owner === event.sender.id) await active.cancel() })

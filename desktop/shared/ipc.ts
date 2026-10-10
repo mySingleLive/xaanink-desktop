@@ -30,7 +30,7 @@ export const requestSchema = z.object({
 }).transform(request => ({ ...request, headers: Object.fromEntries(Object.entries(request.headers).map(([name, value]) => [name.toLowerCase(), value])) }))
 export type LocalRequest = z.infer<typeof requestSchema>
 export interface LocalResponse { id: string; status: number; headers: Record<string, string> }
-export interface StateSnapshot { revision: number; settings: Settings; models: PublicModel[] }
+export interface StateSnapshot { revision: number; settings: Settings; models: PublicModel[]; onboarding?: import("./onboarding").OnboardingProgress | null }
 export interface Bootstrap extends StateSnapshot { platform: "darwin" | "win32"; version: string; dataRoot: string; draftSessionId: string; systemDark: boolean }
 export type DesktopBootstrap=Bootstrap
 export interface AvatarDraft { draftId: string; previewDataUrl: string; width: number; height: number; bytes: number }
@@ -47,11 +47,13 @@ export interface DesktopBridge extends FileExportBridge {
   request(request: LocalRequest): Promise<LocalResponse>
   cancelRequest(id: string): Promise<void>
   settings(action: SettingsAction): Promise<StateSnapshot>
+  onboarding(action: import("./onboarding").OnboardingAction): Promise<StateSnapshot>
   discoverModels(operationId: string, draft: ConfigurationDraft): Promise<CatalogResult | ConfigurationFailure>
   testModel(operationId: string, draft: ConfigurationDraft): Promise<ConnectionTestResult | ConfigurationFailure>
   cancelModelConfiguration(operationId: string): Promise<void>
-  chooseAvatar(sessionId: string): Promise<AvatarDraft | null>
+  chooseAvatar(sessionId: string, acceptedDraftId?: string | null): Promise<AvatarDraft | null>
   cancelAvatar(sessionId: string): Promise<void>
+  cancelAvatarSelection(input: { sessionId: string; draftId: string | null }): Promise<void>
   configuration(action:ConfigurationFileAction):Promise<ConfigurationPreview|StateSnapshot|boolean|null>
   migrateRoot(action:"start"|"cancel"):Promise<boolean>
   repairWorkLease(action:WorkLeaseRequest):Promise<WorkLeaseResult>

@@ -1,0 +1,347 @@
+{
+  "date": "2026-10-11",
+  "version": "v2",
+  "scope": "HTML design viewer only, not product tests",
+  "command": "node design/onboarding/capture-preview.mjs",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "v2: theme dialog and illustrations enlarged, lower redundant copy removed",
+      "passed": true
+    },
+    {
+      "name": "Theme radio arrow key and immediate appearance",
+      "passed": true
+    },
+    {
+      "name": "Profile required name, optional email and confirm transition",
+      "passed": true
+    },
+    {
+      "name": "Model draft kept on simulated save failure",
+      "passed": true
+    },
+    {
+      "name": "Changing provider after prior confirmation requires a fresh Key",
+      "passed": true
+    },
+    {
+      "name": "Full path order and skip at image question",
+      "passed": true
+    },
+    {
+      "name": "Skip from image editor discards unsaved configuration",
+      "passed": true
+    },
+    {
+      "name": "Image confirmation produces preview default summary",
+      "passed": true
+    },
+    {
+      "name": "Short flow excludes theme/profile and can select an existing model",
+      "passed": true
+    },
+    {
+      "name": "Escape exits and resume clears unsubmitted Key",
+      "passed": true
+    },
+    {
+      "name": "Catalog failure keeps design candidates selectable",
+      "passed": true
+    },
+    {
+      "name": "Short custom form scrolls, footer stays visible and Tab wraps in native dialog",
+      "passed": true
+    },
+    {
+      "name": "Review jump during theme save cancels late page callbacks",
+      "passed": true
+    },
+    {
+      "name": "System theme follows media changes while retaining system selection",
+      "passed": true
+    },
+    {
+      "name": "360px viewer has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "No script errors, failed assets or HTTP requests",
+      "passed": true
+    }
+  ],
+  "captures": [
+    {
+      "name": "preview-theme-paper",
+      "geometry": {
+        "width": 800,
+        "height": 462.078125,
+        "left": 130,
+        "top": 132.953125,
+        "right": 930,
+        "bottom": 595.03125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 594.03125,
+        "titleTop": 165.953125,
+        "bodyScrollHeight": 299,
+        "bodyHeight": 299,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": [
+          180,
+          180,
+          180
+        ]
+      }
+    },
+    {
+      "name": "preview-theme-ink",
+      "geometry": {
+        "width": 800,
+        "height": 462.078125,
+        "left": 130,
+        "top": 132.953125,
+        "right": 930,
+        "bottom": 595.03125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 594.03125,
+        "titleTop": 165.953125,
+        "bodyScrollHeight": 299,
+        "bodyHeight": 299,
+        "horizontalOverflow": false,
+        "look": "ink",
+        "flowStripCount": 0,
+        "themeArtHeights": [
+          180,
+          180,
+          180
+        ]
+      }
+    },
+    {
+      "name": "preview-profile",
+      "geometry": {
+        "width": 560,
+        "height": 377.390625,
+        "left": 250,
+        "top": 175.296875,
+        "right": 810,
+        "bottom": 552.6875,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 551.6875,
+        "titleTop": 201.296875,
+        "bodyScrollHeight": 232,
+        "bodyHeight": 232,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": []
+      }
+    },
+    {
+      "name": "preview-text-save-failure",
+      "geometry": {
+        "width": 560,
+        "height": 608.921875,
+        "left": 250,
+        "top": 59.53125,
+        "right": 810,
+        "bottom": 668.453125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 667.453125,
+        "titleTop": 85.53125,
+        "bodyScrollHeight": 464,
+        "bodyHeight": 464,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": []
+      }
+    },
+    {
+      "name": "preview-image-choice",
+      "geometry": {
+        "width": 520,
+        "height": 365.5625,
+        "left": 270,
+        "top": 181.21875,
+        "right": 790,
+        "bottom": 546.78125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 545.78125,
+        "titleTop": 207.21875,
+        "bodyScrollHeight": 220,
+        "bodyHeight": 220,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": []
+      }
+    },
+    {
+      "name": "preview-done-skip",
+      "geometry": {
+        "width": 520,
+        "height": 561.921875,
+        "left": 270,
+        "top": 83.03125,
+        "right": 790,
+        "bottom": 644.953125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 643.953125,
+        "titleTop": 109.03125,
+        "bodyScrollHeight": 417,
+        "bodyHeight": 417,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": []
+      }
+    },
+    {
+      "name": "preview-image",
+      "geometry": {
+        "width": 560,
+        "height": 557.328125,
+        "left": 250,
+        "top": 85.328125,
+        "right": 810,
+        "bottom": 642.65625,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 641.65625,
+        "titleTop": 111.328125,
+        "bodyScrollHeight": 412,
+        "bodyHeight": 412,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": []
+      }
+    },
+    {
+      "name": "preview-model-entry",
+      "geometry": {
+        "width": 520,
+        "height": 316.65625,
+        "left": 270,
+        "top": 205.671875,
+        "right": 790,
+        "bottom": 522.328125,
+        "viewport": {
+          "width": 1060,
+          "height": 728
+        },
+        "footerBottom": 521.328125,
+        "titleTop": 231.671875,
+        "bodyScrollHeight": 171,
+        "bodyHeight": 171,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": []
+      }
+    },
+    {
+      "name": "preview-short-custom",
+      "geometry": {
+        "width": 560,
+        "height": 450,
+        "left": 250,
+        "top": 14,
+        "right": 810,
+        "bottom": 464,
+        "viewport": {
+          "width": 1060,
+          "height": 478
+        },
+        "footerBottom": 463,
+        "titleTop": 33,
+        "bodyScrollHeight": 734,
+        "bodyHeight": 319,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": []
+      }
+    },
+    {
+      "name": "preview-short-theme",
+      "geometry": {
+        "width": 800,
+        "height": 397.078125,
+        "left": 130,
+        "top": 40.453125,
+        "right": 930,
+        "bottom": 437.53125,
+        "viewport": {
+          "width": 1060,
+          "height": 478
+        },
+        "footerBottom": 436.53125,
+        "titleTop": 65.453125,
+        "bodyScrollHeight": 248,
+        "bodyHeight": 248,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": [
+          145,
+          145,
+          145
+        ]
+      }
+    },
+    {
+      "name": "preview-mobile-theme",
+      "geometry": {
+        "width": 283,
+        "height": 328.96875,
+        "left": 20,
+        "top": 199.515625,
+        "right": 303,
+        "bottom": 528.484375,
+        "viewport": {
+          "width": 323,
+          "height": 728
+        },
+        "footerBottom": 527.484375,
+        "titleTop": 224.515625,
+        "bodyScrollHeight": 185,
+        "bodyHeight": 185,
+        "horizontalOverflow": false,
+        "look": "paper",
+        "flowStripCount": 0,
+        "themeArtHeights": [
+          86,
+          86,
+          86
+        ]
+      }
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "externalRequests": []
+}
