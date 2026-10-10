@@ -1,4 +1,4 @@
-import { app, BrowserWindow, clipboard, dialog, ipcMain, Menu, MessageChannelMain, nativeTheme, protocol, safeStorage, session, shell, type IpcMainInvokeEvent, type MenuItemConstructorOptions } from "electron"
+import { app, BaseWindow, BrowserWindow, ImageView, clipboard, dialog, ipcMain, Menu, MessageChannelMain, nativeImage, nativeTheme, protocol, safeStorage, screen, session, shell, type IpcMainInvokeEvent, type MenuItemConstructorOptions } from "electron"
 import { Worker } from "node:worker_threads"
 import {randomUUID} from "node:crypto"
 import {DraftJournal,validateDraftSnapshot} from "./draft-journal"
@@ -15,6 +15,7 @@ import { AvatarAssetService } from "./avatar-assets"
 import { modelFailureNotice } from "./model-guidance"
 import { settingsSchema, type Settings } from "../core/settings"
 import { nativeWindowAppearance, applyWindowAppearance, syncNativeThemeSource } from "./window-appearance"
+import { installWindowsCloseAccent } from "./native-close-accent"
 import { RevisionConflict,atomicWrite } from "../core/versioned-store"
 import { ModelRepository } from "./model-repository"
 import { ModelGateway } from "../core/model-authorization"
@@ -666,6 +667,7 @@ async function createWindow() {
   const nativeAppearance = nativeWindowAppearance(state.settings.appearance.theme, nativeTheme.shouldUseDarkColors)
   window = new BrowserWindow({ width: 1440, height: 940, minWidth: 760, minHeight: 580, show: false, title: "玄印写作", backgroundColor: nativeAppearance.backgroundColor, titleBarStyle: "hidden", trafficLightPosition: { x: 14, y: 14 }, ...(process.platform === "win32" ? { titleBarOverlay: nativeAppearance.titleBarOverlay } : {}), webPreferences: { preload: join(__dirname, "../preload/index.cjs"), contextIsolation: true, sandbox: true, nodeIntegration: false, webSecurity: true } })
   const current = window
+  if (process.platform === "win32") installWindowsCloseAccent(current, { BaseWindow, ImageView, nativeImage, screen }, nativeAppearance.titleBarOverlay.symbolColor)
   current.webContents.setZoomFactor(state.settings.appearance.zoom)
   // Keyboard bindings are resolved once in the renderer, including secondary
   // bindings, chords, IME and shortcut recording. Native menus remain clickable.

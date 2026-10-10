@@ -92,7 +92,11 @@ test('RL100-03 failed process handoff cannot grant a later explicit restart afte
 })
 
 const require=createRequire(import.meta.url)
-const windowBundle=build({entryPoints:['desktop/main/root-relocation-window.ts'],bundle:true,platform:'node',format:'cjs',packages:'external',write:false}).then(result=>result.outputFiles[0].text)
+// Native painting is outside this business fixture; CLOSE tests execute its real module and wiring.
+const closeAccentBoundary={installWindowsCloseAccent(){},updateWindowsCloseAccentColor(){}}
+const windowBundle=build({entryPoints:['desktop/main/root-relocation-window.ts'],bundle:true,platform:'node',format:'cjs',packages:'external',write:false,
+ plugins:[{name:'controlled-close-accent',setup(plugin){plugin.onResolve({filter:/^\.\/native-close-accent$/},()=>({path:'review:close-accent',external:true}))}}],
+}).then(result=>result.outputFiles[0].text)
 async function windowFixture(platform:'darwin'|'win32'='darwin'){
  const f=await fixture(),ready=Promise.withResolvers<void>(),picker=Promise.withResolvers<{canceled:boolean;filePaths:string[]}>(),entered=Promise.withResolvers<void>(),handlers=new Map<string, (...args:any[])=>any>(),windows:any[]=[],paths=new Map<string,string>(),trace:string[]=[]
  await mkdir(join(f.base,'out'));await writeFile(join(f.base,'out/index.html'),'<main>restricted fixture</main>')
@@ -107,7 +111,7 @@ async function windowFixture(platform:'darwin'|'win32'='darwin'){
  const templates:any[][]=[],popupOwners:any[]=[],menu={buildFromTemplate(template:any[]){templates.push(template);return{items:template,popup(options:{window:unknown}){popupOwners.push(options.window);trace.push('popup')}}},setApplicationMenu(){}}
  const electron={app,BrowserWindow:Window,ipcMain:{handle:(key:string,run:(...args:any[])=>any)=>handlers.set(key,run)},Menu:menu,nativeTheme:{shouldUseDarkColors:false},session:{fromPartition:()=>memory,get defaultSession():never{throw Error('ORIGINAL_SESSION_FORBIDDEN')}},dialog:{async showOpenDialog(){entered.resolve();return picker.promise},async showMessageBox(){return{response:0}}}}
  const module={exports:{}as{launchRootRelocation(bootstrap:string,initial:ReturnType<typeof rootRelocationPreflight>):Promise<void>}}
- new Function('module','exports','require','__dirname','process',await windowBundle)(module,module.exports,(id:string)=>id==='electron'?electron:require(id),join(f.base,'bundle/main'),{...process,platform})
+ new Function('module','exports','require','__dirname','process',await windowBundle)(module,module.exports,(id:string)=>id==='electron'?electron:id==='review:close-accent'?closeAccentBoundary:require(id),join(f.base,'bundle/main'),{...process,platform})
  const launch=module.exports.launchRootRelocation(f.bootstrap,rootRelocationPreflight(f.bootstrap));void launch.catch(()=>{})
  const event=()=>({sender:windows[0].webContents,senderFrame:windows[0].webContents.mainFrame})
  const state=()=>handlers.get('desktop:relocation-state')!(event())

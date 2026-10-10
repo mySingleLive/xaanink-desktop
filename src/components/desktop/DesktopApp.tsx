@@ -143,6 +143,7 @@ export default function DesktopApp() {
     const appearance = bootstrap.settings.appearance
     setTheme(appearance.theme === "system" ? bootstrap.systemDark ? "ink" : "paper" : appearance.theme)
     document.body.dataset.platform = bootstrap.platform
+    document.documentElement.style.setProperty("--desktop-caption-zoom", String(appearance.zoom))
     document.documentElement.style.setProperty("--desktop-ui-size", `${appearance.uiFontSize}px`)
     document.documentElement.style.fontSize = `${16 * appearance.uiFontSize / 14}px`
     document.documentElement.style.setProperty("--desktop-body-size", `${appearance.bodyFontSize}px`)

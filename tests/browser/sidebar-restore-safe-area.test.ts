@@ -28,7 +28,7 @@ import React,{useState} from 'react';import {createRoot} from 'react-dom/client'
 import {PanelLeft,PanelRight,MessageSquare} from 'lucide-react';import {useDesktopStore} from './src/stores/desktop';
 window.mountTitle=(platform='darwin',zoom=1,font=14,hidden=true,callback=true)=>{
  const calls=[];document.documentElement.style.fontSize=(16*font/14)+'px';
- const appearance=(platform,zoom)=>useDesktopStore.setState({bootstrap:platform?{platform,settings:{appearance:{zoom}}}:null});
+ const appearance=(platform,zoom)=>{document.documentElement.style.setProperty('--desktop-caption-zoom',String(zoom));document.body.dataset.platform=platform??'';useDesktopStore.setState({bootstrap:platform?{platform,settings:{appearance:{zoom}}}:null})};
  appearance(platform,zoom);
  function App(){
   const [sidebarHidden,setHidden]=useState(hidden),desktopBootstrap=useDesktopStore(state=>state.bootstrap);

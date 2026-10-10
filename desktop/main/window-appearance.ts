@@ -1,4 +1,5 @@
 import type { Settings } from "../core/settings"
+import { updateWindowsCloseAccentColor } from "./native-close-accent"
 
 type Theme = Settings["appearance"]["theme"]
 interface AppearanceWindow {
@@ -22,7 +23,8 @@ export function nativeWindowAppearance(theme: Theme, systemDark: boolean) {
       // Let the actual panel surface and its texture continue under captions.
       color: "#00000000",
       symbolColor: dark ? "#ece7e1" : "#2b251b",
-      height: 44,
+      // Compact native caption row; keep system glyphs and hit testing.
+      height: 32,
     },
   }
 }
@@ -31,5 +33,8 @@ export function applyWindowAppearance(window: AppearanceWindow | null, platform:
   if (!window || window.isDestroyed()) return
   const appearance = nativeWindowAppearance(theme, systemDark)
   window.setBackgroundColor(appearance.backgroundColor)
-  if (platform === "win32") window.setTitleBarOverlay(appearance.titleBarOverlay)
+  if (platform === "win32") {
+    window.setTitleBarOverlay(appearance.titleBarOverlay)
+    updateWindowsCloseAccentColor(window, appearance.titleBarOverlay.symbolColor)
+  }
 }

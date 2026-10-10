@@ -17,8 +17,10 @@ import type {RootMaintenanceState} from '../../desktop/shared/root-maintenance'
 // The actual maintenance-window module runs with real DataRoot/FS/static UI.
 // Electron surfaces and runner IO are controlled. This is not an Electron run.
 const require=createRequire(import.meta.url)
+// Native painting is outside this business fixture; CLOSE tests execute its real module and wiring.
+const closeAccentBoundary={installWindowsCloseAccent(){},updateWindowsCloseAccentColor(){}}
 const windowBundle=build({entryPoints:['desktop/main/root-maintenance-window.ts'],bundle:true,platform:'node',format:'cjs',packages:'external',write:false,
- plugins:[{name:'controlled-runner',setup(plugin){plugin.onResolve({filter:/^\.\/root-maintenance-runner$/},()=>({path:'review:runner',external:true}))}}],
+ plugins:[{name:'controlled-runner',setup(plugin){plugin.onResolve({filter:/^\.\/root-maintenance-runner$/},()=>({path:'review:runner',external:true}));plugin.onResolve({filter:/^\.\/native-close-accent$/},()=>({path:'review:close-accent',external:true}))}}],
 }).then(result=>result.outputFiles[0].text)
 const initial:RootMaintenanceState={version:1,revision:0,phase:'preparing',theme:'paper',sourcePath:null,targetPath:null,copiedFiles:0,totalFiles:null,canCancel:true,canContinue:false,pendingCount:0}
 async function fixture(persistentPartition=false){
@@ -50,7 +52,7 @@ async function fixture(persistentPartition=false){
  }
  const electron={app,BrowserWindow:Window,ipcMain:{handle:(id:string,callback:(...args:any[])=>any)=>handlers.set(id,callback)},Menu:{buildFromTemplate:(value:unknown)=>value,setApplicationMenu(){}},nativeTheme,session:{fromPartition:(name:string,configuration:unknown)=>{assert.equal(name,'xaanink-maintenance');assert.deepEqual(configuration,{cache:false});trace.push('partition');return isolated},get defaultSession(){throw Error('maintenance must not touch source defaultSession')}}}
  const module={exports:{} as {launchRootMaintenance(bootstrap:string,root:string):Promise<void>}}
- new Function('module','exports','require','__dirname',await windowBundle)(module,module.exports,(id:string)=>id==='electron'?electron:id==='review:runner'?{RootMaintenanceRunner:Runner}:require(id),join(base,'bundle/main'))
+ new Function('module','exports','require','__dirname',await windowBundle)(module,module.exports,(id:string)=>id==='electron'?electron:id==='review:runner'?{RootMaintenanceRunner:Runner}:id==='review:close-accent'?closeAccentBoundary:require(id),join(base,'bundle/main'))
  const launched=module.exports.launchRootMaintenance(bootstrap,source);void launched.catch(()=>{})
  return{base,bootstrap,source,out,before,trace,ready,launched,app,instances,handlers,paths,listeners,
   get options(){return options},get staticHandler(){return staticHandler!},get permissionRequest(){return permissionRequest},get permissionCheck(){return permissionCheck},get network(){return network!},

@@ -95,7 +95,7 @@ for (const theme of ["paper", "ink"] as const) test(`WTHEME-01 ${theme} uses tra
   const { nativeWindowAppearance } = await helper()
   const appearance = nativeWindowAppearance(theme, theme === "paper")
   assert.equal(appearance.backgroundColor, palette(theme).background)
-  assert.deepEqual(appearance.titleBarOverlay, { color: "#00000000", symbolColor: palette(theme).foreground, height: 44 })
+  assert.deepEqual(appearance.titleBarOverlay, { color: "#00000000", symbolColor: palette(theme).foreground, height: 32 })
 })
 test("WTHEME-02 system resolves on each call; explicit choices override the system", async () => {
   const { nativeWindowAppearance } = await helper()
@@ -143,6 +143,6 @@ for (const file of ["index", "root-maintenance-window", "root-relocation-window"
       module, { platform: "win32" }, theme, dark, nativeAppearance, dark ? "#171312" : "#faf5e8", {}, (...parts: string[]) => parts.join("/"), "isolated")
     assert.equal(module.exports.titleBarOverlay.color, "#00000000")
     assert.equal(module.exports.titleBarOverlay.symbolColor, palette(theme).foreground)
-    assert.equal(module.exports.titleBarOverlay.height, 44)
+    assert.equal(module.exports.titleBarOverlay.height, 32)
   }
 })

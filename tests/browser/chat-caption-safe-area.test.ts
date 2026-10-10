@@ -27,7 +27,9 @@ import React,{useState} from 'react';import {createRoot} from 'react-dom/client'
 import {PanelLeft,PanelRight,MessageSquare} from 'lucide-react';import {useDesktopStore} from './src/stores/desktop';
 import {WindowsMenuControl} from './src/components/desktop/WindowControls';
 window.mountTitle=(platform,zoom,font,sidebarHidden)=>{
- const calls=[];document.documentElement.style.fontSize=(16*font/14)+'px';
+ const calls=[];window.desktop={command:id=>{calls.push(id);return Promise.resolve()}};
+ document.documentElement.style.fontSize=(16*font/14)+'px';
+ document.documentElement.style.setProperty('--desktop-caption-zoom',String(zoom));document.body.dataset.platform=platform??'';
  useDesktopStore.setState({bootstrap:platform?{platform,settings:{appearance:{zoom}}}:null});
  function App(){const [contentHidden,setHidden]=useState(true),desktopBootstrap=useDesktopStore(state=>state.bootstrap);
   const messages=[],currentConversation=null,onShowSidebar=()=>calls.push('sidebar'),onShowContent=()=>{calls.push('content');setHidden(false)};
@@ -76,6 +78,23 @@ test("WCO-S01 Windows restore and menu clear captions across window widths, zoom
 test("WCO-S02 native env widths and unavailable env retain safe menu/restore gaps", async () => {
   for (const zoom of [.75, 1, 2]) for (const caption of [106, 138, 184, 216])
     await scenario("win32", 1440, zoom, 14, false, caption, page => safe(page, zoom, caption))
+})
+
+test("WCO-C03 compact Windows menu aligns with captions and retains mouse/keyboard commands", async () => {
+  // CSS fixture geometry; Electron zoom and native menu activation are verified separately.
+  for (const zoom of [.75, 1, 1.25, 1.5, 2]) {
+    for (const font of [11, 14, 24]) await scenario("win32", 1440, zoom, font, false, null, async page => {
+      await safe(page, zoom, null)
+      const bounds = await menu(page).boundingBox(); assert(bounds)
+      assert(Math.abs(bounds.y - 2 / zoom) < .05, `Menu top at zoom ${zoom}: ${bounds.y}`)
+      assert(Math.abs(bounds.width * zoom - 28) < .05); assert(Math.abs(bounds.height * zoom - 28) < .05)
+      assert(bounds.y >= 0)
+      assert(Math.abs((bounds.y + bounds.height / 2) * zoom - 16) < .05)
+      assert.equal(await menu(page).evaluate(el => getComputedStyle(el).getPropertyValue("-webkit-app-region")), "no-drag")
+      await menu(page).click(); await menu(page).press("Enter"); await menu(page).press("Space")
+      assert.deepEqual(await page.evaluate(() => (window as any).fixture.calls), ["app.menu", "app.menu", "app.menu"])
+    })
+  }
 })
 test("WCO-S03 restore mouse/Enter/Space work and reopening content releases reservation", () => scenario("win32", 1440, 1, 14, false, null, async page => {
   for (const key of [null, "Enter", "Space"]) {

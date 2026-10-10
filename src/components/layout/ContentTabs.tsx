@@ -70,11 +70,12 @@ export function ContentTabs({
       <StagedInterceptionBootstrap />
       {tabs.length === 0 && (
         <div
+          data-desktop-caption={desktopBootstrap?.platform === "win32" ? "win32" : undefined}
           className="desktop-drag flex h-11 shrink-0 items-center justify-end px-2"
           // Keep the Windows caption and fixed app menu clear, including at
           // reduced Electron zoom when titlebar env values are unavailable.
           style={desktopBootstrap?.platform === "win32" ? {
-            paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + 40px)`,
+            paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + ${28 / desktopBootstrap.settings.appearance.zoom}px + 12px)`,
           } : undefined}
         >
           <button
@@ -91,9 +92,10 @@ export function ContentTabs({
       {tabs.length > 0 && (
         <div
           role="tablist"
+          data-desktop-caption={desktopBootstrap?.platform === "win32" ? "win32" : undefined}
           className="desktop-drag flex shrink-0 items-end border-b border-sidebar-border bg-sidebar px-2 pt-1.5"
           style={desktopBootstrap?.platform === "win32" ? {
-            paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + 40px)`,
+            paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + ${28 / desktopBootstrap.settings.appearance.zoom}px + 12px)`,
             justifyContent: "flex-end",
           } : undefined}
         >

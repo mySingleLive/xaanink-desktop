@@ -6,7 +6,7 @@ import { subscribeDesktopNavigation, desktopNavigationSnapshot, desktopNavigatio
 export function SidebarWindowControls({ onToggleSidebar }: { onToggleSidebar?: () => void }) {
   const platform = useDesktopStore(state => state.bootstrap?.platform)
   const navigation = useSyncExternalStore(subscribeDesktopNavigation, desktopNavigationSnapshot, desktopNavigationServerSnapshot)
-  return <div className="desktop-drag desktop-sidebar-controls flex h-11 shrink-0 items-center gap-1 px-2">
+  return <div data-desktop-caption={platform === "win32" ? "win32" : undefined} className="desktop-drag desktop-sidebar-controls flex h-11 shrink-0 items-center gap-1 px-2">
     {platform === "darwin" && <span className="w-[76px] shrink-0" aria-hidden="true" />}
     <button className="desktop-control disabled:opacity-40" aria-label="后退" disabled={!navigation.canBack} onPointerDown={event => event.preventDefault()} onClick={() => window.dispatchEvent(new CustomEvent("desktop:navigate", { detail: -1 }))}><ArrowLeft className="size-4" /></button>
     <button className="desktop-control disabled:opacity-40" aria-label="前进" disabled={!navigation.canForward} onPointerDown={event => event.preventDefault()} onClick={() => window.dispatchEvent(new CustomEvent("desktop:navigate", { detail: 1 }))}><ArrowRight className="size-4" /></button>

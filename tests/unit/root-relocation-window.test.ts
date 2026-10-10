@@ -14,7 +14,11 @@ import {rootRelocationPreflight} from '../../desktop/main/root-relocation-prefli
 // Actual window/preload/controller/DirectoryAuthority/Core31/staticUI with real
 // isolated filesystem. Electron surfaces controlled; never a native app run.
 const require=createRequire(import.meta.url)
-const bundle=build({entryPoints:['desktop/main/root-relocation-window.ts'],bundle:true,platform:'node',format:'cjs',packages:'external',write:false}).then(result=>result.outputFiles[0].text)
+// Native painting is outside this business fixture; CLOSE tests execute its real module and wiring.
+const closeAccentBoundary={installWindowsCloseAccent(){},updateWindowsCloseAccentColor(){}}
+const bundle=build({entryPoints:['desktop/main/root-relocation-window.ts'],bundle:true,platform:'node',format:'cjs',packages:'external',write:false,
+ plugins:[{name:'controlled-close-accent',setup(plugin){plugin.onResolve({filter:/^\.\/native-close-accent$/},()=>({path:'review:close-accent',external:true}))}}],
+}).then(result=>result.outputFiles[0].text)
 async function fixture(mode:'lost'|'blocked'='lost',persistent=false,platform='darwin',osDark=false){
  const base=await realpath(await mkdtemp(join(tmpdir(),'xuanxiang-entry33-'))),bootstrap=join(base,'bootstrap'),source=join(base,'source'),target=join(base,'moved'),out=join(base,'out')
  for(const path of[bootstrap,source,out])await mkdir(path)
@@ -38,7 +42,7 @@ async function fixture(mode:'lost'|'blocked'='lost',persistent=false,platform='d
  }
  const electron={app,BrowserWindow:Window,ipcMain:{handle:(id:string,cb:any)=>handlers.set(id,cb)},Menu:{buildFromTemplate:(value:any)=>({items:value,popup:({window}:any)=>{assert.equal(window,instances[0]);popupMenu=value}}),setApplicationMenu:(value:any)=>applicationMenu=value?.items},nativeTheme,dialog:{showOpenDialog:async(_parent:any,options:any)=>{calls++;assert.deepEqual(options.properties,['openDirectory']);trace.push('picker');return picker.promise},showMessageBox:async(_parent:any,options:any)=>{if(options.type==='info'){trace.push('about-box');assert.equal(options.title,'关于玄印写作');assert.match(options.detail,/0.1.0/);return{response:0}}trace.push('confirm');assert.equal(options.defaultId,1);assert.equal(options.cancelId,1);assert.match(options.detail,/原物理目录/);assert.match(options.detail,/未读迁移结果/);return confirmResponse}},session:{fromPartition:(name:string,options:any)=>{assert.equal(name,'xaanink-root-relocation');assert.deepEqual(options,{cache:false});return isolated},get defaultSession(){throw Error('must not open original session')}}}
  const module={exports:{}as{launchRootRelocation(bootstrap:string,preflight:ReturnType<typeof rootRelocationPreflight>):Promise<void>}}
- new Function('module','exports','require','__dirname','process',await bundle)(module,module.exports,(id:string)=>id==='electron'?electron:require(id),join(base,'bundle/main'),{...process,platform})
+ new Function('module','exports','require','__dirname','process',await bundle)(module,module.exports,(id:string)=>id==='electron'?electron:id==='review:close-accent'?closeAccentBoundary:require(id),join(base,'bundle/main'),{...process,platform})
  const launched=module.exports.launchRootRelocation(bootstrap,rootRelocationPreflight(bootstrap));void launched.catch(()=>{})
  const state=()=>handlers.get('desktop:relocation-state')!({sender:instances[0].webContents,senderFrame:instances[0].webContents.mainFrame})
  const command=(value:unknown,event?:unknown)=>handlers.get('desktop:relocation-command')!(event??{sender:instances[0].webContents,senderFrame:instances[0].webContents.mainFrame},value)

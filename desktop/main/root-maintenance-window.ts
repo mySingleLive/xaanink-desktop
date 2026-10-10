@@ -1,4 +1,4 @@
-import {app,BrowserWindow,ipcMain,Menu,nativeTheme,session,type IpcMainInvokeEvent} from 'electron'
+import {app,BaseWindow,BrowserWindow,ImageView,ipcMain,Menu,nativeImage,nativeTheme,screen,session,type IpcMainInvokeEvent} from 'electron'
 import {join} from 'node:path'
 import {z} from 'zod'
 import {DataRootManager} from '../core/data-root'
@@ -8,6 +8,7 @@ import {RootMaintenanceRunner} from './root-maintenance-runner'
 import {prepareSessionDirectory} from './session-directory'
 import {staticUiResponse} from './static-ui'
 import {nativeWindowAppearance,syncNativeThemeSource} from './window-appearance'
+import {installWindowsCloseAccent} from './native-close-accent'
 /** Separate process entry. Never constructs the workspaces worker or model vault. */
 export async function launchRootMaintenance(bootstrap:string,defaultRoot:string){
  // Must run in the first synchronous turn, before Chromium's ready event.
@@ -43,6 +44,7 @@ export async function launchRootMaintenance(bootstrap:string,defaultRoot:string)
  const nativeAppearance=nativeWindowAppearance(theme,nativeTheme.shouldUseDarkColors)
  current=new BrowserWindow({width:680,height:510,minWidth:560,minHeight:440,show:false,title:'迁移应用数据 · 玄印写作',backgroundColor:nativeAppearance.backgroundColor,titleBarStyle:'hidden',trafficLightPosition:{x:14,y:14},...(process.platform==='win32'?{titleBarOverlay:nativeAppearance.titleBarOverlay}:{}),webPreferences:{session:isolated,preload:join(__dirname,'../preload/maintenance.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true}})
  const owned=current
+ if(process.platform==='win32')installWindowsCloseAccent(owned,{BaseWindow,ImageView,nativeImage,screen},nativeAppearance.titleBarOverlay.symbolColor)
  owned.webContents.setWindowOpenHandler(()=>({action:'deny'}))
  owned.webContents.on('will-navigate',event=>event.preventDefault())
  owned.webContents.on('will-attach-webview',event=>event.preventDefault())

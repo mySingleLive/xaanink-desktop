@@ -1,4 +1,4 @@
-import {app,BrowserWindow,dialog,ipcMain,Menu,nativeTheme,session,type IpcMainInvokeEvent,type MenuItemConstructorOptions} from 'electron'
+import {app,BaseWindow,BrowserWindow,ImageView,dialog,ipcMain,Menu,nativeImage,nativeTheme,screen,session,type IpcMainInvokeEvent,type MenuItemConstructorOptions} from 'electron'
 import {randomUUID} from 'node:crypto'
 import {lstatSync,realpathSync} from 'node:fs'
 import {join} from 'node:path'
@@ -8,6 +8,7 @@ import {prepareSessionDirectory} from './session-directory'
 import {staticUiResponse} from './static-ui'
 import type {RootRelocationCommand} from '../shared/root-relocation'
 import {nativeWindowAppearance,syncNativeThemeSource} from './window-appearance'
+import {installWindowsCloseAccent} from './native-close-accent'
 
 /** Separate first-turn entry: never imports/constructs the service worker, model
  * vault or workbench bridge. Caller already holds the stable instance lock. */
@@ -45,6 +46,7 @@ export async function launchRootRelocation(bootstrap:string,_initial:RootRelocat
  const platform=process.platform==='win32'?'win32':process.platform==='darwin'?'darwin':'linux'
  current=new BrowserWindow({width:680,height:540,minWidth:360,minHeight:440,show:false,title:'定位原数据目录 · 玄印写作',backgroundColor:nativeAppearance.backgroundColor,titleBarStyle:'hidden',trafficLightPosition:{x:14,y:14},...(process.platform==='win32'?{titleBarOverlay:nativeAppearance.titleBarOverlay}:{}),webPreferences:{session:isolated,preload:join(__dirname,'../preload/root-relocation.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true}})
  const owned=current,owner=randomUUID(),contentsId=owned.webContents.id
+ if(process.platform==='win32')installWindowsCloseAccent(owned,{BaseWindow,ImageView,nativeImage,screen},nativeAppearance.titleBarOverlay.symbolColor)
  const assertOwner=(nonce:string)=>{assertCold();if(nonce!==owner||!ownerAlive||current!==owned||owned.isDestroyed()||owned.webContents.id!==contentsId)throw Error('OWNER_EXPIRED')}
  const controller=new RootRelocationController({bootstrap:identity,mode:initial.mode,theme,sourcePath:initial.pointer?.root.path??null,notice:'pointer-invalid',assertStableLock:assertLock,assertCold,assertOwner,
   chooseDirectory:async nonce=>{

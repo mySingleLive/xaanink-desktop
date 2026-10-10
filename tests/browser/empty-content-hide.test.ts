@@ -20,7 +20,7 @@ import {WindowsMenuControl,SidebarWindowControls} from './src/components/desktop
 import {useTabsStore} from './src/stores/tabs';import {useDesktopStore} from './src/stores/desktop';
 window.mountEmpty=(platform,width,count)=>{
  const calls=[];
- const appearance=(zoom,font)=>{document.documentElement.style.fontSize=(16*font/14)+'px';useDesktopStore.setState({bootstrap:platform?{platform,settings:{appearance:{zoom}}}:null})};
+ const appearance=(zoom,font)=>{document.documentElement.style.fontSize=(16*font/14)+'px';document.documentElement.style.setProperty('--desktop-caption-zoom',String(zoom));document.body.dataset.platform=platform??'';useDesktopStore.setState({bootstrap:platform?{platform,settings:{appearance:{zoom}}}:null})};
  appearance(1,14);
  const tabs=Array.from({length:count},(_,i)=>({id:'tab-'+i,title:'隔离面板 '+i,type:'theme',novelId:'isolated'}));
  useTabsStore.setState({tabs,activeTabId:tabs[0]?.id??null});
@@ -69,8 +69,10 @@ async function contained(page: Page) {
   assert(g.button.y >= g.header.y && g.button.bottom <= g.header.bottom)
   assert.equal(g.header.y, 0); assert.equal(g.buttonRegion, "no-drag"); assert.equal(g.headerRegion, "drag")
   assert.deepEqual({ width: g.icon.width, height: g.icon.height }, g.sidebarIcon, "The empty content hide icon must match the real sidebar hide icon")
-  assert(Math.abs(g.icon.width - g.rootRem) < .05 && Math.abs(g.icon.height - g.rootRem) < .05, "Both icons must track the same root rem size")
-  assert(Math.abs(g.button.width - 1.5 * g.rootRem) < .05 && Math.abs(g.button.height - 1.5 * g.rootRem) < .05, "The existing button target must keep its size")
+  const windowsZoom = await page.evaluate(() => document.body.dataset.platform === 'win32' ? Number(document.documentElement.style.getPropertyValue('--desktop-caption-zoom')) : null)
+  const iconSize = windowsZoom ? 16 / windowsZoom : g.rootRem, buttonSize = windowsZoom ? 24 / windowsZoom : 1.5 * g.rootRem
+  assert(Math.abs(g.icon.width - iconSize) < .05 && Math.abs(g.icon.height - iconSize) < .05, "Icons must keep the Windows DIP size or original Web/mac rem size")
+  assert(Math.abs(g.button.width - buttonSize) < .05 && Math.abs(g.button.height - buttonSize) < .05, "The target must fit the current caption row")
   assert(g.icon.x >= g.button.x && g.icon.y >= g.button.y && g.icon.right <= g.button.right && g.icon.bottom <= g.button.bottom, "The icon must fit inside its button")
   return g
 }

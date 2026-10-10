@@ -205,13 +205,17 @@
       "implementation": [
         "desktop/main/index.ts",
         "desktop/main/window-appearance.ts",
+        "desktop/main/native-close-accent.ts",
         "src/components/desktop/WindowControls.tsx",
         "src/app/desktop.css",
         "src/components/layout/ChatPanel.tsx",
         "src/components/layout/ContentTabs.tsx"
       ],
       "testIds": [
-        "DESK-W03"
+        "DESK-W03",
+        "ALIGN-01", "ALIGN-02", "ALIGN-03", "ALIGN-04", "ALIGN-05",
+        "CLOSE-01", "CLOSE-02", "CLOSE-03", "CLOSE-04", "CLOSE-05", "CLOSE-06", "CLOSE-07", "CLOSE-08",
+        "HEIGHT-01"
       ],
       "verificationKind": "NATIVE",
       "status": "planned",
@@ -224,9 +228,55 @@
           "docs/reviews/2026-10-10-window-controls-followup-code-review.md",
           "docs/reviews/2026-10-10-window-controls-populated-tabs-review.md",
           "docs/reviews/2026-10-10-window-controls-populated-tabs-code-review.md",
-          "docs/reviews/2026-10-10-window-controls-followup-verification.md"
+          "docs/reviews/2026-10-10-window-controls-followup-verification.md",
+          "docs/reviews/2026-10-10-window-controls-compact-code-review.md",
+          "docs/reviews/2026-10-10-window-controls-compact-verification.md",
+          "docs/reviews/2026-10-10-window-controls-compact-verification-review.md",
+          "docs/reviews/2026-10-10-caption-alignment-code-review.md",
+          "docs/reviews/2026-10-10-caption-alignment-geometry-code-review.md",
+          "docs/reviews/2026-10-10-caption-alignment-verification.md",
+          "docs/reviews/2026-10-10-caption-alignment-verification-review.md",
+          "docs/reviews/2026-10-10-caption-height-code-review.md",
+          "docs/reviews/2026-10-10-caption-height-verification.md",
+          "docs/reviews/2026-10-10-caption-height-verification-review.md"
         ],
-        "note": "2026-10-10 Windows 窗控修复：真实 ChatPanel/ContentTabs 及菜单按 zoom/env 留安全区，Electron 原生主题 source 同步。相关18/18、类型、生产构建和Windows包资源314检查通过；实际包宣纸hover、主题切换、窄窗75/100/200%有限几何、隐藏恢复、内容全屏、原生最大化恢复/最小化/正常关闭重启通过。窄窗外框实测761px，100%客户区760px；极窄受控pane容量不足仅证明右缘安全。core全量1728/1595pass/122fail/9cancelled/2skip，最终browser200/175pass/25fail。未运行NSIS安装、完整业务、多屏/DPI/拖动吸附正式验收，正式status保持planned；范围与证据见验证记录。"
+        "compactCaption": {
+          "date": "2026-10-10",
+          "heightDip": 32,
+          "nativeGlyphsRetained": true,
+          "glyphTopMovementAtObservedScale": 6,
+          "scopedRegression": { "tests": 39, "pass": 39, "fail": 0 },
+          "core": { "tests": 1731, "pass": 1591, "fail": 127, "cancelled": 11, "skipped": 2 },
+          "browser": { "tests": 194, "pass": 161, "fail": 33, "cancelled": 0, "skipped": 0 },
+          "fullAcceptancePassed": false,
+          "evidence": "docs/reviews/2026-10-10-window-controls-compact-verification.md"
+        },
+        "captionAlignmentAndCloseWeight": {
+          "date": "2026-10-10",
+          "heightDip": 32,
+          "buttonCenterDip": 16,
+          "observedOSScale": 1.5,
+          "scopedRegression": { "tests": 52, "pass": 52, "fail": 0 },
+          "core": { "tests": 1741, "pass": 1601, "fail": 125, "cancelled": 13, "skipped": 2 },
+          "browser": { "tests": 212, "pass": 184, "fail": 28, "cancelled": 0, "skipped": 0 },
+          "fullAcceptancePassed": false,
+          "evidence": "docs/reviews/2026-10-10-caption-alignment-verification.md",
+          "note": "Latest request: all three real caption rows align; close X thickened with whole-cell OS-pixel phase compensation. Latest Windows unpacked app normal/max/restore/min/fullscreen/hover/native close observed; source/main hashes recorded. Formal acceptance remains planned; installer, multiple physical DPI/monitors, full drag/Snap and business matrix not executed."
+        },
+        "captionHeaderHeightRestored": {
+          "date": "2026-10-10",
+          "headerHeightDip": 44,
+          "nativeCaptionHeightDip": 32,
+          "buttonCenterDip": 16,
+          "observedOSScale": 1.5,
+          "scopedRegression": { "tests": 52, "pass": 52, "fail": 0 },
+          "core": { "tests": 1741, "pass": 1605, "fail": 123, "cancelled": 11, "skipped": 2 },
+          "browser": { "tests": 206, "pass": 174, "fail": 32, "cancelled": 0, "skipped": 0 },
+          "fullAcceptancePassed": false,
+          "evidence": "docs/reviews/2026-10-10-caption-height-verification.md",
+          "note": "Latest user revision restores three Windows header spaces to44 DIP by12 DIP bottom padding; native32 DIP overlay and15 actual visible button/SVG rects unchanged in normal/max/restored same-fixture comparisons. Full failures/cancellations retained; NSIS install/upgrade and broader native matrices not executed."
+        },
+        "note": "2026-10-10最新要求已恢复三栏顶部空间至44 DIP，按钮位置/尺寸及32 DIP原生窗控保持不变，见captionHeaderHeightRestored。关联52/52、类型/构建/314资源及本机原生有限验证通过；完整core/browser仍有失败/取消，正式status保持planned。以前各轮证据保留为历史，不拼接为本轮原生矩阵。"
       }
     },
     {

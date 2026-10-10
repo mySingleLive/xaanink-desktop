@@ -1663,9 +1663,9 @@ export function ChatPanel({
   return (
     <div className="chatpane flex h-full flex-col bg-chat-bg" aria-busy={!canSend}>
       {/* header：标题 + 会话选择 + 关联小说指示胶囊 */}
-      <div className="desktop-drag flex h-11 shrink-0 items-center gap-2 border-b border-border px-3"
+      <div data-desktop-caption={desktopBootstrap?.platform === "win32" ? "win32" : undefined} className="desktop-drag flex h-11 shrink-0 items-center gap-2 border-b border-border px-3"
         style={desktopBootstrap?.platform === "win32" && contentHidden ? {
-          paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + 40px)`,
+          paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + ${28 / desktopBootstrap.settings.appearance.zoom}px + 12px)`,
         } : undefined}>
         {/* macOS 窗控不随网页缩放：抵消标题 .75rem 内边距，
             将恢复按钮左缘留在原生窗控右侧的 88px 安全位置。 */}

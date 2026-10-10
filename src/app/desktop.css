@@ -7,7 +7,23 @@ button, input, select, textarea, a, [role="button"], [role="tab"], [contentedita
 .desktop-control { display:flex; width:28px; height:28px; align-items:center; justify-content:center; flex-shrink:0; border-radius:6px; color:var(--muted-foreground); }
 .desktop-control:hover:not(:disabled) { background:var(--hover-wash); color:var(--foreground); }
 .desktop-control:disabled { opacity:.35; }
-.desktop-windows-menu { position:fixed; z-index:30; top:7px; right:calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), calc(138px / var(--desktop-caption-zoom, 1))) + 6px); }
+.desktop-windows-menu { position:fixed; z-index:30; top:calc(2px / var(--desktop-caption-zoom, 1)); width:calc(28px / var(--desktop-caption-zoom, 1)); height:calc(28px / var(--desktop-caption-zoom, 1)); right:calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), calc(138px / var(--desktop-caption-zoom, 1))) + 6px); }
+/* Restore the 44 DIP headers with space below the existing 32 DIP caption
+   area. Keep controls fixed, including the balanced top/bottom border. */
+[data-desktop-caption="win32"] { height:calc(44px / var(--desktop-caption-zoom, 1)); align-items:center; padding-top:0; padding-bottom:calc(12px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"].border-b { border-bottom-width:calc(1px / var(--desktop-caption-zoom, 1)); padding-top:calc(1px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"] button { width:calc(28px / var(--desktop-caption-zoom, 1)); height:calc(28px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"] svg,.desktop-windows-menu svg { width:calc(16px / var(--desktop-caption-zoom, 1)); height:calc(16px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"] > span { font-size:calc(13px / var(--desktop-caption-zoom, 1)); line-height:calc(20px / var(--desktop-caption-zoom, 1)); }
+.content-tabs > [data-desktop-caption="win32"] > button { width:calc(24px / var(--desktop-caption-zoom, 1)); height:calc(24px / var(--desktop-caption-zoom, 1)); margin-bottom:0; }
+.content-tabs > [data-desktop-caption="win32"][role="tablist"] { border-bottom-width:calc(1px / var(--desktop-caption-zoom, 1)); padding-top:calc(1px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"][role="tablist"] > div { top:0; align-items:center; }
+[data-desktop-caption="win32"] [role="tab"] { height:calc(32px / var(--desktop-caption-zoom, 1)); border-top-width:calc(1px / var(--desktop-caption-zoom, 1)); padding-bottom:calc(1px / var(--desktop-caption-zoom, 1)); font-size:calc(12.5px / var(--desktop-caption-zoom, 1)); line-height:calc(20px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"] [role="tab"] button { width:calc(15px / var(--desktop-caption-zoom, 1)); height:calc(15px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"] [role="tab"] button svg { width:calc(12px / var(--desktop-caption-zoom, 1)); height:calc(12px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"] [role="tab"] > :is(svg,img) { width:calc(14px / var(--desktop-caption-zoom, 1)); height:calc(14px / var(--desktop-caption-zoom, 1)); }
+/* Preserve the real narrow-workspace switcher while keeping captions at y=0. */
+body[data-platform="win32"] .dashboard-shell > nav[aria-label="创作工作区"] { order:1; }
 .desktop-settings { display:flex!important; gap:0!important; padding:0!important; width:min(880px,calc(100vw - 48px))!important; max-width:none!important; height:min(680px,calc(100dvh - 64px)); overflow:hidden; border:1px solid var(--border); border-radius:16px!important; box-shadow:0 30px 100px #0004,0 4px 20px #0002; }
 .desktop-settings-nav { flex:0 0 174px; padding:24px 12px; background:var(--sidebar); border-right:1px solid var(--border); }
 .desktop-settings-title { padding:0 12px 23px; font-size:1.1875rem!important; color:var(--foreground); font-weight:600; }
