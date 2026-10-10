@@ -3,27 +3,254 @@
   "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
   "status": "planned",
   "note": "Mappings are proposed local entry points, not implementation or test results.",
+  "aiCaptionDragFix": {
+    "date": "2026-10-10",
+    "scope": "Bound ContentTabs horizontal and ChatPanel vertical clipped native exclusions to stable visible hosts; preserve caption icon/first character and visible floating surfaces",
+    "status": "limited-windows-development-verified",
+    "implementation": [
+      "src/app/desktop.css",
+      "src/components/layout/useContentTabStrip.ts"
+    ],
+    "scopedRegression": {
+      "tests": 26,
+      "pass": 26,
+      "fail": 0
+    },
+    "browser": {
+      "tests": 256,
+      "pass": 256,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "evidence": "docs/evidence/ai-caption-drag/message-browser-settled.log"
+    },
+    "core": {
+      "tests": 1766,
+      "pass": 1733,
+      "fail": 30,
+      "cancelled": 1,
+      "skipped": 2
+    },
+    "nativeEvidence": "docs/reviews/2026-10-10-ai-caption-drag-verification.md",
+    "verification": "docs/reviews/2026-10-10-ai-caption-drag-verification.md",
+    "verificationReview": "docs/reviews/2026-10-10-ai-caption-drag-verification-review.md",
+    "fullAcceptancePassed": false,
+    "limitations": [
+      "First-stage user physical dragging failure retained; second-stage user confirmed original icon/first-character regions draggable after rebuild",
+      "Core 30 failures/1 cancellation/2 skips retained; no complete business/macOS/installed-package/multi-screen/DPI acceptance",
+      "Fragment-based browser fixtures do not mount full ChatPanel lifecycle; fixed tooltip/composer are declared isolated probes"
+    ],
+    "firstStage": {
+      "status": "manual-failed",
+      "browser": {
+        "tests": 253,
+        "pass": 253,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "evidence": "docs/evidence/ai-caption-drag/browser-full-settled.log"
+      },
+      "scopedRegression": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0
+      },
+      "nativeEvidence": "docs/evidence/ai-caption-drag/green/report.json"
+    },
+    "secondStage": {
+      "status": "limited-windows-development-verified",
+      "implementation": [
+        "src/app/desktop.css"
+      ],
+      "testIds": [
+        "AIDRAG-05",
+        "AIDRAG-06",
+        "AIDRAG-07",
+        "AIDRAG-WIN2"
+      ],
+      "red": {
+        "tests": 2,
+        "pass": 0,
+        "fail": 2,
+        "evidence": "docs/evidence/ai-caption-drag/message-red-final.log"
+      },
+      "floatingRed": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "evidence": "docs/evidence/ai-caption-drag/floating-red.log"
+      },
+      "scopedBrowser": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "evidence": "docs/evidence/ai-caption-drag/message-scoped-green.log"
+      },
+      "finalNewBrowser": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "evidence": "docs/evidence/ai-caption-drag/message-green-final.log"
+      },
+      "relatedUnit": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "evidence": "docs/evidence/ai-caption-drag/message-unit-related.log"
+      },
+      "independentReview": "passed; 3/3 independent tests; real JSX fragments/ThinkingRow/MentionPopup, not full ChatPanel lifecycle",
+      "browser": {
+        "tests": 256,
+        "pass": 256,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "exitCode": 0,
+        "evidence": "docs/evidence/ai-caption-drag/message-browser-settled.log"
+      },
+      "typecheck": {
+        "exitCode": 0,
+        "evidence": "docs/evidence/ai-caption-drag/message-typecheck-settled.log"
+      },
+      "build": {
+        "exitCode": 0,
+        "evidence": [
+          "docs/evidence/ai-caption-drag/message-build-ui.log",
+          "docs/evidence/ai-caption-drag/message-build-desktop.log"
+        ]
+      },
+      "buildIdentity": {
+        "sources": 6,
+        "recordedJsCssCjsFiles": 177,
+        "productResources": 176,
+        "retainedNonProductTestArtifact": 1,
+        "mismatches": 0,
+        "evidence": "docs/evidence/ai-caption-drag/message-build-identity.json"
+      },
+      "physicalWindowDrag": {
+        "status": "user-manual-passed",
+        "testId": "AIDRAG-WIN2",
+        "response": "这些位置都可以拖动",
+        "scope": "User reply after request to restart rebuilt development app, scroll populated conversation and move divider right; icon/first character/surroundings draggable",
+        "evidence": "docs/reviews/2026-10-10-ai-caption-drag-verification.md",
+        "automatedPhysicalWindowDragPassed": false
+      },
+      "firstBrowserRound": {
+        "tests": 256,
+        "pass": 255,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "exitCode": 1,
+        "evidence": "docs/evidence/ai-caption-drag/message-browser-full.log"
+      },
+      "alignmentFixture": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "evidence": "docs/evidence/ai-caption-drag/message-alignment-fixture.log"
+      }
+    },
+    "buildIdentity": {
+      "sources": 6,
+      "recordedJsCssCjsFiles": 177,
+      "productResources": 176,
+      "retainedNonProductTestArtifact": 1,
+      "mismatches": 0,
+      "evidence": "docs/evidence/ai-caption-drag/message-build-identity.json"
+    }
+  },
   "reviewModelSelectionFix": {
     "date": "2026-10-10",
     "scope": "Retained chat/SOP execution and current task review selection; additive nullable Conversation.reviewModelId and ChatAttempt.defaultsSnapshot",
     "status": "scoped-accepted",
-    "implementation": ["src/lib/services/chat-turn.ts", "desktop/handlers/chat/conversations/[id]/route.ts", "desktop/service/models.ts", "desktop/main/model-guidance.ts", "desktop/main/model-service.ts", "desktop/shared/model-task.ts", "desktop/shared/task-defaults.ts", "desktop/shared/ipc.ts", "src/components/desktop/ModelRequiredDialog.tsx", "src/components/desktop/ReviewModelSelection.tsx", "prisma/migrations/20261010090000_review_attempt_selection/migration.sql"],
+    "implementation": [
+      "src/lib/services/chat-turn.ts",
+      "desktop/handlers/chat/conversations/[id]/route.ts",
+      "desktop/service/models.ts",
+      "desktop/main/model-guidance.ts",
+      "desktop/main/model-service.ts",
+      "desktop/shared/model-task.ts",
+      "desktop/shared/task-defaults.ts",
+      "desktop/shared/ipc.ts",
+      "src/components/desktop/ModelRequiredDialog.tsx",
+      "src/components/desktop/ReviewModelSelection.tsx",
+      "prisma/migrations/20261010090000_review_attempt_selection/migration.sql"
+    ],
     "verification": "docs/reviews/2026-10-10-review-model-selection-verification.md",
     "review": "docs/reviews/2026-10-10-review-model-selection-review.md",
-    "scopedTests": {"pass": 69, "fail": 0, "cancelled": 0, "skipped": 0},
+    "scopedTests": {
+      "pass": 69,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
     "nativeEvidence": "docs/evidence/review-model-selection/target-03/windows-electron.json",
-    "limitations": ["Real provider and original user task are not automatically invoked", "Old frozen transfer bundles are rejected safely; no old-schema journal auto-recovery claim", "No full regression, macOS or installation package verification"]
+    "limitations": [
+      "Real provider and original user task are not automatically invoked",
+      "Old frozen transfer bundles are rejected safely; no old-schema journal auto-recovery claim",
+      "No full regression, macOS or installation package verification"
+    ]
   },
   "workspaceSurfacesDevelopment": {
     "date": "2026-10-10",
     "scope": "Fine structural dividers and subtle paper column backgrounds; all business migration mappings unchanged",
-    "implementation": ["src/app/desktop.css", "src/components/layout/DashboardShell.tsx", "src/components/editor/MarkdownEditor.tsx", "src/components/content/planning/planning.module.css"],
-    "scopedRegression": { "tests": 12, "pass": 12, "fail": 0 },
+    "implementation": [
+      "src/app/desktop.css",
+      "src/components/layout/DashboardShell.tsx",
+      "src/components/editor/MarkdownEditor.tsx",
+      "src/components/content/planning/planning.module.css"
+    ],
+    "scopedRegression": {
+      "tests": 12,
+      "pass": 12,
+      "fail": 0
+    },
     "nativeChecks": 39,
-    "browser": { "tests": 219, "pass": 219, "fail": 0, "cancelled": 0, "skipped": 0, "note": "Observed suite pass; backend cleanup changed after launch; affected final export 7/7 separately passed." },
-    "core": { "tests": 1746, "pass": 1697, "fail": 44, "cancelled": 3, "skipped": 2, "status": "failed normal completion; mixed source diagnostic, not final full acceptance" },
-    "previousCore": { "tests": 1741, "pass": 1605, "fail": 123, "cancelled": 11, "skipped": 2, "status": "failed runner summary with manual termination of one hung isolated worker" },
-    "windowsCompatibility": { "scope": "Shared verified directory sync policy and owned temporary cleanup; no retired features restored", "affectedRegression": { "tests": 146, "pass": 146, "fail": 0, "evidence": "docs/evidence/workspace-surfaces/directory-final-affected-acl.log" }, "exportBrowser": { "tests": 7, "pass": 7, "fail": 0, "evidence": "docs/evidence/workspace-surfaces/browser-export-sealed-final.json" } },
+    "browser": {
+      "tests": 219,
+      "pass": 219,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "note": "Observed suite pass; backend cleanup changed after launch; affected final export 7/7 separately passed."
+    },
+    "core": {
+      "tests": 1746,
+      "pass": 1697,
+      "fail": 44,
+      "cancelled": 3,
+      "skipped": 2,
+      "status": "failed normal completion; mixed source diagnostic, not final full acceptance"
+    },
+    "previousCore": {
+      "tests": 1741,
+      "pass": 1605,
+      "fail": 123,
+      "cancelled": 11,
+      "skipped": 2,
+      "status": "failed runner summary with manual termination of one hung isolated worker"
+    },
+    "windowsCompatibility": {
+      "scope": "Shared verified directory sync policy and owned temporary cleanup; no retired features restored",
+      "affectedRegression": {
+        "tests": 146,
+        "pass": 146,
+        "fail": 0,
+        "evidence": "docs/evidence/workspace-surfaces/directory-final-affected-acl.log"
+      },
+      "exportBrowser": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "evidence": "docs/evidence/workspace-surfaces/browser-export-sealed-final.json"
+      }
+    },
     "nativeEvidence": "docs/evidence/workspace-surfaces/native-local-08/windows-electron.json",
     "verification": "docs/reviews/2026-10-10-workspace-surfaces-verification.md",
     "verificationReview": "docs/reviews/2026-10-10-workspace-surfaces-verification-review.md",
@@ -33,8 +260,15 @@
   "windowControlsCompactDevelopment": {
     "date": "2026-10-10",
     "scope": "Windows native caption height and menu placement only; no business migration mappings changed",
-    "implementation": ["desktop/main/window-appearance.ts", "src/app/desktop.css"],
-    "scopedRegression": { "tests": 39, "pass": 39, "fail": 0 },
+    "implementation": [
+      "desktop/main/window-appearance.ts",
+      "src/app/desktop.css"
+    ],
+    "scopedRegression": {
+      "tests": 39,
+      "pass": 39,
+      "fail": 0
+    },
     "nativeEvidence": "docs/evidence/window-controls-compact/verification.json",
     "verification": "docs/reviews/2026-10-10-window-controls-compact-verification.md",
     "verificationReview": "docs/reviews/2026-10-10-window-controls-compact-verification-review.md",
@@ -44,10 +278,33 @@
   "windowControlsCaptionAlignmentDevelopment": {
     "date": "2026-10-10",
     "scope": "Three reused Windows caption rows and native close glyph weight; business mappings unchanged",
-    "implementation": ["desktop/main/native-close-accent.ts", "src/components/desktop/DesktopApp.tsx", "src/components/desktop/WindowControls.tsx", "src/components/layout/ChatPanel.tsx", "src/components/layout/ContentTabs.tsx", "src/app/desktop.css"],
-    "scopedRegression": { "tests": 52, "pass": 52, "fail": 0 },
-    "core": { "tests": 1741, "pass": 1601, "fail": 125, "cancelled": 13, "skipped": 2 },
-    "browser": { "tests": 212, "pass": 184, "fail": 28, "cancelled": 0, "skipped": 0 },
+    "implementation": [
+      "desktop/main/native-close-accent.ts",
+      "src/components/desktop/DesktopApp.tsx",
+      "src/components/desktop/WindowControls.tsx",
+      "src/components/layout/ChatPanel.tsx",
+      "src/components/layout/ContentTabs.tsx",
+      "src/app/desktop.css"
+    ],
+    "scopedRegression": {
+      "tests": 52,
+      "pass": 52,
+      "fail": 0
+    },
+    "core": {
+      "tests": 1741,
+      "pass": 1601,
+      "fail": 125,
+      "cancelled": 13,
+      "skipped": 2
+    },
+    "browser": {
+      "tests": 212,
+      "pass": 184,
+      "fail": 28,
+      "cancelled": 0,
+      "skipped": 0
+    },
     "nativeEvidence": "docs/evidence/caption-alignment/verification.json",
     "verification": "docs/reviews/2026-10-10-caption-alignment-verification.md",
     "verificationReview": "docs/reviews/2026-10-10-caption-alignment-verification-review.md",
@@ -57,10 +314,28 @@
   "windowControlsCaptionHeightRestoredDevelopment": {
     "date": "2026-10-10",
     "scope": "Windows three header spaces restored to44 DIP with unchanged32 DIP control area; business mappings unchanged",
-    "implementation": ["src/app/desktop.css"],
-    "scopedRegression": { "tests": 52, "pass": 52, "fail": 0 },
-    "core": { "tests": 1741, "pass": 1605, "fail": 123, "cancelled": 11, "skipped": 2 },
-    "browser": { "tests": 206, "pass": 174, "fail": 32, "cancelled": 0, "skipped": 0 },
+    "implementation": [
+      "src/app/desktop.css"
+    ],
+    "scopedRegression": {
+      "tests": 52,
+      "pass": 52,
+      "fail": 0
+    },
+    "core": {
+      "tests": 1741,
+      "pass": 1605,
+      "fail": 123,
+      "cancelled": 11,
+      "skipped": 2
+    },
+    "browser": {
+      "tests": 206,
+      "pass": 174,
+      "fail": 32,
+      "cancelled": 0,
+      "skipped": 0
+    },
     "nativeEvidence": "docs/evidence/caption-height/verification.json",
     "verification": "docs/reviews/2026-10-10-caption-height-verification.md",
     "verificationReview": "docs/reviews/2026-10-10-caption-height-verification-review.md",
@@ -71,7 +346,11 @@
     "date": "2026-10-10",
     "scope": "Scoped real novel list and unavailable work state; approved original React components retained",
     "status": "scoped-accepted",
-    "scopedTests": { "tests": 68, "pass": 68, "fail": 0 },
+    "scopedTests": {
+      "tests": 68,
+      "pass": 68,
+      "fail": 0
+    },
     "nativeEvidence": "docs/evidence/works-loading/target-03/windows-electron.json",
     "nativeChecks": 12,
     "verification": "docs/reviews/2026-10-10-works-loading-verification.md",
@@ -87,10 +366,20 @@
     "productDesign": "docs/reviews/2026-10-10-content-tabs-product-design.md",
     "uiPreview": "design/content-tabs/index.html",
     "uiRevision": "ink-xy-v4; brighter grey ink selected tabs and XY pointer-following drag; 6 DIP rounded rectangles, default arrow, mouse reorder, equal top/bottom clearance and no red accent edge retained",
-    "implementation": ["src/components/layout/ContentTabs.tsx", "src/components/layout/useContentTabStrip.ts", "src/stores/tabs.ts", "src/app/desktop.css", "src/components/desktop/DesktopCommandController.tsx"],
+    "implementation": [
+      "src/components/layout/ContentTabs.tsx",
+      "src/components/layout/useContentTabStrip.ts",
+      "src/stores/tabs.ts",
+      "src/app/desktop.css",
+      "src/components/desktop/DesktopCommandController.tsx"
+    ],
     "verification": "docs/reviews/2026-10-10-content-tabs-verification.md",
     "nativeEvidence": "docs/evidence/content-tabs/target-06-electron/windows-electron.json",
-    "scopedRegression": { "tests": 45, "pass": 45, "fail": 0 },
+    "scopedRegression": {
+      "tests": 45,
+      "pass": 45,
+      "fail": 0
+    },
     "scopedAcceptancePassed": true,
     "note": "ink-xy-v4 approved 2026-10-10; independent technical/test/code review, 45 scoped tests and actual final Windows Electron verification passed. Real Tabs/29-panel map/key/hidden retained. Synthetic isolated input/data; no full regression, physical OS, macOS or installer acceptance. No business migration statuses changed."
   },

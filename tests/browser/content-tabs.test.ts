@@ -31,7 +31,8 @@ async function approvedGeometry(page: Page, zoom: number, theme: "paper" | "ink"
   assert.equal(g.shadow, "none"); assert.equal(g.cursor, "default"); assert.equal(g.allDefault, true)
   assert(g.widths.every(w => w <= 208 / zoom + .15 && w <= g.viewportWidth + .15))
   assert.equal(g.line.bottom, "0px"); assert.notEqual(g.line.content, "none"); assert(parseFloat(g.line.height) > 0)
-  assert.equal(g.region, "drag"); assert.equal(g.tabRegion, "no-drag")
+  assert.equal(g.region, "drag"); assert.equal(g.tabRegion, "none")
+  assert.equal(await page.locator('.content-tabs-viewport').evaluate(el => getComputedStyle(el).getPropertyValue('-webkit-app-region')), "no-drag")
   for (const control of g.controls) { near(control.center * zoom, 16, "control center DIP"); near(control.width * zoom, 24, "control size DIP"); assert(control.right <= g.paneRight - g.paddingRight + .2) }
   if (theme === "paper") assert.equal(g.background, g.bodyBackground)
   else { assert.equal(g.background, "rgb(42, 40, 38)"); assert.equal(g.border, "rgb(75, 70, 64)"); assert.notEqual(g.background, g.bodyBackground) }

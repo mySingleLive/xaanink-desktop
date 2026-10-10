@@ -20,12 +20,15 @@ function visit(node: ts.Node) {
   ts.forEachChild(node, visit)
 }
 visit(source); assert(header)
+// Keep the real caption a direct child of chatpane, as in ChatPanel. A
+// display:contents wrapper changes app-region scope despite identical geometry.
+assert(header.startsWith('<div ')); header = header.replace(/^<div /, '<div id="chat-header" ')
 const cssPath = resolve("src/app/globals.css")
 const stylesheet = postcss([tailwindcss()]).process(readFileSync(cssPath, "utf8"), { from: cssPath }).then(r => r.css + "\n" + readFileSync("src/app/desktop.css", "utf8"))
 const chat = `import React from 'react';import {PanelLeft,PanelRight,MessageSquare} from 'lucide-react';import {useDesktopStore} from './src/stores/desktop';
 export function ChatPanel({sidebarHidden=true,contentHidden=true,onShowSidebar,onShowContent}) {
  const desktopBootstrap=useDesktopStore(s=>s.bootstrap),messages=[{id:'isolated'}],currentConversation={title:'隔离会话'};
- return <div className='chatpane flex h-full flex-col'><div id='chat-header' className='contents'>${header}</div><div data-chat-body>正文夹具</div></div>;
+ return <div className='chatpane flex h-full flex-col'>${header}<div data-chat-body>正文夹具</div></div>;
 }`
 const sidebar = `import React from 'react';import {SidebarWindowControls} from './src/components/desktop/WindowControls';
 export function SidebarTree({onToggleSidebar}){return <><SidebarWindowControls onToggleSidebar={onToggleSidebar}/><div data-sidebar-body>目录夹具</div></>}`
@@ -92,7 +95,7 @@ test("ALIGN-01 HEIGHT-01 real Windows headers share 44 DIP while every top butto
   for (const zoom of [.75, 1, 1.25, 1.5, 2]) for (const font of [11, 14, 24]) for (const count of [0, 1, 8])
     await scenario("win32", zoom, font, count, false, 1440, async page => {
       const total = await aligned(page, zoom, controls); assert(total >= 14)
-      const heights = await page.locator(".desktop-sidebar-controls,#chat-header > div,.content-tabs > .desktop-drag").evaluateAll(els => els.map(el => el.getBoundingClientRect().height))
+      const heights = await page.locator(".desktop-sidebar-controls,#chat-header,.content-tabs > .desktop-drag").evaluateAll(els => els.map(el => el.getBoundingClientRect().height))
       assert.equal(heights.length, 3); assert(heights.every(h => Math.abs(h * zoom - 44) < .1), `Header height: ${JSON.stringify({ heights, zoom })}`)
       const bodyTops = await page.locator('[data-chat-body],.content-tabs > .min-h-0').evaluateAll(els => els.map(el => el.getBoundingClientRect().top))
       assert.equal(bodyTops.length, 2); assert(bodyTops.every(top => Math.abs(top * zoom - 44) < .1), `Body starts before header bottom: ${JSON.stringify({ bodyTops, zoom })}`)
@@ -127,6 +130,6 @@ test("ALIGN-03 aligned controls retain navigation, menu, fullscreen, panel hide 
   assert(regions.every(r => r === "no-drag"))
 }))
 for (const platform of [null, "darwin"] as const) test(`ALIGN-04 ${platform ?? "Web"} retains original 44 CSS px rows`, () => scenario(platform, 1, 14, 0, false, 1440, async page => {
-  const heights = await page.locator(".desktop-sidebar-controls,#chat-header > div,.content-tabs > .desktop-drag").evaluateAll(els => els.map(el => el.getBoundingClientRect().height))
+  const heights = await page.locator(".desktop-sidebar-controls,#chat-header,.content-tabs > .desktop-drag").evaluateAll(els => els.map(el => el.getBoundingClientRect().height))
   assert.deepEqual(heights, [44, 44, 44]); assert.equal(await page.locator("[data-desktop-menu-button]").count(), 0)
 }))

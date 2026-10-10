@@ -154,6 +154,9 @@ test("EMPTY-05 populated rail retains existing controls; closing last tab expose
 }))
 
 async function railSafe(page: Page, zoom: number, caption = 0) {
+  // Appearance and overlay changes settle through ResizeObserver, a measured
+  // frame and React's tool update; inspect one committed layout snapshot.
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))))
   const g = await page.getByRole("tablist").evaluate(el => {
     const header = el.closest<HTMLElement>(".desktop-drag")!, h = header.getBoundingClientRect(), p = header.closest(".content-tabs")!.getBoundingClientRect(), s = getComputedStyle(header)
     const controls = [...header.querySelectorAll<HTMLButtonElement>('button[aria-label="进入全屏"],button[aria-label="显示 / 隐藏内容面板"]')].map(button => {
@@ -161,10 +164,12 @@ async function railSafe(page: Page, zoom: number, caption = 0) {
       return { x: b.x, right: b.right, y: b.y, bottom: b.bottom, width: b.width, margin: parseFloat(style.marginLeft) + parseFloat(style.marginRight) }
     })
     const menu = document.querySelector("[data-desktop-menu-button]")!.getBoundingClientRect()
-    return { controls, compact: header.querySelector('.content-tabs-tools')?.getAttribute('data-compact') === 'true', width: h.width, left: p.left, right: p.right, padding: parseFloat(s.paddingLeft) + parseFloat(s.paddingRight), menu: { x: menu.x, right: menu.right }, viewport: innerWidth }
+    const overflowMenu = header.querySelector<HTMLButtonElement>('button[aria-label="所有标签"]'), overflowRect = overflowMenu?.getBoundingClientRect()
+    const overflowVisible = !!overflowMenu && !!overflowRect?.width && !!overflowRect.height && getComputedStyle(overflowMenu).visibility === 'visible'
+    return { controls, compact: header.querySelector('.content-tabs-tools')?.getAttribute('data-compact') === 'true', overflowVisible, width: h.width, left: p.left, right: p.right, padding: parseFloat(s.paddingLeft) + parseFloat(s.paddingRight), menu: { x: menu.x, right: menu.right }, viewport: innerWidth }
   })
   assert.equal(g.controls.length, g.compact ? 0 : 2)
-  if (g.compact) assert(await page.getByRole("button", { name: "所有标签", exact: true }).isVisible(), "Compact caption keeps all panel actions in its menu")
+  if (g.compact) assert(g.overflowVisible, "Compact caption keeps all panel actions in its menu")
   const nativeLeft = g.viewport - Math.max(caption, 138 / zoom)
   assert(g.menu.right <= nativeLeft - 5.9)
   for (const b of g.controls) assert(b.right <= g.menu.x - 5.9, `Populated rail enters menu/caption: ${JSON.stringify({ g, zoom, caption })}`)

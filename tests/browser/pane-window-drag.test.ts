@@ -84,14 +84,19 @@ test("DRAG-01 empty right pane and actual AI title align with sidebar and only t
 }))
 
 test("DRAG-02 tab rail blank space drags; tabs, icons, labels and pane controls remain interactive", () => scenario(3, async page => {
-  assert.equal(await region(page, '[role="tablist"]'), "drag")
-  for (const tab of await page.getByRole("tab").all()) assert.equal(await tab.evaluate(el => getComputedStyle(el).getPropertyValue("-webkit-app-region")), "no-drag")
+  assert.equal(await region(page, '.content-tabs-caption'), "drag")
+  assert.equal(await region(page, '[role="tablist"]'), "no-drag")
+  for (const tab of await page.getByRole("tab").all()) assert.equal(await tab.evaluate(el => getComputedStyle(el).getPropertyValue("-webkit-app-region")), "none")
   assert(await excluded(page, '[role="tab"]:first-child span'))
   assert(await excluded(page, '[role="tab"]:first-child > svg'))
-  for (const button of await page.locator('[role="tablist"] button').all()) assert.equal(await button.evaluate(el => getComputedStyle(el).getPropertyValue("-webkit-app-region")), "no-drag")
+  for (const button of await page.locator('[role="tablist"] button').all()) assert(await button.evaluate(el => getComputedStyle(el).getPropertyValue("-webkit-app-region") === "none" && getComputedStyle(el.closest('[role="tablist"]')!).getPropertyValue("-webkit-app-region") === "no-drag"))
   await page.getByRole("tab", { name: "验收面板 1", exact: true }).click()
   assert.equal(await page.getByRole("tab", { name: "验收面板 1", exact: true }).getAttribute("aria-selected"), "true")
   await page.getByRole("tab", { name: "验收面板 2", exact: true }).press("Enter")
+  assert.equal(await page.getByRole("tab", { name: "验收面板 2", exact: true }).getAttribute("aria-selected"), "true")
+  // Reveal the inactive tab before its close button is pressed; focus itself
+  // must keep the selected panel unchanged.
+  await page.getByRole("tab", { name: "验收面板 0", exact: true }).focus()
   assert.equal(await page.getByRole("tab", { name: "验收面板 2", exact: true }).getAttribute("aria-selected"), "true")
   await page.getByRole("button", { name: "关闭 验收面板 0", exact: true }).click()
   assert.equal(await page.getByRole("tab", { name: "验收面板 2", exact: true }).getAttribute("aria-selected"), "true")
@@ -107,10 +112,11 @@ test("DRAG-02 tab rail blank space drags; tabs, icons, labels and pane controls 
 }))
 
 test("DRAG-03 overflowing tabs preserve scroll and active tab reveal", () => scenario(14, async page => {
-  const scroller = page.locator('[role="tablist"] > div:first-child')
+  const scroller = page.locator('[role="tablist"]')
   assert(await scroller.evaluate(el => el.scrollWidth > el.clientWidth))
   await page.evaluate(() => (window as any).fixture.state().activateTab("tab-13"))
-  await page.waitForFunction(() => { const tab = document.querySelector('[role="tab"][aria-selected="true"]')!, parent = tab.parentElement!, r = tab.getBoundingClientRect(), p = parent.getBoundingClientRect(); return r.left >= p.left - 1 && r.right <= p.right + 1 })
-  assert.equal(await region(page, '[role="tablist"]'), "drag")
+  await page.waitForFunction(() => { const tab = document.querySelector('[role="tab"][aria-selected="true"]')!, parent = tab.closest('[role="tablist"]')!, r = tab.getBoundingClientRect(), p = parent.getBoundingClientRect(); return r.left >= p.left - 1 && r.right <= p.right + 1 })
+  assert.equal(await region(page, '.content-tabs-caption'), "drag")
+  assert.equal(await region(page, '[role="tablist"]'), "no-drag")
   assert.equal(await region(page, ".content-tabs > div:last-child"), "none")
 }))

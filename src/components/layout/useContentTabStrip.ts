@@ -127,7 +127,10 @@ export function useContentTabStrip(tabs: Tab[], activeId: string | null, moveTab
     const baseWidth = Math.max(0, available - size * 2 - gap - captionGap)
     const overflow = tabs.length > 0 && (tight || track.scrollWidth > baseWidth + 1)
     setCompact(tight); setHasOverflow(overflow)
-    viewport.style.setProperty("--content-tabs-viewport-width", `${viewport.clientWidth}px`)
+    // Capacity comes from the caption, not this intrinsic-width viewport: using
+    // its previous narrow width here would prevent a single tab expanding again.
+    const capacity = Math.max(0, available - tools.getBoundingClientRect().width - captionGap)
+    viewport.style.setProperty("--content-tabs-viewport-width", `${capacity}px`)
     track.querySelectorAll<HTMLElement>(".content-tab-title").forEach(el => { el.dataset.overflow = String(el.scrollWidth > el.clientWidth + 1) })
     if (drag.current?.started) updateDrag()
     else reveal(document.activeElement?.closest<HTMLElement>(".content-tab")?.closest(".content-tabs-track") === track ? document.activeElement.closest<HTMLElement>(".content-tab")! : track.querySelector<HTMLElement>('[aria-selected="true"]') ?? undefined)

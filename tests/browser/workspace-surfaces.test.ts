@@ -163,7 +163,7 @@ async function equalLines(page: Page, zoom: number) {
     assert(Math.abs(s.rectWidth - reference.stroke * zoom) < .03, "Only the border occupies the divider width")
     assert(Math.abs(s.leftGap) < .03 && Math.abs(s.rightGap) < .03, "Adjacent panels must touch the border without a bright gutter")
   }
-  for (const [selector, side] of [["[data-chat-header] > div", "bottom"], ["[data-sidebar-account]", "top"], ['[role="tablist"]', "bottom"], ["[data-probe-horizontal]", "top"], ["[data-probe-vertical]", "left"], ["[data-probe-hr]", "top"], ["[data-outside-settings]", "right"], ["[data-split-probe] > :nth-child(2)", "left"]] as const) {
+  for (const [selector, side] of [["[data-chat-header] > div", "bottom"], ["[data-sidebar-account]", "top"], ["[data-probe-horizontal]", "top"], ["[data-probe-vertical]", "left"], ["[data-probe-hr]", "top"], ["[data-outside-settings]", "right"], ["[data-split-probe] > :nth-child(2)", "left"]] as const) {
     const s = await line(page, selector, side)
     assert(Math.abs(s.stroke - reference.stroke) < .02, `${selector} must match ordinary UI border thickness: ${JSON.stringify(s)}`)
     assert.equal(s.color, paper.border, selector); assert.equal(s.style, "solid", selector)
@@ -172,6 +172,15 @@ async function equalLines(page: Page, zoom: number) {
       assert.equal(side === "left" ? s.width : s.height, 0, `${selector} must have only a border, with zero content size`)
     }
   }
+  // The approved rectangular tab strip paints its divider with ::after; the
+  // role=tablist is now the inner scroll viewport, not the caption border.
+  const captionLine = await page.locator('.content-tabs-caption').evaluate(el => {
+    const s = getComputedStyle(el, '::after')
+    return { content: s.content, height: s.height, bottom: s.bottom, left: s.left, right: s.right, color: s.backgroundColor }
+  })
+  assert.notEqual(captionLine.content, 'none')
+  assert.equal(captionLine.height, '1px'); assert.equal(captionLine.bottom, '0px')
+  assert.equal(captionLine.left, '0px'); assert.equal(captionLine.right, '0px'); assert.equal(captionLine.color, paper.border)
   const split = await page.locator('[data-split-probe]').evaluate(el => {
     const [editor, divider, preview] = Array.from(el.children).map(child => child.getBoundingClientRect())
     return { editorWidth: editor.width, previewWidth: preview.width, dividerWidth: divider.width, leftGap: divider.left - editor.right, rightGap: preview.left - divider.right }
@@ -184,8 +193,8 @@ async function equalLines(page: Page, zoom: number) {
 
 test("SURF-01 approved fixed paper colors and surface scopes preserve global and AI-editor backgrounds", () => scenario({}, async page => {
   assert.deepEqual(await panelColors(page), [paper.sidebar, paper.chat, paper.content])
-  const backgrounds = await Promise.all(['[data-ai-surface]', '[role="tablist"]', '[data-ordinary]', '[data-planning]', '[data-scenario]', '[data-content-editor]', '[data-content-editor] .monaco-editor-background', '[data-content-editor] .margin', '[data-ai-editor]', '[data-ai-editor] .monaco-editor-background', '[data-ai-editor] .margin', '[data-outside-settings]', '[data-outside-planning]'].map(selector => page.locator(selector).evaluate(el => getComputedStyle(el).backgroundColor)))
-  assert.deepEqual(backgrounds, ["rgb(252, 248, 238)", paper.content, paper.content, paper.content, paper.content, paper.content, paper.content, paper.content, "rgb(249, 244, 228)", "rgb(249, 244, 228)", "rgb(249, 244, 228)", "rgb(239, 230, 207)", "rgb(244, 237, 218)"])
+  const backgrounds = await Promise.all(['[data-ai-surface]', '.content-tabs-caption', '[role="tablist"]', '.content-tab[data-active="true"]', '[data-ordinary]', '[data-planning]', '[data-scenario]', '[data-content-editor]', '[data-content-editor] .monaco-editor-background', '[data-content-editor] .margin', '[data-ai-editor]', '[data-ai-editor] .monaco-editor-background', '[data-ai-editor] .margin', '[data-outside-settings]', '[data-outside-planning]'].map(selector => page.locator(selector).evaluate(el => getComputedStyle(el).backgroundColor)))
+  assert.deepEqual(backgrounds, ["rgb(252, 248, 238)", paper.sidebar, "rgba(0, 0, 0, 0)", paper.content, paper.content, paper.content, paper.content, paper.content, paper.content, paper.content, "rgb(249, 244, 228)", "rgb(249, 244, 228)", "rgb(249, 244, 228)", "rgb(239, 230, 207)", "rgb(244, 237, 218)"])
   const tokens = await page.locator("html").evaluate(el => { const s = getComputedStyle(el); return [s.getPropertyValue("--background").trim(), s.getPropertyValue("--border").trim(), s.getPropertyValue("--editor-bg").trim()] })
   assert.deepEqual(tokens, ["#f4edda", "#d8cba6", "#f9f4e4"])
 }))
@@ -206,9 +215,10 @@ test("SURF-02/03 DPR × CSS zoom representatives keep border-only panel adjacenc
     const font = fonts[(dprIndex + zoomIndex) % fonts.length]
     await scenario({ dpr, zoom, font }, async page => {
       await equalLines(page, zoom)
-      const rows = await page.locator('.desktop-sidebar-controls,[data-chat-header] > div,[role="tablist"]').evaluateAll(els => els.map(el => el.getBoundingClientRect().height))
+      const rows = await page.locator('.desktop-sidebar-controls,[data-chat-header] > div,.content-tabs-caption').evaluateAll(els => els.map(el => el.getBoundingClientRect().height))
       assert.equal(rows.length, 3); assert(rows.every(h => Math.abs(h - 44) < .12), `44 DIP caption approximation: ${JSON.stringify({ rows, zoom, dpr, font })}`)
-      const controls = await page.locator('.desktop-sidebar-controls button,[data-chat-header] > div > button,[role="tablist"] > button').evaluateAll(els => els.map(el => { const r = el.getBoundingClientRect(); return { center: r.top + r.height / 2, width: r.width, height: r.height, content: !!el.closest(".content-tabs") } }))
+      const controls = await page.locator('.desktop-sidebar-controls button,[data-chat-header] > div > button,.content-tabs-tools > button').evaluateAll(els => els.map(el => { const r = el.getBoundingClientRect(); return { center: r.top + r.height / 2, width: r.width, height: r.height, content: !!el.closest(".content-tabs") } }))
+      assert.equal(controls.filter(r => r.content).length, 2, "Both actual content caption tools are checked")
       for (const r of controls) {
         assert(Math.abs(r.center - 16) <= .65, `Original control center: ${JSON.stringify({ r, zoom, dpr, font })}`)
         assert(Math.abs(r.width - (r.content ? 24 : 28)) < .12 && Math.abs(r.height - (r.content ? 24 : 28)) < .12, "Original caption control dimensions")
