@@ -345,7 +345,7 @@ export function MarkdownEditor({
           "grid min-h-0 flex-1",
           /* minmax(0,1fr) 不可省：裸 1fr = minmax(auto,1fr)，Monaco 布局引擎会给自身写内联像素宽，
              从「编辑」全宽切到分屏时该宽度成为首列 auto 最小值、吃满全部空间，预览列被挤成 0px */
-          mode === "split" && "grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)]"
+          mode === "split" && "desktop-markdown-split grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)]"
         )}
       >
         {mode !== "preview" && (
@@ -377,7 +377,7 @@ export function MarkdownEditor({
             }}
           />
         )}
-        {mode === "split" && <div className="bg-border" />}
+        {mode === "split" && <div className="desktop-markdown-divider bg-border" />}
         {mode !== "edit" && (
           <div ref={previewRef} tabIndex={-1} className="min-h-0 min-w-0">
             {commentsTarget || foreshadowTarget ? (

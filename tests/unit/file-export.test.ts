@@ -1,7 +1,8 @@
 import assert from "node:assert/strict"
 import { test } from "node:test"
 import { mkdtemp, readFile, writeFile, rm, readdir, mkdir, symlink, link, unlink, realpath, chmod } from "node:fs/promises"
-import { join } from "node:path"
+import { join, isAbsolute, dirname, basename } from "node:path"
+import { execFileSync } from "node:child_process"
 import { tmpdir } from "node:os"
 import { randomUUID, createHash } from "node:crypto"
 import fs from "node:fs/promises"
@@ -84,9 +85,18 @@ test("EX16-14 the validated source bytes are immutable while the native picker i
   const pending = service.save("owner", source); source.bytes.fill(0); gate.resolve(path); assert.equal((await pending).status, "saved"); assert.equal(await readFile(path, "utf8"), "original")
 }))
 test("EX16-15 a real read-only selected directory fails without truncating an existing document", () => fixture(async root => {
-  const path = join(root, "old.md"); await writeFile(path, "keep"); await chmod(root, 0o500)
-  try { const result = await new FileExports(options(path)).save("owner", request()); assert.equal(result.status, "failed"); if (result.status === "failed") assert.equal(result.code, "EXPORT_WRITE_FAILED"); assert.equal(await readFile(path, "utf8"), "keep"); assert.deepEqual(await readdir(root), ["old.md"]) }
-  finally { await chmod(root, 0o700) }
+  const path = join(root, "old.md"); await writeFile(path, "keep"); let sid: string | undefined
+  try {
+    if (process.platform === "win32") {
+      // chmod does not deny Windows directory creation. Restrict only this
+      // newly created fixture; the original file and all assertions stay real.
+      assert.ok(isAbsolute(root) && basename(root).startsWith("xuanxiang-export16-")); assert.equal(await realpath(dirname(root)), await realpath(tmpdir()))
+      sid = execFileSync("whoami.exe", ["/user", "/fo", "csv", "/nh"], { encoding: "utf8", windowsHide: true }).match(/S-1-\d+(?:-\d+)+/)?.[0]; assert.ok(sid)
+      execFileSync("icacls.exe", [root, "/deny", `*${sid}:(WD,AD)`], { windowsHide: true })
+      await assert.rejects(async () => { const probe = await fs.open(join(root, "permission-probe"), "wx"); await probe.close() }, (error: NodeJS.ErrnoException) => ["EACCES", "EPERM"].includes(error.code ?? ""))
+    } else await chmod(root, 0o500)
+    const result = await new FileExports(options(path)).save("owner", request()); assert.equal(result.status, "failed"); if (result.status === "failed") assert.equal(result.code, "EXPORT_WRITE_FAILED"); assert.equal(await readFile(path, "utf8"), "keep"); assert.deepEqual(await readdir(root), ["old.md"])
+  } finally { if (sid) execFileSync("icacls.exe", [root, "/remove:d", `*${sid}`], { windowsHide: true }); else if (process.platform !== "win32") await chmod(root, 0o700) }
 }))
 test("EX16-11 cancelled physical writes still consume the bounded pending budget until actual completion", () => fixture(async root => {
   const gate = Promise.withResolvers<void>(), flights: Promise<unknown>[] = []; let entered = 0, selections = 0

@@ -11,12 +11,12 @@ button, input, select, textarea, a, [role="button"], [role="tab"], [contentedita
 /* Restore the 44 DIP headers with space below the existing 32 DIP caption
    area. Keep controls fixed, including the balanced top/bottom border. */
 [data-desktop-caption="win32"] { height:calc(44px / var(--desktop-caption-zoom, 1)); align-items:center; padding-top:0; padding-bottom:calc(12px / var(--desktop-caption-zoom, 1)); }
-[data-desktop-caption="win32"].border-b { border-bottom-width:calc(1px / var(--desktop-caption-zoom, 1)); padding-top:calc(1px / var(--desktop-caption-zoom, 1)); }
+[data-desktop-caption="win32"].border-b { border-bottom-width:1px; padding-top:1px; }
 [data-desktop-caption="win32"] button { width:calc(28px / var(--desktop-caption-zoom, 1)); height:calc(28px / var(--desktop-caption-zoom, 1)); }
 [data-desktop-caption="win32"] svg,.desktop-windows-menu svg { width:calc(16px / var(--desktop-caption-zoom, 1)); height:calc(16px / var(--desktop-caption-zoom, 1)); }
 [data-desktop-caption="win32"] > span { font-size:calc(13px / var(--desktop-caption-zoom, 1)); line-height:calc(20px / var(--desktop-caption-zoom, 1)); }
 .content-tabs > [data-desktop-caption="win32"] > button { width:calc(24px / var(--desktop-caption-zoom, 1)); height:calc(24px / var(--desktop-caption-zoom, 1)); margin-bottom:0; }
-.content-tabs > [data-desktop-caption="win32"][role="tablist"] { border-bottom-width:calc(1px / var(--desktop-caption-zoom, 1)); padding-top:calc(1px / var(--desktop-caption-zoom, 1)); }
+.content-tabs > [data-desktop-caption="win32"][role="tablist"] { border-bottom-width:1px; padding-top:1px; }
 [data-desktop-caption="win32"][role="tablist"] > div { top:0; align-items:center; }
 [data-desktop-caption="win32"] [role="tab"] { height:calc(32px / var(--desktop-caption-zoom, 1)); border-top-width:calc(1px / var(--desktop-caption-zoom, 1)); padding-bottom:calc(1px / var(--desktop-caption-zoom, 1)); font-size:calc(12.5px / var(--desktop-caption-zoom, 1)); line-height:calc(20px / var(--desktop-caption-zoom, 1)); }
 [data-desktop-caption="win32"] [role="tab"] button { width:calc(15px / var(--desktop-caption-zoom, 1)); height:calc(15px / var(--desktop-caption-zoom, 1)); }
@@ -24,6 +24,23 @@ button, input, select, textarea, a, [role="button"], [role="tab"], [contentedita
 [data-desktop-caption="win32"] [role="tab"] > :is(svg,img) { width:calc(14px / var(--desktop-caption-zoom, 1)); height:calc(14px / var(--desktop-caption-zoom, 1)); }
 /* Preserve the real narrow-workspace switcher while keeping captions at y=0. */
 body[data-platform="win32"] .dashboard-shell > nav[aria-label="创作工作区"] { order:1; }
+/* Paper workspace surfaces approved in UI v3. Keep global form/theme tokens
+   and AI editor instances independent of the right content surface. */
+.paper .workspace-sidebar { --sidebar:#f5eedc; --sidebar-border:var(--border); }
+.paper .workspace-chat .chatpane { --chat-bg:#faf6e8; --chat-surface:#fcf8ee; --chat-overlay:#fefcf4; }
+.paper .workspace-content { --workspace-content-bg:#f8f3e4; --editor-bg:var(--workspace-content-bg); --sidebar:var(--workspace-content-bg); --sidebar-border:var(--border); }
+.paper .workspace-content .scpane { --chat-bg:var(--workspace-content-bg); }
+.paper .workspace-content .scene-workspace { background:var(--workspace-content-bg); }
+.paper .workspace-content .monaco-editor { --vscode-editor-background:var(--workspace-content-bg); --vscode-editorGutter-background:var(--workspace-content-bg); }
+/* Paint structural separators as the same border stroke as section dividers.
+   A filled 1px strip and a border can snap differently at fractional DPR. */
+.workspace-resize-handle { width:0; min-width:0; box-sizing:content-box; background:none; border:0; border-left:1px solid var(--border); }
+.workspace-resize-handle[data-separator="hover"],.workspace-resize-handle[data-separator="active"] { border-left-color:color-mix(in srgb,var(--primary) 40%,var(--border)); }
+:is([data-slot="dropdown-menu-separator"],[data-slot="select-separator"],[data-slot="separator"]:not([data-vertical]):not([data-orientation="vertical"])) { height:0; min-height:0; box-sizing:content-box; background:none; border:0; border-top:1px solid var(--border); }
+[data-slot="separator"]:is([data-vertical],[data-orientation="vertical"]) { width:0; min-width:0; box-sizing:content-box; background:none; border:0; border-left:1px solid var(--border); }
+.markdown-body hr { height:0; min-height:0; box-sizing:content-box; background:none; border:0; border-top:1px solid var(--border); }
+.desktop-markdown-editor .desktop-markdown-split { grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); }
+.desktop-markdown-divider { width:0; min-width:0; box-sizing:content-box; background:none; border-left:1px solid var(--border); }
 .desktop-settings { display:flex!important; gap:0!important; padding:0!important; width:min(880px,calc(100vw - 48px))!important; max-width:none!important; height:min(680px,calc(100dvh - 64px)); overflow:hidden; border:1px solid var(--border); border-radius:16px!important; box-shadow:0 30px 100px #0004,0 4px 20px #0002; }
 .desktop-settings-nav { flex:0 0 174px; padding:24px 12px; background:var(--sidebar); border-right:1px solid var(--border); }
 .desktop-settings-title { padding:0 12px 23px; font-size:1.1875rem!important; color:var(--foreground); font-weight:600; }

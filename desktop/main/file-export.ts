@@ -1,11 +1,12 @@
 import { randomUUID, createHash } from "node:crypto"
-import { constants, type BigIntStats } from "node:fs"
-import { open, lstat, realpath, rename, unlink } from "node:fs/promises"
+import { constants, lstatSync, realpathSync, unlinkSync, type BigIntStats } from "node:fs"
+import { open, lstat, realpath, rename } from "node:fs/promises"
 import { basename, dirname, isAbsolute, join } from "node:path"
 import { fileExportRequestSchema, exportExtensions, type FileExportFormat, type FileExportResult, type FileExportRequest, type FileExportFailure } from "../shared/file-export"
 import {validateDraftSnapshot} from "./draft-journal"
 import {z} from "zod"
 import { templateDocumentSchema } from "../shared/template-library"
+import { syncOwnedDirectory } from "../core/directory-sync"
 export interface FileExportOptions {
   assertOwner(owner: string): void
   chooseSave(owner: string, input: { filename: string; format: FileExportFormat; extension: string }): Promise<string | null>
@@ -77,7 +78,7 @@ export class FileExports {
   async flush() { for (;;) { const pending = [...this.pending]; if (!pending.length) return; await Promise.allSettled(pending) } }
   private async protect(path: string) { try { await this.options.guardTarget(path) } catch { throw new ExportError("EXPORT_TARGET_PROTECTED") } }
   private async run(operation: Operation, request: FileExportRequest): Promise<FileExportResult> {
-    let temporary: string | undefined, owned: BigIntStats | undefined, committed = false
+    let temporary: string | undefined, owned: BigIntStats | undefined, ownedDirectory: { path: string; info: BigIntStats } | undefined, committed = false
     try {
       this.active(operation)
       const selected = await Promise.race([this.options.chooseSave(operation.owner, { filename: request.filename, format: request.format, extension: exportExtensions[request.format] }), operation.stopped.promise.then(() => { throw new ExportCancelled() })])
@@ -94,8 +95,9 @@ export class FileExports {
       }
       await this.protect(path); await guard(); this.active(operation)
       temporary = join(canonical, `.${randomUUID()}.tmp`)
+      ownedDirectory = { path: canonical, info }
       const handle = await open(temporary, "wx", 0o600)
-      try { owned = await handle.stat({ bigint: true }); await handle.writeFile(request.bytes); await handle.sync(); owned = await handle.stat({ bigint: true }) } finally { await handle.close() }
+      try { owned = await handle.stat({ bigint: true }); await handle.writeFile(request.bytes); owned = await handle.stat({ bigint: true }); await handle.sync(); owned = await handle.stat({ bigint: true }) } finally { await handle.close() }
       await this.options.beforeRename?.()
       const temp = await lstat(temporary, { bigint: true })
       if (!temp.isFile() || temp.nlink !== 1n || !sameRevision(temp, owned)) throw new ExportError("EXPORT_TARGET_CHANGED")
@@ -106,18 +108,7 @@ export class FileExports {
       this.active(operation)
       await rename(temporary, path); committed = true
       await this.options.beforeDirectorySync?.()
-      // Attempt on every OS. Only a verified Windows unsupported operation is
-      // exempt; permissions, missing paths and genuine IO errors forbid ACK.
-      let phase: "open" | "stat" | "sync" | "close" = "open"
-      try {
-        const directory = await open(canonical, "r")
-        try { phase = "stat"; const directoryInfo = await directory.stat({ bigint: true }); if (!directoryInfo.isDirectory() || !sameIdentity(directoryInfo, info)) throw new ExportError("EXPORT_TARGET_CHANGED"); phase = "sync"; await directory.sync() }
-        finally { const previous = phase; phase = "close"; await directory.close(); phase = previous }
-      } catch (error) {
-        const code = (error as NodeJS.ErrnoException).code
-        const unsupported = (phase === "open" && code === "EISDIR") || ((phase === "open" || phase === "sync") && ["ENOTSUP", "EOPNOTSUPP", "ENOSYS"].includes(code ?? "")) || (phase === "sync" && code === "EINVAL")
-        if ((this.options.platform ?? process.platform) !== "win32" || !unsupported) throw error
-      }
+      await syncOwnedDirectory({ path: canonical, device: String(info.dev), inode: String(info.ino) }, this.options.platform ?? process.platform)
       await this.protect(path)
       const afterParent = await lstat(parent, { bigint: true })
       if (!afterParent.isDirectory() || !sameIdentity(afterParent, info) || await realpath(parent) !== canonical) throw new ExportError("EXPORT_TARGET_CHANGED")
@@ -134,8 +125,18 @@ export class FileExports {
       if (error instanceof ExportCancelled) return { id: request.id, status: "cancelled" }
       return { id: request.id, status: "failed", code: error instanceof ExportError ? error.code : "EXPORT_WRITE_FAILED" }
     } finally {
-      if (temporary && owned && !committed) {
-        try { const current = await lstat(temporary, { bigint: true }); if (current.isFile() && sameRevision(current, owned)) await unlink(temporary) } catch { /* A foreign replacement or failed cleanup is preserved; never expose its cause. */ }
+      if (temporary && owned && ownedDirectory && !committed) {
+        try {
+          const current = await lstat(temporary, { bigint: true })
+          if (current.isFile() && sameRevision(current, owned)) {
+            // The asynchronous observation may have returned an owned snapshot
+            // after a replacement. Seal parent and leaf without yielding.
+            const parent = lstatSync(ownedDirectory.path, { bigint: true })
+            if (!parent.isDirectory() || parent.isSymbolicLink() || !sameIdentity(parent, ownedDirectory.info) || realpathSync(ownedDirectory.path) !== ownedDirectory.path) throw Error('EXPORT_TARGET_CHANGED')
+            const immediate = lstatSync(temporary, { bigint: true })
+            if (immediate.isFile() && !immediate.isSymbolicLink() && immediate.nlink === 1n && sameRevision(immediate, owned)) unlinkSync(temporary)
+          }
+        } catch { /* A foreign replacement or failed cleanup is preserved; never expose its cause. */ }
       }
       if (this.operations.get(operation.owner) === operation) this.operations.delete(operation.owner)
     }

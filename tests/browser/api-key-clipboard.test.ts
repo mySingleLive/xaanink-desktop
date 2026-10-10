@@ -5,6 +5,11 @@ import { chromium, type Browser, type Page } from "playwright-core"
 
 // Real Controller, Input, React state, Chromium editing/undo; clipboard and
 // menu bridge stay in memory. Actual OS/native menu is covered separately.
+// Darwin command routing stays a fixture below. Untouched undo/redo are native
+// Chromium operations, so press the actual host OS keys; a Windows run does
+// not establish macOS native keyboard/menu acceptance.
+const nativeUndo = process.platform === "darwin" ? "Meta+z" : "Control+z"
+const nativeRedo = process.platform === "win32" ? "Control+y" : process.platform === "darwin" ? "Meta+Shift+z" : "Control+Shift+z"
 const bundle=build({stdin:{resolveDir:process.cwd(),loader:"tsx",contents:`
 import React,{useState} from 'react';import {createRoot} from 'react-dom/client';import {flushSync} from 'react-dom';
 import {Input} from './src/components/ui/input';import {DesktopCommandController} from './src/components/desktop/DesktopCommandController';
@@ -31,14 +36,14 @@ const settle=(page:Page)=>page.evaluate(async()=>{for(let n=0;n<8;n++)await Prom
 test("K01/K04: default copy/cut routes a masked Key selection, native delete updates React and undo/redo",async()=>scenario(async page=>{
  await select(page);await page.keyboard.press("Meta+c");await settle(page);assert.deepEqual(await page.evaluate(()=>(window as any).writes),["public"])
  await page.keyboard.press("Meta+x");await settle(page);assert.equal(await page.getByLabel("API Key").inputValue(),"-fixture");assert.equal(await page.evaluate(()=>(window as any).keyState),"-fixture")
- await page.keyboard.press("Meta+z");assert.equal(await page.getByLabel("API Key").inputValue(),"public-fixture")
- await page.keyboard.press("Meta+Shift+z");assert.equal(await page.getByLabel("API Key").inputValue(),"-fixture")
+ await page.keyboard.press(nativeUndo);assert.equal(await page.getByLabel("API Key").inputValue(),"public-fixture")
+ await page.keyboard.press(nativeRedo);assert.equal(await page.getByLabel("API Key").inputValue(),"-fixture")
  assert.equal(await page.getByLabel("API Key").getAttribute("type"),"password")
 }))
 test("K02: default paste replaces the selection as literal text, updates React and supports undo",async()=>scenario(async page=>{
  await page.evaluate(()=>{(window as any).clipboard='<img src=x>'});await select(page);await page.keyboard.press("Meta+v");await settle(page)
  assert.equal(await page.getByLabel("API Key").inputValue(),"<img src=x>-fixture");assert.equal(await page.evaluate(()=>(window as any).keyState),"<img src=x>-fixture")
- assert.equal(await page.locator("img").count(),0);await page.keyboard.press("Meta+z");assert.equal(await page.getByLabel("API Key").inputValue(),"public-fixture")
+ assert.equal(await page.locator("img").count(),0);await page.keyboard.press(nativeUndo);assert.equal(await page.getByLabel("API Key").inputValue(),"public-fixture")
 }))
 for(const [id,key] of [["text.copy","c"],["text.cut","x"],["text.paste","v"]])test(`K05: removed/rebound ${id} default never bypasses confirmed shortcuts`,async()=>scenario(async page=>{
  await select(page);await page.evaluate(id=>(window as any).override({[id]:[]}),id);await page.keyboard.press(`Meta+${key}`);await settle(page)

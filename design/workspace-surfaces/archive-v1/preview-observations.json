@@ -1,0 +1,71 @@
+{
+  "scope": "UI design preview only; existing Windows Electron React workbench, empty isolated root, temporary DOM/CSS override, renderer offline. Screenshots omit native caption controls. No product implementation or acceptance claim.",
+  "before": {
+    "url": "xaanink://app/",
+    "classes": "paper",
+    "viewport": {
+      "width": 1441,
+      "height": 902
+    },
+    "sidebar": "rgb(239, 230, 207)",
+    "chat": "rgb(240, 231, 209)",
+    "content": "rgb(249, 244, 228)",
+    "headerDivider": "rgb(216, 203, 166)",
+    "separators": [
+      {
+        "width": 4,
+        "fill": "rgba(0, 0, 0, 0)",
+        "children": []
+      },
+      {
+        "width": 4,
+        "fill": "rgba(0, 0, 0, 0)",
+        "children": [
+          {
+            "width": 1,
+            "fill": "rgb(216, 203, 166)"
+          }
+        ]
+      }
+    ]
+  },
+  "proposed": {
+    "url": "xaanink://app/",
+    "classes": "paper",
+    "viewport": {
+      "width": 1441,
+      "height": 902
+    },
+    "sidebar": "rgb(233, 222, 197)",
+    "chat": "rgb(240, 231, 209)",
+    "content": "rgb(249, 244, 228)",
+    "headerDivider": "rgb(216, 203, 166)",
+    "separators": [
+      {
+        "width": 4,
+        "fill": "rgba(0, 0, 0, 0)",
+        "children": [
+          {
+            "width": 1,
+            "fill": "rgb(216, 203, 166)"
+          }
+        ]
+      },
+      {
+        "width": 4,
+        "fill": "rgba(0, 0, 0, 0)",
+        "children": [
+          {
+            "width": 1,
+            "fill": "rgb(216, 203, 166)"
+          }
+        ]
+      }
+    ]
+  },
+  "sourceHashes": {
+    "src/app/globals.css": "c008afae995c0740d9db6f2111ae4687d97829c7db823f66316786e5d51f83fc",
+    "src/app/desktop.css": "2abb25ebe1b07dc521b351ad951ea51431c2906a74fb1d27eb98a26053a51a43",
+    "src/components/layout/DashboardShell.tsx": "f6c0f4deab2129e6f8abfebc8c6bb65873e13438f03f93a8d42d092baaae5a65"
+  }
+}

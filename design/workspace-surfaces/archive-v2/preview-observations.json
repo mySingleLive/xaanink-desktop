@@ -1,0 +1,190 @@
+{
+  "revision": "v2",
+  "scope": "UI design preview only; existing Windows Electron React workbench, empty isolated root, temporary DOM/CSS override, renderer offline. Screenshots omit native caption controls. Right planning/Monaco bodies and pointer-hit behavior not validated by this empty-state preview. No product implementation or acceptance claim.",
+  "before": {
+    "url": "xaanink://app/",
+    "classes": "paper",
+    "viewport": {
+      "width": 1441,
+      "height": 902
+    },
+    "sidebar": "rgb(239, 230, 207)",
+    "chat": "rgb(240, 231, 209)",
+    "chatSurface": "#f9f4e4",
+    "content": "rgb(249, 244, 228)",
+    "headerDivider": "rgb(216, 203, 166)",
+    "panels": [
+      {
+        "id": "sidebar",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 418.9375,
+          "height": 902,
+          "top": 0,
+          "right": 418.9375,
+          "bottom": 902,
+          "left": 0
+        }
+      },
+      {
+        "id": "chat",
+        "rect": {
+          "x": 422.9375,
+          "y": 0,
+          "width": 507.19793701171875,
+          "height": 902,
+          "top": 0,
+          "right": 930.1354370117188,
+          "bottom": 902,
+          "left": 422.9375
+        }
+      },
+      {
+        "id": "content",
+        "rect": {
+          "x": 934.1354370117188,
+          "y": 0,
+          "width": 507.19793701171875,
+          "height": 902,
+          "top": 0,
+          "right": 1441.3333740234375,
+          "bottom": 902,
+          "left": 934.1354370117188
+        }
+      }
+    ],
+    "separators": [
+      {
+        "width": 4,
+        "rect": {
+          "x": 418.9375,
+          "y": 0,
+          "width": 4,
+          "height": 902,
+          "top": 0,
+          "right": 422.9375,
+          "bottom": 902,
+          "left": 418.9375
+        },
+        "fill": "rgba(0, 0, 0, 0)",
+        "children": []
+      },
+      {
+        "width": 4,
+        "rect": {
+          "x": 930.1354370117188,
+          "y": 0,
+          "width": 4,
+          "height": 902,
+          "top": 0,
+          "right": 934.1354370117188,
+          "bottom": 902,
+          "left": 930.1354370117188
+        },
+        "fill": "rgba(0, 0, 0, 0)",
+        "children": [
+          {
+            "width": 1,
+            "fill": "rgb(216, 203, 166)"
+          }
+        ]
+      }
+    ]
+  },
+  "proposed": {
+    "url": "xaanink://app/",
+    "classes": "paper",
+    "viewport": {
+      "width": 1441,
+      "height": 902
+    },
+    "sidebar": "rgb(239, 230, 207)",
+    "chat": "rgb(249, 244, 228)",
+    "chatSurface": "#fcf8ee",
+    "content": "rgb(239, 230, 207)",
+    "headerDivider": "rgb(184, 167, 131)",
+    "panels": [
+      {
+        "id": "sidebar",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 420.6875,
+          "height": 902,
+          "top": 0,
+          "right": 420.6875,
+          "bottom": 902,
+          "left": 0
+        }
+      },
+      {
+        "id": "chat",
+        "rect": {
+          "x": 421.6875,
+          "y": 0,
+          "width": 509.32293701171875,
+          "height": 902,
+          "top": 0,
+          "right": 931.0104370117188,
+          "bottom": 902,
+          "left": 421.6875
+        }
+      },
+      {
+        "id": "content",
+        "rect": {
+          "x": 932.0104370117188,
+          "y": 0,
+          "width": 509.32293701171875,
+          "height": 902,
+          "top": 0,
+          "right": 1441.3333740234375,
+          "bottom": 902,
+          "left": 932.0104370117188
+        }
+      }
+    ],
+    "separators": [
+      {
+        "width": 1,
+        "rect": {
+          "x": 420.6875,
+          "y": 0,
+          "width": 1,
+          "height": 902,
+          "top": 0,
+          "right": 421.6875,
+          "bottom": 902,
+          "left": 420.6875
+        },
+        "fill": "rgb(184, 167, 131)",
+        "children": []
+      },
+      {
+        "width": 1,
+        "rect": {
+          "x": 931.0104370117188,
+          "y": 0,
+          "width": 1,
+          "height": 902,
+          "top": 0,
+          "right": 932.0104370117188,
+          "bottom": 902,
+          "left": 931.0104370117188
+        },
+        "fill": "rgb(184, 167, 131)",
+        "children": []
+      }
+    ]
+  },
+  "sourceHashes": {
+    "src/app/globals.css": "c008afae995c0740d9db6f2111ae4687d97829c7db823f66316786e5d51f83fc",
+    "src/app/desktop.css": "2abb25ebe1b07dc521b351ad951ea51431c2906a74fb1d27eb98a26053a51a43",
+    "src/components/layout/DashboardShell.tsx": "f6c0f4deab2129e6f8abfebc8c6bb65873e13438f03f93a8d42d092baaae5a65"
+  },
+  "screenshotHashes": {
+    "before.png": "506635a584b2fbf79926b506edd8cbb421d8115fcf6faeb33ccc38c4803c0c39",
+    "proposed-v2.png": "94e3bb4f501899c3838667ddd6a1458fd22908c9344d0a1dd77f8ebd5ca06bc0"
+  }
+}

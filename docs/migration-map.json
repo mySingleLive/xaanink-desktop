@@ -3,6 +3,22 @@
   "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
   "status": "planned",
   "note": "Mappings are proposed local entry points, not implementation or test results.",
+  "workspaceSurfacesDevelopment": {
+    "date": "2026-10-10",
+    "scope": "Fine structural dividers and subtle paper column backgrounds; all business migration mappings unchanged",
+    "implementation": ["src/app/desktop.css", "src/components/layout/DashboardShell.tsx", "src/components/editor/MarkdownEditor.tsx", "src/components/content/planning/planning.module.css"],
+    "scopedRegression": { "tests": 12, "pass": 12, "fail": 0 },
+    "nativeChecks": 39,
+    "browser": { "tests": 219, "pass": 219, "fail": 0, "cancelled": 0, "skipped": 0, "note": "Observed suite pass; backend cleanup changed after launch; affected final export 7/7 separately passed." },
+    "core": { "tests": 1746, "pass": 1697, "fail": 44, "cancelled": 3, "skipped": 2, "status": "failed normal completion; mixed source diagnostic, not final full acceptance" },
+    "previousCore": { "tests": 1741, "pass": 1605, "fail": 123, "cancelled": 11, "skipped": 2, "status": "failed runner summary with manual termination of one hung isolated worker" },
+    "windowsCompatibility": { "scope": "Shared verified directory sync policy and owned temporary cleanup; no retired features restored", "affectedRegression": { "tests": 146, "pass": 146, "fail": 0, "evidence": "docs/evidence/workspace-surfaces/directory-final-affected-acl.log" }, "exportBrowser": { "tests": 7, "pass": 7, "fail": 0, "evidence": "docs/evidence/workspace-surfaces/browser-export-sealed-final.json" } },
+    "nativeEvidence": "docs/evidence/workspace-surfaces/native-local-08/windows-electron.json",
+    "verification": "docs/reviews/2026-10-10-workspace-surfaces-verification.md",
+    "verificationReview": "docs/reviews/2026-10-10-workspace-surfaces-verification-review.md",
+    "fullAcceptancePassed": false,
+    "note": "Original real components retained; scoped Windows geometry, themes and editor state checked. No physical IME, macOS, installed package, vendor calls or complete business acceptance claim; full failures remain."
+  },
   "windowControlsCompactDevelopment": {
     "date": "2026-10-10",
     "scope": "Windows native caption height and menu placement only; no business migration mappings changed",

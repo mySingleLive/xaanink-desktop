@@ -8,6 +8,7 @@ import {LEGACY_NAMES,type BrandNames} from '../shared/brand-names'
 import {assertBrandControls} from './brand-names'
 import type { RootIdentity } from './data-root'
 import { assertDirectory, directoryIdentity, rootIdentitySchema } from './root-ownership'
+import { syncOwnedDirectory } from './directory-sync'
 
 export const WORK_LEASE_AUDIT_FILENAME = LEGACY_NAMES.audit
 export const MAX_WORK_LEASE_AUDIT_BYTES = 16 * 1024
@@ -78,11 +79,6 @@ function boundedFileSync(path: string, limit: number, code: string): Snapshot | 
     return { stat: after, bytes: Buffer.from(buffer.subarray(0, size)) }
   } catch { return fail(code) }
   finally { if (fd !== undefined) closeSync(fd) }
-}
-async function syncDirectory(path: string) {
-  let phase: 'open' | 'sync' | 'close' = 'open'
-  try { const handle = await open(path, 'r'); try { phase = 'sync'; await handle.sync() } finally { const previous = phase; phase = 'close'; await handle.close(); phase = previous } }
-  catch (error) { const code = (error as NodeJS.ErrnoException).code, unsupported = phase === 'open' && code === 'EISDIR' || (phase === 'open' || phase === 'sync') && ['ENOTSUP', 'EOPNOTSUPP', 'ENOSYS'].includes(code ?? '') || phase === 'sync' && code === 'EINVAL'; if (process.platform !== 'win32' || !unsupported) throw error }
 }
 function decodeAudit(work: RootIdentity, snapshot: Snapshot,names:Readonly<BrandNames>): Audit {
   let envelope: z.infer<typeof envelopeSchema>
@@ -223,7 +219,7 @@ export class WorkLeaseRecovery {
   }
   cancel(requestId: string) { const request = this.requests.get(requestId); if (request) { request.cancelled = true; this.requests.delete(requestId) } }
   async flush() { for (;;) { const flights = [...this.pending]; if (!flights.length) return; await Promise.allSettled(flights) } }
-  private async syncAudit(request: Request) { this.confirmed(request); await this.sameAudit(request); try { await this.options.hook?.('before-audit-sync'); await syncDirectory(request.work.path) } catch { fail('AUDIT_DURABILITY_UNCONFIRMED') }; await this.closed(request.work); await this.sameAudit(request); this.confirmed(request) }
+  private async syncAudit(request: Request) { this.confirmed(request); await this.sameAudit(request); try { await this.options.hook?.('before-audit-sync'); await syncOwnedDirectory(request.work) } catch { fail('AUDIT_DURABILITY_UNCONFIRMED') }; await this.closed(request.work); await this.sameAudit(request); this.confirmed(request) }
   private async writeAudit(request: Request, phase: AuditPayload['phase']) {
     const previous = request.audit, path = join(request.work.path, request.names.audit), temporary = join(request.work.path, `${request.names.leaseTemporaryPrefix}${randomUUID()}.tmp`)
     let owned: BigIntStats | undefined, committed = false
@@ -264,7 +260,7 @@ export class WorkLeaseRecovery {
         await this.options.hook?.('before-directory-remove'); await this.validate(request)
         this.immediately(request); rmdirSync(join(request.work.path, request.names.lock)); request.phase = 'lock-absent'; request.lock = null
       }
-      await this.validate(request); await syncDirectory(request.work.path); await this.writeAudit(request, 'recovered'); this.immediately(request); request.phase = 'recovered'
+      await this.validate(request); await syncOwnedDirectory(request.work); await this.writeAudit(request, 'recovered'); this.immediately(request); request.phase = 'recovered'
       return { requestId: request.id, status: 'recovered' }
     } catch (error) { if (error instanceof WorkLeaseRecoveryError && ['LOCK_CHANGED', 'LOCK_CONTENTS_UNKNOWN', 'AUDIT_CHANGED', 'WORK_CHANGED'].includes(error.code)) throw error; return { requestId: request.id, status: 'cleanup-pending' } }
   }

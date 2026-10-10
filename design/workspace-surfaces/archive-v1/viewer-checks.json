@@ -1,0 +1,19 @@
+{
+  "scope": "Standalone design viewer QA only; not product tests",
+  "checks": [
+    {
+      "width": 1440,
+      "imageLoaded": true,
+      "noHorizontalOverflow": true,
+      "togglesWork": true,
+      "errors": []
+    },
+    {
+      "width": 360,
+      "imageLoaded": true,
+      "noHorizontalOverflow": true,
+      "togglesWork": true,
+      "errors": []
+    }
+  ]
+}

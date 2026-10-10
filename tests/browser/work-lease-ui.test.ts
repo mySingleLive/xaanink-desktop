@@ -43,7 +43,8 @@ globalThis.mountLeaseUI=(mode='dialog',options={})=>{
  const root=createRoot(document.getElementById('app'));flushSync(()=>root.render(mode==='dialog'?<WorkLeasePendingDialog open={true}/>:<DesktopApp/>));
  return{calls,messages,repairs,repair:(value,index=0)=>repairs[index].resolve(value),repairFail:(index=0)=>repairs[index].reject(Error('private-native-path-key')),emit:event=>listeners.slice().forEach(listener=>listener(event)),boot:()=>bootResolve(state),unmount:()=>flushSync(()=>root.unmount())};
 };`},bundle:true,platform:"browser",format:"iife",write:false,tsconfig:"tsconfig.json",plugins:[{name:"controlled-workspace",setup(builder){
- builder.onResolve({filter:/.*/},args=>mocks[args.path]?{path:args.path,namespace:"controlled"}:args.importer.endsWith("/DesktopApp.tsx")&&emptyChildren[args.path]?{path:args.path,namespace:"empty-child"}:undefined)
+ // esbuild returns native importer paths; preserve this boundary on Windows.
+ builder.onResolve({filter:/.*/},args=>mocks[args.path]?{path:args.path,namespace:"controlled"}:args.importer.replaceAll("\\", "/").endsWith("/DesktopApp.tsx")&&emptyChildren[args.path]?{path:args.path,namespace:"empty-child"}:undefined)
  builder.onLoad({filter:/.*/,namespace:"controlled"},args=>({contents:mocks[args.path],loader:"tsx",resolveDir:process.cwd()}))
  builder.onLoad({filter:/.*/,namespace:"empty-child"},args=>({contents:`export const ${emptyChildren[args.path]}=()=>null`,loader:"js"}))
 }}]}).then(result=>result.outputFiles![0].text)

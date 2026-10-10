@@ -44,13 +44,9 @@ const CLOSE_SPRING = { duration: 420, zeta: 1 }
 /** chat 面板的像素最小宽度（与下方 Panel 的 minSize 保持一致） */
 const CHAT_MIN_PX = 420
 
-/** 分栏拖拽条：默认不可见，hover / 拖动时显示 primary 高亮；withLine 时常驻一条细浅的分割线 */
-function ResizeHandle({ withLine = false }: { withLine?: boolean }) {
-  return (
-    <Separator className="flex w-1 justify-center bg-transparent transition-colors data-[separator=hover]:bg-primary/40 data-[separator=active]:bg-primary/40">
-      {withLine && <div className="h-full w-px bg-border" />}
-    </Separator>
-  )
+/** 细边框占位，拖拽范围沿用分栏库的不可见命中扩展。 */
+function ResizeHandle() {
+  return <Separator className="workspace-resize-handle transition-colors" />
 }
 
 export function DashboardShell({ user }: DashboardShellProps) {
@@ -508,7 +504,7 @@ export function DashboardShell({ user }: DashboardShellProps) {
         </Panel>
         {contentMounted && (
           <>
-            {chatVisible && <ResizeHandle withLine />}
+            {chatVisible && <ResizeHandle />}
             <Panel
               id="content"
               defaultSize={0}

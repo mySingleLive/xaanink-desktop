@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>工作区分割线与宣纸底色设计</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f7f7f4; color: #2b251b; font: 15px/1.7 "Microsoft YaHei", sans-serif; }
+    main { max-width: 1500px; margin: 0 auto; padding: 28px 32px 40px; }
+    h1 { margin: 0; font: 600 24px/1.4 "Microsoft YaHei", sans-serif; }
+    p { margin: 9px 0 18px; color: #6b6257; }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 18px; }
+    button { min-height: 40px; padding: 8px 18px; border: 1px solid #d4cbbd; background: transparent; color: #4d4430; border-radius: 6px; font: inherit; cursor: pointer; }
+    button[aria-pressed="true"] { background: #2b251b; border-color: #2b251b; color: #faf5e8; }
+    button:focus-visible { outline: 3px solid #b03524; outline-offset: 3px; }
+    .status { margin-left: 8px; color: #6b6257; }
+    .palette { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 0 0 20px; }
+    .color { display: flex; align-items: center; gap: 9px; }
+    .swatch { display: inline-block; width: 26px; height: 26px; border: 1px solid #b7aa90; }
+    code { font-size: 13px; }
+    figure { margin: 0; }
+    img { display: block; width: 100%; height: auto; }
+    figcaption { margin-top: 10px; color: #6b6257; font-size: 13px; }
+    .note { margin-bottom: 0; font-size: 13px; }
+    @media (max-width: 600px) { main { padding: 20px 16px; } h1 { font-size: 20px; } .status { width: 100%; margin-left: 0; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>工作区分割线与宣纸底色设计 · 第三版</h1>
+    <p>已批准方案：分割线统一细度并调浅；三栏整体提浅，右内容区与 AI 区域只保留轻微色差。</p>
+    <div class="controls" role="group" aria-label="比较设计效果">
+      <button id="proposed" type="button" aria-pressed="true">修改后</button>
+      <button id="before" type="button" aria-pressed="false">当前</button>
+      <span class="status" id="status" aria-live="polite">第三版 · 用户已批准</span>
+    </div>
+    <div class="palette" aria-label="已批准配色">
+      <span class="color"><i class="swatch" style="background:#f5eedc" aria-hidden="true"></i>左导航 <code>#f5eedc</code></span>
+      <span class="color"><i class="swatch" style="background:#faf6e8" aria-hidden="true"></i>AI 对话 <code>#faf6e8</code></span>
+      <span class="color"><i class="swatch" style="background:#f8f3e4" aria-hidden="true"></i>右内容 <code>#f8f3e4</code></span>
+      <span class="color"><i class="swatch" style="background:#d8cba6" aria-hidden="true"></i>细分割线 <code>#d8cba6</code></span>
+    </div>
+    <figure>
+      <img id="preview" src="proposed-v3.png" width="2162" height="1353" alt="第三版宣纸三栏效果，分割线细且浅，整体背景提浅，右内容与AI色差更小">
+      <figcaption>同一尺寸、同一真实 React 工作台空态。纸纹沿用现有主题。</figcaption>
+    </figure>
+    <p class="note">预览在隔离 Electron 进程中临时应用样式，产品实现尚未修改。截图仅包含渲染区域，不含原生窗控。</p>
+  </main>
+  <script>
+    const preview = document.getElementById('preview');
+    const status = document.getElementById('status');
+    for (const id of ['proposed', 'before']) {
+      document.getElementById(id).addEventListener('click', () => {
+        for (const item of ['proposed', 'before']) document.getElementById(item).setAttribute('aria-pressed', String(id === item));
+        preview.src = id === 'proposed' ? 'proposed-v3.png' : 'before.png';
+        preview.alt = id === 'proposed' ? '已批准的宣纸三栏效果' : '修改前宣纸三栏效果';
+        status.textContent = id === 'proposed' ? '第三版 · 用户已批准' : '修改前 · 导航与 AI 底色接近，分栏有透明沟槽';
+      });
+    }
+  </script>
+</body>
+</html>

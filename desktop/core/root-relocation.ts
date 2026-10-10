@@ -2,6 +2,7 @@ import {applicationNames} from './brand-names'
 import {BRAND_NAMES} from '../shared/brand-names'
 import {constants,lstatSync,realpathSync,openSync,fstatSync,readSync,closeSync,renameSync,unlinkSync,opendirSync,type BigIntStats} from 'node:fs'
 import {open} from 'node:fs/promises'
+import {syncOwnedDirectory} from './directory-sync'
 import {randomUUID,createHash} from 'node:crypto'
 import {isAbsolute,join} from 'node:path'
 import {z} from 'zod'
@@ -136,13 +137,7 @@ function assertLayout(target:RootIdentity,layout:Layout){
  try{assertFile(target,applicationNames(target).appMarker,layout.files.marker);assertFile(target,'catalog.json',layout.files.catalog);assertFile(layout.directories[1],'PG_VERSION',layout.files.pgVersion);for(const names of BRAND_NAMES)try{lstatSync(join(target.path,names.workManifest));fail('TARGET_CHANGED')}catch(error){if(!missing(error))throw error}}
  catch{fail('TARGET_CHANGED')}
 }
-async function syncBootstrap(boot:RootIdentity){
- // A Windows-specific unsupported directory handle/sync is not an EIO ACK.
- let handle:Awaited<ReturnType<typeof open>>|undefined
- try{handle=await open(boot.path,'r');await handle.sync()}
- catch(error){if(process.platform!=='win32'||!['EINVAL','ENOTSUP','EISDIR','EBADF'].includes((error as NodeJS.ErrnoException)?.code??''))throw error}
- finally{await handle?.close()}
-}
+const syncBootstrap = syncOwnedDirectory
 function ledgerCompatible(before:LedgerWitness|null,current:LedgerWitness|null){
  if(!before)return current===null||current.results.length===0
  return current!==null&&current.revision>=before.revision&&current.results.every(result=>before.results.some(old=>same(old,result)))

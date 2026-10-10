@@ -1,0 +1,233 @@
+{
+  "revision": "v3",
+  "proposedDividerDeclaration": "1px border, zero content width, border-only occupancy",
+  "runtime": {
+    "zoom": 1,
+    "electron": "44.6.0"
+  },
+  "scope": "UI design preview only; existing Windows Electron React workbench, empty isolated root, temporary DOM/CSS override, renderer offline. Screenshots omit native caption controls. Only visible layout divider strokes are measured. Menu/tablist/business/Markdown dividers, other zooms, right planning/Monaco bodies and pointer-hit behavior not validated by this empty-state preview. No product implementation or acceptance claim.",
+  "before": {
+    "url": "xaanink://app/",
+    "classes": "paper",
+    "dpr": 1.5,
+    "viewport": {
+      "width": 1441,
+      "height": 902
+    },
+    "sidebar": "rgb(239, 230, 207)",
+    "chat": "rgb(240, 231, 209)",
+    "chatSurface": "#f9f4e4",
+    "content": "rgb(249, 244, 228)",
+    "headerDivider": "rgb(216, 203, 166)",
+    "panels": [
+      {
+        "id": "sidebar",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 418.9375,
+          "height": 902,
+          "top": 0,
+          "right": 418.9375,
+          "bottom": 902,
+          "left": 0
+        }
+      },
+      {
+        "id": "chat",
+        "rect": {
+          "x": 422.9375,
+          "y": 0,
+          "width": 507.19793701171875,
+          "height": 902,
+          "top": 0,
+          "right": 930.1354370117188,
+          "bottom": 902,
+          "left": 422.9375
+        }
+      },
+      {
+        "id": "content",
+        "rect": {
+          "x": 934.1354370117188,
+          "y": 0,
+          "width": 507.19793701171875,
+          "height": 902,
+          "top": 0,
+          "right": 1441.3333740234375,
+          "bottom": 902,
+          "left": 934.1354370117188
+        }
+      }
+    ],
+    "horizontalDividers": [
+      {
+        "selector": ".workspace-chat .chatpane > .desktop-drag",
+        "edge": "bottom",
+        "width": "0.666667px",
+        "color": "rgb(216, 203, 166)"
+      },
+      {
+        "selector": ".workspace-sidebar > div > .border-t",
+        "edge": "top",
+        "width": "0.666667px",
+        "color": "rgb(221, 208, 174)"
+      }
+    ],
+    "separators": [
+      {
+        "width": 4,
+        "rect": {
+          "x": 418.9375,
+          "y": 0,
+          "width": 4,
+          "height": 902,
+          "top": 0,
+          "right": 422.9375,
+          "bottom": 902,
+          "left": 418.9375
+        },
+        "fill": "rgba(0, 0, 0, 0)",
+        "strokeWidth": "0px",
+        "strokeColor": "rgb(216, 203, 166)",
+        "children": []
+      },
+      {
+        "width": 4,
+        "rect": {
+          "x": 930.1354370117188,
+          "y": 0,
+          "width": 4,
+          "height": 902,
+          "top": 0,
+          "right": 934.1354370117188,
+          "bottom": 902,
+          "left": 930.1354370117188
+        },
+        "fill": "rgba(0, 0, 0, 0)",
+        "strokeWidth": "0px",
+        "strokeColor": "rgb(216, 203, 166)",
+        "children": [
+          {
+            "width": 1,
+            "fill": "rgb(216, 203, 166)"
+          }
+        ]
+      }
+    ]
+  },
+  "proposed": {
+    "url": "xaanink://app/",
+    "classes": "paper",
+    "dpr": 1.5,
+    "viewport": {
+      "width": 1441,
+      "height": 902
+    },
+    "sidebar": "rgb(245, 238, 220)",
+    "chat": "rgb(250, 246, 232)",
+    "chatSurface": "#fcf8ee",
+    "content": "rgb(248, 243, 228)",
+    "headerDivider": "rgb(216, 203, 166)",
+    "panels": [
+      {
+        "id": "sidebar",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 420.88543701171875,
+          "height": 902,
+          "top": 0,
+          "right": 420.88543701171875,
+          "bottom": 902,
+          "left": 0
+        }
+      },
+      {
+        "id": "chat",
+        "rect": {
+          "x": 421.5520935058594,
+          "y": 0,
+          "width": 509.5520935058594,
+          "height": 902,
+          "top": 0,
+          "right": 931.1041870117188,
+          "bottom": 902,
+          "left": 421.5520935058594
+        }
+      },
+      {
+        "id": "content",
+        "rect": {
+          "x": 931.7708740234375,
+          "y": 0,
+          "width": 509.5625,
+          "height": 902,
+          "top": 0,
+          "right": 1441.3333740234375,
+          "bottom": 902,
+          "left": 931.7708740234375
+        }
+      }
+    ],
+    "horizontalDividers": [
+      {
+        "selector": ".workspace-chat .chatpane > .desktop-drag",
+        "edge": "bottom",
+        "width": "0.666667px",
+        "color": "rgb(216, 203, 166)"
+      },
+      {
+        "selector": ".workspace-sidebar > div > .border-t",
+        "edge": "top",
+        "width": "0.666667px",
+        "color": "rgb(216, 203, 166)"
+      }
+    ],
+    "separators": [
+      {
+        "width": 0.6666666865348816,
+        "rect": {
+          "x": 420.88543701171875,
+          "y": 0,
+          "width": 0.6666666865348816,
+          "height": 902,
+          "top": 0,
+          "right": 421.55210369825363,
+          "bottom": 902,
+          "left": 420.88543701171875
+        },
+        "fill": "rgba(0, 0, 0, 0)",
+        "strokeWidth": "0.666667px",
+        "strokeColor": "rgb(216, 203, 166)",
+        "children": []
+      },
+      {
+        "width": 0.6666666865348816,
+        "rect": {
+          "x": 931.1041870117188,
+          "y": 0,
+          "width": 0.6666666865348816,
+          "height": 902,
+          "top": 0,
+          "right": 931.7708536982536,
+          "bottom": 902,
+          "left": 931.1041870117188
+        },
+        "fill": "rgba(0, 0, 0, 0)",
+        "strokeWidth": "0.666667px",
+        "strokeColor": "rgb(216, 203, 166)",
+        "children": []
+      }
+    ]
+  },
+  "sourceHashes": {
+    "src/app/globals.css": "c008afae995c0740d9db6f2111ae4687d97829c7db823f66316786e5d51f83fc",
+    "src/app/desktop.css": "2abb25ebe1b07dc521b351ad951ea51431c2906a74fb1d27eb98a26053a51a43",
+    "src/components/layout/DashboardShell.tsx": "f6c0f4deab2129e6f8abfebc8c6bb65873e13438f03f93a8d42d092baaae5a65"
+  },
+  "screenshotHashes": {
+    "before.png": "506635a584b2fbf79926b506edd8cbb421d8115fcf6faeb33ccc38c4803c0c39",
+    "proposed-v3.png": "11c317aa09a9c1c0b5b0172a6f2c236005423e2e30f37091d965d3ecebe37918"
+  }
+}

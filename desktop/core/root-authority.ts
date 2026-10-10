@@ -1,6 +1,6 @@
 import {readApplicationBrandImmediately} from './brand-names'
 import {constants,lstatSync,realpathSync,openSync,fstatSync,readSync,closeSync,opendirSync,type BigIntStats} from 'node:fs'
-import {open} from 'node:fs/promises'
+import {syncOwnedDirectory} from './directory-sync'
 import {join,isAbsolute,basename} from 'node:path'
 import {z} from 'zod'
 import {DataRootManager,rootAuthorityFileSchema,type RootIdentity,type RootPointer} from './data-root'
@@ -40,7 +40,7 @@ export function assertRootAuthorityFile(root:RootIdentity,name:string,expected:R
  try{info=lstatSync(join(root.path,name),{bigint:true})}catch(cause){if(!expected&&missing(cause))return;fail(code)}
  if(!expected||!info.isFile()||info.isSymbolicLink()||info.nlink!==1n||String(info.dev)!==expected.device||String(info.ino)!==expected.inode||String(info.size)!==expected.size||String(info.mtimeNs)!==expected.mtimeNs||String(info.ctimeNs)!==expected.ctimeNs)fail(code)
 }
-export async function syncRootAuthorityDirectory(root:RootIdentity){let handle:Awaited<ReturnType<typeof open>>|undefined;try{handle=await open(root.path,'r');await handle.sync()}catch(cause){if(process.platform!=='win32'||!['EINVAL','ENOTSUP','EISDIR','EBADF'].includes((cause as NodeJS.ErrnoException)?.code??''))throw cause}finally{await handle?.close()}}
+export const syncRootAuthorityDirectory = syncOwnedDirectory
 const pointerSchema=z.unknown().transform(value=>DataRootManager.parsePointer(value))
 const copiedObservationSchema=z.object({proof:rootAuthorityFileSchema,text:z.string()}).strict()
 const controlsSchema=z.object({journal:copiedObservationSchema.nullable(),request:copiedObservationSchema.nullable()}).strict()

@@ -1,7 +1,7 @@
 .workspace {
   height: 100%;
   overflow: auto;
-  background: var(--background);
+  background: var(--workspace-content-bg, var(--background));
   color: var(--foreground);
   padding: 20px;
   font-size: 13px;
