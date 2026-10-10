@@ -21,9 +21,10 @@ export function restoreTaskDefaults(value: unknown): TaskDefaults | null {
   if (value === null || value === undefined) return null
   return Object.freeze(taskDefaultsSchema.parse(value))
 }
-export function overrideTaskDefaults(defaults: TaskDefaults, changes: { modelId?: string | null; thinkingEffort?: string | null; mode?: "standard" | "plan" }): TaskDefaults {
+export function overrideTaskDefaults(defaults: TaskDefaults, changes: { modelId?: string | null; reviewModelId?: string | null; thinkingEffort?: string | null; mode?: "standard" | "plan" }): TaskDefaults {
   return Object.freeze(taskDefaultsSchema.parse({ ...defaults,
     ...(changes.modelId !== undefined ? { textModelId: changes.modelId } : {}),
+    ...(changes.reviewModelId !== undefined ? { reviewModelId: changes.reviewModelId } : {}),
     ...(changes.thinkingEffort !== undefined ? { thinking: changes.thinkingEffort ?? "default" } : {}),
     ...(changes.mode !== undefined ? { mode: changes.mode } : {}),
   }))

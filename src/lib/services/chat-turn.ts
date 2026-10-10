@@ -20,6 +20,8 @@ import { selectedStoryChoice, storyTaskNavigationSchema } from "@/lib/story-task
 import { bindPlanningAdjustment, misplacedPlanningAdjustment, planningAdjustmentOf, planningAdjustmentRecoveryRequestAllowed, planningAdjustmentSchema, questionAnswer, type PlanningAdjustment } from "@/lib/planning-adjustment"
 import { legacyTaskDefaults, overrideTaskDefaults, restoreTaskDefaults } from "@desktop/shared/task-defaults"
 import { taskDefaults } from "@desktop/service/task-defaults"
+import { reviewSelectionSchema } from '@desktop/shared/model-task'
+import { resolveLocalModel } from '@desktop/service/models'
 
 type Tx = Prisma.TransactionClient
 export class ChatProtocolError extends ContentError {
@@ -31,7 +33,22 @@ class NavigationContentStaleError extends Error {
 }
 export function scopeFor(conversation: Conversation, turn: ChatTurn, attempt: ChatAttempt): ChatExecutionScope {
   return { userId: turn.userId, conversationId: conversation.id, turnId: turn.id, attemptId: attempt.id, epoch: attempt.executionEpoch,
-    taskDefaults: restoreTaskDefaults(turn.defaultsSnapshot) ?? legacyTaskDefaults(conversation.modelId, conversation.thinkingEffort) }
+    taskDefaults: restoreTaskDefaults(attempt.defaultsSnapshot) ?? restoreTaskDefaults(turn.defaultsSnapshot) ?? legacyTaskDefaults(conversation.modelId, conversation.thinkingEffort) }
+}
+/** Author-confirmed selection only; no invocation, history rewrite or automatic retry. */
+export async function selectMissingReviewModel(userId: string, conversationId: string, raw: unknown) {
+  const input = reviewSelectionSchema.parse(raw)
+  const model = await resolveLocalModel(userId, 'review', input.modelId, 'selection')
+  return db.$transaction(async tx => {
+    const conversation = await lockConversation(tx, conversationId, userId)
+    const latest = await tx.chatTurn.findFirst({ where: { conversationId }, orderBy: [{ createdAt: 'desc' }, { id: 'desc' }] })
+    if (!latest || latest.id !== input.turnId || latest.latestAttemptId !== input.attemptId) throw new ChatProtocolError('REVIEW_SELECTION_STALE', '任务已变化，请重新读取当前任务')
+    const attempt = await tx.chatAttempt.findUniqueOrThrow({ where: { id: input.attemptId } })
+    if (conversation.activeAttemptId || ['queued', 'running'].includes(attempt.status)) throw new ChatProtocolError('CONVERSATION_BUSY', '请等待当前任务结束后选择审核模型')
+    const defaults = scopeFor(conversation, latest, attempt).taskDefaults!
+    if (defaults.reviewModelId !== null || conversation.reviewModelId !== null) throw new ChatProtocolError('REVIEW_ALREADY_SELECTED', '当前任务已有审核模型，请保留原选择')
+    return tx.conversation.update({ where: { id: conversationId }, data: { reviewModelId: model.id } })
+  }, CHAT_TRANSACTION_OPTIONS)
 }
 async function lockConversation(tx: Tx, id: string, userId: string) {
   await tx.$queryRaw`SELECT id FROM "Conversation" WHERE id = ${id} AND "userId" = ${userId} FOR UPDATE`
@@ -180,8 +197,11 @@ export async function beginChatRequest(userId: string, raw: unknown) {
     const latest = await tx.chatTurn.findFirst({ where: { conversationId: conversation.id }, orderBy: [{ createdAt: "desc" }, { id: "desc" }] })
     if (retryTurn) retryTurn = await tx.chatTurn.findUniqueOrThrow({ where: { id: retryTurn.id } })
     const conversationDefaults = overrideTaskDefaults(restoreTaskDefaults(conversation.defaultsSnapshot) ?? legacyTaskDefaults(conversation.modelId, conversation.thinkingEffort), { modelId: conversation.modelId, thinkingEffort: conversation.thinkingEffort, mode: restoreTaskDefaults(latest?.defaultsSnapshot)?.mode })
-    const turnDefaults = retryTurn ? restoreTaskDefaults(retryTurn.defaultsSnapshot) ?? legacyTaskDefaults(conversation.modelId, conversation.thinkingEffort)
+    const previousAttempt = retryTurn?.latestAttemptId ? await tx.chatAttempt.findUniqueOrThrow({ where: { id: retryTurn.latestAttemptId } }) : null
+    const baseDefaults = retryTurn ? restoreTaskDefaults(previousAttempt?.defaultsSnapshot) ?? restoreTaskDefaults(retryTurn.defaultsSnapshot) ?? legacyTaskDefaults(conversation.modelId, conversation.thinkingEffort)
       : overrideTaskDefaults(conversationDefaults, { modelId: input.modelId, thinkingEffort: input.thinkingEffort, mode: explicitMode })
+    const turnDefaults = baseDefaults.reviewModelId === null && conversation.reviewModelId
+      ? overrideTaskDefaults(baseDefaults, { reviewModelId: conversation.reviewModelId }) : baseDefaults
     input.mode = turnDefaults.mode
     const restoredAdjustment = retryTurn && latest?.id === retryTurn.id ? await recoverablePlanningAdjustment(tx, retryTurn, conversation.novelId) : null
     if (restoredAdjustment && !planningAdjustmentRecoveryRequestAllowed(input)) throw new ChatProtocolError("RETRY_NOT_ALLOWED", "提案调整恢复只能重试原回答，不能同时提交另一问题或操作", 409, retryTurn!.id)
@@ -269,7 +289,7 @@ export async function beginChatRequest(userId: string, raw: unknown) {
     const request = await tx.chatRequest.create({ data: { userId, clientRequestId, requestHash: hash, turnId: turn.id, entryAttemptId: attemptId } })
     const last = await tx.chatAttempt.findFirst({ where: { turnId: turn.id }, orderBy: { attemptNo: "desc" } })
     const epoch = conversation.executionEpoch + 1
-    const attempt = await tx.chatAttempt.create({ data: { id: attemptId, turnId: turn.id, requestId: request.id, attemptNo: (last?.attemptNo ?? 0) + 1, assistantMessageId: randomUUID(), executionEpoch: epoch, status: "queued" } })
+    const attempt = await tx.chatAttempt.create({ data: { id: attemptId, turnId: turn.id, requestId: request.id, attemptNo: (last?.attemptNo ?? 0) + 1, assistantMessageId: randomUUID(), executionEpoch: epoch, status: "queued", defaultsSnapshot: turnDefaults } })
     await tx.message.create({ data: { id: attempt.assistantMessageId, conversationId: conversation.id, turnId: turn.id, attemptId: attempt.id, role: "ASSISTANT", content: "", parts: [{ id: `${attempt.id}:start`, seq: 0, type: "status", status: "queued", startedAt: attempt.createdAt.toISOString() }] } })
     if (interactionTurn && interaction) await tx.chatTurn.update({ where: { id: interactionTurn.id }, data: { status: "succeeded", interaction: { ...interaction, state: input.interaction!.action === "approve" ? "approved" : "answered", responseTurnId: turn.id, responseMessageId: userMessageId, responseHash: hash } as Prisma.InputJsonValue } })
     const currentTurn = await tx.chatTurn.update({ where: { id: turn.id }, data: { status: "queued", latestAttemptId: attempt.id } })
@@ -408,7 +428,8 @@ export async function nextChatAttempt(scope: ChatExecutionScope, retryUsed: numb
     await tx.message.update({ where: { id: previous.assistantMessageId }, data: { content: snapshot.content, toolCalls: snapshot.toolCalls, parts: [...snapshot.parts, { type: "status", id: `${previous.id}:terminal`, seq: snapshot.seq + 1, status: "interrupted", errorCode: "NETWORK_RETRY", endedAt: new Date().toISOString() }] } })
     await tx.chatAttempt.update({ where: { id: previous.id }, data: { status: "interrupted", endedAt: new Date(), errorCode: "NETWORK_RETRY", retryUsed } })
     await tx.chatToolExecution.updateMany({ where: { attemptId: previous.id, status: "started" }, data: { status: "unknown" } })
-    const attempt = await tx.chatAttempt.create({ data: { turnId: scope.turnId, requestId: previous.requestId, attemptNo: previous.attemptNo + 1, assistantMessageId: randomUUID(), executionEpoch: scope.epoch + 1, retryUsed } })
+    const attempt = await tx.chatAttempt.create({ data: { turnId: scope.turnId, requestId: previous.requestId, attemptNo: previous.attemptNo + 1, assistantMessageId: randomUUID(), executionEpoch: scope.epoch + 1, retryUsed,
+      defaultsSnapshot: restoreTaskDefaults(previous.defaultsSnapshot) ?? scope.taskDefaults } })
     await tx.message.create({ data: { id: attempt.assistantMessageId, conversationId: scope.conversationId, turnId: scope.turnId, attemptId: attempt.id, role: "ASSISTANT", content: "", parts: [] } })
     const turn = await tx.chatTurn.update({ where: { id: scope.turnId }, data: { latestAttemptId: attempt.id, status: "queued" } })
     const conversation = await tx.conversation.update({ where: { id: scope.conversationId }, data: { activeAttemptId: attempt.id, executionEpoch: attempt.executionEpoch, leaseExpiresAt: new Date(Date.now() + CHAT_LEASE_MS) } })

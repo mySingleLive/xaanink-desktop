@@ -3,6 +3,8 @@ import { GlobalSceneTree, openAllScenes } from "@/components/content/scene/Scene
 import { worldDisplayName } from "@/lib/world-schema"
 import { worldForest } from "@/lib/world-tree"
 import { useDesktopCommands } from "@/lib/desktop/use-command-target"
+import { useNovelList } from "@/lib/novel-list"
+import { UnavailableWorks } from "@/components/desktop/UnavailableWorks"
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
@@ -119,13 +121,6 @@ import {
   type NovelSummary,
   type WorldRecord,
 } from "../content/types"
-
-async function fetchNovels(): Promise<NovelSummary[]> {
-  const res = await fetch("/api/novels")
-  if (!res.ok) throw new Error("加载小说列表失败")
-  const data = (await res.json()) as { novels: NovelSummary[] }
-  return data.novels
-}
 
 async function readError(res: Response, fallback: string): Promise<string> {
   try {
@@ -1394,10 +1389,9 @@ export function SidebarTree({ user, onToggleSidebar }: SidebarTreeProps) {
   const [createOpen, setCreateOpen] = useState(false)
   useDesktopCommands({"file.new":()=>setCreateOpen(true)})
 
-  const { data: novels, isPending, isError, isFetching, refetch } = useQuery({
-    queryKey: ["novels"],
-    queryFn: fetchNovels,
-  })
+  const { data: novelList, isPending, isError, isFetching, refetch } = useNovelList()
+  const novels = novelList?.novels
+  const unavailableWorks = novelList?.unavailableWorks ?? []
 
   const invalidateNovels = () =>
     queryClient.invalidateQueries({ queryKey: ["novels"] })
@@ -1711,6 +1705,7 @@ export function SidebarTree({ user, onToggleSidebar }: SidebarTreeProps) {
       <div className="min-h-0 flex-1 overflow-y-auto px-1.5 pt-0.5 pb-3">
         <SidebarHoverProvider>
         <UnboundConversations />
+        {!isError && <UnavailableWorks works={unavailableWorks} retrying={isFetching} retry={() => void refetch()}/>}
         {isError && (
           <div role="alert" className="flex flex-col items-center gap-2 px-4 py-6 text-center">
             <AlertCircle className="size-6 text-destructive" />
@@ -1733,7 +1728,7 @@ export function SidebarTree({ user, onToggleSidebar }: SidebarTreeProps) {
           <div className="flex justify-center py-8 text-muted-foreground">
             <Loader2 className="size-5 animate-spin" />
           </div>
-        ) : !isError && novels?.length === 0 ? (
+        ) : !isError && novels?.length === 0 && unavailableWorks.length === 0 ? (
           <div className="flex flex-col items-center gap-2 px-4 py-10 text-center">
             <BookOpen className="size-8 text-muted-foreground/50" />
             <p className="text-sm text-muted-foreground">

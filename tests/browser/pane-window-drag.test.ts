@@ -37,7 +37,7 @@ window.mountPanes=(count=0)=>{
  useDesktopStore.setState({bootstrap:{platform:'darwin'}});
  const tabs=Array.from({length:count},(_,i)=>({id:'tab-'+i,title:'验收面板 '+i,type:'theme',novelId:'isolated'}));
  useTabsStore.setState({tabs,activeTabId:tabs[0]?.id??null});
- const query=new QueryClient({defaultOptions:{queries:{retry:false}}});query.setQueryData(['novels'],[]);
+ const query=new QueryClient({defaultOptions:{queries:{retry:false}}});query.setQueryData(['novels'],{novels:[],unavailableWorks:[]});
  const root=createRoot(document.getElementById('app'));
  flushSync(()=>root.render(<QueryClientProvider client={query}><div style={{display:'flex',height:500}}>
  <div style={{width:230}}><SidebarWindowControls onToggleSidebar={()=>calls.push('toggle-sidebar')}/></div>

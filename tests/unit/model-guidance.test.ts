@@ -14,3 +14,12 @@ test("model guidance: selection validation and unrelated errors do not open an A
   assert.equal(modelFailureNotice(new ModelAuthorizationError("MODEL_DISABLED"),{role:"bad"}),null)
   assert.equal(modelFailureNotice(new ModelAuthorizationError("MODEL_DISABLED"),null),null)
 })
+test('RMS-10: only strict keyless service identity is included in guidance; selection never opens a prompt', () => {
+  const task = { conversationId: 'conversation', turnId: 'turn', attemptId: 'attempt' }
+  const error = new ModelAuthorizationError('MODEL_NOT_SELECTED')
+  assert.deepEqual(modelFailureNotice(error, { role: 'review', task }), { type: 'model-required', role: 'review', code: 'MODEL_NOT_SELECTED', task })
+  for (const bad of [{ ...task, apiKey: 'synthetic-secret' }, { ...task, attemptId: '' }, null]) {
+    assert.equal(modelFailureNotice(error, { role: 'review', task: bad })?.task, undefined)
+  }
+  assert.equal(modelFailureNotice(error, { role: 'review', intent: 'selection', task }), null)
+})

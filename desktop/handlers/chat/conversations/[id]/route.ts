@@ -3,12 +3,13 @@ import { z } from "zod"
 
 import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/db"
-import { getChatTurn } from "@/lib/services/chat-turn"
+import { getChatTurn, selectMissingReviewModel } from "@/lib/services/chat-turn"
 import { parseStagedSaveAction } from "@/lib/staged-save"
 import { ContentError } from "@/lib/content-errors"
 import { restoreTaskDefaults } from "@desktop/shared/task-defaults"
 import {conversationLocation,conversationHistory,associateConversation,removeConversation} from "@desktop/service/conversation-runtime"
 import {conversationAssociationCommandSchema} from "@desktop/shared/conversation-transfer"
+import { reviewSelectionSchema } from '@desktop/shared/model-task'
 
 type RouteContext = { params: Promise<{ id: string }> }
 
@@ -58,6 +59,16 @@ export async function PATCH(request: Request, ctx: RouteContext) {
   if ("error" in result) return result.error
 
   const body = await request.json().catch(() => null)
+  if (body?.type === 'review-selection') {
+    const parsed = reviewSelectionSchema.safeParse(body)
+    if (!parsed.success) return NextResponse.json({ error: '审核模型选择参数不合法' }, { status: 400 })
+    try {
+      const conversation = await selectMissingReviewModel(result.conversation.userId, id, parsed.data)
+      return NextResponse.json({ conversation })
+    } catch (error) {
+      return NextResponse.json({ error: error instanceof ContentError ? error.message : '未能保存审核模型选择，请重试', ...(error instanceof ContentError ? { code: error.code } : {}) }, { status: error instanceof ContentError ? error.status : 500 })
+    }
+  }
   if(body&&typeof body==='object'&&'targetNovelId'in body){
     const command=conversationAssociationCommandSchema.safeParse(body)
     if(!command.success||command.data.conversationId!==id)return NextResponse.json({error:'会话关联参数不合法'},{status:400})

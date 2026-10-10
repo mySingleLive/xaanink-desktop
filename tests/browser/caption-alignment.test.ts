@@ -47,7 +47,7 @@ window.mountCaption=({platform,zoom,font,count,shell})=>{
  const tabs=Array.from({length:count},(_,i)=>({id:'theme:n'+i,type:'theme',novelId:'n'+i,title:'隔离面板 '+i}));
  const layout={version:1,narrowPane:'content',contentVisible:true,sidebarVisible:true,chatVisible:true,sizes:{sidebar:20,chat:35,content:45},lastContentSize:45,lastSidebarSize:20,lastChatSize:35};
  desktopWorkspaceDraftSource.restore({version:1,tabs,activeTabId:tabs[0]?.id??null,subTabs:{},layout:shell?layout:null});
- const query=new QueryClient({defaultOptions:{queries:{retry:false}}});query.setQueryData(['novels'],[]);
+ const query=new QueryClient({defaultOptions:{queries:{retry:false}}});query.setQueryData(['novels'],{novels:[],unavailableWorks:[]});
  const root=createRoot(document.getElementById('app'));flushSync(()=>root.render(<QueryClientProvider client={query}>
  {shell?<DashboardShell user={{id:'isolated-author',name:'隔离作者',email:''}}/>:
  <div style={{display:'flex',height:500}}><div style={{width:'20%'}}><SidebarWindowControls onToggleSidebar={()=>calls.push('sidebar')}/></div>
@@ -76,14 +76,14 @@ async function aligned(page: Page, zoom: number, selector: string) {
   const result = await page.locator(selector).evaluateAll(els => els.filter(el => el.getBoundingClientRect().width > 0).map(el => {
     const r = el.getBoundingClientRect(), tab = el.closest('[role="tab"]'), button = el.closest('button')
     const expectedSize = el.tagName.toLowerCase() === 'svg' ? (tab ? button ? 12 : 14 : 16) : tab ? 15 : el.closest('.content-tabs') ? 24 : 28
-    return { label: el.getAttribute("aria-label") ?? el.tagName, top: r.top, center: r.top + r.height / 2, width: r.width, height: r.height, expectedSize }
+    return { label: el.getAttribute("aria-label") ?? el.tagName, top: r.top, center: r.top + r.height / 2, width: r.width, height: r.height, expectedSize, expectedCenter: tab ? 22 : 16 }
   }))
   assert(result.length > 0, "Expected visible real controls")
   for (const r of result) {
     assert(r.top >= -.01, `Control clips above window: ${JSON.stringify(r)}`)
-    assert(Math.abs(r.center * zoom - 16) <= .6, `Caption center mismatch: ${JSON.stringify({ ...r, zoom, dipCenter: r.center * zoom })}`)
+    assert(Math.abs(r.center * zoom - r.expectedCenter) <= .6, `Caption center mismatch: ${JSON.stringify({ ...r, zoom, dipCenter: r.center * zoom })}`)
     assert(Math.abs(r.width * zoom - r.expectedSize) < .1 && Math.abs(r.height * zoom - r.expectedSize) < .1, `Caption size changed: ${JSON.stringify({ ...r, zoom })}`)
-    assert(Math.abs(r.top * zoom - (16 - r.expectedSize / 2)) <= .6, `Caption position changed: ${JSON.stringify({ ...r, zoom })}`)
+    assert(Math.abs(r.top * zoom - (r.expectedCenter - r.expectedSize / 2)) <= .6, `Caption position changed: ${JSON.stringify({ ...r, zoom })}`)
   }
   return result.length
 }

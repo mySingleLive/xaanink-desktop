@@ -24,7 +24,7 @@ window.mountEmpty=(platform,width,count)=>{
  appearance(1,14);
  const tabs=Array.from({length:count},(_,i)=>({id:'tab-'+i,title:'隔离面板 '+i,type:'theme',novelId:'isolated'}));
  useTabsStore.setState({tabs,activeTabId:tabs[0]?.id??null});
- const query=new QueryClient({defaultOptions:{queries:{retry:false,staleTime:Infinity}}});query.setQueryData(['novels'],[]);
+ const query=new QueryClient({defaultOptions:{queries:{retry:false,staleTime:Infinity}}});query.setQueryData(['novels'],{novels:[],unavailableWorks:[]});
  function App(){const [visible,setVisible]=useState(true);return <QueryClientProvider client={query}>
   <button id='fixture-restore' style={{position:'fixed',bottom:0}} onClick={()=>setVisible(true)}>夹具恢复</button>
   {visible&&<div id='content' style={{marginLeft:'auto',width,height:500}}><ContentTabs fullscreen={false} onToggleFullscreen={()=>calls.push('fullscreen')} onToggleContent={()=>{calls.push('hide');setVisible(false)}}/></div>}
@@ -155,15 +155,16 @@ test("EMPTY-05 populated rail retains existing controls; closing last tab expose
 
 async function railSafe(page: Page, zoom: number, caption = 0) {
   const g = await page.getByRole("tablist").evaluate(el => {
-    const header = el as HTMLElement, h = header.getBoundingClientRect(), p = header.closest(".content-tabs")!.getBoundingClientRect(), s = getComputedStyle(header)
+    const header = el.closest<HTMLElement>(".desktop-drag")!, h = header.getBoundingClientRect(), p = header.closest(".content-tabs")!.getBoundingClientRect(), s = getComputedStyle(header)
     const controls = [...header.querySelectorAll<HTMLButtonElement>('button[aria-label="进入全屏"],button[aria-label="显示 / 隐藏内容面板"]')].map(button => {
       const b = button.getBoundingClientRect(), style = getComputedStyle(button)
       return { x: b.x, right: b.right, y: b.y, bottom: b.bottom, width: b.width, margin: parseFloat(style.marginLeft) + parseFloat(style.marginRight) }
     })
     const menu = document.querySelector("[data-desktop-menu-button]")!.getBoundingClientRect()
-    return { controls, width: h.width, left: p.left, right: p.right, padding: parseFloat(s.paddingLeft) + parseFloat(s.paddingRight), menu: { x: menu.x, right: menu.right }, viewport: innerWidth }
+    return { controls, compact: header.querySelector('.content-tabs-tools')?.getAttribute('data-compact') === 'true', width: h.width, left: p.left, right: p.right, padding: parseFloat(s.paddingLeft) + parseFloat(s.paddingRight), menu: { x: menu.x, right: menu.right }, viewport: innerWidth }
   })
-  assert.equal(g.controls.length, 2)
+  assert.equal(g.controls.length, g.compact ? 0 : 2)
+  if (g.compact) assert(await page.getByRole("button", { name: "所有标签", exact: true }).isVisible(), "Compact caption keeps all panel actions in its menu")
   const nativeLeft = g.viewport - Math.max(caption, 138 / zoom)
   assert(g.menu.right <= nativeLeft - 5.9)
   for (const b of g.controls) assert(b.right <= g.menu.x - 5.9, `Populated rail enters menu/caption: ${JSON.stringify({ g, zoom, caption })}`)
@@ -182,7 +183,7 @@ test("WCO-S04 populated Windows rail clears caption/menu with many tabs, zoom, f
         (window as any).fixture.appearance(zoom, font)
         if (caption) document.documentElement.style.setProperty("--fixture-titlebar-width", `${innerWidth - caption}px`)
         else document.documentElement.style.removeProperty("--fixture-titlebar-width")
-        const rail = document.querySelector<HTMLElement>('[role="tablist"]')!
+        const rail = document.querySelector<HTMLElement>('.content-tabs-caption')!
         rail.style.paddingRight = rail.style.paddingRight.replace("env(titlebar-area-width,", "var(--fixture-titlebar-width,")
       }, { zoom, font, caption })
       await railSafe(page, zoom, caption)

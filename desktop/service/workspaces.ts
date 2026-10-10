@@ -58,7 +58,7 @@ async function lockDirectory(path: string,names:Readonly<BrandNames>,assertRegis
     // A pathname rename is not compare-and-swap: another process could have
     // replaced this stale lease. Recovery is a separate explicit operation
     // under the application's instance lock; ordinary opens never steal it.
-    throw new Error("上次进程异常退出，作品目录锁需要恢复；原数据已保留")
+    throw new ContentError("WORK_LEASE_STALE", "上次进程异常退出，作品目录锁需要恢复；原数据已保留")
   }
   const leaseDirectory=await directoryIdentity(join(await realpath(path),names.lock))
   try { assertRegistration?.();await writeFile(join(lock, "owner.json"), JSON.stringify({ token, pid: process.pid, host: hostname() }), { flag: "wx", mode: 0o600 }) }

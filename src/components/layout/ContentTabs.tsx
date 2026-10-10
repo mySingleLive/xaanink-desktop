@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { useQuery } from "@tanstack/react-query"
-import { Maximize2, Minimize2, PanelRight, X } from "lucide-react"
+import { useEffect, useId, useState } from "react"
+import { useNovelList } from "@/lib/novel-list"
+import { ChevronDown, Maximize2, Minimize2, PanelRight, X } from "lucide-react"
 
 import { renderTabContent } from "@/components/content/registry"
 import { StagedInterceptionBootstrap, StagedSaveSurface } from "@/components/content/StagedSaveSurface"
@@ -12,8 +12,10 @@ import { isTentativeNovelTitle } from "@/lib/novel-title"
 import { TentativeBadge } from "@/components/ui/tentative-badge"
 import { getTabIcon, useTabsStore } from "@/stores/tabs"
 import { useDesktopStore } from "@/stores/desktop"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { useContentTabStrip } from "./useContentTabStrip"
 
-/** 右栏：Chrome 式 tab 条 + 内容区 */
+/** 右栏：可排序的内容标签 + 保留实例的真实业务面板 */
 export function ContentTabs({
   fullscreen,
   onToggleFullscreen,
@@ -30,40 +32,23 @@ export function ContentTabs({
   const activeTabId = useTabsStore((s) => s.activeTabId)
   const activateTab = useTabsStore((s) => s.activateTab)
   const closeTab = useTabsStore((s) => s.closeTab)
+  const moveTab = useTabsStore((s) => s.moveTab)
   const desktopBootstrap = useDesktopStore((s) => s.bootstrap)
+  const strip = useContentTabStrip(tabs, activeTabId, moveTab)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const prefix = useId()
+  useEffect(() => { if (!strip.hasOverflow) setMenuOpen(false) }, [strip.hasOverflow])
 
-  // 小说 tab 的图标跟随封面：复用侧栏的 ["novels"] 缓存（契约=数组），封面变更失效后自动刷新
-  const { data: novels } = useQuery<{ id: string; coverUrl: string | null }[]>({
-    queryKey: ["novels"],
-    queryFn: async () => {
-      const res = await fetch("/api/novels")
-      if (!res.ok) throw new Error("加载小说列表失败")
-      const data = (await res.json()) as {
-        novels: { id: string; coverUrl: string | null }[]
-      }
-      return data.novels
-    },
-  })
-  const coverByNovel = new Map((novels ?? []).map((n) => [n.id, n.coverUrl]))
+  // 封面与侧栏、对话区共享完整列表状态，失效后自动刷新。
+  const { data: novelList } = useNovelList()
+  const coverByNovel = new Map((novelList?.novels ?? []).map((n) => [n.id, n.coverUrl]))
 
   const activeTab = tabs.find((t) => t.id === activeTabId) ?? null
 
-  /* 窄条下 tab 会溢出滚动容器；激活 tab 必须始终滚进视口（Chrome 式），
-     否则它可能被完全裁出视野。容器尺寸变化（窗口/分栏动画）也要重对齐。 */
-  const scrollerRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const scroller = scrollerRef.current
-    if (!scroller) return
-    const reveal = () => {
-      scroller
-        .querySelector('[role="tab"][aria-selected="true"]')
-        ?.scrollIntoView({ block: "nearest", inline: "nearest" })
-    }
-    reveal()
-    const observer = new ResizeObserver(reveal)
-    observer.observe(scroller)
-    return () => observer.disconnect()
-  }, [activeTabId, tabs])
+  const completeTitle = (tab: (typeof tabs)[number]) => {
+    const suffix = tab.type === "chapter-content" ? "正文" : tab.type === "chapter-outline" ? "大纲" : tab.type === "chapter-candidate" ? "候选稿" : null
+    return suffix ? `${tab.title} · ${suffix}` : tab.title
+  }
 
   return (
     <div className="content-tabs flex h-full flex-col bg-editor">
@@ -91,17 +76,15 @@ export function ContentTabs({
       )}
       {tabs.length > 0 && (
         <div
-          role="tablist"
           data-desktop-caption={desktopBootstrap?.platform === "win32" ? "win32" : undefined}
-          className="desktop-drag flex shrink-0 items-end border-b border-sidebar-border bg-sidebar px-2 pt-1.5"
+          className="desktop-drag content-tabs-caption"
           style={desktopBootstrap?.platform === "win32" ? {
             paddingRight: `calc(max(100vw - env(titlebar-area-width, calc(100vw - 138px)), ${138 / desktopBootstrap.settings.appearance.zoom}px) + ${28 / desktopBootstrap.settings.appearance.zoom}px + 12px)`,
             justifyContent: "flex-end",
           } : undefined}
         >
-          {/* top-px 挂在滚动容器上而不是每个 tab 上：tab 的相对位移会制造 1px 纵向滚动溢出，
-              overflow-x-auto 会让 overflow-y 计算为 auto，从而在容器右缘冒出一条纵向滚动条 */}
-          <div ref={scrollerRef} className="relative top-px flex min-w-0 flex-1 items-end gap-0.5 overflow-x-auto">
+          <div ref={strip.viewportRef} className="content-tabs-viewport" role="tablist" aria-label="内容标签" aria-orientation="horizontal" onClickCapture={strip.onClickCapture}>
+            <div ref={strip.trackRef} className="content-tabs-track">
             {tabs.map((tab) => {
               const Icon = getTabIcon(tab)
               const active = tab.id === activeTabId
@@ -111,38 +94,38 @@ export function ContentTabs({
               return (
                 <div
                   key={tab.id}
+                  id={`${prefix}-tab-${tab.id}`}
+                  data-tab-id={tab.id}
+                  data-active={active}
                   role="tab"
+                  aria-controls={`${prefix}-panel-${tab.id}`}
                   aria-selected={active}
                   aria-label={title}
                   title={title}
-                  tabIndex={0}
+                  tabIndex={strip.focusedId === tab.id ? 0 : -1}
                   onClick={() => activateTab(tab.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") activateTab(tab.id)
-                  }}
+                  onFocus={() => strip.onFocus(tab.id)}
+                  onKeyDown={(e) => strip.onKeyDown(e, tab.id, activateTab)}
+                  onPointerDown={(e) => { setMenuOpen(false); strip.onPointerDown(e) }}
                   onAuxClick={(e) => {
                     if (e.button === 1) closeTab(tab.id)
                   }}
-                  className={cn(
-                    "group relative flex h-8 max-w-[min(13rem,100%)] min-w-24 shrink-0 cursor-pointer items-center gap-1.5 rounded-t-lg border border-b-0 px-3 text-[12.5px] select-none",
-                    active
-                      ? "border-sidebar-border bg-editor text-foreground shadow-[inset_0_2px_0_var(--primary)]"
-                      : "border-transparent text-muted-foreground hover:bg-hover-wash hover:text-foreground"
-                  )}
+                  className="content-tab"
                 >
                   {coverUrl ? (
                     /* eslint-disable-next-line @next/next/no-img-element -- 本地封面缩略图 */
                     <img
                       src={coverUrl}
                       alt=""
+                      draggable={false}
                       className="aspect-[2/3] h-4 shrink-0 rounded-[2px] object-cover"
                     />
                   ) : (
                     <Icon className="size-3.5 shrink-0" />
                   )}
-                  <span className="truncate">{tab.title}</span>
+                  <span className="content-tab-title">{tab.title}</span>
                   {tab.type === "novel" && isTentativeNovelTitle(tab.title) && <TentativeBadge />}
-                  {suffix && <span className="shrink-0 text-muted-foreground" data-tab-type={tab.type}>· {suffix}</span>}
+                  {suffix && <span className="content-tab-suffix" data-tab-type={tab.type}>· {suffix}</span>}
                   <button
                     type="button"
                     aria-label={`关闭 ${title}`}
@@ -150,46 +133,63 @@ export function ContentTabs({
                       e.stopPropagation()
                       closeTab(tab.id)
                     }}
-                    className={cn(
-                      "ml-0.5 flex size-[15px] shrink-0 items-center justify-center rounded hover:bg-hover-wash",
-                      active ? "opacity-60 hover:opacity-100" : "opacity-0 group-hover:opacity-60 hover:opacity-100!"
-                    )}
+                    className="content-tab-close"
                   >
                     <X className="size-3" />
                   </button>
                 </div>
               )
             })}
+            </div>
+            <div ref={strip.markerRef} className="content-tabs-drop-marker" aria-hidden="true" hidden />
           </div>
+          <div ref={strip.toolsRef} className="content-tabs-tools" data-compact={strip.compact}>
+            {strip.hasOverflow && <DropdownMenu open={menuOpen} onOpenChange={open => { if (open) strip.cancel(); setMenuOpen(open) }} modal={false}>
+              <DropdownMenuTrigger render={<button type="button" className="content-tabs-tool content-tabs-menu-trigger" aria-label="所有标签" title="所有标签" />}><ChevronDown /></DropdownMenuTrigger>
+              <DropdownMenuContent className="content-tabs-menu" align="end" aria-label="所有标签">
+                <DropdownMenuRadioGroup value={activeTabId ?? ""} onValueChange={activateTab}>
+                  {tabs.map(tab => <div key={tab.id} className="content-tabs-menu-row" data-tab-id={tab.id}>
+                    <DropdownMenuRadioItem closeOnClick={true} value={tab.id} aria-label={completeTitle(tab)} className="content-tabs-menu-select">{completeTitle(tab)}</DropdownMenuRadioItem>
+                    <DropdownMenuItem closeOnClick={false} aria-label={`关闭 ${completeTitle(tab)}`} className="content-tabs-menu-close" onClick={() => closeTab(tab.id)}><X /></DropdownMenuItem>
+                  </div>)}
+                </DropdownMenuRadioGroup>
+                {strip.compact && <>
+                  <DropdownMenuItem aria-label={fullscreen ? "退出全屏" : "进入全屏"} onClick={onToggleFullscreen}>{fullscreen ? <Minimize2 /> : <Maximize2 />}{fullscreen ? "退出全屏" : "进入全屏"}</DropdownMenuItem>
+                  <DropdownMenuItem aria-label="显示 / 隐藏内容面板" onClick={onToggleContent}><PanelRight />显示 / 隐藏内容面板</DropdownMenuItem>
+                </>}
+              </DropdownMenuContent>
+            </DropdownMenu>}
           {/* 全屏切换：进入=隐藏中间 AI 对话面板、内容区吃满；退出=恢复三栏布局 */}
-          <button
+          {!strip.compact && <button
             type="button"
             aria-label={fullscreen ? "退出全屏" : "进入全屏"}
             aria-pressed={fullscreen}
             title={fullscreen ? "退出全屏（显示 AI 对话面板）" : "进入全屏（隐藏 AI 对话面板）"}
             onClick={onToggleFullscreen}
             className={cn(
-              "mb-1 ml-1 flex size-6 shrink-0 items-center justify-center rounded-md transition-colors",
+              "content-tabs-tool",
               fullscreen
                 ? "bg-active-wash text-primary"
                 : "text-muted-foreground hover:bg-hover-wash hover:text-foreground"
             )}
           >
             {fullscreen ? <Minimize2 className="size-3.5" /> : <Maximize2 className="size-3.5" />}
-          </button>
+          </button>}
           {/* 显示/隐藏内容面板：收起整个右侧内容区；无高亮态（tab 条在面板必然展开），
               恢复入口在对话区头部按钮与侧栏树 */}
-          <button
+          {!strip.compact && <button
             type="button"
             aria-label="显示 / 隐藏内容面板"
             title="显示 / 隐藏内容面板"
             onClick={onToggleContent}
-            className="mb-1 ml-1 flex size-6 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-hover-wash hover:text-foreground"
+            className="content-tabs-tool text-muted-foreground hover:bg-hover-wash hover:text-foreground"
           >
             <PanelRight className="size-3.5" />
-          </button>
+          </button>}
+          </div>
         </div>
       )}
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{strip.announcement}</div>
 
       {activeTab && <StoryActivityBanner novelId={activeTab.novelId} />}
       {activeTab?.refId && ["chapter-outline", "chapter-content"].includes(activeTab.type) && <StorySources novelId={activeTab.novelId} artifactKey={`${activeTab.type}:${activeTab.refId}`} />}
@@ -198,7 +198,7 @@ export function ContentTabs({
         {activeTab ? (
           // Monaco 的实例不能在 Activity 清理 effect 后复用；只隐藏可保留编辑实例与草稿。
           tabs.map(tab => (
-            <div key={tab.id} hidden={tab.id !== activeTabId} className="h-full">
+            <div key={tab.id} id={`${prefix}-panel-${tab.id}`} role="tabpanel" aria-labelledby={`${prefix}-tab-${tab.id}`} hidden={tab.id !== activeTabId} className="h-full">
               <StagedSaveSurface tab={tab}>{renderTabContent(tab)}</StagedSaveSurface>
             </div>
           ))

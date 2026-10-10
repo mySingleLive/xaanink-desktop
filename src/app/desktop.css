@@ -22,6 +22,43 @@ button, input, select, textarea, a, [role="button"], [role="tab"], [contentedita
 [data-desktop-caption="win32"] [role="tab"] button { width:calc(15px / var(--desktop-caption-zoom, 1)); height:calc(15px / var(--desktop-caption-zoom, 1)); }
 [data-desktop-caption="win32"] [role="tab"] button svg { width:calc(12px / var(--desktop-caption-zoom, 1)); height:calc(12px / var(--desktop-caption-zoom, 1)); }
 [data-desktop-caption="win32"] [role="tab"] > :is(svg,img) { width:calc(14px / var(--desktop-caption-zoom, 1)); height:calc(14px / var(--desktop-caption-zoom, 1)); }
+/* Approved content Tabs: a local 44/32 DIP strip, independent of caption tools. */
+.content-tabs { --content-tab-scale:1; --content-tab-selected-bg:var(--editor-bg); --content-tab-selected-border:var(--border); --content-tabs-chrome:var(--sidebar); }
+.paper .content-tabs { --content-tabs-chrome:#f5eedc; }
+.ink .content-tabs { --content-tabs-chrome:#161210; --content-tab-selected-bg:#2a2826; --content-tab-selected-border:#4b4640; }
+.content-tabs:has(> [data-desktop-caption="win32"]) { --content-tab-scale:var(--desktop-caption-zoom, 1); }
+.content-tabs > .content-tabs-caption { position:relative; display:flex; height:calc(44px / var(--content-tab-scale)); flex-shrink:0; align-items:center; gap:calc(4px / var(--content-tab-scale)); padding:0 8px; border:0; background:var(--content-tabs-chrome); }
+.content-tabs-caption::after { content:""; position:absolute; bottom:0; left:0; right:0; height:1px; background:var(--border); pointer-events:none; }
+.content-tabs-viewport { position:relative; min-width:0; flex:1; height:calc(32px / var(--content-tab-scale)); overflow:hidden; }
+.content-tabs-track { display:flex; position:relative; align-items:center; gap:calc(6px / var(--content-tab-scale)); width:max-content; min-width:100%; height:100%; }
+.content-tab { position:relative; display:flex; align-items:center; flex-shrink:0; gap:calc(6px / var(--content-tab-scale)); width:max-content; min-width:min(calc(96px / var(--content-tab-scale)),var(--content-tabs-viewport-width,208px)); max-width:min(calc(208px / var(--content-tab-scale)),var(--content-tabs-viewport-width,208px)); height:calc(32px / var(--content-tab-scale)); padding:0 calc(10px / var(--content-tab-scale)); border:1px solid transparent; border-radius:calc(6px / var(--content-tab-scale)); font-size:calc(.78125rem / var(--content-tab-scale)); line-height:calc(20px / var(--content-tab-scale)); color:var(--muted-foreground); cursor:default; user-select:none; box-shadow:none; overflow:hidden; -webkit-app-region:no-drag; app-region:no-drag; }
+.content-tab:hover { color:var(--foreground); background:var(--hover-wash); }
+.content-tab[data-active="true"],.content-tab-drag-preview { background:var(--content-tab-selected-bg); color:var(--foreground); border-color:var(--content-tab-selected-border); }
+.content-tabs-caption .content-tab { padding-bottom:0; font-size:calc(.78125rem / var(--content-tab-scale)); line-height:calc(20px / var(--content-tab-scale)); border-top-width:1px; }
+.content-tab > :is(svg,img) { flex-shrink:0; width:calc(14px / var(--content-tab-scale)); height:calc(14px / var(--content-tab-scale)); }
+.content-tab > img { object-fit:cover; border-radius:2px; }
+.content-tab-title { white-space:nowrap; overflow:hidden; text-overflow:clip; min-width:0; flex:0 1 auto; }
+.content-tab-title[data-overflow="true"] { mask-image:linear-gradient(to right,#000 calc(100% - 24px / var(--content-tab-scale)),transparent); }
+.content-tab-suffix { flex-shrink:0; color:var(--muted-foreground); font-size:calc(.6875rem / var(--content-tab-scale)); }
+.content-tab-close { display:grid; place-items:center; flex-shrink:0; width:calc(15px / var(--content-tab-scale)); height:calc(15px / var(--content-tab-scale)); border:0; border-radius:3px; padding:0; margin-left:calc(2px / var(--content-tab-scale)); background:transparent; opacity:0; }
+.content-tab-close svg { width:calc(12px / var(--content-tab-scale)); height:calc(12px / var(--content-tab-scale)); }
+.content-tab[data-active="true"] .content-tab-close { opacity:.6; }
+.content-tab:hover .content-tab-close,.content-tab:focus-within .content-tab-close { opacity:.85; }
+.content-tab-close:hover { background:var(--hover-wash); opacity:1; }
+.content-tabs > .desktop-drag button,.content-tab *, .content-tabs-menu [role^="menuitem"] { cursor:default; }
+.content-tab:focus-visible,.content-tabs > .desktop-drag button:focus-visible { outline:2px solid color-mix(in srgb,var(--foreground) 45%,transparent); outline-offset:-3px; }
+.content-tabs-tools { height:calc(44px / var(--content-tab-scale)); display:flex; align-items:flex-start; gap:calc(4px / var(--content-tab-scale)); flex-shrink:0; padding-top:calc(4px / var(--content-tab-scale)); }
+.content-tabs-tools .content-tabs-tool { display:grid; place-items:center; width:calc(24px / var(--content-tab-scale)); height:calc(24px / var(--content-tab-scale)); border:0; padding:0; border-radius:5px; flex-shrink:0; color:var(--muted-foreground); }
+.content-tabs-tool:hover { background:var(--hover-wash); color:var(--foreground); }
+.content-tabs-tool svg { width:calc(16px / var(--content-tab-scale)); height:calc(16px / var(--content-tab-scale)); }
+.content-tabs-menu { width:min(340px,calc(100vw - 16px)); max-height:min(320px,var(--available-height)); }
+.content-tabs-menu-row { display:flex; align-items:center; gap:4px; }
+.content-tabs-menu-select { flex:1; min-width:0; white-space:normal; overflow-wrap:anywhere; font-size:.75rem; }
+.content-tabs-menu-close { flex-shrink:0; padding:5px; }
+.content-tab-drag-source { opacity:.35; }
+.content-tab-drag-preview { position:fixed; z-index:60; pointer-events:none; box-shadow:0 4px 12px #0002; }
+.content-tabs-drop-marker { position:absolute; top:calc(3px / var(--content-tab-scale)); bottom:calc(3px / var(--content-tab-scale)); width:2px; border-radius:1px; background:color-mix(in srgb,var(--foreground) 55%,transparent); pointer-events:none; z-index:70; }
+.content-tabs-drop-marker[hidden] { display:none; }
 /* Preserve the real narrow-workspace switcher while keeping captions at y=0. */
 body[data-platform="win32"] .dashboard-shell > nav[aria-label="创作工作区"] { order:1; }
 /* Paper workspace surfaces approved in UI v3. Keep global form/theme tokens

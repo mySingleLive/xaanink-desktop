@@ -1,4 +1,5 @@
 "use client"
+import { useNovelList, appendCreatedNovel, type NovelList } from "@/lib/novel-list"
 import { useSceneUiStore } from "@/stores/scene-ui"
 import { parseSceneIdentity } from "@/lib/scene-context"
 import { splitMentionToken } from "@/lib/mention-token"
@@ -181,13 +182,6 @@ async function fetchConversations(): Promise<ConversationSummary[]> {
   if (!res.ok) throw new Error("加载会话列表失败")
   const data = (await res.json()) as { conversations: ConversationSummary[] }
   return data.conversations
-}
-
-async function fetchNovels(): Promise<NovelSummaryItem[]> {
-  const res = await fetch("/api/novels")
-  if (!res.ok) throw new Error("加载小说列表失败")
-  const data = (await res.json()) as { novels: NovelSummaryItem[] }
-  return data.novels
 }
 
 /**
@@ -1073,10 +1067,8 @@ export function ChatPanel({
     queryKey: ["chat-conversations"],
     queryFn: fetchConversations,
   })
-  const { data: novels } = useQuery<NovelSummaryItem[]>({
-    queryKey: ["novels"],
-    queryFn: fetchNovels,
-  })
+  const { data: novelList } = useNovelList<NovelSummaryItem>()
+  const novels = novelList?.novels
   const heroNovel = novels?.find((n) => n.id === heroNovelId)
   /** 引导页小说下拉的搜索过滤 */
   const filteredHeroNovels = (novels ?? []).filter((n) =>
@@ -1254,7 +1246,7 @@ export function ChatPanel({
         if (!stillCurrent()) return
         novelId = data.novel.id
         const created = data.novel
-        queryClient.setQueryData<NovelSummaryItem[]>(["novels"], current => current?.some(n => n.id === created.id) ? current : [...(current ?? []), created])
+        queryClient.setQueryData<NovelList<NovelSummaryItem>>(["novels"], current => appendCreatedNovel(current, created))
         setConversationNovelId(novelId)
         useChatStore.setState({ pendingNovelTitle: null, pendingNovelPosition: null, novelCreationRequestId: null, creatingNovel: false })
       }

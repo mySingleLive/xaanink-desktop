@@ -215,6 +215,8 @@ interface TabsState {
   /** 关闭 tab：若关闭的是激活 tab，则激活相邻（优先左侧）tab */
   closeTab: (id: string) => void
   activateTab: (id: string) => void
+  /** Reorder open tabs without leaving a scene or changing panel identity. */
+  moveTab: (id: string, destinationIndex: number) => void
   /** Desktop history waits for the existing draft guard; stale/cancelled moves do not activate. */
   activateTabForNavigation: (id: string, signal: AbortSignal) => Promise<boolean>
   /** 删除小说时关闭其所有 tab */
@@ -281,6 +283,18 @@ export const useTabsStore = create<TabsState>((set, get) => ({
 
   activateTab: (id) =>
     afterSceneLeave(() => set(state => activation(state, id)), id),
+
+  moveTab: (id, destinationIndex) => set(state => {
+    if (!Number.isInteger(destinationIndex)) return state
+    const from = state.tabs.findIndex(tab => tab.id === id)
+    if (from < 0) return state
+    const to = Math.max(0, Math.min(state.tabs.length - 1, destinationIndex))
+    if (from === to) return state
+    const tabs = [...state.tabs]
+    const [tab] = tabs.splice(from, 1)
+    tabs.splice(to, 0, tab)
+    return { tabs }
+  }),
 
   activateTabForNavigation: async (id, signal) => {
     const before = get(), target = before.tabs.find(tab => tab.id === id)

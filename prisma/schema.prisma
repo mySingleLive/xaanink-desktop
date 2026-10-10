@@ -982,6 +982,8 @@ model CascadeJob {
 }
 
 model Conversation {
+  /** 作者明确补齐的审核选择；null 不自动跟随全局默认。 */
+  reviewModelId String?
   /** 会话创建时的桌面默认值；显式模型选择另存modelId，历史快照不重写。 */
   defaultsSnapshot Json?
   activeAttemptId String?
@@ -1318,6 +1320,8 @@ model ChatTurn {
 }
 
 model ChatAttempt {
+  /** 本次受理的模型选择；原回合历史保持不变，后续重试继承本次快照。 */
+  defaultsSnapshot Json?
   requestId String?
   id String @id @default(cuid())
   turnId String

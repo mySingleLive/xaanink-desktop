@@ -1,0 +1,188 @@
+{
+  "purpose": "Isolated design HTML software checks only; no product or OS-native acceptance",
+  "revision": "rect-drag-v3",
+  "browser": "154.0.8037.98",
+  "node": "v24.19.0",
+  "cases": [
+    {
+      "name": "selected tab moves right; active and body node retained",
+      "order": [
+        "sample-2",
+        "sample-3",
+        "sample-1"
+      ],
+      "active": "sample-1"
+    },
+    {
+      "name": "close uses previous neighbour in reordered sequence",
+      "order": [
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-3"
+    },
+    {
+      "name": "inactive tab moves left without activating",
+      "order": [
+        "sample-3",
+        "sample-1",
+        "sample-2"
+      ],
+      "active": "sample-1"
+    },
+    {
+      "name": "ordinary click after drag is not swallowed",
+      "order": [
+        "sample-3",
+        "sample-1",
+        "sample-2"
+      ],
+      "active": "sample-2"
+    },
+    {
+      "name": "2px movement remains a click",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-2"
+    },
+    {
+      "name": "Escape cancels and clears ghost/insertion marker",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-1"
+    },
+    {
+      "name": "ordinary click works after cancellation",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-2"
+    },
+    {
+      "name": "drop outside tab viewport cancels",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-1"
+    },
+    {
+      "name": "pointercancel cancels",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-1",
+      "trigger": "controlled DOM event; not OS-native input"
+    },
+    {
+      "name": "lostpointercapture cancels",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-1",
+      "trigger": "browser pointer capture released by test"
+    },
+    {
+      "name": "blur cancels",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-1",
+      "trigger": "controlled DOM event; not OS-native input"
+    },
+    {
+      "name": "close button does not start drag",
+      "order": [
+        "sample-1",
+        "sample-3"
+      ],
+      "active": "sample-1"
+    },
+    {
+      "name": "Alt arrows reorder, retain focus and active item, announce position, stop at boundary",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3"
+      ],
+      "active": "sample-1"
+    },
+    {
+      "name": "right edge auto-scroll reaches offscreen last position",
+      "order": [
+        "sample-2",
+        "sample-3",
+        "extra-0",
+        "extra-1",
+        "extra-2",
+        "extra-3",
+        "extra-4",
+        "extra-5",
+        "extra-6",
+        "extra-7",
+        "extra-8",
+        "extra-9",
+        "extra-10",
+        "sample-1"
+      ],
+      "active": "sample-1",
+      "scrollLeft": 1936
+    },
+    {
+      "name": "overflow menu matches reordered tab order",
+      "order": [
+        "sample-2",
+        "sample-3",
+        "extra-0",
+        "extra-1",
+        "extra-2",
+        "extra-3",
+        "extra-4",
+        "extra-5",
+        "extra-6",
+        "extra-7",
+        "extra-8",
+        "extra-9",
+        "extra-10",
+        "sample-1"
+      ],
+      "active": "sample-1"
+    },
+    {
+      "name": "left edge auto-scroll reaches first position",
+      "order": [
+        "sample-1",
+        "sample-2",
+        "sample-3",
+        "extra-0",
+        "extra-1",
+        "extra-2",
+        "extra-3",
+        "extra-4",
+        "extra-5",
+        "extra-6",
+        "extra-7",
+        "extra-8",
+        "extra-9",
+        "extra-10"
+      ],
+      "active": "sample-1"
+    }
+  ],
+  "pageErrors": []
+}

@@ -5,6 +5,7 @@ import type { AIModel } from "../../src/generated/prisma/client"
 import { ContentError } from "../../src/lib/content-errors"
 import { getDatabaseContext, LOCAL_AUTHOR_ID } from "./context"
 import { restoreTaskDefaults, type TaskDefaults } from "../shared/task-defaults"
+import { currentChatExecution } from '../../src/lib/chat-execution'
 
 type Call = <T>(method: string, value?: unknown) => Promise<T>
 let callMain: Call | undefined
@@ -34,7 +35,9 @@ export async function readLocalTaskDefaults(): Promise<TaskDefaults> {
 export async function resolveLocalModel(userId: string, role: "text" | "review" | "image", id?: string | null, intent: "invoke" | "selection" = "invoke"): Promise<PublicModel> {
   getDatabaseContext()
   if (userId !== LOCAL_AUTHOR_ID) throw new ContentError("LOCAL_AUTHOR_REQUIRED", "无法使用其他用户的模型配置", 403)
-  try { return await call<PublicModel>("model.resolve", { role, intent, ...(id !== undefined ? { id } : {}) }) }
+  const scope = intent === 'invoke' ? currentChatExecution() : undefined
+  const task = scope?.userId === userId ? { conversationId: scope.conversationId, turnId: scope.turnId, attemptId: scope.attemptId } : undefined
+  try { return await call<PublicModel>("model.resolve", { role, intent, ...(id !== undefined ? { id } : {}), ...(task ? { task } : {}) }) }
   catch (error) {
     const code = error instanceof Error ? error.message : "MODEL_UNAVAILABLE"
     if (["MODEL_NOT_CONFIGURED", "MODEL_NOT_SELECTED", "MODEL_NOT_FOUND", "MODEL_DISABLED", "MODEL_KEY_MISSING", "MODEL_UNAVAILABLE", "MODEL_KIND_MISMATCH", "AUTHORIZATION_REVOKED"].includes(code)) throw new ContentError(code, code === "MODEL_NOT_CONFIGURED" ? "尚未配置模型，请前往设置添加模型" : code === "MODEL_NOT_SELECTED" ? "请先选择用于此任务的模型" : code === "MODEL_KEY_MISSING" ? "所选模型的密钥不可用，请在设置中重新配置" : code === "MODEL_KIND_MISMATCH" ? "所选模型类别与此任务不符，请重新选择" : "所选模型不可用，请在设置中检查", 428)

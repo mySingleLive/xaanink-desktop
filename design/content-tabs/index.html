@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>右侧内容 Tabs 小圆角矩形与拖拽设计稿</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f7f7f4; color: #302b24; font: 14px/1.65 "Microsoft YaHei", system-ui, sans-serif; }
+    main { max-width: 1264px; margin: 0 auto; padding: 36px 32px 48px; }
+    h1 { margin: 0; font-size: 25px; font-weight: 600; letter-spacing: -.4px; }
+    .intro { margin: 8px 0 22px; color: #756c60; }
+    .review-controls { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin-bottom: 18px; }
+    .control-group { display: flex; align-items: center; gap: 5px; }
+    .control-label { margin-right: 4px; color: #756c60; font-size: 12px; }
+    button { font: inherit; cursor: pointer; color: inherit; }
+    .review-button { border: 1px solid #d9d2c6; border-radius: 6px; background: transparent; padding: 5px 13px; font-size: 12px; min-height: 32px; }
+    .review-button[aria-pressed="true"] { background: #373329; color: #faf8f0; border-color: #373329; }
+    button:focus-visible, [role="tab"]:focus-visible { outline: 2px solid #776c5c; outline-offset: -3px; }
+    .panel button:focus-visible, .panel [role="tab"]:focus-visible { outline-color: color-mix(in srgb, var(--foreground) 45%, transparent); }
+    .stage { padding: 26px; border: 1px solid #e3ded3; border-radius: 14px; background: #efeee8; display: flex; align-items: flex-start; justify-content: flex-end; min-height: 358px; }
+    .panel {
+      --editor-bg: #f8f3e4; --chrome: #f5eedc; --foreground: #2b251b; --muted: #8c8067;
+      --border: #d8cba6; --primary: #b03524; --wash: rgba(78, 57, 22, .05);
+      --menu-bg: #fcf8ee; --tab-max: 208px; --selected-tab-bg: var(--editor-bg); --selected-tab-border: var(--border);
+      width: 100%; min-width: 0; height: 290px; position: relative;
+      background: var(--editor-bg); color: var(--foreground); border: 1px solid var(--border);
+      border-radius: 9px; box-shadow: 0 9px 25px #29231714;
+    }
+    .panel.ink {
+      --editor-bg: #100d0c; --chrome: #161210; --foreground: #ece7e1; --muted: #9a918a;
+      --border: rgba(255, 248, 240, .09); --primary: #e07a5f; --wash: rgba(255, 248, 240, .05); --menu-bg: #1b1714;
+      --selected-tab-bg: #2a2826; --selected-tab-border: #4b4640;
+    }
+    .panel.narrow { width: min(430px, 100%); }
+    .caption { height: 44px; position: relative; display: flex; align-items: center; gap: 4px; padding: 0 174px 0 8px; background: var(--chrome); border-radius: 8px 8px 0 0; }
+    .caption::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--border); }
+    .tab-viewport { height: 32px; flex: 1; min-width: 0; overflow: hidden; position: relative; }
+    .tab-track { display: flex; gap: 6px; align-items: center; min-width: 100%; width: max-content; height: 32px; }
+    .content-tab {
+      position: relative; height: 32px; display: flex; align-items: center; gap: 6px;
+      width: max-content; min-width: min(96px, var(--viewport-width, 208px)); max-width: min(var(--tab-max), var(--viewport-width, 208px));
+      flex-shrink: 0; padding: 0 10px; border: 1px solid transparent;
+      border-radius: 6px; font-size: 12.5px; line-height: 20px; user-select: none; color: var(--muted); cursor: default;
+    }
+    .content-tab:hover { color: var(--foreground); background: var(--wash); }
+    .content-tab[aria-selected="true"] { background: var(--selected-tab-bg); color: var(--foreground); border-color: var(--selected-tab-border); box-shadow: none; }
+    .content-tab *, .panel button { cursor: default; }
+    .content-tab.drag-source { opacity: .35; }
+    .drag-preview { position: fixed; z-index: 20; pointer-events: none; background: var(--selected-tab-bg); color: var(--foreground); border-color: var(--selected-tab-border); box-shadow: 0 4px 12px #0002; opacity: .92; }
+    .drop-marker { position: absolute; top: 3px; bottom: 3px; width: 2px; border-radius: 1px; background: color-mix(in srgb, var(--foreground) 55%, transparent); pointer-events: none; z-index: 30; }
+    .drop-marker[hidden] { display: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .content-tab > svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .tab-title { white-space: nowrap; overflow: hidden; text-overflow: clip; min-width: 0; flex: 0 1 auto; }
+    .tab-title[data-overflow="true"] { mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent); -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent); }
+    .tab-suffix { flex-shrink: 0; font-size: 11px; color: var(--muted); }
+    .tab-close { border: 0; background: transparent; padding: 0; margin-left: 2px; width: 15px; height: 15px; display: grid; place-items: center; border-radius: 3px; opacity: 0; flex-shrink: 0; }
+    .tab-close svg { width: 12px; height: 12px; }
+    .content-tab[aria-selected="true"] .tab-close { opacity: .6; }
+    .content-tab:hover .tab-close, .content-tab:focus-within .tab-close { opacity: .85; }
+    .tab-close:hover { background: var(--wash); opacity: 1; }
+    .panel-tools { height: 44px; display: flex; align-items: flex-start; gap: 4px; padding-top: 4px; position: relative; flex-shrink: 0; }
+    .icon-button { width: 24px; height: 24px; padding: 0; display: grid; place-items: center; border: 0; background: transparent; border-radius: 5px; color: var(--muted); }
+    .icon-button svg { width: 15px; height: 15px; }
+    .icon-button:hover, .icon-button[aria-expanded="true"] { background: var(--wash); color: var(--foreground); }
+    .icon-button[hidden] { display: none; }
+    .native-area { position: absolute; right: 0; top: 0; width: 174px; height: 32px; display: flex; align-items: center; padding-left: 6px; color: var(--foreground); pointer-events: none; }
+    .native-menu { width: 28px; margin-right: 2px; height: 28px; display: grid; place-items: center; }
+    .native-menu svg { width: 16px; height: 16px; }
+    .native-control { display: grid; place-items: center; width: 46px; height: 32px; }
+    .native-control svg { width: 13px; height: 13px; }
+    .body { height: calc(100% - 44px); background: var(--editor-bg); border-radius: 0 0 8px 8px; padding: 28px 34px; }
+    .body-type { margin: 0 0 8px; color: var(--muted); font-size: 11px; }
+    .body h2 { font: 500 19px/1.6 "Microsoft YaHei", sans-serif; margin: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .skeleton { max-width: 630px; margin-top: 28px; }
+    .skeleton i { display: block; margin: 12px 0; height: 5px; border-radius: 2px; background: var(--foreground); opacity: .08; width: 100%; }
+    .skeleton i:nth-child(2) { width: 93%; }.skeleton i:nth-child(3) { width: 68%; }
+    .all-tabs-menu { position: absolute; z-index: 10; right: clamp(8px, calc(100% - 348px), 174px); top: 39px; width: min(340px, calc(100% - 16px)); max-height: 264px; overflow: auto; overscroll-behavior: contain; padding: 6px; border: 1px solid var(--border); border-radius: 8px; background: var(--menu-bg); box-shadow: 0 8px 24px #0002; }
+    .all-tabs-menu[hidden] { display: none; }
+    .all-tabs-menu h3 { margin: 2px 7px 5px; color: var(--muted); font-size: 11px; font-weight: 400; }
+    .menu-row { display: flex; width: 100%; gap: 4px; align-items: center; border-radius: 5px; font-size: 12px; }
+    .menu-switch { display: flex; min-width: 0; flex: 1; gap: 7px; align-items: center; border: 0; padding: 8px 7px; background: transparent; text-align: left; border-radius: 5px; font: inherit; }
+    .menu-switch:hover, .menu-switch:focus-visible { background: var(--wash); }
+    .menu-check { width: 14px; flex-shrink: 0; color: var(--primary); }.menu-label { min-width: 0; flex: 1; overflow-wrap: anywhere; }
+    .menu-close { border: 0; background: transparent; padding: 3px; border-radius: 3px; flex-shrink: 0; color: var(--muted); }
+    .menu-close:hover { background: var(--wash); }.menu-close svg { width: 12px; height: 12px; display: block; }
+    .callouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+    .callouts strong { display: block; font-size: 13px; font-weight: 500; margin-bottom: 5px; }
+    .callouts p { margin: 0; font-size: 12px; color: #81776a; }
+    .footnote { font-size: 12px; color: #928779; margin: 22px 0 0; }
+    .empty { display: grid; place-items: center; height: 100%; color: var(--muted); font-size: 12px; }
+    .panel.expanded { height: 355px; }.panel.content-hidden .body { visibility: hidden; }
+    @media (max-width: 680px) { main { padding: 24px 14px; } .stage { padding: 14px; min-height: 330px; } .body { padding: 22px 20px; } .callouts { grid-template-columns: 1fr; gap: 13px; } .all-tabs-menu { right: 8px; } h1 { font-size: 21px; } }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-lines" viewBox="0 0 24 24"><path d="M6 6h12M6 12h9M6 18h12"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="m15 4 5 5-11 11H4v-5L15 4ZM12 7l5 5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-max" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-6 6M10 20H4v-6M4 20l6-6"/></symbol>
+    <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M14 4v16"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h14"/></symbol>
+    <symbol id="i-min" viewBox="0 0 24 24"><path d="M4 12h16"/></symbol>
+    <symbol id="i-window" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/></symbol>
+  </svg>
+  <main>
+    <h1>右侧内容 Tabs 小圆角矩形与拖拽设计稿</h1>
+    <p class="intro">小圆角矩形，上下等距留白，普通箭头；玄墨选中项亮灰高亮，拖拽预览随鼠标上下、左右移动。</p>
+    <div class="review-controls" aria-label="设计审核场景">
+      <div class="control-group" aria-label="主题"><span class="control-label">主题</span><button class="review-button" data-theme="paper" aria-pressed="true">宣纸</button><button class="review-button" data-theme="ink" aria-pressed="false">玄墨</button></div>
+      <div class="control-group" aria-label="面板宽度"><span class="control-label">宽度</span><button class="review-button" data-width="normal" aria-pressed="true">正常</button><button class="review-button" data-width="narrow" aria-pressed="false">窄面板</button></div>
+      <div class="control-group" aria-label="标签数量"><span class="control-label">标签</span><button class="review-button" data-count="few" aria-pressed="true">3 个</button><button class="review-button" data-count="many" aria-pressed="false">14 个</button></div>
+      <button class="review-button" id="reset">重置标签</button>
+    </div>
+    <div class="stage">
+      <section class="panel" id="panel" aria-label="右侧内容面板设计预览">
+        <header class="caption">
+          <div class="tab-viewport" role="tablist" aria-label="内容标签" aria-orientation="horizontal"><div class="tab-track"></div><div class="drop-marker" hidden aria-hidden="true"></div></div>
+          <div class="panel-tools" aria-label="内容面板操作">
+            <button type="button" class="icon-button" id="all-tabs" aria-label="所有标签" title="所有标签" aria-expanded="false" aria-controls="all-tabs-menu" aria-haspopup="menu" hidden></button>
+            <button type="button" class="icon-button" id="fullscreen" aria-label="进入全屏示意" title="进入全屏示意" aria-pressed="false"></button>
+            <button type="button" class="icon-button" id="hide-panel" aria-label="隐藏内容示意" title="隐藏内容示意" aria-pressed="false"></button>
+          </div>
+          <div class="native-area" aria-hidden="true"><span class="native-menu"></span><span class="native-control" data-native="min"></span><span class="native-control" data-native="window"></span><span class="native-control" data-native="close"></span></div>
+        </header>
+        <div class="body" role="tabpanel" id="preview-body" tabindex="0"></div>
+        <div class="all-tabs-menu" id="all-tabs-menu" role="menu" aria-label="所有标签" hidden></div>
+      </section>
+    </div>
+    <div class="callouts">
+      <div><strong>小圆角矩形 · 玄墨亮灰高亮</strong><p>6 DIP 圆角保留矩形轮廓。32 DIP 标签上下各留 6 DIP；玄墨选中项采用亮灰底和灰色细边，宣纸选中项与主体同色。</p></div>
+      <div><strong>最大宽度 208 DIP · 文字末端渐隐</strong><p>只有实际被截断的标题渐隐；图标、正文类型和关闭按钮保持清晰。悬停可读完整名称。</p></div>
+      <div><strong>二维拖拽 · 无可见滚动条</strong><p>普通箭头保持不变，标签按抓取位置随鼠标上下、左右移动；回到标签条插入线处松开完成排序。边缘自动横移，Escape 取消；溢出时仍有“所有标签”入口。</p></div>
+    </div>
+    <p class="footnote">用户已于 2026-10-10 审核通过。标题和正文占位均为设计示意，原生窗控只展示位置。预览交互不代表产品实现或真实系统测试。</p>
+    <div id="sort-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+  <script>
+    const panel = document.querySelector('#panel');
+    const viewport = document.querySelector('.tab-viewport');
+    const track = document.querySelector('.tab-track');
+    const menu = document.querySelector('#all-tabs-menu');
+    const menuTrigger = document.querySelector('#all-tabs');
+    const body = document.querySelector('.body');
+    function icon(name) { return '<svg fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-' + name + '"></use></svg>'; }
+    menuTrigger.innerHTML = icon('chevron');
+    document.querySelector('#fullscreen').innerHTML = icon('max');
+    document.querySelector('#hide-panel').innerHTML = icon('panel');
+    document.querySelector('.native-menu').innerHTML = icon('menu');
+    document.querySelectorAll('[data-native]').forEach(el => el.innerHTML = icon(el.dataset.native));
+    const base = [
+      { id: 'sample-1', title: '章节标题示意：穿过长街之后的一段非常长的名称', suffix: '正文', icon: 'lines' },
+      { id: 'sample-2', title: '故事创作', suffix: '', icon: 'pen' },
+      { id: 'sample-3', title: '作品概览', suffix: '', icon: 'book' }
+    ];
+    const extra = [
+      '人物关系示意', '世界设定示意', '章节标题示意：另一段需要淡出显示的长名称', '章节大纲示意',
+      '章节候选稿示意', '场景设定示意', '规划文档示意', '章节标题示意：中英文 Title fading preview',
+      '物品资料示意', '故事线索示意', '章节标题示意：最后一个位于视口以外的标签'
+    ].map((title, index) => ({ id: 'extra-' + index, title, suffix: index === 4 ? '候选稿' : '', icon: index === 3 ? 'pen' : 'lines' }));
+    let countMode = 'few'; let tabs = []; let activeId = base[0].id; let measureFrame = 0;
+    let dragState = null; let dragFrame = 0; let suppressDragClick = false;
+    const marker = document.querySelector('.drop-marker');
+    const sortStatus = document.querySelector('#sort-status');
+    const completeTitle = tab => tab.title + (tab.suffix ? ' · ' + tab.suffix : '');
+    function closeMenu(returnFocus = false) {
+      menu.hidden = true; menuTrigger.setAttribute('aria-expanded', 'false');
+      if (returnFocus && !menuTrigger.hidden) menuTrigger.focus();
+    }
+    function reveal(el) {
+      if (!el || viewport.clientWidth === 0) return;
+      const left = el.offsetLeft, right = left + el.offsetWidth;
+      if (left < viewport.scrollLeft) viewport.scrollLeft = left;
+      else if (right > viewport.scrollLeft + viewport.clientWidth) viewport.scrollLeft = right - viewport.clientWidth;
+    }
+    function measure() {
+      measureFrame = 0;
+      // 先移除溢出入口，以基础可用宽判断；再预留入口并测量标题。
+      menuTrigger.hidden = true;
+      viewport.style.setProperty('--viewport-width', viewport.clientWidth + 'px');
+      const overflow = tabs.length > 0 && track.scrollWidth > viewport.clientWidth + 1;
+      menuTrigger.hidden = !overflow;
+      viewport.style.setProperty('--viewport-width', viewport.clientWidth + 'px');
+      track.querySelectorAll('.tab-title').forEach(el => el.dataset.overflow = String(el.scrollWidth > el.clientWidth + 1));
+      if (!overflow) closeMenu();
+      if (dragState?.started) { updateDragVisuals(); return; }
+      const focused = document.activeElement.closest?.('[role="tab"]');
+      reveal(focused && viewport.contains(focused) ? focused : track.querySelector('[aria-selected="true"]'));
+    }
+    function scheduleMeasure() { if (!measureFrame) measureFrame = requestAnimationFrame(measure); }
+    function moveTabToIndex(id, destination) {
+      const from = tabs.findIndex(tab => tab.id === id); if (from < 0) return;
+      const next = Math.max(0, Math.min(tabs.length - 1, destination));
+      if (from === next) return;
+      const tab = tabs[from]; const others = tabs.filter(item => item.id !== id);
+      others.splice(next, 0, tab); tabs = others;
+      const el = track.querySelector('[data-id="' + id + '"]');
+      const nodes = Array.from(track.children).filter(item => item !== el);
+      if (from !== next) track.insertBefore(el, nodes[next] ?? null);
+      track.querySelectorAll('[role="tab"]').forEach(item => item.tabIndex = item === el ? 0 : -1);
+      el.focus({ preventScroll: true }); reveal(el);
+      sortStatus.textContent = '已将 ' + completeTitle(tab) + ' 移至第 ' + (next + 1) + ' 个，共 ' + tabs.length + ' 个标签';
+      scheduleMeasure();
+    }
+    function updateDragVisuals() {
+      const state = dragState; if (!state?.started) return;
+      const vr = viewport.getBoundingClientRect();
+      state.valid = state.x >= vr.left && state.x <= vr.right && state.y >= vr.top && state.y <= vr.bottom;
+      const others = Array.from(track.children).filter(el => el !== state.source);
+      state.destination = others.findIndex(el => { const r = el.getBoundingClientRect(); return state.x < r.left + r.width / 2; });
+      if (state.destination < 0) state.destination = others.length;
+      const before = others[state.destination], last = others.at(-1);
+      const position = before ? before.getBoundingClientRect().left - 3 : last ? last.getBoundingClientRect().right + 3 : vr.left + 1;
+      marker.hidden = !state.valid; marker.style.left = Math.max(0, Math.min(vr.width - 2, position - vr.left)) + 'px';
+      state.ghost.style.left = state.x - state.offsetX + 'px';
+      state.ghost.style.top = state.y - state.offsetY + 'px'; state.ghost.style.opacity = state.valid ? '.92' : '.5';
+    }
+    function scrollWhileDragging() {
+      dragFrame = 0; const state = dragState; if (!state?.started) return;
+      const vr = viewport.getBoundingClientRect();
+      if (state.valid) {
+        const edge = Math.min(24, vr.width / 4);
+        let delta = 0;
+        if (state.x < vr.left + edge) delta = -12 * (1 - (state.x - vr.left) / edge);
+        else if (state.x > vr.right - edge) delta = 12 * (1 - (vr.right - state.x) / edge);
+        if (delta) { viewport.scrollLeft += delta; updateDragVisuals(); }
+      }
+      dragFrame = requestAnimationFrame(scrollWhileDragging);
+    }
+    function startTabPointer(event, source) {
+      if (event.button !== 0 || event.pointerType !== 'mouse' || event.target.closest('button') || dragState) return;
+      closeMenu();
+      const rect = source.getBoundingClientRect();
+      dragState = { source, id: source.dataset.id, pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, x: event.clientX, y: event.clientY, offsetX: event.clientX - rect.left, offsetY: event.clientY - rect.top, width: rect.width, started: false, valid: false };
+      source.setPointerCapture(event.pointerId);
+    }
+    function moveTabPointer(event) {
+      const state = dragState; if (!state || state.pointerId !== event.pointerId) return;
+      state.x = event.clientX; state.y = event.clientY;
+      if (!state.started && Math.hypot(state.x - state.startX, state.y - state.startY) < 6) return;
+      event.preventDefault();
+      if (!state.started) {
+        state.started = true; state.source.classList.add('drag-source');
+        const ghost = state.source.cloneNode(true); ghost.classList.remove('drag-source'); ghost.classList.add('drag-preview');
+        for (const item of [ghost, ...ghost.querySelectorAll('*')]) { item.removeAttribute('id'); item.removeAttribute('role'); item.removeAttribute('aria-selected'); item.removeAttribute('aria-controls'); item.removeAttribute('aria-label'); item.removeAttribute('title'); item.tabIndex = -1; }
+        ghost.setAttribute('aria-hidden', 'true'); ghost.style.width = state.width + 'px'; ghost.style.minWidth = '0'; ghost.style.maxWidth = 'none';
+        state.ghost = ghost; panel.append(ghost); dragFrame = requestAnimationFrame(scrollWhileDragging);
+      }
+      updateDragVisuals();
+    }
+    function finishTabPointer(commit = false) {
+      const state = dragState; if (!state) return;
+      dragState = null; cancelAnimationFrame(dragFrame); dragFrame = 0;
+      state.source.classList.remove('drag-source'); state.ghost?.remove(); marker.hidden = true;
+      if (state.source.hasPointerCapture(state.pointerId)) state.source.releasePointerCapture(state.pointerId);
+      if (!state.started) return;
+      suppressDragClick = true;
+      if (commit && state.valid) moveTabToIndex(state.id, state.destination);
+      else { sortStatus.textContent = '已取消标签排序'; state.source.focus({ preventScroll: true }); }
+    }
+    viewport.addEventListener('pointermove', moveTabPointer);
+    viewport.addEventListener('pointerup', event => { if (dragState?.pointerId === event.pointerId) { dragState.x = event.clientX; dragState.y = event.clientY; if (dragState.started) updateDragVisuals(); finishTabPointer(true); } });
+    viewport.addEventListener('pointercancel', () => finishTabPointer());
+    viewport.addEventListener('lostpointercapture', () => finishTabPointer());
+    document.addEventListener('pointerdown', () => { suppressDragClick = false; }, true);
+    viewport.addEventListener('click', event => { if (suppressDragClick && event.detail > 0) { suppressDragClick = false; event.preventDefault(); event.stopImmediatePropagation(); } }, true);
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && dragState) { event.preventDefault(); event.stopImmediatePropagation(); finishTabPointer(); } }, true);
+    window.addEventListener('blur', () => finishTabPointer());
+    document.addEventListener('visibilitychange', () => { if (document.hidden) finishTabPointer(); });
+    function select(id, focus = false) {
+      activeId = id;
+      track.querySelectorAll('[role="tab"]').forEach(el => {
+        const selected = el.dataset.id === id; el.setAttribute('aria-selected', String(selected)); el.tabIndex = selected ? 0 : -1;
+      });
+      const tab = tabs.find(item => item.id === id);
+      body.replaceChildren();
+      if (tab) {
+        const type = document.createElement('p'); type.className = 'body-type'; type.textContent = tab.suffix || (tab.id === 'sample-2' ? '故事创作' : '内容面板');
+        const heading = document.createElement('h2'); heading.textContent = tab.title;
+        const skeleton = document.createElement('div'); skeleton.className = 'skeleton'; skeleton.setAttribute('aria-hidden', 'true'); skeleton.innerHTML = '<i></i><i></i><i></i>';
+        body.append(type, heading, skeleton);
+        const selected = track.querySelector('[data-id="' + id + '"]');
+        body.setAttribute('aria-labelledby', selected.id); if (focus) selected.focus(); reveal(selected);
+      } else {
+        body.removeAttribute('aria-labelledby'); const empty = document.createElement('div'); empty.className = 'empty'; empty.textContent = '从左侧树中选择小说或内容节点，在这里开始创作'; body.append(empty);
+      }
+      scheduleMeasure();
+    }
+    function closeTab(id) {
+      const index = tabs.findIndex(tab => tab.id === id); if (index < 0) return;
+      tabs.splice(index, 1); if (activeId === id) activeId = tabs[index - 1]?.id ?? tabs[index]?.id ?? null;
+      render();
+    }
+    function render() {
+      finishTabPointer();
+      closeMenu(); track.replaceChildren();
+      for (const tab of tabs) {
+        const el = document.createElement('div'); el.className = 'content-tab'; el.setAttribute('role', 'tab');
+        el.id = 'tab-' + tab.id; el.dataset.id = tab.id; el.setAttribute('aria-label', completeTitle(tab)); el.setAttribute('aria-controls', 'preview-body'); el.title = completeTitle(tab);
+        el.innerHTML = icon(tab.icon);
+        const label = document.createElement('span'); label.className = 'tab-title'; label.textContent = tab.title; el.append(label);
+        if (tab.suffix) { const suffix = document.createElement('span'); suffix.className = 'tab-suffix'; suffix.textContent = '· ' + tab.suffix; el.append(suffix); }
+        const close = document.createElement('button'); close.type = 'button'; close.className = 'tab-close'; close.setAttribute('aria-label', '关闭 ' + completeTitle(tab)); close.title = '关闭'; close.innerHTML = icon('close');
+        close.addEventListener('click', event => { event.stopPropagation(); closeTab(tab.id); track.querySelector('[aria-selected="true"]')?.focus(); }); el.append(close);
+        el.addEventListener('click', () => select(tab.id));
+        el.addEventListener('pointerdown', event => startTabPointer(event, el));
+        el.addEventListener('dragstart', event => event.preventDefault());
+        el.addEventListener('auxclick', event => { if (event.button === 1) { event.preventDefault(); closeTab(tab.id); } });
+        el.addEventListener('focus', () => { track.querySelectorAll('[role="tab"]').forEach(item => item.tabIndex = item === el ? 0 : -1); reveal(el); });
+        el.addEventListener('keydown', event => {
+          if (event.target !== el) return;
+          const items = Array.from(track.children), index = items.indexOf(el); let next;
+          if (event.altKey && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) { event.preventDefault(); moveTabToIndex(tab.id, index + (event.key === 'ArrowLeft' ? -1 : 1)); return; }
+          if (event.key === 'ArrowRight') next = items[(index + 1) % items.length];
+          if (event.key === 'ArrowLeft') next = items[(index - 1 + items.length) % items.length];
+          if (event.key === 'Home') next = items[0]; if (event.key === 'End') next = items.at(-1);
+          if (next) { event.preventDefault(); next.focus(); reveal(next); }
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); select(tab.id, true); }
+        }); track.append(el);
+      }
+      select(activeId);
+    }
+    function openMenu() {
+      if (!menu.hidden) { closeMenu(true); return; }
+      menu.replaceChildren(); const heading = document.createElement('h3'); heading.textContent = '所有标签 · ' + tabs.length; heading.setAttribute('role', 'presentation'); menu.append(heading);
+      for (const tab of tabs) {
+        const row = document.createElement('div'); row.className = 'menu-row'; row.setAttribute('role', 'none');
+        const switchButton = document.createElement('button'); switchButton.type = 'button'; switchButton.className = 'menu-switch'; switchButton.setAttribute('role', 'menuitemradio'); switchButton.setAttribute('aria-checked', String(tab.id === activeId)); switchButton.tabIndex = -1;
+        switchButton.setAttribute('aria-label', completeTitle(tab)); switchButton.title = completeTitle(tab);
+        const check = document.createElement('span'); check.className = 'menu-check'; check.setAttribute('aria-hidden', 'true'); check.textContent = tab.id === activeId ? '✓' : '';
+        const label = document.createElement('span'); label.className = 'menu-label'; label.textContent = completeTitle(tab);
+        const close = document.createElement('button'); close.className = 'menu-close'; close.type = 'button'; close.setAttribute('role', 'menuitem'); close.tabIndex = -1; close.setAttribute('aria-label', '关闭 ' + completeTitle(tab)); close.innerHTML = icon('close');
+        close.addEventListener('click', event => { event.stopPropagation(); closeTab(tab.id); menuTrigger.focus(); });
+        switchButton.append(check, label); row.append(switchButton, close); switchButton.addEventListener('click', () => { closeMenu(); select(tab.id, true); }); menu.append(row);
+      }
+      menu.hidden = false; menuTrigger.setAttribute('aria-expanded', 'true'); menu.querySelector('[role="menuitemradio"]')?.focus();
+    }
+    menuTrigger.addEventListener('click', openMenu);
+    menu.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { event.preventDefault(); closeMenu(true); return; }
+      if (event.key === 'Tab') { closeMenu(); return; }
+      const rows = Array.from(menu.querySelectorAll('[role="menuitem"], [role="menuitemradio"]')); const index = rows.indexOf(document.activeElement); let next;
+      if (event.key === 'ArrowDown') next = rows[(index + 1) % rows.length]; if (event.key === 'ArrowUp') next = rows[(index - 1 + rows.length) % rows.length];
+      if (event.key === 'Home') next = rows[0]; if (event.key === 'End') next = rows.at(-1); if (next) { event.preventDefault(); next.focus(); }
+    });
+    document.addEventListener('pointerdown', event => { if (!menu.hidden && !menu.contains(event.target) && !menuTrigger.contains(event.target)) closeMenu(); });
+    viewport.addEventListener('wheel', event => {
+      const delta = event.deltaX || (event.shiftKey ? event.deltaY : 0);
+      if (!delta || track.scrollWidth <= viewport.clientWidth) return;
+      event.preventDefault(); viewport.scrollLeft += delta * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientWidth : 1);
+    }, { passive: false });
+    function setPressed(attribute, value) { document.querySelectorAll('[' + attribute + ']').forEach(button => button.setAttribute('aria-pressed', String(button.getAttribute(attribute) === value))); }
+    document.querySelectorAll('[data-theme]').forEach(button => button.addEventListener('click', () => { panel.classList.toggle('ink', button.dataset.theme === 'ink'); setPressed('data-theme', button.dataset.theme); scheduleMeasure(); }));
+    document.querySelectorAll('[data-width]').forEach(button => button.addEventListener('click', () => { closeMenu(); panel.classList.toggle('narrow', button.dataset.width === 'narrow'); setPressed('data-width', button.dataset.width); scheduleMeasure(); }));
+    function resetTabs() { tabs = (countMode === 'few' ? base : [...base, ...extra]).map(tab => ({ ...tab })); activeId = base[0].id; render(); }
+    document.querySelectorAll('[data-count]').forEach(button => button.addEventListener('click', () => { countMode = button.dataset.count; setPressed('data-count', countMode); resetTabs(); }));
+    document.querySelector('#reset').addEventListener('click', resetTabs);
+    document.querySelector('#fullscreen').addEventListener('click', event => { const expanded = panel.classList.toggle('expanded'); event.currentTarget.setAttribute('aria-pressed', String(expanded)); event.currentTarget.setAttribute('aria-label', expanded ? '退出全屏示意' : '进入全屏示意'); });
+    document.querySelector('#hide-panel').addEventListener('click', event => { const hidden = panel.classList.toggle('content-hidden'); event.currentTarget.setAttribute('aria-pressed', String(hidden)); event.currentTarget.setAttribute('aria-label', hidden ? '显示内容示意' : '隐藏内容示意'); });
+    let lastWidth = -1;
+    const observer = new ResizeObserver(() => { const width = panel.clientWidth; if (width !== lastWidth) { lastWidth = width; finishTabPointer(); scheduleMeasure(); } }); observer.observe(panel);
+    document.fonts.ready.then(scheduleMeasure); resetTabs();
+  </script>
+</body>
+</html>

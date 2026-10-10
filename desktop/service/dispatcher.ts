@@ -8,6 +8,7 @@ import {conversationTransfersFor} from './conversation-runtime'
 import type {ConversationTransfers} from './conversation-transfer'
 import {getDatabaseContext} from './context'
 import { dispatchTemplateRequest } from "./template-dispatcher"
+import type { UnavailableWork } from "../shared/work-list"
 export type RouteHandler = (request: Request, context: { params: Promise<Record<string, string>> }) => Promise<Response>
 export function matchRoute(path: string, method: string) {
   const segments = new URL(path, "https://local.invalid").pathname.split("/")
@@ -82,8 +83,15 @@ export class LocalDispatcher {
       return (await dispatchTemplateRequest(new Request(url, {method:input.method,headers:input.headers,body:input.body?.length?Uint8Array.from(input.body):undefined,signal})))!
     }
     if (input.method === "GET" && url.pathname === "/api/novels") {
-      const novels = (await Promise.all((await this.works.list()).map(row => this.works.run(row.id, () => prisma.novel.findMany({ where: { userId: LOCAL_AUTHOR_ID, status: { not: "DELETED" } }, select: { id: true, title: true, coverUrl: true, status: true, currentStage: true, createdAt: true, updatedAt: true } }))))).flat()
-      return Response.json({ novels: novels.sort((a,b) => b.updatedAt.getTime() - a.updatedAt.getTime()) })
+      const records = await this.works.list()
+      const reads = await Promise.allSettled(records.map(row => this.works.run(row.id, () => prisma.novel.findMany({ where: { userId: LOCAL_AUTHOR_ID, status: { not: "DELETED" } }, select: { id: true, title: true, coverUrl: true, status: true, currentStage: true, createdAt: true, updatedAt: true } }))))
+      const novels = reads.flatMap(read => read.status === 'fulfilled' ? read.value : [])
+      const unavailableWorks: UnavailableWork[] = reads.flatMap((read, index) => {
+        if (read.status === 'fulfilled') return []
+        const row = records[index]
+        return [{ workId: row.id, novelId: row.novelId, title: row.title, reason: read.reason instanceof ContentError && read.reason.code === 'WORK_LEASE_STALE' ? 'stale-lease' : 'unavailable' }]
+      })
+      return Response.json({ novels: novels.sort((a,b) => b.updatedAt.getTime() - a.updatedAt.getTime()), unavailableWorks })
     }
     if (input.method === "GET" && url.pathname === "/api/chat/conversations") {
       const locations=this.transfers?await this.transfers.ledger.locations?.()??[]:[]

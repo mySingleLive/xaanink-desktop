@@ -101,7 +101,7 @@ window.mountSurfaces=({zoom,font,theme,count})=>{
  const tabs=Array.from({length:count},(_,i)=>({id:'theme:n'+i,type:'theme',novelId:'n'+i,title:'隔离面板 '+i}));
  const layout={version:1,narrowPane:'content',contentVisible:true,sidebarVisible:true,chatVisible:true,sizes:{sidebar:20,chat:35,content:45},lastContentSize:45,lastSidebarSize:20,lastChatSize:35};
  desktopWorkspaceDraftSource.restore({version:1,tabs,activeTabId:tabs[0]?.id??null,subTabs:{},layout});
- const query=new QueryClient({defaultOptions:{queries:{retry:false,staleTime:Infinity}}});query.setQueryData(['novels'],[]);
+ const query=new QueryClient({defaultOptions:{queries:{retry:false,staleTime:Infinity}}});query.setQueryData(['novels'],{novels:[],unavailableWorks:[]});
  const root=createRoot(document.getElementById('app'));flushSync(()=>root.render(<QueryClientProvider client={query}><DashboardShell user={{id:'isolated-author',name:'隔离作者',email:''}}/><WindowsMenuControl/>
  <div data-outside-settings className='desktop-settings-nav' style={{position:'fixed',left:-500,top:0}}>设置 CSS 夹具</div>
  <div data-outside-planning className='surface-planning-workspace' style={{position:'fixed',left:-500,top:200}}>独立规划 CSS 夹具</div></QueryClientProvider>));

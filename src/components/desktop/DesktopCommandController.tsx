@@ -53,6 +53,10 @@ export function DesktopCommandController(){
    if(target?.closest('[role="menu"],[role="listbox"],[data-slot="select-content"]')){dispatcher.reset();return}
    const recording=!!document.querySelector('[data-desktop-recording="true"]')
    if(recording){dispatcher.reset();return}
+   // A focused content tab owns Alt+arrows before global navigation capture.
+   if(event.altKey&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&["ArrowLeft","ArrowRight"].includes(event.key)&&target===document.activeElement&&target?.matches('.content-tabs-track .content-tab[role="tab"]')){dispatcher.reset();return}
+   // Escape cancels an in-progress tab drag before any global stop binding.
+   if(event.key==="Escape"&&!event.metaKey&&!event.ctrlKey&&!event.altKey&&!event.shiftKey&&document.querySelector('.content-tabs-track .content-tab-drag-source')){dispatcher.reset();return}
    // Escape belongs to the top dialog/menu (including its nested widgets),
    // even when an ordinary input's cancel binding was removed or rebound.
    if(document.querySelector(dialogSelector)&&event.key==="Escape"&&!event.metaKey&&!event.ctrlKey&&!event.altKey&&!event.shiftKey){dispatcher.reset();return}

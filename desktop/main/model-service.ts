@@ -4,7 +4,8 @@ import type { ModelRepository } from "./model-repository"
 import { generateMainImage, waitImageOperation } from "./image-generation"
 import type { ImageGenerationHeader } from "../shared/image-generation"
 import { freezeTaskDefaults } from "../shared/task-defaults"
-const selectionSchema = z.object({ role: z.enum(["text", "review", "image"]), id: z.string().min(1).max(200).nullable().optional(), intent: z.enum(["invoke", "selection"]).optional() }).strict()
+import { modelTaskSchema } from '../shared/model-task'
+const selectionSchema = z.object({ role: z.enum(["text", "review", "image"]), id: z.string().min(1).max(200).nullable().optional(), intent: z.enum(["invoke", "selection"]).optional(), task: modelTaskSchema.optional() }).strict()
 const networkSchema = z.object({ id: z.uuid(), modelId: z.uuid(), authRevision: z.number().int().positive(), kind: z.enum(["TEXT", "IMAGE"]), url: z.url().max(4096), method: z.enum(["GET", "POST"]), headers: z.record(z.string().max(100), z.string().max(2048)), body: z.string().max(16 * 1024 * 1024).optional() }).strict()
 const imageSchema = z.object({ id: z.uuid(), modelId: z.uuid(), authRevision: z.number().int().positive(), prompt: z.string().min(1).max(128000), sizes: z.array(z.string().regex(/^\d{2,5}x\d{2,5}$/)).max(8).optional(), watermark: z.boolean().optional() }).strict()
 interface Transfer { imageAbort?: AbortController; canceled: boolean; pending: Promise<void>; lease?: ModelLease; reader?: ReadableStreamDefaultReader<Uint8Array>; remainder?: Uint8Array; reading: boolean }

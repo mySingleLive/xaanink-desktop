@@ -3,6 +3,17 @@
   "sourceCommit": "55a62560dc4818143469abb12717a23c752ade8c",
   "status": "planned",
   "note": "Mappings are proposed local entry points, not implementation or test results.",
+  "reviewModelSelectionFix": {
+    "date": "2026-10-10",
+    "scope": "Retained chat/SOP execution and current task review selection; additive nullable Conversation.reviewModelId and ChatAttempt.defaultsSnapshot",
+    "status": "scoped-accepted",
+    "implementation": ["src/lib/services/chat-turn.ts", "desktop/handlers/chat/conversations/[id]/route.ts", "desktop/service/models.ts", "desktop/main/model-guidance.ts", "desktop/main/model-service.ts", "desktop/shared/model-task.ts", "desktop/shared/task-defaults.ts", "desktop/shared/ipc.ts", "src/components/desktop/ModelRequiredDialog.tsx", "src/components/desktop/ReviewModelSelection.tsx", "prisma/migrations/20261010090000_review_attempt_selection/migration.sql"],
+    "verification": "docs/reviews/2026-10-10-review-model-selection-verification.md",
+    "review": "docs/reviews/2026-10-10-review-model-selection-review.md",
+    "scopedTests": {"pass": 69, "fail": 0, "cancelled": 0, "skipped": 0},
+    "nativeEvidence": "docs/evidence/review-model-selection/target-03/windows-electron.json",
+    "limitations": ["Real provider and original user task are not automatically invoked", "Old frozen transfer bundles are rejected safely; no old-schema journal auto-recovery claim", "No full regression, macOS or installation package verification"]
+  },
   "workspaceSurfacesDevelopment": {
     "date": "2026-10-10",
     "scope": "Fine structural dividers and subtle paper column backgrounds; all business migration mappings unchanged",
@@ -55,6 +66,33 @@
     "verificationReview": "docs/reviews/2026-10-10-caption-height-verification-review.md",
     "fullAcceptancePassed": false,
     "note": "Same isolated Windows fixture at OSscale1.5/zoom1/font14; normal/max/restored15 control rects exactly match previous revision. Complete core/browser failures retained; all formal and business mapping states unchanged."
+  },
+  "worksLoadingFix": {
+    "date": "2026-10-10",
+    "scope": "Scoped real novel list and unavailable work state; approved original React components retained",
+    "status": "scoped-accepted",
+    "scopedTests": { "tests": 68, "pass": 68, "fail": 0 },
+    "nativeEvidence": "docs/evidence/works-loading/target-03/windows-electron.json",
+    "nativeChecks": 12,
+    "verification": "docs/reviews/2026-10-10-works-loading-verification.md",
+    "independentReview": "docs/reviews/2026-10-10-works-loading-review.md",
+    "actualUserRecovery": "user-confirmed-restored-and-expandable",
+    "fullAcceptancePassed": false,
+    "note": "Only this loading goal verified; native test responses controlled on synthetic fixture, actual work recovery separately confirmed by user. Other migration states unchanged."
+  },
+  "contentTabsRedesign": {
+    "date": "2026-10-10",
+    "status": "scoped-accepted",
+    "sourceComponent": "src/components/layout/ContentTabs.tsx",
+    "productDesign": "docs/reviews/2026-10-10-content-tabs-product-design.md",
+    "uiPreview": "design/content-tabs/index.html",
+    "uiRevision": "ink-xy-v4; brighter grey ink selected tabs and XY pointer-following drag; 6 DIP rounded rectangles, default arrow, mouse reorder, equal top/bottom clearance and no red accent edge retained",
+    "implementation": ["src/components/layout/ContentTabs.tsx", "src/components/layout/useContentTabStrip.ts", "src/stores/tabs.ts", "src/app/desktop.css", "src/components/desktop/DesktopCommandController.tsx"],
+    "verification": "docs/reviews/2026-10-10-content-tabs-verification.md",
+    "nativeEvidence": "docs/evidence/content-tabs/target-06-electron/windows-electron.json",
+    "scopedRegression": { "tests": 45, "pass": 45, "fail": 0 },
+    "scopedAcceptancePassed": true,
+    "note": "ink-xy-v4 approved 2026-10-10; independent technical/test/code review, 45 scoped tests and actual final Windows Electron verification passed. Real Tabs/29-panel map/key/hidden retained. Synthetic isolated input/data; no full regression, physical OS, macOS or installer acceptance. No business migration statuses changed."
   },
   "contentTabs": [
     {
